@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%
+    }
+
+    #legend {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 24px;
+    }
+
+    #legend h3 {
+      margin-top: 0;
+    }
+
+    #legend div {
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    #legend .region {
+      display: flex;
+    }
+
+    #legend .region .color-box {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+  </style>
+  <script type="text/javascript" src="./prefectures.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+  </script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function parseData(jsonData) {
+      var dataArray = [['Prefecture', 'Index']];
+
+      jsonData.forEach((region, index) => {
+        region.prefectures.forEach(prefecture => {
+          dataArray.push([prefecture.name, index]);
+        });
+      });
+
+      return dataArray;
+    }
+
+    function populateLegend(jsonData) {
+      var legend = document.getElementById('legend');
+      legend.innerHTML = '<h3>日本の地域 / にほんのちいき</h3>';
+
+      jsonData.forEach(region => {
+        var colorBox = `<div class="color-box" style="background-color: ${region.color}"></div>`;
+        legend.innerHTML += `<div class="region">${colorBox}<div>${region.name}</div></div>`;
+      });
+    }
+
+    function drawRegionsMap() {
+
+      var data = google.visualization.arrayToDataTable(parseData(prefectures));
+
+      var options = {
+        region: 'JP',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        legend: 'none',
+        colorAxis: { colors: prefectures.map(region => region.color) },
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('map'));
+      chart.draw(data, options);
+
+      populateLegend(prefectures);
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="legend"></div>
+</body>
+
+</html>
