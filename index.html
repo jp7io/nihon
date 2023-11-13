@@ -2,59 +2,38 @@
 <html lang="en">
 
 <head>
+  <title>Map of Japan Regions / 日本の地域</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-    }
-
-    #map {
-      width: 100%;
-      height: 100%
-    }
-
-    #legend {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 24px;
-    }
-
-    #legend h3 {
-      margin-top: 0;
-    }
-
-    #legend div {
-      margin-bottom: 5px;
-      font-size: 14px;
-      line-height: 20px;
-    }
-
-    #legend .region {
-      display: flex;
-    }
-
-    #legend .region .color-box {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-    }
-  </style>
-  <script type="text/javascript" src="./prefectures.js"></script>
+  <link media="all" rel="stylesheet" href="./styles.css" />
+  <link rel="shortcut icon" href="./favicon.ico">
+  <script type="text/javascript" src="./regions.js"></script>
+  <script type="text/javascript" src="./utils.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
   </script>
   <script type="text/javascript">
     google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
     google.charts.setOnLoadCallback(drawRegionsMap);
+    google.charts.setOnLoadCallback(drawCities);
 
     function parseData(jsonData) {
-      var dataArray = [['Prefecture', 'Index']];
+      const dataArray = [['Prefecture', 'Index']];
 
       jsonData.forEach((region, index) => {
         region.prefectures.forEach(prefecture => {
-          dataArray.push([prefecture.name, index]);
+          dataArray.push([replaceSpecialCharactersWithAscii(prefecture.name.en), index]);
+        });
+      });
+
+      return dataArray;
+    }
+
+    function parseDataForCities(jsonData) {
+      const dataArray = [['City', 'isCapital']];
+
+      jsonData.forEach((region, index) => {
+        region.cities.forEach(city => {
+          dataArray.push([replaceSpecialCharactersWithAscii(city.ja), city.capital ? 1 : 2]);
         });
       });
 
@@ -62,40 +41,103 @@
     }
 
     function populateLegend(jsonData) {
-      var legend = document.getElementById('legend');
-      legend.innerHTML = '<h3>日本の地域 / にほんのちいき</h3>';
+      const legend = document.getElementById('legend');
+      legend.innerHTML = `
+        <h3>
+          <div class="furigana-text">
+            <span class="furigana">に ほん <span></span> ち いき</span>
+            <span class="text">日本の地域</span>
+          </div>
+        </h3>
+      `;
 
       jsonData.forEach(region => {
-        var colorBox = `<div class="color-box" style="background-color: ${region.color}"></div>`;
-        legend.innerHTML += `<div class="region">${colorBox}<div>${region.name}</div></div>`;
+        legend.innerHTML += (`
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: ${region.color}"></div>
+            <div class="legend-ja">${region.name.ja}</div>
+            <div class="legend-en">${region.name.en}</div>
+          </div>
+        `);
       });
     }
 
     function drawRegionsMap() {
 
-      var data = google.visualization.arrayToDataTable(parseData(prefectures));
+      const data = google.visualization.arrayToDataTable(parseData(regions));
 
-      var options = {
+      const options = {
         region: 'JP',
         displayMode: 'regions',
         resolution: 'provinces',
         legend: 'none',
-        colorAxis: { colors: prefectures.map(region => region.color) },
+        colorAxis: { colors: regions.map(region => region.color) },
       };
 
-      var chart = new google.visualization.GeoChart(document.getElementById('map'));
+      const chart = new google.visualization.GeoChart(document.getElementById('regions'));
       chart.draw(data, options);
 
-      populateLegend(prefectures);
+      populateLegend(regions);
     }
 
+    function drawCities() {
 
+      const data = google.visualization.arrayToDataTable(parseDataForCities(regions));
+
+      const options = {
+        region: 'JP',
+        displayMode: 'text',
+        resolution: 'countries',
+        legend: 'none',
+        backgroundColor: 'transparent',
+        datalessRegionColor: 'transparent',
+        backgroundColor: 'transparent',
+        colorAxis: { colors: ['brown', 'black'] },
+        sizeAxis: { minValue: 0, maxValue: 0 },
+      };
+
+      const chart = new google.visualization.GeoChart(document.getElementById('cities'));
+      chart.draw(data, options);
+    }
   </script>
 </head>
 
 <body>
-  <div id="map"></div>
+  <div id="maps">
+    <div id="regions"></div>
+    <div id="cities"></div>
+    <div id="citiesMarkers"></div>
+  </div>
   <div id="legend"></div>
+  <div class="shuriken">
+    <div class="directions">
+      <div class="direction direction-e">
+        <div class="furigana-text">
+          <span class="furigana">ひがし</span>
+          <span class="text">東</span>
+        </div>
+      </div>
+      <div class="direction direction-w">
+        <div class="furigana-text">
+          <span class="furigana">にし</span>
+          <span class="text">西</span>
+        </div>
+      </div>
+      <div class="direction direction-s">
+        <div class="furigana-text">
+          <span class="furigana">みなみ</span>
+          <span class="text">南</span>
+        </div>
+      </div>
+      <div class="direction direction-n">
+        <div class="furigana-text">
+          <span class="furigana">きた</span>
+          <span class="text">北</span>
+        </div>
+      </div>
+      <img src="./img/shuriken.svg" alt="Shuriken" />
+    </div>
+  </div>
 </body>
 
 </html>

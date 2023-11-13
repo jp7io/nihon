@@ -1,0 +1,131 @@
+body {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+#maps {
+  position: relative;
+}
+
+#regions,
+#cities,
+#cityMarkers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
+}
+
+#legend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2vw;
+}
+
+#legend h3 {
+  margin-top: 0;
+  font-size: 4vw;
+}
+
+.legend-item {
+  padding-left: 0.5vw;
+  margin-bottom: 1vw;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+}
+
+.legend-color {
+  width: 2vw;
+  height: 2vw;
+  margin-right: 1vw;
+  border: 0.5px solid #999;
+}
+
+.legend-en {
+  margin-left: 1vw;
+  color: #666;
+  font-size: 0.5em;
+  font-style: italic;
+}
+
+.shuriken {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2vw;
+}
+
+.shuriken img {
+  width: 10vw;
+  height: 10vw;
+  padding: 2vw;
+  margin: 3vw 2vw;
+  opacity: 0.7;
+}
+
+.directions {
+  position: relative;
+  overflow: hidden;
+}
+
+.direction {
+  position: absolute;
+  font-size: 2.5vw;
+}
+
+.direction-e {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-bottom: 2.5vw;
+}
+
+.direction-w {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-bottom: 2.5vw;
+}
+
+.direction-s {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.direction-n {
+  top: 0 ;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.furigana-text {
+  line-height: 0.8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.furigana {
+  font-size: 0.4em;
+  display: block;
+  font-weight: normal;
+}
+
+.furigana span {
+  padding: 0 1.8em;
+}
+
+.text {
+  display: block;
+}
+
+svg text {
+  font-size: 0.9vw;
+  text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
+             1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
