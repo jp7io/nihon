@@ -21,7 +21,7 @@
 
       const patterns = document.getElementById('patterns');
 
-      patterns.innerHTML = document.getElementById('patterns_hatch').contentDocument.querySelector('svg').innerHTML;
+      patterns.innerHTML = document.getElementById('patterns_simple').contentDocument.querySelector('svg').innerHTML;
     }
 
     function parseData(jsonData) {
@@ -75,8 +75,8 @@
         `);
       });
 
-      document.getElementById("colorRadio").onchange = (radio) => handleFillmode(radio, regionsColors);
-      document.getElementById("patternRadio").onchange = (radio) => handleFillmode(radio, regionsColors);
+      document.getElementById("colorRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
+      document.getElementById("patternRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
     }
 
     function drawRegionsMap() {
@@ -125,11 +125,11 @@
       chart.draw(data, options);
     }
 
-    function handleFillmode(f, regionsColors) {
-      document.body.className = `fillmode-${f.target.value}`;
+    function handleFillmode(mode, regionsColors) {
+      document.body.className = `fillmode-${mode}`;
 
       regions.forEach((region, index) => {
-        if (f.target.value === 'color') {
+        if (mode === 'color') {
           const maps = document.querySelectorAll(`#regions svg path[fill="url(#${regionsColors[index].pattern})"]`);
           maps.forEach((map) => {
             map.setAttribute('fill', `${regionsColors[index].color}`);
@@ -200,7 +200,8 @@
     <defs id="patterns"></defs>
   </svg>
 
-  <object type="image/svg+xml" data="./img/patterns_hatch.svg" id="patterns_hatch" style="visibility: hidden;"></object>
+  <object type="image/svg+xml" data="./img/patterns_simple.svg" id="patterns_simple"
+    style="visibility: hidden;"></object>
 </body>
 
 </html>

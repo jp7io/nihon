@@ -163,8 +163,11 @@ body.fillmode-pattern .legend-pattern {
 }
 
 @media print {
-  #regions {
-    opacity: 0.5;
+  .legend-color,
+  .legend-pattern,
+  .legend-pattern svg {
+    width: 3vw;
+    height: 3vw;
   }
 
   .legend-item {
@@ -174,5 +177,9 @@ body.fillmode-pattern .legend-pattern {
 
   svg text {
     font-size: 1.2vw;
+  }
+
+  #fillmode {
+    display: none;
   }
 }

@@ -1,34 +1,34 @@
 const colors = [
   {
     "color": "#ff5733",
-    "pattern": "hatch_09",
+    "pattern": "circle2Hatch",
   },
   {
     "color": "#ffc300",
-    "pattern": "hatch_10",
+    "pattern": "dottedHatch",
   },
   {
     "color": "#9b59b6",
-    "pattern": "hatch_03",
+    "pattern": "verticalHatch",
   },
   {
     "color": "#3498db",
-    "pattern": "hatch_04",
+    "pattern": "diagonalHatch2",
   },
   {
     "color": "#27ae60",
-    "pattern": "hatch_05",
+    "pattern": "circleHatch",
   },
   {
     "color": "#e74c3c",
-    "pattern": "hatch_11",
+    "pattern": "squareHatch",
   },
   {
     "color": "#2ecc71",
-    "pattern": "hatch_12",
+    "pattern": "diamondHatch",
   },
   {
     "color": "#f39c12",
-    "pattern": "hatch_16",
+    "pattern": "diagonalHatch",
   }
 ]
