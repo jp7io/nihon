@@ -38,11 +38,17 @@ body {
   align-items: center;
 }
 
-.legend-color {
+.legend-color,
+.legend-pattern {
   width: 2vw;
   height: 2vw;
   margin-right: 1vw;
   border: 0.5px solid #999;
+}
+
+.legend-pattern svg {
+  width: 2vw;
+  height: 2vw;
 }
 
 .legend-en {
@@ -50,6 +56,16 @@ body {
   color: #666;
   font-size: 0.5em;
   font-style: italic;
+}
+
+#fillmode {
+  position: absolute;
+  top: 1vw;
+  right: 2vw;
+}
+
+#fillmode .item {
+  padding: 0.3vw 0.4vw;
 }
 
 .shuriken {
@@ -128,4 +144,35 @@ svg text {
   font-size: 0.9vw;
   text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
              1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+
+body.fillmode-color .legend-color {
+  display: block;
+}
+
+body.fillmode-color .legend-pattern {
+  display: none;
+}
+
+body.fillmode-pattern .legend-color {
+  display: none;
+}
+
+body.fillmode-pattern .legend-pattern {
+  display: block;
+}
+
+@media print {
+  #regions {
+    opacity: 0.5;
+  }
+
+  .legend-item {
+    margin-bottom: 1.5vw;
+    font-size: 3vw;
+  }
+
+  svg text {
+    font-size: 1.2vw;
+  }
 }

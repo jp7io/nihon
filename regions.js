@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 const regions = [
   {
     "code": "HOK",
@@ -15,7 +5,6 @@ const regions = [
       "en": "Hokkaidō",
       "ja": "北海道"
     },
-    "color": "#FF5733",
     "cities": [{
       "en": "Sapporo",
       "ja": "札幌市",
@@ -37,7 +26,6 @@ const regions = [
       "en": "Tōhoku",
       "ja": "東北"
     },
-    "color": "#FFC300",
     "cities": [{
       "en": "Sendai",
       "ja": "仙台市",
@@ -94,7 +82,6 @@ const regions = [
       "en": "Kantō",
       "ja": "関東"
     },
-    "color": "#9B59B6",
     "cities": [{
       "en": "Tōkyō",
       "ja": "東京都",
@@ -158,7 +145,6 @@ const regions = [
       "en": "Chūbu",
       "ja": "中部"
     },
-    "color": "#3498DB",
     "cities": [{
       "en": "Nagoya",
       "ja": "名古屋",
@@ -244,7 +230,6 @@ const regions = [
       "en": "Kansai",
       "ja": "関西"
     },
-    "color": "#27AE60",
     "cities": [{
       "en": "Kyōto",
       "ja": "京都府",
@@ -311,7 +296,6 @@ const regions = [
       "en": "Chūgoku",
       "ja": "中国"
     },
-    "color": "#E74C3C",
     "cities": [{
       "en": "Hiroshima",
       "ja": "広島市",
@@ -361,7 +345,6 @@ const regions = [
       "en": "Shikoku",
       "ja": "四国"
     },
-    "color": "#2ECC71",
     "cities": [{
       "en": "Takamatsu",
       "ja": "高松市",
@@ -404,7 +387,6 @@ const regions = [
       "en": "Kyūshū",
       "ja": "九州"
     },
-    "color": "#F39C12",
     "cities": [{
       "en": "Fukuoka",
       "ja": "福岡市",

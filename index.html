@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
-  <title>Map of Japan Regions / 日本の地域</title>
+  <title>Regions of Japan Map / 日本の地域</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link media="all" rel="stylesheet" href="./styles.css" />
   <link rel="shortcut icon" href="./favicon.ico">
   <script type="text/javascript" src="./regions.js"></script>
+  <script type="text/javascript" src="./colors.js"></script>
   <script type="text/javascript" src="./utils.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
   </script>
@@ -15,6 +16,13 @@
     google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
     google.charts.setOnLoadCallback(drawRegionsMap);
     google.charts.setOnLoadCallback(drawCities);
+
+    function createSvgPatterns() {
+
+      const patterns = document.getElementById('patterns');
+
+      patterns.innerHTML = document.getElementById('patterns_hatch').contentDocument.querySelector('svg').innerHTML;
+    }
 
     function parseData(jsonData) {
       const dataArray = [['Prefecture', 'Index']];
@@ -40,8 +48,9 @@
       return dataArray;
     }
 
-    function populateLegend(jsonData) {
+    function populateLegend(regionsColors) {
       const legend = document.getElementById('legend');
+
       legend.innerHTML = `
         <h3>
           <div class="furigana-text">
@@ -51,33 +60,49 @@
         </h3>
       `;
 
-      jsonData.forEach(region => {
+      regions.forEach((region, index) => {
         legend.innerHTML += (`
           <div class="legend-item">
-            <div class="legend-color" style="background-color: ${region.color}"></div>
+            <div class="legend-color" style="background: ${regionsColors[index].color}"></div>
+            <div class="legend-pattern">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <rect width="512" height="512" fill="url(#${regionsColors[index].pattern})" />
+              </svg>
+            </div>
             <div class="legend-ja">${region.name.ja}</div>
             <div class="legend-en">${region.name.en}</div>
           </div>
         `);
       });
+
+      document.getElementById("colorRadio").onchange = (radio) => handleFillmode(radio, regionsColors);
+      document.getElementById("patternRadio").onchange = (radio) => handleFillmode(radio, regionsColors);
     }
 
     function drawRegionsMap() {
+      createSvgPatterns(colors);
 
       const data = google.visualization.arrayToDataTable(parseData(regions));
+
+      const regionsColors = colors.splice(0, 8);
 
       const options = {
         region: 'JP',
         displayMode: 'regions',
         resolution: 'provinces',
         legend: 'none',
-        colorAxis: { colors: regions.map(region => region.color) },
+        colorAxis: { colors: regionsColors.map(item => item.color) },
+        tooltip: {
+          trigger: 'none'
+        }
       };
 
       const chart = new google.visualization.GeoChart(document.getElementById('regions'));
       chart.draw(data, options);
 
-      populateLegend(regions);
+      setTimeout(() => {
+        populateLegend(regionsColors);
+      }, 1000);
     }
 
     function drawCities() {
@@ -87,7 +112,7 @@
       const options = {
         region: 'JP',
         displayMode: 'text',
-        resolution: 'countries',
+        resolution: 'provinces',
         legend: 'none',
         backgroundColor: 'transparent',
         datalessRegionColor: 'transparent',
@@ -99,16 +124,48 @@
       const chart = new google.visualization.GeoChart(document.getElementById('cities'));
       chart.draw(data, options);
     }
+
+    function handleFillmode(f, regionsColors) {
+      document.body.className = `fillmode-${f.target.value}`;
+
+      regions.forEach((region, index) => {
+        if (f.target.value === 'color') {
+          const maps = document.querySelectorAll(`#regions svg path[fill="url(#${regionsColors[index].pattern})"]`);
+          maps.forEach((map) => {
+            map.setAttribute('fill', `${regionsColors[index].color}`);
+          })
+        } else {
+          const maps = document.querySelectorAll(`#regions svg path[fill="${regionsColors[index].color}"]`);
+          maps.forEach((map) => {
+            map.setAttribute('fill', `url(#${regionsColors[index].pattern})`);
+          })
+        }
+      });
+    }
   </script>
 </head>
 
-<body>
+<body class="fillmode-color">
   <div id="maps">
     <div id="regions"></div>
     <div id="cities"></div>
-    <div id="citiesMarkers"></div>
   </div>
   <div id="legend"></div>
+  <div id="fillmode">
+    <form>
+      <fieldset>
+        <legend>Fill Mode</legend>
+        <div class="item">
+          <input type="radio" id="colorRadio" name="fillmode" value="color" checked />
+          <label for="colorRadio">Color</label>
+        </div>
+        <div class="item">
+          <input type="radio" id="patternRadio" name="fillmode" value="pattern" />
+          <label for="patternRadio">Pattern</label>
+        </div>
+      </fieldset>
+    </form>
+  </div>
   <div class="shuriken">
     <div class="directions">
       <div class="direction direction-e">
@@ -138,6 +195,12 @@
       <img src="./img/shuriken.svg" alt="Shuriken" />
     </div>
   </div>
+
+  <svg x="0" y="0" width="100" height="100">
+    <defs id="patterns"></defs>
+  </svg>
+
+  <object type="image/svg+xml" data="./img/patterns_hatch.svg" id="patterns_hatch" style="visibility: hidden;"></object>
 </body>
 
 </html>
