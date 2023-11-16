@@ -15,23 +15,17 @@ function replaceSpecialCharactersWithAscii(str) {
     .replace(/[ñ]/g, 'n');
 }
 
-function loadHTML(id, filename) {
-  let xhttp;
-  let element = document.getElementById(id);
-  let file = filename;
+async function loadHTML(id, filename) {
+  const element = document.getElementById(id);
 
-  if (file) {
+  const response = await fetch(filename);
+  const responseText = await response.text();
 
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        if (this.status == 200) { element.innerHTML = this.responseText; }
-        if (this.status == 404) { element.innerHTML = "<h1>Page not found.</h1>"; }
-      }
-    }
-    xhttp.open("GET", file, true);
-    xhttp.send();
-    return;
+  if (responseText) {
+    element.innerHTML = responseText;
+  }
+  else {
+    element.innerHTML = "<h1>Page not found.</h1>";
   }
 }
 

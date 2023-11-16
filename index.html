@@ -27,7 +27,7 @@
     }
 
 
-    function populateLegend(regionsColors) {
+    async function populateLegend(regionsColors) {
       const legend = document.getElementById('legend');
 
       legend.innerHTML = `
@@ -54,9 +54,9 @@
         `);
       });
 
-      handleFillmode('pattern', regionsColors);
-      loadHTML('fillmode-placeholder', 'fillmode.html');
-      loadHTML('shuriken-placeholder', 'shuriken.html');
+      //handleFillmode('pattern', regionsColors);
+      await loadHTML('fillmode-placeholder', 'fillmode.html');
+      await loadHTML('shuriken-placeholder', 'shuriken.html');
 
       document.getElementById("colorRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
       document.getElementById("patternRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
