@@ -67,6 +67,7 @@ body {
   position: absolute;
   top: 2vw;
   right: 2vw;
+  z-index: 1;
 }
 
 #fillmode {
@@ -80,6 +81,7 @@ body {
 #fillmode fieldset {
   background: #fff;
   padding: 0.5vw 1vw;
+  margin-bottom: 1vw;
 }
 
 #fillmode legend {
@@ -89,12 +91,13 @@ body {
 #fillmode .item {
   display: flex;
   align-items: center;
-  padding: 0.25vw 0vw;
+  padding: 0.5vw 0vw;
   font-size: 1vw;
 }
 
-#fillmode input[type="radio"] {
-  margin: 0 0.5vw 0 0;
+#fillmode input[type="radio"],
+#fillmode input[type="checkbox"] {
+  margin: 0 0.5vw 0.1vw 0;
 }
 
 #shuriken-placeholder {

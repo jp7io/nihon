@@ -13,6 +13,11 @@ google.charts.setOnLoadCallback(loadIncludes);
 google.charts.setOnLoadCallback(drawRegions);
 google.charts.setOnLoadCallback(drawCities);
 
+document.body.onload = () => {
+  // loadPatterns()
+  // loadIncludes()
+}
+
 function loadPatterns() {
 
   const patterns_source = document.getElementById('patterns_source');
