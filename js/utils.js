@@ -1,4 +1,4 @@
-function replaceSpecialCharactersWithAscii(str) {
+export function replaceSpecialCharactersWithAscii(str) {
   return str.replace(/[ÀÁÂÃÄÅ]/g, 'A')
     .replace(/[àáâãäå]/g, 'a')
     .replace(/[ÈÉÊË]/g, 'E')
@@ -15,7 +15,7 @@ function replaceSpecialCharactersWithAscii(str) {
     .replace(/[ñ]/g, 'n');
 }
 
-async function loadHTML(id, filename) {
+export async function loadHTML(id, filename) {
   const element = document.getElementById(id);
 
   const response = await fetch(filename);
@@ -29,7 +29,7 @@ async function loadHTML(id, filename) {
   }
 }
 
-function parseData(jsonData) {
+export function parseData(jsonData) {
   const dataArray = [['Prefecture', 'Index']];
 
   jsonData.forEach((region, index) => {
@@ -41,7 +41,7 @@ function parseData(jsonData) {
   return dataArray;
 }
 
-function parseDataForCities(jsonData) {
+export function parseDataForCities(jsonData) {
   const dataArray = [['City', 'isCapital']];
 
   jsonData.forEach((region, index) => {

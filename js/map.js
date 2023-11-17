@@ -1,6 +1,8 @@
-function drawRegionsMap() {
-  createSvgPatterns(colors);
+import { colors } from './colors.js';
+import { regions } from './regions.js';
+import { parseData, parseDataForCities } from './utils.js';
 
+export function drawRegions() {
   const data = google.visualization.arrayToDataTable(parseData(regions));
 
   const regionsColors = colors.splice(0, 8);
@@ -18,13 +20,9 @@ function drawRegionsMap() {
 
   const chart = new google.visualization.GeoChart(document.getElementById('regions'));
   chart.draw(data, options);
-
-  setTimeout(() => {
-    populateLegend(regionsColors);
-  }, 1000);
 }
 
-function drawCities() {
+export function drawCities() {
 
   const data = google.visualization.arrayToDataTable(parseDataForCities(regions));
 

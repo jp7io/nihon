@@ -8,105 +8,24 @@
   <link media="all" rel="stylesheet" href="./styles.css" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="import" href="shuriken.html">
-  <script type="text/javascript" src="./regions.js"></script>
-  <script type="text/javascript" src="./colors.js"></script>
-  <script type="text/javascript" src="./utils.js"></script>
-  <script type="text/javascript" src="./map.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
-  </script>
-  <script type="text/javascript">
-    google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
-    google.charts.setOnLoadCallback(drawRegionsMap);
-    google.charts.setOnLoadCallback(drawCities);
-
-    function createSvgPatterns() {
-
-      const patterns = document.getElementById('patterns');
-
-      patterns.innerHTML = document.getElementById('patterns_simple').contentDocument.querySelector('svg').innerHTML;
-    }
-
-
-    async function populateLegend(regionsColors) {
-      const legend = document.getElementById('legend');
-
-      legend.innerHTML = `
-        <h3>
-          <div class="furigana-text">
-            <span class="furigana">に ほん <span></span> ち いき</span>
-            <span class="text">日本の地域</span>
-          </div>
-        </h3>
-      `;
-
-      regions.forEach((region, index) => {
-        legend.innerHTML += (`
-          <div class="legend-item">
-            <div class="legend-color" style="background: ${regionsColors[index].color}"></div>
-            <div class="legend-pattern">
-              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <rect width="512" height="512" fill="url(#${regionsColors[index].pattern})" />
-              </svg>
-            </div>
-            <div class="legend-ja">${region.name.ja}</div>
-            <div class="legend-en">${region.name.en}</div>
-          </div>
-        `);
-      });
-
-      //handleFillmode('pattern', regionsColors);
-      await loadHTML('fillmode-placeholder', 'fillmode.html');
-      await loadHTML('shuriken-placeholder', 'shuriken.html');
-
-      document.getElementById("colorRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
-      document.getElementById("patternRadio").onchange = (e) => handleFillmode(e.target.value, regionsColors);
-    }
-
-
-    function handleFillmode(mode, regionsColors) {
-      document.body.className = `fillmode-${mode}`;
-
-      regions.forEach((region, index) => {
-        if (mode === 'color') {
-          const maps = document.querySelectorAll(`#regions svg path[fill="url(#${regionsColors[index].pattern})"]`);
-          maps.forEach((map) => {
-            map.setAttribute('fill', `${regionsColors[index].color}`);
-          })
-        } else {
-          const maps = document.querySelectorAll(`#regions svg path[fill="${regionsColors[index].color}"]`);
-          maps.forEach((map) => {
-            map.setAttribute('fill', `url(#${regionsColors[index].pattern})`);
-          })
-        }
-      });
-    }
-  </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="module" src="./js/init.js"></script>
 </head>
 
 <body class="fillmode-color">
-
-  <svg width="100" height="100">
-    <defs>
-      <pattern id="image" patternUnits="userSpaceOnUse" width="100" height="100">
-        <image href="./img/patterns/hatch_01.png" x="0" y="0" width="100" height="100" />
-      </pattern>
-    </defs>
-  </svg>
-
   <div id="maps">
     <div id="regions"></div>
     <div id="cities"></div>
   </div>
-  <div id="legend"></div>
+  <div id="legend-placeholder"></div>
   <div id="fillmode-placeholder"></div>
   <div id="shuriken-placeholder"></div>
 
-  <svg x="0" y="0" width="100" height="100">
-    <defs id="patterns"></defs>
+  <svg x="0" y="0" width="0" height="0">
+    <defs id="patterns_cloned"></defs>
   </svg>
 
-  <object type="image/svg+xml" data="./img/patterns_simple.svg" id="patterns_simple"
-    style="visibility: hidden;"></object>
+  <object type="image/svg+xml" data="./img/patterns_simple.svg" id="patterns_source"></object>
 </body>
 
 </html>

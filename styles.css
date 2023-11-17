@@ -18,7 +18,7 @@ body {
   height: 100%
 }
 
-#legend {
+#legend-placeholder {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,6 +49,11 @@ body {
 .legend-pattern svg {
   width: 2vw;
   height: 2vw;
+}
+
+.legend-pattern svg rect {
+  width: 512px;
+  height: 512px;
 }
 
 .legend-en {
@@ -182,4 +187,10 @@ body.fillmode-pattern .legend-pattern {
   #fillmode {
     display: none;
   }
+}
+
+#patterns_source {
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }

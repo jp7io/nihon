@@ -1,4 +1,4 @@
-const regions = [
+export const regions = [
   {
     "code": "HOK",
     "name": {
