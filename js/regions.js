@@ -245,15 +245,6 @@ export const regions = [
       en: "Kansai",
       ja: "関西"
     },
-    cities: [{
-      en: "Kyōto",
-      ja: "京都府",
-      types: [cityType.regionCapital, cityType.favorite]
-    }, {
-      en: "Ōsaka",
-      ja: "大阪府",
-      types: [cityType.major, cityType.favorite]
-    }],
     "prefectures": [
       {
         code: "24",
@@ -274,14 +265,28 @@ export const regions = [
         name: {
           en: "Kyōto",
           ja: "京都府"
-        }
+        },
+        cities: [
+          {
+            en: "Kyōto",
+            ja: "京都府",
+            types: [cityType.regionCapital, cityType.favorite]
+          }
+        ],
       },
       {
         code: "27",
         name: {
           en: "Osaka",
           ja: "大阪府"
-        }
+        },
+        cities: [
+          {
+            en: "Ōsaka",
+            ja: "大阪府",
+            types: [cityType.major, cityType.favorite]
+          }
+        ],
       },
       {
         code: "28",

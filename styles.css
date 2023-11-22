@@ -18,6 +18,10 @@ body {
   height: 100%
 }
 
+#cities {
+  visibility: hidden;
+}
+
 #legend-placeholder {
   position: absolute;
   top: 0;

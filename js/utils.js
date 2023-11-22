@@ -48,12 +48,34 @@ export function parseData(jsonData) {
 }
 
 export function parseDataForCities(jsonData) {
-  const dataArray = [['City', 'isCapital']];
+  /** @type {Array<Array<string | number>>} */
+  const dataArray = [['City', 'isFavorite']];
+  let index = 0;
 
   jsonData.forEach((region) => {
     region.prefectures.forEach(prefecture => {
-      prefecture.cities?.forEach(city => {
-        dataArray.push([replaceSpecialCharactersWithAscii(city.ja), city.types.includes('regionCapital') ? 1 : 2]);
+      prefecture.cities?.forEach((city) => {
+        const labels = [];
+        if (city.types.includes('regionCapital')) {
+          labels.push('★');
+        };
+        if (city.types.includes('major')) {
+          labels.push('◼️');
+        };
+        if (labels.length === 0) {
+          labels.push('⏺');
+        }
+        labels.push(city.ja);
+
+        if (index % 2 === 0) {
+          labels.reverse()
+        };
+
+        const favorite = city.types.includes('favorite') ? 1 : 2;
+
+        dataArray.push([labels.join(' '), favorite]);
+
+        index++;
       })
     });
   });

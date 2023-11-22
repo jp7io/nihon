@@ -49,5 +49,17 @@ export function drawCities(regions) {
     return;
   }
   const chart = new google.visualization.GeoChart(citiesElm);
+
+  google.visualization.events.addListener(chart, 'ready', () => {
+    const cities = document.querySelectorAll('#cities svg text');
+    cities.forEach((city, index) => {
+      city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
+    })
+    const citiesDiv = document.getElementById('cities');
+    if (citiesDiv) {
+      citiesDiv.style.visibility = 'visible';
+    }
+  });
+
   chart.draw(data, options);
 }
