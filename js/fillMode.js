@@ -1,8 +1,17 @@
+// @ts-check
+
 import { regions } from "./regions.js";
 
 export function initFillMode(colors) {
-  document.getElementById("colorRadio").onchange = (e) => handleFillmode(e.target.value, colors);
-  document.getElementById("patternRadio").onchange = (e) => handleFillmode(e.target.value, colors);
+  const colorRadio = document.getElementById("colorRadio");
+  const patternRadio = document.getElementById("patternRadio");
+  if (!colorRadio || !patternRadio) {
+    return;
+  }
+  // @ts-ignore
+  colorRadio.onchange = (e) => handleFillmode(e.target.value, colors);
+  // @ts-ignore
+  patternRadio.onchange = (e) => handleFillmode(e.target.value, colors);
 };
 
 function handleFillmode(mode, colors) {

@@ -1,3 +1,5 @@
+// @ts-check
+
 export function replaceSpecialCharactersWithAscii(str) {
   return str.replace(/[ÀÁÂÃÄÅ]/g, 'A')
     .replace(/[àáâãäå]/g, 'a')
@@ -17,6 +19,10 @@ export function replaceSpecialCharactersWithAscii(str) {
 
 export async function loadHTML(id, filename) {
   const element = document.getElementById(id);
+
+  if (!element) {
+    return;
+  }
 
   const response = await fetch(filename);
   const responseText = await response.text();

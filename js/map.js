@@ -1,12 +1,14 @@
+// @ts-check
+
 import { colors } from './colors.js';
-import { regions } from './regions.js';
 import { parseData, parseDataForCities } from './utils.js';
 
-export function drawRegions() {
+export function drawRegions(regions) {
   const data = google.visualization.arrayToDataTable(parseData(regions));
 
   const regionsColors = colors.splice(0, 8);
 
+  /** @type {google.visualization.GeoChartOptions} */
   const options = {
     region: 'JP',
     displayMode: 'regions',
@@ -18,14 +20,19 @@ export function drawRegions() {
     }
   };
 
-  const chart = new google.visualization.GeoChart(document.getElementById('regions'));
+  const regionsElm = document.getElementById('regions');
+  if (!regionsElm) {
+    return;
+  }
+  const chart = new google.visualization.GeoChart(regionsElm);
   chart.draw(data, options);
 }
 
-export function drawCities() {
+export function drawCities(regions) {
 
   const data = google.visualization.arrayToDataTable(parseDataForCities(regions));
 
+  /** @type {google.visualization.GeoChartOptions} */
   const options = {
     region: 'JP',
     displayMode: 'text',
@@ -33,11 +40,14 @@ export function drawCities() {
     legend: 'none',
     backgroundColor: 'transparent',
     datalessRegionColor: 'transparent',
-    backgroundColor: 'transparent',
     colorAxis: { colors: ['brown', 'black'] },
     sizeAxis: { minValue: 0, maxValue: 0 },
   };
 
-  const chart = new google.visualization.GeoChart(document.getElementById('cities'));
+  const citiesElm = document.getElementById('cities');
+  if (!citiesElm) {
+    return;
+  }
+  const chart = new google.visualization.GeoChart(citiesElm);
   chart.draw(data, options);
 }

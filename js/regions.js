@@ -1,3 +1,5 @@
+// @ts-check
+
 export const cityType = {
   regionCapital: "regionCapital",
   major: "major",

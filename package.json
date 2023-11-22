@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/google.visualization": "^0.0.73"
+  }
+}

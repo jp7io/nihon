@@ -1,3 +1,5 @@
+// @ts-check
+
 export const colors = [
   {
     "color": "#ff5733",

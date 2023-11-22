@@ -1,4 +1,5 @@
 import { colors } from './colors.js';
+import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { drawRegions, drawCities } from './map.js';
@@ -10,8 +11,8 @@ google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyD
 google.charts.setOnLoadCallback(loadPatterns);
 google.charts.setOnLoadCallback(loadIncludes);
 //google.charts.setOnLoadCallback(populateLegend);
-google.charts.setOnLoadCallback(drawRegions);
-google.charts.setOnLoadCallback(drawCities);
+google.charts.setOnLoadCallback(() => drawRegions(regions));
+google.charts.setOnLoadCallback(() => drawCities(regions));
 
 document.body.onload = () => {
   // loadPatterns()
