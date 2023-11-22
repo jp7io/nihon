@@ -12,7 +12,34 @@ export function initFillMode(colors) {
   colorRadio.onchange = (e) => handleFillmode(e.target.value, colors);
   // @ts-ignore
   patternRadio.onchange = (e) => handleFillmode(e.target.value, colors);
+
+  const layers = document.querySelectorAll('#layersSet input[type="checkbox"]');
+
+  layers.forEach(layer => {
+    // @ts-ignore
+    layer.onchange = (e) => {
+      handleLayers(e);
+    }
+  })
 };
+
+function handleLayers(e) {
+  const activeLayers = Array.from(e.target.form.layers).filter(item => item.checked).map(item => item.value)
+  const cities = document.querySelectorAll('#cities svg text');
+  cities.forEach(city => {
+    //console.log(city.innerHTML, city.innerHTML.includes('◼️'));
+    if (city.innerHTML.includes('★')) {
+      city.style.visibility = activeLayers.includes('regionCapital') ? 'visible' : 'hidden';
+    }
+    if (city.innerHTML.includes('◼️')) {
+      console.log(activeLayers, city.innerHTML)
+      city.style.visibility = activeLayers.includes('major') ? 'visible' : 'hidden';
+    }
+    if (city.getAttribute('fill') == '#a52a2a') {
+      city.style.visibility = activeLayers.includes('favorite') ? 'visible' : 'hidden';
+    }
+  })
+}
 
 function handleFillmode(mode, colors) {
   document.body.className = `fillmode-${mode}`;

@@ -104,6 +104,10 @@ body {
   margin: 0 0.5vw 0.1vw 0;
 }
 
+#fillmode label[for="favoriteLayer"] {
+  color: brown;
+}
+
 #shuriken-placeholder {
   position: absolute;
   bottom: 0;
