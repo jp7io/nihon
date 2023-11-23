@@ -4,6 +4,7 @@ import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { drawRegions, drawCities } from './map.js';
 import { loadHTML } from './utils.js';
+import { initLayers } from './layers.js';
 
 let regionsColors = { ...colors };
 
@@ -33,5 +34,6 @@ async function loadIncludes() {
   await loadHTML('shuriken-placeholder', './includes/shuriken.html');
   drawLegendItems(regionsColors);
   initFillMode(regionsColors);
+  initLayers();
   //handleFillmode('pattern', regionsColors);
 };

@@ -54,6 +54,19 @@ export function drawCities(regions) {
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach((city, index) => {
       city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
+      const types = [];
+
+      if (city.innerHTML.includes('★')) {
+        types.push('regionCapital');
+      };
+      if (city.innerHTML.includes('◼️')) {
+        types.push('major');
+      };
+      if (city.getAttribute('fill') === '#a52a2a') {
+        types.push('favorite');
+      }
+
+      city.setAttribute('data-type', types.join(' '));
     })
     const citiesDiv = document.getElementById('cities');
     if (citiesDiv) {
