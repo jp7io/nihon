@@ -65,7 +65,7 @@ export function parseDataForCities(jsonData) {
         if (labels.length === 0) {
           labels.push('⏺');
         }
-        labels.push(city.ja);
+        labels.push(city.ja.join(''));
 
         if (index % 2 === 0) {
           labels.reverse()
