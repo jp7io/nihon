@@ -27,4 +27,11 @@ function handleLayers(e) {
       city.style.visibility = 'hidden';
     }
   })
+
+  /** @type {NodeListOf<HTMLElement>} */
+  const prefectures = document.querySelectorAll('#prefectures svg text');
+
+  prefectures.forEach(prefecture => {
+    prefecture.style.visibility = layers.includes('prefectures') ? 'visible' : 'hidden';
+  })
 }

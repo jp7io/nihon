@@ -76,3 +76,32 @@ export function drawCities(regions) {
 
   chart.draw(data, options);
 }
+
+export function drawPrefectures(regions) {
+  const data = google.visualization.arrayToDataTable(parseData(regions));
+
+  /** @type {google.visualization.GeoChartOptions} */
+  const options = {
+    region: 'JP',
+    displayMode: 'text',
+    resolution: 'provinces',
+    legend: 'none',
+    backgroundColor: 'transparent',
+    datalessRegionColor: 'transparent',
+    colorAxis: { colors: ['black', 'black'] },
+    sizeAxis: { minValue: 0, maxValue: 0 },
+  };
+
+  const prefecturesElm = document.getElementById('prefectures');
+  if (!prefecturesElm) {
+    return;
+  }
+  const chart = new google.visualization.GeoChart(prefecturesElm);
+
+  google.visualization.events.addListener(chart, 'ready', () => {
+    const prefectureLayer = document.getElementById('prefectureLayer');
+    prefectureLayer && prefectureLayer.removeAttribute('disabled');
+  })
+
+  chart.draw(data, options);
+}

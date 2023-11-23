@@ -250,7 +250,7 @@ export const regions = [
         name: {
           en: 'Shizuoka',
           ja: ['静', '岡', '県'],
-          furigana: ['しず', 'おか']
+          furigana: ['しず', 'おか', 'けん']
         },
         cities: [
           {
@@ -284,7 +284,7 @@ export const regions = [
         name: {
           en: 'Mie',
           ja: ['三', '重', '県'],
-          furigana: ['みえ']
+          furigana: ['み', 'え', 'けん']
         }
       },
       {
@@ -292,7 +292,7 @@ export const regions = [
         name: {
           en: 'Shiga',
           ja: ['滋', '賀', '県'],
-          furigana: ['しが']
+          furigana: ['し', 'が', 'けん']
         }
       },
       {
@@ -340,7 +340,7 @@ export const regions = [
         name: {
           en: 'Nara',
           ja: ['奈', '良', '県'],
-          furigana: ['なら']
+          furigana: ['な', 'ら', 'けん']
         }
       },
       {
@@ -348,7 +348,7 @@ export const regions = [
         name: {
           en: 'Wakayama',
           ja: ['和', '歌', '山', '県'],
-          furigana: ['わかやま']
+          furigana: ['わか', 'やま', 'けん']
         }
       }
     ]
@@ -404,7 +404,7 @@ export const regions = [
         name: {
           en: 'Yamaguchi',
           ja: ['山', '口', '県'],
-          furigana: ['やまぐち']
+          furigana: ['やま', 'ぐち', 'けん']
         }
       }
     ]
@@ -414,7 +414,7 @@ export const regions = [
     name: {
       en: 'Shikoku',
       ja: ['四', '国'],
-      furigana: ['しこく']
+      furigana: ['し', 'こく']
     },
     prefectures: [
       {
@@ -436,7 +436,7 @@ export const regions = [
         name: {
           en: 'Kagawa',
           ja: ['香', '川', '県'],
-          furigana: ['かがわ']
+          furigana: ['か', 'がわ', 'けん']
         }
       },
       {
@@ -444,7 +444,7 @@ export const regions = [
         name: {
           en: 'Ehime',
           ja: ['愛', '媛', '県'],
-          furigana: ['えひめ']
+          furigana: ['え', 'ひめ', 'けん']
         }
       },
       {
