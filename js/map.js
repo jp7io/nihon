@@ -51,7 +51,6 @@ export function drawCities(regions) {
   const chart = new google.visualization.GeoChart(citiesElm);
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
-    console.log(chart);
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach((city, index) => {
       city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
@@ -98,11 +97,6 @@ export function drawPrefectures(regions) {
     return;
   }
   const chart = new google.visualization.GeoChart(prefecturesElm);
-
-  google.visualization.events.addListener(chart, 'ready', () => {
-    const prefectureLayer = document.getElementById('prefectureLayer');
-    prefectureLayer && prefectureLayer.removeAttribute('disabled');
-  })
 
   chart.draw(data, options);
 }
