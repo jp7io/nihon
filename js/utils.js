@@ -39,9 +39,21 @@ export function parseData(jsonData) {
   const dataArray = [['Prefecture', 'Index']];
 
   jsonData.forEach((region, index) => {
-    region.prefectures.forEach(prefecture => {
-      dataArray.push([replaceSpecialCharactersWithAscii(prefecture.name.en), index]);
+    region.prefectures.forEach(({ name }) => {
+      dataArray.push([replaceSpecialCharactersWithAscii(name.en), index]);
     });
+  });
+
+  return dataArray;
+}
+
+export function parseDataForPrefectures(jsonData) {
+  const dataArray = [['Lat', 'Lng', 'Prefecture', 'Index']];
+
+  jsonData.forEach((region) => {
+    region.prefectures.forEach(({ name, location }, index) => {
+      dataArray.push([location.lat, location.lng, name.ja.join(''), index]);
+    })
   });
 
   return dataArray;
@@ -49,31 +61,31 @@ export function parseData(jsonData) {
 
 export function parseDataForCities(jsonData) {
   /** @type {Array<Array<string | number>>} */
-  const dataArray = [['City', 'isFavorite']];
+  const dataArray = [['Lat', 'Lng', 'City', 'isFavorite']];
   let index = 0;
 
   jsonData.forEach((region) => {
     region.prefectures.forEach(prefecture => {
-      prefecture.cities?.forEach((city) => {
+      prefecture.cities?.forEach(({ types, name, location }) => {
         const labels = [];
-        if (city.types.includes('regionCapital')) {
+        if (types.includes('regionCapital')) {
           labels.push('★');
         };
-        if (city.types.includes('major')) {
+        if (types.includes('major')) {
           labels.push('◼️');
         };
         if (labels.length === 0) {
           labels.push('⏺');
         }
-        labels.push(city.ja.join(''));
+        labels.push(name.ja.join(''));
 
         if (index % 2 === 0) {
           labels.reverse()
         };
 
-        const favorite = city.types.includes('favorite') ? 1 : 2;
+        const favorite = types.includes('favorite') ? 1 : 2;
 
-        dataArray.push([labels.join(' '), favorite]);
+        dataArray.push([location.lat, location.lng, labels.join(' '), favorite]);
 
         index++;
       })

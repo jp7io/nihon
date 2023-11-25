@@ -1,7 +1,7 @@
 // @ts-check
 
 import { colors } from './colors.js';
-import { parseData, parseDataForCities } from './utils.js';
+import { parseData, parseDataForCities, parseDataForPrefectures } from './utils.js';
 
 export function drawRegions(regions) {
   const data = google.visualization.arrayToDataTable(parseData(regions));
@@ -50,7 +50,8 @@ export function drawCities(regions) {
   }
   const chart = new google.visualization.GeoChart(citiesElm);
 
-  google.visualization.events.addListener(chart, 'ready', () => {
+  google.visualization.events.addListener(chart, 'ready', (e) => {
+    console.log(chart);
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach((city, index) => {
       city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
@@ -78,7 +79,7 @@ export function drawCities(regions) {
 }
 
 export function drawPrefectures(regions) {
-  const data = google.visualization.arrayToDataTable(parseData(regions));
+  const data = google.visualization.arrayToDataTable(parseDataForPrefectures(regions));
 
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
