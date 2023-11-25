@@ -3,18 +3,22 @@ import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { drawRegions, drawPrefectures, drawCities } from './map.js';
-import { loadHTML } from './utils.js';
+import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures } from './utils.js';
 import { initLayers } from './layers.js';
 
 let regionsColors = { ...colors };
+
+const regionsData = parseData(regions);
+const prefecturesData = parseDataForPrefectures(regions);
+const citiesData = parseDataForCities(regions);
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(loadPatterns);
 google.charts.setOnLoadCallback(loadIncludes);
 //google.charts.setOnLoadCallback(populateLegend);
-google.charts.setOnLoadCallback(() => drawRegions(regions));
-google.charts.setOnLoadCallback(() => drawCities(regions));
-google.charts.setOnLoadCallback(() => drawPrefectures(regions));
+google.charts.setOnLoadCallback(() => drawRegions(regionsData, colors));
+google.charts.setOnLoadCallback(() => drawCities(citiesData));
+google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
 
 document.body.onload = () => {
   // loadPatterns()

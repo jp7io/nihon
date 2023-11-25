@@ -252,9 +252,9 @@ export const regions = [
           {
             name: {
               en: 'Nagoya',
-              ja: ['名', '古屋'],
+              ja: ['名', '古', '屋', '市'],
             },
-            furigana: ['なご', 'や'],
+            furigana: ['な', 'ご', 'や', 'し'],
             types: [cityType.regionCapital],
             location: { lat: 35.18145060000001, lng: 136.9065571 },
           }
@@ -621,7 +621,7 @@ export const regions = [
         name: {
           en: 'Kagoshima',
           ja: ['鹿', '児', '島', '県'],
-          furigana: ['かご', 'しま', 'けん']
+          furigana: ['か', 'ご', 'しま', 'けん']
         },
         location: { lat: 31.3911958, lng: 130.8778586 },
         cities: [
@@ -630,7 +630,7 @@ export const regions = [
               en: 'Kagoshima',
               ja: ['鹿', '児', '島', '市'],
             },
-            furigana: ['かご', 'しま', 'し'],
+            furigana: ['か', 'ご', 'しま', 'し'],
             types: [cityType.favorite],
             location: { lat: 31.5968539, lng: 130.5571392 },
           }

@@ -35,10 +35,12 @@ export async function loadHTML(id, filename) {
   }
 }
 
-export function parseData(jsonData) {
+const filteredData = (data, filter) => data.filter(region => !filter || region.code === filter);
+
+export function parseData(data, filter = null) {
   const dataArray = [['Prefecture', 'Index']];
 
-  jsonData.forEach((region, index) => {
+  filteredData(data, filter).forEach((region, index) => {
     region.prefectures.forEach(({ name }) => {
       dataArray.push([replaceSpecialCharactersWithAscii(name.en), index]);
     });
@@ -47,10 +49,10 @@ export function parseData(jsonData) {
   return dataArray;
 }
 
-export function parseDataForPrefectures(jsonData) {
+export function parseDataForPrefectures(data, filter = null) {
   const dataArray = [['Lat', 'Lng', 'Prefecture', 'Index']];
 
-  jsonData.forEach((region) => {
+  filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(({ name, location }, index) => {
       dataArray.push([location.lat, location.lng, name.ja.join(''), index]);
     })
@@ -59,12 +61,12 @@ export function parseDataForPrefectures(jsonData) {
   return dataArray;
 }
 
-export function parseDataForCities(jsonData) {
+export function parseDataForCities(data, filter = null) {
   /** @type {Array<Array<string | number>>} */
   const dataArray = [['Lat', 'Lng', 'City', 'isFavorite']];
   let index = 0;
 
-  jsonData.forEach((region) => {
+  filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
       prefecture.cities?.forEach(({ types, name, location }) => {
         const labels = [];

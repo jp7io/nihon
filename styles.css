@@ -20,6 +20,10 @@ body {
   height: 100%
 }
 
+#maps.regionZoom {
+  width: 200%;
+}
+
 #cities {
   visibility: hidden;
 }
@@ -37,19 +41,31 @@ body {
 }
 
 .legend-item {
-  padding-left: 0.3em;
+  padding: 0.3em;
   margin-bottom: 0.5em;
   font-size: 2em;
   display: flex;
   align-items: center;
+  cursor: default;
+  border-radius: 0.2em;
+}
+
+.legend-item-active {
+  background: #778;
+  color: #fff;
 }
 
 .legend-color,
 .legend-pattern {
   width: 1.2em;
   height: 1.2em;
-  margin: 0.2em 0.5em 0 0;
+  margin: 0 0.3em 0 0;
   border: 0.5px solid #999;
+}
+
+.legend-item-active .legend-color,
+.legend-item-active .legend-pattern {
+  border-color: #ccc;
 }
 
 .legend-pattern svg {
@@ -58,13 +74,13 @@ body {
 }
 
 .legend-pattern svg rect {
-  width: 512px;
-  height: 512px;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .legend-en {
   margin: 0.6em 1em 0;
-  color: #999;
+  opacity: 0.5;
   font-size: 0.5em;
   font-style: italic;
 }

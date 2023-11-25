@@ -1,20 +1,16 @@
 // @ts-check
 
-import { colors } from './colors.js';
-import { parseData, parseDataForCities, parseDataForPrefectures } from './utils.js';
-
-export function drawRegions(regions) {
-  const data = google.visualization.arrayToDataTable(parseData(regions));
-
-  const regionsColors = colors.splice(0, 8);
-
+export function drawRegions(data, colors) {
   /** @type {google.visualization.GeoChartOptions} */
+
+
+
   const options = {
     region: 'JP',
     displayMode: 'regions',
     resolution: 'provinces',
     legend: 'none',
-    colorAxis: { colors: regionsColors.map(item => item.color) },
+    colorAxis: { colors: colors.map(item => item.color) },
     tooltip: {
       trigger: 'none'
     }
@@ -25,13 +21,13 @@ export function drawRegions(regions) {
     return;
   }
   const chart = new google.visualization.GeoChart(regionsElm);
-  chart.draw(data, options);
+
+  const dataTable = google.visualization.arrayToDataTable(data);
+
+  chart.draw(dataTable, options);
 }
 
-export function drawCities(regions) {
-
-  const data = google.visualization.arrayToDataTable(parseDataForCities(regions));
-
+export function drawCities(data) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     region: 'JP',
@@ -74,12 +70,12 @@ export function drawCities(regions) {
     }
   });
 
-  chart.draw(data, options);
+  const dataTable = google.visualization.arrayToDataTable(data);
+
+  chart.draw(dataTable, options);
 }
 
-export function drawPrefectures(regions) {
-  const data = google.visualization.arrayToDataTable(parseDataForPrefectures(regions));
-
+export function drawPrefectures(data) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     region: 'JP',
@@ -98,5 +94,7 @@ export function drawPrefectures(regions) {
   }
   const chart = new google.visualization.GeoChart(prefecturesElm);
 
-  chart.draw(data, options);
+  const dataTable = google.visualization.arrayToDataTable(data);
+
+  chart.draw(dataTable, options);
 }
