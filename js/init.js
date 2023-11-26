@@ -8,9 +8,12 @@ import { initLayers } from './layers.js';
 
 let regionsColors = { ...colors };
 
-const regionsData = parseData(regions);
-const prefecturesData = parseDataForPrefectures(regions);
-const citiesData = parseDataForCities(regions);
+const hash = document.location.hash.replace('#', '');
+const filter = decodeURI(hash);
+
+const regionsData = parseData(regions, filter);
+const prefecturesData = parseDataForPrefectures(regions, filter);
+const citiesData = parseDataForCities(regions, filter);
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(loadPatterns);
@@ -19,6 +22,14 @@ google.charts.setOnLoadCallback(loadIncludes);
 google.charts.setOnLoadCallback(() => drawRegions(regionsData, colors));
 google.charts.setOnLoadCallback(() => drawCities(citiesData));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
+if (filter) {
+  google.charts.setOnLoadCallback(() => {
+    setTimeout(() => {
+      const select = document.querySelector(`div[data-region="${filter}"]`);
+      select.click()
+    }, 100);
+  });
+}
 
 document.body.onload = () => {
   // loadPatterns()

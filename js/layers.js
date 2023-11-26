@@ -28,10 +28,8 @@ function handleLayers(e) {
     }
   })
 
-  /** @type {NodeListOf<HTMLElement>} */
-  const prefectures = document.querySelectorAll('#prefectures svg text');
+  /** @type {HTMLElement | null} */
+  const prefectures = document.getElementById('prefectures');
 
-  prefectures.forEach(prefecture => {
-    prefecture.style.visibility = layers.includes('prefectures') ? 'visible' : 'hidden';
-  })
+  prefectures?.classList.toggle('active', layers.includes('prefectures'));
 }

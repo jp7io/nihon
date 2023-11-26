@@ -14,6 +14,7 @@ export const regions = [
       ja: ['北', '海', '道'],
       furigana: ['ほっ', 'かい', 'どう']
     },
+    zoom: { width: '250%', left: '-25%', top: '0%' },
     prefectures: [
       {
         code: '01',
@@ -44,6 +45,7 @@ export const regions = [
       ja: ['東', '北'],
       furigana: ['とう', 'ほく']
     },
+    zoom: { width: '250%', left: '-25%', top: '-30%' },
     prefectures: [
       {
         code: '02',
@@ -119,6 +121,7 @@ export const regions = [
       ja: ['関', '東'],
       furigana: ['かん', 'とう']
     },
+    zoom: { width: '500%', left: '-35%', top: '-125%' },
     prefectures: [
       {
         code: '08',
@@ -203,6 +206,7 @@ export const regions = [
       ja: ['中', '部'],
       furigana: ['ちゅう', 'ぶ']
     },
+    zoom: { width: '300%', left: '-24%', top: '-60%' },
     prefectures: [
       {
         code: '15',
@@ -329,6 +333,7 @@ export const regions = [
       ja: ['関', '西'],
       furigana: ['かん', 'さい']
     },
+    zoom: { width: '500%', left: '-28%', top: '-140%' },
     prefectures: [
       {
         code: '24',
@@ -426,6 +431,7 @@ export const regions = [
       ja: ['中', '国'],
       furigana: ['ちゅう', 'ごく']
     },
+    zoom: { width: '500%', left: '-22%', top: '-140%' },
     prefectures: [
       {
         code: '31',
@@ -492,6 +498,7 @@ export const regions = [
       ja: ['四', '国'],
       furigana: ['し', 'こく']
     },
+    zoom: { width: '500%', left: '-24%', top: '-155%' },
     prefectures: [
       {
         code: '36',
@@ -549,6 +556,7 @@ export const regions = [
       ja: ['九', '州'],
       furigana: ['きゅう', 'しゅう']
     },
+    zoom: { width: '200%', left: '-5%', top: '-65%' },
     prefectures: [
       {
         code: '40',

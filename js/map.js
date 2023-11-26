@@ -1,19 +1,21 @@
 // @ts-check
 
+/** @type {google.visualization.GeoChartOptions} */
+const commonOptions = {
+  region: 'JP',
+  resolution: 'provinces',
+  legend: 'none',
+  tooltip: {
+    trigger: 'none'
+  }
+}
+
 export function drawRegions(data, colors) {
   /** @type {google.visualization.GeoChartOptions} */
-
-
-
   const options = {
-    region: 'JP',
+    ...commonOptions,
     displayMode: 'regions',
-    resolution: 'provinces',
-    legend: 'none',
     colorAxis: { colors: colors.map(item => item.color) },
-    tooltip: {
-      trigger: 'none'
-    }
   };
 
   const regionsElm = document.getElementById('regions');
@@ -30,10 +32,8 @@ export function drawRegions(data, colors) {
 export function drawCities(data) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
-    region: 'JP',
+    ...commonOptions,
     displayMode: 'text',
-    resolution: 'provinces',
-    legend: 'none',
     backgroundColor: 'transparent',
     datalessRegionColor: 'transparent',
     colorAxis: { colors: ['brown', 'black'] },
@@ -78,10 +78,8 @@ export function drawCities(data) {
 export function drawPrefectures(data) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
-    region: 'JP',
+    ...commonOptions,
     displayMode: 'text',
-    resolution: 'provinces',
-    legend: 'none',
     backgroundColor: 'transparent',
     datalessRegionColor: 'transparent',
     colorAxis: { colors: ['black', 'black'] },

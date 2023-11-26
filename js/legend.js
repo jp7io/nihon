@@ -6,10 +6,11 @@ import { drawRegions, drawPrefectures, drawCities } from './map.js';
 export function drawLegendItems(colors) {
   const legendItems = document.getElementById('legend-items');
 
-  regions.forEach(({ name, code }, index) => {
+  regions.forEach((region, index) => {
+    const { name, zoom } = region;
     const item = document.createElement('div');
     item.className = 'legend-item';
-    item.dataset.region = code;
+    item.dataset.region = name.en;
 
     item.innerHTML = (`
       <div class="legend-color" style="background: ${colors[index].color}"></div>
@@ -27,26 +28,49 @@ export function drawLegendItems(colors) {
       <div class="legend-en">${name.en}</div>
     `);
 
-
-    item.onclick = (event) => {
-      legendItems.querySelector('.legend-item-active')?.classList.toggle('legend-item-active');
-      item.classList.toggle('legend-item-active');
-
-      const maps = document.getElementById('maps');
-      maps.className = 'regionZoom'
-
-      const left = `-${60 - (index * 15)}%`;
-      const top = `-${index * 10}%`;
-
-      maps.style.marginLeft = left;
-      maps.style.marginTop = top;
-      maps.style.transform = `translateX(-${left}) translateY(${top})`;
-
-      drawRegions(parseData(regions, code), [colors[index]]);
-      drawPrefectures(parseDataForPrefectures(regions, code));
-      drawCities(parseDataForCities(regions, code));
+    item.onclick = () => {
+      activeRegion(item, region, () => activeRegionDraw(region, colors[index]))
     };
 
     legendItems.appendChild(item);
-  });
+  })
+}
+
+export function activeRegion(item, region, callback) {
+  const { name, zoom } = region;
+  const maps = document.getElementById('maps');
+  const activeItem = document.querySelector('.legend-item-active');
+
+  item.classList.remove('legend-item-active');
+  maps.classList.remove('regionZoom');
+  maps.style.width = '100%';
+  maps.style.marginLeft = 0;
+  maps.style.marginTop = 0;
+  maps.style.transform = 'none';
+
+  if (activeItem?.dataset.region === name.en) {
+    drawRegions(parseData(regions), colors2);
+    drawPrefectures(parseDataForPrefectures(regions));
+    drawCities(parseDataForCities(regions));
+    return;
+  }
+
+  activeItem?.classList.remove('legend-item-active');
+  item.classList.add('legend-item-active');
+  maps.classList.add('regionZoom')
+  maps.style.width = zoom.width;
+  maps.style.marginLeft = zoom.left;
+  maps.style.marginTop = zoom.top;
+  maps.style.transform = `translateX(${zoom.left}) translateY(${zoom.top})`;
+
+  document.location.hash = name.en;
+
+  callback();
+};
+
+export function activeRegionDraw(region, color) {
+  const { name } = region;
+  drawRegions(parseData(regions, name.en), [color]);
+  drawPrefectures(parseDataForPrefectures(regions, name.en));
+  drawCities(parseDataForCities(regions, name.en));
 }

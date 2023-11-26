@@ -35,7 +35,7 @@ export async function loadHTML(id, filename) {
   }
 }
 
-const filteredData = (data, filter) => data.filter(region => !filter || region.code === filter);
+const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
 
 export function parseData(data, filter = null) {
   const dataArray = [['Prefecture', 'Index']];
