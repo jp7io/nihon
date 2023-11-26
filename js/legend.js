@@ -33,25 +33,43 @@ export function drawLegendItems(colors) {
     };
 
     legendItems.appendChild(item);
-  })
+  });
+
+  const legendH3 = document.querySelector('#legend h3');
+  legendH3.onclick = () => {
+    const activeItem = document.querySelector('.legend-item-active');
+    activeItem?.classList.remove('legend-item-active');
+    resetMap();
+    clearRegion();
+  }
 }
 
-export function activeRegion(item, region, callback) {
-  const { name, zoom } = region;
-  const maps = document.getElementById('maps');
-  const activeItem = document.querySelector('.legend-item-active');
+function clearRegion() {
+  drawRegions(parseData(regions), colors2);
+  drawPrefectures(parseDataForPrefectures(regions));
+  drawCities(parseDataForCities(regions));
+  document.location.hash = '';
+}
 
-  item.classList.remove('legend-item-active');
+function resetMap() {
+  const maps = document.getElementById('maps');
   maps.classList.remove('regionZoom');
   maps.style.width = '100%';
   maps.style.marginLeft = 0;
   maps.style.marginTop = 0;
   maps.style.transform = 'none';
+}
+
+export function activeRegion(item, region, callback) {
+  const { name, zoom } = region;
+  const activeItem = document.querySelector('.legend-item-active');
+
+  item.classList.remove('legend-item-active');
+
+  resetMap();
 
   if (activeItem?.dataset.region === name.en) {
-    drawRegions(parseData(regions), colors2);
-    drawPrefectures(parseDataForPrefectures(regions));
-    drawCities(parseDataForCities(regions));
+    clearRegion();
     return;
   }
 

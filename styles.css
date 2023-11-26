@@ -40,13 +40,14 @@ body {
 }
 
 #legend h3 {
-  margin: 0 0 0.7em;
+  margin: 0 0 0.5em;
   font-size: 4em;
+  cursor: default;
 }
 
 .legend-item {
   padding: 0.3em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
   font-size: 2em;
   display: flex;
   align-items: center;
