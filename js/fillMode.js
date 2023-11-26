@@ -3,18 +3,14 @@
 import { regions } from "./regions.js";
 
 export function initFillMode(colors) {
-  const colorRadio = document.getElementById('colorRadio');
-  const patternRadio = document.getElementById('patternRadio');
-  if (!colorRadio || !patternRadio) {
-    return;
-  }
-  // @ts-ignore
-  colorRadio.onchange = (e) => handleFillmode(e.target.value, colors);
-  // @ts-ignore
-  patternRadio.onchange = (e) => handleFillmode(e.target.value, colors);
+  /** @type {NodeListOf<HTMLElement>} */
+  const layers = document.querySelectorAll('#fillmodeSet .item');
+  layers.forEach(layer => layer.onclick = (e) => handleFillmode(e, colors))
 };
 
-function handleFillmode(mode, colors) {
+function handleFillmode(e, colors) {
+  const mode = e.currentTarget.dataset.fillmode;
+
   document.body.className = `fillmode-${mode}`;
 
   regions.forEach((_, index) => {
@@ -25,4 +21,9 @@ function handleFillmode(mode, colors) {
       map.setAttribute('fill', color[mode]);
     })
   });
+
+  const layers = document.querySelectorAll('#fillmodeSet .item');
+  layers.forEach(layer => layer.classList.remove('active'))
+
+  e.currentTarget.classList.add('active');
 }

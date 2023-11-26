@@ -2,13 +2,16 @@
 
 export function initLayers() {
   /** @type {NodeListOf<HTMLElement>} */
-  const layers = document.querySelectorAll('#layersSet input[type="checkbox"]');
-
-  layers.forEach(layer => layer.onchange = handleLayers)
+  const layers = document.querySelectorAll('#layersSet .item');
+  layers.forEach(layer => layer.onclick = (e) => handleLayers(e))
 };
 
 function handleLayers(e) {
-  const layers = Array.from(e.target.form.layers).filter(item => item.checked).map(item => item.value)
+  e.currentTarget.classList.toggle('active');
+
+  /** @type {NodeListOf<HTMLElement>} */
+  const activeItems = document.querySelectorAll('#layersSet .item.active')
+  const layers = Array.from(activeItems).map(item => item.dataset.layer);
 
   /** @type {NodeListOf<HTMLElement>} */
   const cities = document.querySelectorAll('#cities svg text');

@@ -1,114 +1,132 @@
 <div id="fillmode">
-  <form>
-    <fieldset>
-      <legend>Fill Mode</legend>
-      <div class="item">
-        <input type="radio" id="colorRadio" name="fillmode" value="color" checked />
-        <label for="colorRadio">Color</label>
+  <fieldset id="fillmodeSet">
+    <legend>
+      <ruby class="furigana">
+        <rtc class="annotation">
+          <rt xml:lang="en">Fillmode</rt>
+        </rtc>
+        <rbc>
+          <rb>塗</rb>
+          <rb>り</rb>
+          <rb>つ</rb>
+          <rb>ぶ</rb>
+          <rb>し</rb>
+        </rbc>
+        <rtc>
+          <rt>ぬ</rt>
+          <rt></rt>
+          <rt></rt>
+          <rt></rt>
+          <rt></rt>
+        </rtc>
+      </ruby>
+    </legend>
+    <div class="items">
+      <div class="item active" data-fillmode="color">
+        色
       </div>
-      <div class="item">
-        <input type="radio" id="patternRadio" name="fillmode" value="pattern" />
-        <label for="patternRadio">Pattern</label>
+      <div class="item" data-fillmode="pattern">
+        パターン
       </div>
-    </fieldset>
-    <fieldset id="layersSet">
-      <legend>レイヤー</legend>
-      <div class="item">
-        <input type="checkbox" id="capitalLayer" name="layers" value="capital" checked />
-        <label for="capitalLayer">
-          <icon>★</icon>
-          <ruby class="furigana">
-            <rtc class="annotation">
-              <rt xml:lang="en">Prefectures Capitals</rt>
-            </rtc>
-            <rbc>
-              <rb>県</rb>
-              <rb>庁</rb>
-              <rb>所</rb>
-              <rb>在</rb>
-              <rb>地</rb>
-            </rbc>
-            <rtc>
-              <rt>けん</rt>
-              <rt>ちょう</rt>
-              <rt>しょ</rt>
-              <rt>ざい</rt>
-              <rt>ち</rt>
-            </rtc>
-          </ruby>
-        </label>
+    </div>
+  </fieldset>
+  <fieldset id="layersSet">
+    <legend>レイヤー</legend>
+    <div class="items">
+      <div class="item active" data-layer="capital">
+        <object class="icon" type="image/svg+xml" data="./img/icons/capital.svg"
+          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+        </object>
+        <ruby class="furigana">
+          <rtc class="annotation">
+            <rt xml:lang="en">Capitals</rt>
+          </rtc>
+          <rbc>
+            <rb>県</rb>
+            <rb>庁</rb>
+            <rb>所</rb>
+            <rb>在</rb>
+            <rb>地</rb>
+          </rbc>
+          <rtc>
+            <rt>けん</rt>
+            <rt>ちょう</rt>
+            <rt>しょ</rt>
+            <rt>ざい</rt>
+            <rt>ち</rt>
+          </rtc>
+        </ruby>
       </div>
-      <div class="item">
-        <input type="checkbox" id="majorLayer" name="layers" value="major" checked />
-        <label for="majorLayer">
-          <icon>◼️</icon>
-          <ruby class="furigana">
-            <rtc class="annotation">
-              <rt xml:lang="en">Major Cities</rt>
-            </rtc>
-            <rbc>
-              <rb>最</rb>
-              <rb>大</rb>
-              <rb>の</rb>
-              <rb>都</rb>
-              <rb>市</rb>
-            </rbc>
-            <rtc>
-              <rt>さい</rt>
-              <rt>だい</rt>
-              <rt></rt>
-              <rt>と</rt>
-              <rt>し</rt>
-            </rtc>
-          </ruby>
-        </label>
+      <div class="item active" data-layer="major">
+        <object class="icon" type="image/svg+xml" data="./img/icons/major.svg"
+          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+        </object>
+        <ruby class="furigana">
+          <rtc class="annotation">
+            <rt xml:lang="en">Major Cities</rt>
+          </rtc>
+          <rbc>
+            <rb>最</rb>
+            <rb>大</rb>
+            <rb>の</rb>
+            <rb>都</rb>
+            <rb>市</rb>
+          </rbc>
+          <rtc>
+            <rt>さい</rt>
+            <rt>だい</rt>
+            <rt></rt>
+            <rt>と</rt>
+            <rt>し</rt>
+          </rtc>
+        </ruby>
       </div>
-      <div class="item">
-        <input type="checkbox" id="favoriteLayer" name="layers" value="favorite" checked />
-        <label for="favoriteLayer">
-          <ruby class="furigana">
-            <rtc class="annotation">
-              <rt xml:lang="en">Favorites</rt>
-            </rtc>
-            <rbc>
-              <rb>お</rb>
-              <rb>気</rb>
-              <rb>に</rb>
-              <rb>入</rb>
-              <rb>り</rb>
-            </rbc>
-            <rtc>
-              <rt></rt>
-              <rt>き</rt>
-              <rt></rt>
-              <rt>い</rt>
-              <rt></rt>
-            </rtc>
-          </ruby>
-        </label>
+      <div class="item active" data-layer="favorite">
+        <object class="icon" type="image/svg+xml" data="./img/icons/favorite.svg"
+          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+        </object>
+        <ruby class="furigana">
+          <rtc class="annotation">
+            <rt xml:lang="en">Favorites</rt>
+          </rtc>
+          <rbc>
+            <rb>お</rb>
+            <rb>気</rb>
+            <rb>に</rb>
+            <rb>入</rb>
+            <rb>り</rb>
+          </rbc>
+          <rtc>
+            <rt></rt>
+            <rt>き</rt>
+            <rt></rt>
+            <rt>い</rt>
+            <rt></rt>
+          </rtc>
+        </ruby>
       </div>
-      <div class="item">
-        <input type="checkbox" id="prefectureLayer" name="layers" value="prefectures" />
-        <label for="prefectureLayer">
-          <ruby class="furigana">
-            <rtc class="annotation">
-              <rt xml:lang="en">Prefectures</rt>
-            </rtc>
-            <rbc>
-              <rb>都</rb>
-              <rb>道</rb>
-              <rb>府</rb>
-              <rb>県</rb>
-            </rbc>
-            <rtc>
-              <rt>と</rt>
-              <rt>どう</rt>
-              <rt>ふ</rt>
-              <rt>けん</rt>
-            </rtc>
-          </ruby>
-        </label>
+      <div class="item" data-layer="prefectures">
+        <object class="icon" type="image/svg+xml" data="./img/icons/prefecture.svg"
+          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+        </object>
+        <ruby class="furigana">
+          <rtc class="annotation">
+            <rt xml:lang="en">Prefectures</rt>
+          </rtc>
+          <rbc>
+            <rb>都</rb>
+            <rb>道</rb>
+            <rb>府</rb>
+            <rb>県</rb>
+          </rbc>
+          <rtc>
+            <rt>と</rt>
+            <rt>どう</rt>
+            <rt>ふ</rt>
+            <rt>けん</rt>
+          </rtc>
+        </ruby>
       </div>
-    </fieldset>
-  </form>
+    </div>
+  </fieldset>
 </div>

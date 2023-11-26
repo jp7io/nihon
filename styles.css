@@ -1,3 +1,8 @@
+:root {
+  --item-bg-color: rgba(79, 117, 130, 0.1);
+  --item-bg-color-active: #4f7582;
+}
+
 body {
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -51,16 +56,17 @@ body {
 
 .legend-item {
   padding: 0.3em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.3em;
   font-size: 1.8em;
   display: flex;
   align-items: center;
   cursor: default;
   border-radius: 0.2em;
+  background: var(--item-bg-color);
 }
 
 .legend-item-active {
-  background: #4f7582;
+  background: var(--item-bg-color-active);
   color: #fff;
 }
 
@@ -103,8 +109,8 @@ body {
 }
 
 #fillmode {
-  opacity: 0.5;
-  font-size: 0.8em;
+  opacity: 1;
+  font-size: 1em;
 }
 
 #fillmode:hover {
@@ -113,25 +119,39 @@ body {
 
 #fillmode fieldset {
   background: #fff;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 1em 1em;
   margin-bottom: 1em;
+}
+
+#fillmode .items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 #fillmode .item {
   display: flex;
   align-items: center;
-  padding: 0.5em 0em;
-}
-
-#fillmode .item label {
-  display: flex;
-  flex-direction: row;
+  padding: 0.5em;
   gap: 0.4em;
+  border-radius: 0.5em;
+  cursor: default;
+  background: var(--item-bg-color);
 }
 
-#fillmode input[type="radio"],
-#fillmode input[type="checkbox"] {
-  margin: 0 1em 0.15em 0;
+#fillmode .item svg {
+  width: 1em;
+  height: 1em;
+  fill: #000;
+}
+
+#fillmode .item.active {
+  background: var(--item-bg-color-active);
+  color: #fff;
+}
+
+#fillmode .item.active svg {
+  fill: #fff;
 }
 
 #fillmode label[for="favoriteLayer"] {
@@ -140,9 +160,8 @@ body {
 
 #shuriken-placeholder {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 2em;
+  bottom: 2em;
+  right: 10em;
 }
 
 #shuriken img {
@@ -292,6 +311,11 @@ body.fillmode-pattern .legend-pattern {
 
   #prefectures svg text {
     font-size: 0.7em;
+  }
+
+  #shuriken-placeholder {
+    bottom: 2em;
+    right: 2em;
   }
 }
 

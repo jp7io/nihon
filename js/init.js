@@ -37,11 +37,15 @@ document.body.onload = () => {
 }
 
 function loadPatterns() {
-
   const patterns_source = document.getElementById('patterns_source');
   const patterns_cloned = document.getElementById('patterns_cloned');
 
   patterns_cloned.innerHTML = patterns_source.contentDocument.querySelector('svg').innerHTML;
+
+  const icons_source = document.getElementById('icons_source');
+  const icons_cloned = document.getElementById('icons_cloned');
+
+  icons_cloned.innerHTML = icons_source.contentDocument.querySelector('svg').innerHTML;
 }
 
 async function loadIncludes() {
