@@ -4,8 +4,8 @@ import { regions } from "./regions.js";
 
 export function initFillMode(colors) {
   /** @type {NodeListOf<HTMLElement>} */
-  const layers = document.querySelectorAll('#fillmodeSet .item');
-  layers.forEach(layer => layer.onclick = (e) => handleFillmode(e, colors))
+  const modes = document.querySelectorAll('#fillmodeSet .item');
+  modes.forEach(layer => layer.onclick = (e) => handleFillmode(e, colors))
 };
 
 function handleFillmode(e, colors) {
@@ -22,8 +22,8 @@ function handleFillmode(e, colors) {
     })
   });
 
-  const layers = document.querySelectorAll('#fillmodeSet .item');
-  layers.forEach(layer => layer.classList.remove('active'))
+  const modes = document.querySelectorAll('#fillmodeSet .item');
+  modes.forEach(layer => layer.classList.remove('active'))
 
   e.currentTarget.classList.add('active');
 }

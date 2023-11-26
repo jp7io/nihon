@@ -1,5 +1,8 @@
 // @ts-check
 
+import { regions } from './regions.js';
+import { extractCities } from './utils.js';
+
 /** @type {google.visualization.GeoChartOptions} */
 const commonOptions = {
   region: 'JP',
@@ -46,23 +49,43 @@ export function drawCities(data) {
   }
   const chart = new google.visualization.GeoChart(citiesElm);
 
+  const citiesData = extractCities(regions);
+
   google.visualization.events.addListener(chart, 'ready', (e) => {
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach((city, index) => {
       city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
       const types = [];
 
-      if (city.innerHTML.includes('★')) {
-        types.push('capital');
-      };
-      if (city.innerHTML.includes('◼️')) {
-        types.push('major');
-      };
-      if (city.getAttribute('fill') === '#a52a2a') {
-        types.push('favorite');
-      }
+      const cityData = citiesData.find(city => city.name.jp === city.innerHTML);
 
-      city.setAttribute('data-type', types.join(' '));
+      city.setAttribute('data-type', cityData.types.join(' '));
+
+      const x = parseInt(city.getAttribute('x') || '0');
+      const y = parseInt(city.getAttribute('y') || '0');
+
+      const x2 = index % 2 === 0 ? -4 : city.innerHTML.length * 6;
+
+      const icon2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      icon2.setAttribute('width', '16');
+      icon2.setAttribute('height', '16');
+      icon2.setAttribute('x', `${x}`);
+      icon2.setAttribute('y', `${y - 12}`);
+      icon2.setAttribute('fill', 'white');
+      icon2.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
+      city.parentElement?.appendChild(icon2);
+
+      const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      icon.setAttribute('width', '12');
+      icon.setAttribute('height', '12');
+      icon.setAttribute('x', `${x + 2}`);
+      icon.setAttribute('y', `${y - 12 + 2}`);
+      icon.setAttribute('fill', 'black');
+      icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
+      city.parentElement?.appendChild(icon);
+
+      city.setAttribute('x', `${x + x2}`);
+
     })
     const citiesDiv = document.getElementById('cities');
     if (citiesDiv) {

@@ -110,7 +110,7 @@ body {
 
 #fillmode {
   opacity: 1;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 #fillmode:hover {
@@ -139,6 +139,11 @@ body {
   background: var(--item-bg-color);
 }
 
+#fillmode .item object {
+  width: 1em;
+  height: 1em;
+}
+
 #fillmode .item svg {
   width: 1em;
   height: 1em;
@@ -161,7 +166,7 @@ body {
 #shuriken-placeholder {
   position: absolute;
   bottom: 2em;
-  right: 10em;
+  right: 2em;
 }
 
 #shuriken img {
@@ -311,11 +316,6 @@ body.fillmode-pattern .legend-pattern {
 
   #prefectures svg text {
     font-size: 0.7em;
-  }
-
-  #shuriken-placeholder {
-    bottom: 2em;
-    right: 2em;
   }
 }
 

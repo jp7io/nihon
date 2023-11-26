@@ -69,27 +69,22 @@ export function parseDataForCities(data, filter = null) {
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
       prefecture.cities?.forEach(({ types, name, location }) => {
-        const labels = [];
-        if (types.includes('capital')) {
-          labels.push('★');
-        };
-        if (types.includes('major')) {
-          labels.push('◼️');
-        };
-        if (labels.length === 0) {
-          labels.push('⏺');
-        }
-        labels.push(name.ja.join(''));
-
-        if (index % 2 === 0) {
-          labels.reverse()
-        };
-
         const favorite = types.includes('favorite') ? 1 : 2;
+        dataArray.push([location.lat, location.lng, name.ja.join(''), favorite]);
+      })
+    });
+  });
 
-        dataArray.push([location.lat, location.lng, labels.join(' '), favorite]);
+  return dataArray;
+}
 
-        index++;
+export function extractCities(data, filter = null) {
+  const dataArray = [];
+
+  filteredData(data, filter).forEach((region) => {
+    region.prefectures.forEach(prefecture => {
+      prefecture.cities?.forEach(city => {
+        dataArray.push(city);
       })
     });
   });

@@ -7,8 +7,6 @@ export function initLayers() {
 };
 
 function handleLayers(e) {
-  e.currentTarget.classList.toggle('active');
-
   /** @type {NodeListOf<HTMLElement>} */
   const activeItems = document.querySelectorAll('#layersSet .item.active')
   const layers = Array.from(activeItems).map(item => item.dataset.layer);
@@ -35,4 +33,11 @@ function handleLayers(e) {
   const prefectures = document.getElementById('prefectures');
 
   prefectures?.classList.toggle('active', layers.includes('prefectures'));
+
+
+  const items = document.querySelectorAll('#layersSet .item');
+  items.forEach(item => item.classList.remove('active'))
+
+  e.currentTarget.classList.add('active');
+
 }
