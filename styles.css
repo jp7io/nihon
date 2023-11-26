@@ -56,7 +56,7 @@ body {
 }
 
 .legend-item-active {
-  background: #778;
+  background: #4f7582;
   color: #fff;
 }
 
@@ -65,7 +65,7 @@ body {
   width: 1.2em;
   height: 1.2em;
   margin: 0 0.3em 0 0;
-  border: 0.5px solid #999;
+  border: 0.05em solid #999;
 }
 
 .legend-item-active .legend-color,
@@ -221,6 +221,11 @@ svg text {
   font-size: 0.9em;
   text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
              1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+
+#prefectures svg path,
+#cities svg path {
+  stroke: none;
 }
 
 #prefectures svg text {
