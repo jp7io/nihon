@@ -178,9 +178,15 @@ body {
 }
 
 #fillmode fieldset {
-  background: #fff;
-  padding: 0.5em 1em 1em 1em;
-  margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  margin-bottom: 0.75em;
+  border: 0.05em solid #ccc;
+  border-radius: 10px;
+}
+
+#fillmode fieldset legend {
+  padding: 0em 0.5em;
 }
 
 #fillmode .items {
@@ -279,7 +285,7 @@ body {
 ruby.furigana {
   line-height: 1em;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
 ruby.furigana rbc,
@@ -303,6 +309,7 @@ ruby.furigana rtc.annotation rt {
   opacity: 0.5;
   margin-top: 0.3em;
   text-align: left;
+  font-style: italic;
 }
 
 .text {
@@ -345,6 +352,15 @@ body.fillmode-pattern .legend-pattern {
   display: block;
 }
 
+@media screen and (min-width: 769px) {
+  #legend h3 .furigana,
+  .legend-name .furigana {
+    flex-direction: row;
+    align-items: end;
+    gap: 0.3em;
+  }
+}
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 1.5vw;
@@ -354,13 +370,16 @@ body.fillmode-pattern .legend-pattern {
     margin: 0 0 0.5em;
   }
 
+  .legend-item {
+    padding: 1em 0.3em;
+  }
+
   #fillmode {
     font-size: 1.2em;
   }
 
-  #fillmode input[type="radio"],
-  #fillmode input[type="checkbox"] {
-    margin-right: 0.5em;
+  #fillmode .item {
+    padding: 1em 0.5em;
   }
 
   #regions,
