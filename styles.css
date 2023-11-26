@@ -39,6 +39,10 @@ body {
   padding: 2em;
 }
 
+#legend-items {
+  width: fit-content;
+}
+
 #legend h3 {
   margin: 0 0 0.5em;
   font-size: 4em;
@@ -48,7 +52,7 @@ body {
 .legend-item {
   padding: 0.3em;
   margin-bottom: 0.2em;
-  font-size: 2em;
+  font-size: 1.8em;
   display: flex;
   align-items: center;
   cursor: default;
@@ -62,10 +66,11 @@ body {
 
 .legend-color,
 .legend-pattern {
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.4em;
+  height: 1.4em;
   margin: 0 0.3em 0 0;
   border: 0.05em solid #999;
+  border-radius: 0.1em;
 }
 
 .legend-item-active .legend-color,

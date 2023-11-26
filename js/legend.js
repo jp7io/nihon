@@ -75,11 +75,13 @@ export function activeRegion(item, region, callback) {
 
   activeItem?.classList.remove('legend-item-active');
   item.classList.add('legend-item-active');
-  maps.classList.add('regionZoom')
-  maps.style.width = zoom.width;
-  maps.style.marginLeft = zoom.left;
-  maps.style.marginTop = zoom.top;
-  maps.style.transform = `translateX(${zoom.left}) translateY(${zoom.top})`;
+  maps.classList.add('regionZoom');
+  const mobile = window.innerWidth <= 768;
+  const { width, left, top } = mobile ? zoom.mobile : zoom.desktop;
+  maps.style.width = width;
+  maps.style.marginLeft = left;
+  maps.style.marginTop = top;
+  maps.style.transform = `translateX(${left}) translateY(${top})`;
 
   document.location.hash = name.en;
 
