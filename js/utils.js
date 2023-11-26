@@ -64,13 +64,11 @@ export function parseDataForPrefectures(data, filter = null) {
 export function parseDataForCities(data, filter = null) {
   /** @type {Array<Array<string | number>>} */
   const dataArray = [['Lat', 'Lng', 'City', 'isFavorite']];
-  let index = 0;
 
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
-      prefecture.cities?.forEach(({ types, name, location }) => {
-        const favorite = types.includes('favorite') ? 1 : 2;
-        dataArray.push([location.lat, location.lng, name.ja.join(''), favorite]);
+      prefecture.cities?.forEach(({ name, location }) => {
+        dataArray.push([location.lat, location.lng, name.ja.join(''), 1]);
       })
     });
   });

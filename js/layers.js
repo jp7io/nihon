@@ -7,37 +7,18 @@ export function initLayers() {
 };
 
 function handleLayers(e) {
-  /** @type {NodeListOf<HTMLElement>} */
-  const activeItems = document.querySelectorAll('#layersSet .item.active')
-  const layers = Array.from(activeItems).map(item => item.dataset.layer);
+  /** @type {HTMLElement | null} */
+  const map = document.getElementById('maps');
 
   /** @type {NodeListOf<HTMLElement>} */
-  const cities = document.querySelectorAll('#cities svg text');
-
-  cities.forEach(city => {
-    const dataTypes = city.getAttribute('data-type');
-    const types = dataTypes && dataTypes.split(' ');
-
-    if (types && (
-      (types.includes('capital') && layers.includes('capital')) ||
-      (types.includes('major') && layers.includes('major')) ||
-      (types.includes('favorite') && layers.includes('favorite'))
-    )) {
-      city.style.visibility = 'visible';
-    } else {
-      city.style.visibility = 'hidden';
+  const items = document.querySelectorAll('#layersSet .item');
+  items?.forEach(item => {
+    item.classList.remove('active')
+    if (item.dataset.layer) {
+      map?.classList.remove(item.dataset.layer);
     }
   })
 
-  /** @type {HTMLElement | null} */
-  const prefectures = document.getElementById('prefectures');
-
-  prefectures?.classList.toggle('active', layers.includes('prefectures'));
-
-
-  const items = document.querySelectorAll('#layersSet .item');
-  items.forEach(item => item.classList.remove('active'))
-
+  map?.classList.add(e.currentTarget.dataset.layer);
   e.currentTarget.classList.add('active');
-
 }

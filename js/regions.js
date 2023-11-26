@@ -4,6 +4,7 @@ export const cityType = {
   capital: 'capital',
   major: 'major',
   favorite: 'favorite',
+  nationalCapital: 'nationalCapital',
 }
 
 export const regions = [
@@ -192,7 +193,7 @@ export const regions = [
               ja: ['東', '京都'],
             },
             furigana: ['とう', 'きょう', 'と'],
-            types: [cityType.capital],
+            types: [cityType.capital, cityType.nationalCapital],
             location: { lat: 35.6764225, lng: 139.650027 },
           }
         ],
@@ -315,6 +316,15 @@ export const regions = [
         },
         location: { lat: 35.0929397, lng: 138.3190276 },
         cities: [
+          {
+            name: {
+              en: 'Shizuoka',
+              ja: ['静', '岡', '市'],
+              furigana: ['しず', 'おか', 'し']
+            },
+            types: [cityType.capital],
+            location: { lat: 34.975562, lng: 138.3827608 },
+          },
           {
             name: {
               en: 'Shimoda',
@@ -663,7 +673,7 @@ export const regions = [
               ja: ['鹿', '児', '島', '市'],
             },
             furigana: ['か', 'ご', 'しま', 'し'],
-            types: [cityType.favorite],
+            types: [cityType.capital, cityType.favorite],
             location: { lat: 31.5968539, lng: 130.5571392 },
           }
         ],

@@ -39,7 +39,7 @@ export function drawCities(data) {
     displayMode: 'text',
     backgroundColor: 'transparent',
     datalessRegionColor: 'transparent',
-    colorAxis: { colors: ['brown', 'black'] },
+    colorAxis: { colors: ['black'] },
     sizeAxis: { minValue: 0, maxValue: 0 },
   };
 
@@ -57,9 +57,14 @@ export function drawCities(data) {
       city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
       const types = [];
 
-      const cityData = citiesData.find(city => city.name.jp === city.innerHTML);
+      const cityData = citiesData.find(city2 => city2.name.ja.join('') === city.innerHTML);
 
       city.setAttribute('data-type', cityData.types.join(' '));
+
+      city.parentElement?.setAttribute('data-city', 'true');
+      city.parentElement?.setAttribute('data-favorite', cityData.types.includes('favorite') ? 'true' : 'false');
+      city.parentElement?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
+      city.parentElement?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
 
       const x = parseInt(city.getAttribute('x') || '0');
       const y = parseInt(city.getAttribute('y') || '0');
