@@ -18,7 +18,7 @@ function handleLayers(e) {
     const types = dataTypes && dataTypes.split(' ');
 
     if (types && (
-      (types.includes('regionCapital') && layers.includes('regionCapital')) ||
+      (types.includes('capital') && layers.includes('capital')) ||
       (types.includes('major') && layers.includes('major')) ||
       (types.includes('favorite') && layers.includes('favorite'))
     )) {

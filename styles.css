@@ -99,6 +99,7 @@ body {
 
 #fillmode {
   opacity: 0.5;
+  font-size: 0.8em;
 }
 
 #fillmode:hover {
@@ -115,6 +116,12 @@ body {
   display: flex;
   align-items: center;
   padding: 0.5em 0em;
+}
+
+#fillmode .item label {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;
 }
 
 #fillmode input[type="radio"],
@@ -196,6 +203,14 @@ ruby.furigana rt {
   white-space: nowrap;
   font-weight: normal;
   text-align: center;
+}
+
+ruby.furigana rtc.annotation rt {
+  width: 100%;
+  font-size: 0.5em;
+  opacity: 0.5;
+  margin-top: 0.3em;
+  text-align: left;
 }
 
 .text {

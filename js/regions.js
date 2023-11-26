@@ -1,7 +1,7 @@
 // @ts-check
 
 export const cityType = {
-  regionCapital: 'regionCapital',
+  capital: 'capital',
   major: 'major',
   favorite: 'favorite',
 }
@@ -31,7 +31,7 @@ export const regions = [
               ja: ['札', '幌', '市'],
             },
             furigana: ['さっ', 'ぽろ', 'し'],
-            types: [cityType.regionCapital, cityType.favorite],
+            types: [cityType.capital, cityType.favorite],
             location: { lat: 43.0617713, lng: 141.3544506 },
           }
         ],
@@ -98,7 +98,7 @@ export const regions = [
               ja: ['仙', '台', '市'],
             },
             furigana: ['せん', 'だい', 'し'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 38.268195, lng: 140.869418 },
           }
         ],
@@ -183,7 +183,7 @@ export const regions = [
               ja: ['東', '京都'],
             },
             furigana: ['とう', 'きょう', 'と'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 35.6764225, lng: 139.650027 },
           }
         ],
@@ -259,7 +259,7 @@ export const regions = [
               ja: ['名', '古', '屋', '市'],
             },
             furigana: ['な', 'ご', 'や', 'し'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 35.18145060000001, lng: 136.9065571 },
           }
         ],
@@ -368,7 +368,7 @@ export const regions = [
               ja: ['京', '都', '府'],
             },
             furigana: ['きょう', 'と', 'ふ'],
-            types: [cityType.regionCapital, cityType.favorite],
+            types: [cityType.capital, cityType.favorite],
             location: { lat: 35.1566609, lng: 135.5251982 },
 
           }
@@ -475,7 +475,7 @@ export const regions = [
               ja: ['広', '島', '市'],
             },
             furigana: ['ひろ', 'しま', 'し'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 34.3852894, lng: 132.4553055 },
 
           }]
@@ -515,7 +515,7 @@ export const regions = [
               ja: ['高', '松', '市'],
             },
             furigana: ['たか', 'まつ', 'し'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 34.342542, lng: 134.0465405 },
           }
         ],
@@ -573,7 +573,7 @@ export const regions = [
               ja: ['福', '岡', '市'],
             },
             furigana: ['ふく', 'おか', 'し'],
-            types: [cityType.regionCapital],
+            types: [cityType.capital],
             location: { lat: 33.5901838, lng: 130.4016888 },
 
           }

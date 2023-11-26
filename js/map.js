@@ -53,7 +53,7 @@ export function drawCities(data) {
       const types = [];
 
       if (city.innerHTML.includes('★')) {
-        types.push('regionCapital');
+        types.push('capital');
       };
       if (city.innerHTML.includes('◼️')) {
         types.push('major');

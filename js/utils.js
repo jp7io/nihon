@@ -70,7 +70,7 @@ export function parseDataForCities(data, filter = null) {
     region.prefectures.forEach(prefecture => {
       prefecture.cities?.forEach(({ types, name, location }) => {
         const labels = [];
-        if (types.includes('regionCapital')) {
+        if (types.includes('capital')) {
           labels.push('★');
         };
         if (types.includes('major')) {
