@@ -2,7 +2,7 @@ import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { drawRegions, drawPrefectures, drawCities } from './map.js';
+import { drawRegions, drawPrefectures, drawCities, drawClickableArea } from './map.js';
 import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures } from './utils.js';
 import { initLayers } from './layers.js';
 
@@ -22,6 +22,7 @@ google.charts.setOnLoadCallback(loadIncludes);
 google.charts.setOnLoadCallback(() => drawRegions(regionsData, colors));
 google.charts.setOnLoadCallback(() => drawCities(citiesData));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
+google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors));
 if (filter) {
   google.charts.setOnLoadCallback(() => {
     setTimeout(() => {
