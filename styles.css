@@ -35,11 +35,11 @@ body {
 }
 
 #maps #cities svg g[data-city='true'] {
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 #maps #prefectures {
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 #maps.regionZoom {
@@ -55,11 +55,11 @@ body {
 }
 
 #maps.capitals #cities svg g[data-nationalCapital='false'] {
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 #maps.capitals.regionZoom #cities svg g[data-capital='false'] {
-  opacity: 0.1 !important;
+  opacity: 0.05 !important;
 }
 
 #maps.capitals.regionZoom #cities svg g[data-nationalCapital='false'] {
