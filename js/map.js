@@ -71,21 +71,11 @@ export function drawCities(data) {
 
       const x2 = index % 2 === 0 ? -4 : city.innerHTML.length * 6;
 
-      const icon2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      icon2.setAttribute('width', '16');
-      icon2.setAttribute('height', '16');
-      icon2.setAttribute('x', `${x}`);
-      icon2.setAttribute('y', `${y - 12}`);
-      icon2.setAttribute('fill', 'white');
-      icon2.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
-      city.parentElement?.appendChild(icon2);
-
       const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       icon.setAttribute('width', '12');
       icon.setAttribute('height', '12');
       icon.setAttribute('x', `${x + 2}`);
       icon.setAttribute('y', `${y - 12 + 2}`);
-      icon.setAttribute('fill', 'black');
       icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
       city.parentElement?.appendChild(icon);
 
