@@ -165,9 +165,11 @@ export function drawClickableArea(data, colors, filter) {
   });
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
-    /** @type{HTMLElement | null} */
-    const select = document.querySelector(`div[data-region="${filter}"]`);
-    select?.click()
+    setTimeout(() => {
+      /** @type{HTMLElement | null} */
+      const select = document.querySelector(`div[data-region="${filter}"]`);
+      select?.click()
+    }, 100);
   })
 
   chart.draw(dataTable, options);
