@@ -133,7 +133,7 @@ export function drawPrefectures(data) {
   chart.draw(dataTable, options);
 }
 
-export function drawClickableArea(data, colors) {
+export function drawClickableArea(data, colors, filter) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -163,6 +163,12 @@ export function drawClickableArea(data, colors) {
       });
     });
   });
+
+  google.visualization.events.addListener(chart, 'ready', (e) => {
+    /** @type{HTMLElement | null} */
+    const select = document.querySelector(`div[data-region="${filter}"]`);
+    select?.click()
+  })
 
   chart.draw(dataTable, options);
 }

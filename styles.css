@@ -1,6 +1,6 @@
 :root {
   --item-bg-color: rgba(79, 117, 130, 0.1);
-  --item-bg-color-active: #4f7582;
+  --item-bg-color-active: rgba(79, 117, 130, 0.9);
 }
 
 body {
@@ -109,14 +109,13 @@ body {
 }
 
 #legend h3 {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.4em;
   font-size: 4em;
   cursor: default;
 }
 
 .legend-item {
-  padding: 0.3em;
-  margin-bottom: 0.3em;
+  margin: 0 0 0.3em 0.2em;
   font-size: 1.8em;
   display: flex;
   align-items: center;
@@ -132,26 +131,24 @@ body {
 
 .legend-color,
 .legend-pattern {
-  width: 1.4em;
-  height: 1.4em;
-  margin: 0 0.3em 0 0;
   border: 0.05em solid #999;
   border-radius: 0.1em;
+}
+
+.legend-color,
+.legend-pattern,
+.legend-pattern svg rect {
+  width: 1.5em;
+  height: 2em;
+}
+
+.legend-name {
+  padding: 0 0.5em;
 }
 
 .legend-item-active .legend-color,
 .legend-item-active .legend-pattern {
   border-color: #ccc;
-}
-
-.legend-pattern svg {
-  width: 2em;
-  height: 2em;
-}
-
-.legend-pattern svg rect {
-  width: 1.2em;
-  height: 1.2em;
 }
 
 .legend-en {
@@ -367,8 +364,14 @@ body.fillmode-pattern .legend-pattern {
     margin: 0 0 0.5em;
   }
 
-  .legend-item {
+  /* .legend-item {
     padding: 1em 0.3em;
+  } */
+
+  .legend-color,
+  .legend-pattern,
+  .legend-pattern svg rect {
+    height: 4em;
   }
 
   #fillmode {

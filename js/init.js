@@ -22,15 +22,7 @@ google.charts.setOnLoadCallback(loadIncludes);
 google.charts.setOnLoadCallback(() => drawRegions(regionsData, colors));
 google.charts.setOnLoadCallback(() => drawCities(citiesData));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
-google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors));
-if (filter) {
-  google.charts.setOnLoadCallback(() => {
-    setTimeout(() => {
-      const select = document.querySelector(`div[data-region="${filter}"]`);
-      select.click()
-    }, 100);
-  });
-}
+google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, filter));
 
 document.body.onload = () => {
   // loadPatterns()
