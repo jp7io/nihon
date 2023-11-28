@@ -29,6 +29,12 @@ export function drawRegions(data, colors) {
 
   const dataTable = google.visualization.arrayToDataTable(data);
 
+  google.visualization.events.addListener(chart, 'ready', (e) => {
+    setTimeout(() => {
+      regionsElm.style.visibility = 'visible';
+    }, 100);
+  });
+
   chart.draw(dataTable, options);
 }
 
@@ -86,10 +92,8 @@ export function drawCities(data) {
 
       addStroke(city);
     })
-    const citiesDiv = document.getElementById('cities');
-    if (citiesDiv) {
-      citiesDiv.style.visibility = 'visible';
-    }
+
+    citiesElm.style.visibility = 'visible';
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);
@@ -126,6 +130,8 @@ export function drawPrefectures(data) {
 
       addStroke(prefecture);
     });
+
+    prefecturesElm.style.visibility = 'visible';
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);

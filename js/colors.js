@@ -2,35 +2,35 @@
 
 export const colors = [
   {
-    "color": "#ff5733",
-    "pattern": "url(#circle2Hatch)",
+    color: "#ff5a5f", // Red
+    pattern: "url(#circle2Hatch)",
   },
   {
-    "color": "#ffc300",
-    "pattern": "url(#dottedHatch)",
+    color: "#ffb400", // Orange
+    pattern: "url(#dottedHatch)",
   },
   {
-    "color": "#9b59b6",
-    "pattern": "url(#verticalHatch)",
+    color: "#ffdb58", // Yellow
+    pattern: "url(#verticalHatch)",
   },
   {
-    "color": "#3498db",
-    "pattern": "url(#diagonalHatch2)",
+    color: "#4caf50", // Green
+    pattern: "url(#diagonalHatch2)",
   },
   {
-    "color": "#27ae60",
-    "pattern": "url(#circleHatch)",
+    color: "#00b0ff", // Blue
+    pattern: "url(#circleHatch)",
   },
   {
-    "color": "#e74c3c",
-    "pattern": "url(#squareHatch)",
+    color: "#7e50e2", // Indigo
+    pattern: "url(#squareHatch)",
   },
   {
-    "color": "#2ecc71",
-    "pattern": "url(#diamondHatch)",
+    color: "#ba68c8", // Violet
+    pattern: "url(#diamondHatch)",
   },
   {
-    "color": "#f39c12",
-    "pattern": "url(#diagonalHatch)",
+    color: "#ff5c8d", // Pink
+    pattern: "url(#diagonalHatch)",
   }
 ]

@@ -11,6 +11,9 @@ let regionsColors = { ...colors };
 const hash = document.location.hash.replace('#', '');
 const filter = decodeURI(hash);
 
+const regionIndex = regions.findIndex(region => region.name.en === filter);
+const drawRegionsColors = (hash) ? [colors[regionIndex]] : colors;
+
 const regionsData = parseData(regions, filter);
 const prefecturesData = parseDataForPrefectures(regions, filter);
 const citiesData = parseDataForCities(regions, filter);
@@ -19,7 +22,7 @@ google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyD
 google.charts.setOnLoadCallback(loadPatterns);
 google.charts.setOnLoadCallback(loadIncludes);
 //google.charts.setOnLoadCallback(populateLegend);
-google.charts.setOnLoadCallback(() => drawRegions(regionsData, colors));
+google.charts.setOnLoadCallback(() => drawRegions(regionsData, drawRegionsColors));
 google.charts.setOnLoadCallback(() => drawCities(citiesData));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
 google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, filter));
