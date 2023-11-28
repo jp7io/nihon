@@ -17,7 +17,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '250%', left: '-25%', top: '0%' },
-      mobile: { width: '200%', left: '-30%', top: '0%' },
+      mobile: { width: '300%', left: '-38%', top: '0%' },
     },
     prefectures: [
       {
@@ -51,7 +51,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '250%', left: '-25%', top: '-30%' },
-      mobile: { width: '250%', left: '-29%', top: '-50%' },
+      mobile: { width: '400%', left: '-37%', top: '-100%' },
     },
     prefectures: [
       {
