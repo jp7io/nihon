@@ -98,7 +98,7 @@ body {
 }
 
 #legend-placeholder {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 2em;
@@ -160,7 +160,7 @@ body {
 }
 
 #fillmode-placeholder {
-  position: absolute;
+  position: fixed;
   top: 2em;
   right: 2em;
   z-index: 10;
@@ -228,7 +228,7 @@ body {
 }
 
 #shuriken-placeholder {
-  position: absolute;
+  position: fixed;
   bottom: 2em;
   right: 2em;
 }
