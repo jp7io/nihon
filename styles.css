@@ -365,14 +365,18 @@ body.fillmode-pattern .legend-pattern {
     margin: 0 0 0.5em;
   }
 
-  /* .legend-item {
-    padding: 1em 0.3em;
-  } */
+  .legend-item {
+    margin-bottom: 0.5em;
+  }
 
   .legend-color,
   .legend-pattern,
   .legend-pattern svg rect {
-    height: 4em;
+    height: 5em;
+  }
+
+  .legend-item:not(.legend-item-active) .legend-name {
+    text-shadow: 0.05em 0.05em 0.025em #fff;
   }
 
   #fillmode {
@@ -388,7 +392,7 @@ body.fillmode-pattern .legend-pattern {
   #cities,
   #cityMarkers {
     width: 200%;
-    left: 50%;
+    left: 55%;
     transform: translateX(-50%);
   }
 
