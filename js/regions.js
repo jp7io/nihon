@@ -151,6 +151,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 38.240435, lng: 140.363633 },
+            bottom: true,
           }
         ],
       },
@@ -171,6 +172,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 37.760834, lng: 140.473333 },
+            bottom: true,
           }
         ]
       }
@@ -185,7 +187,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '500%', left: '-35%', top: '-125%' },
-      mobile: { width: '500%', left: '-38%', top: '-220%' },
+      mobile: { width: '700%', left: '-42%', top: '-350%' },
     },
     prefectures: [
       {
@@ -339,7 +341,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '300%', left: '-24%', top: '-60%' },
-      mobile: { width: '300%', left: '-24%', top: '-100%' },
+      mobile: { width: '400%', left: '-28%', top: '-160%' },
     },
     prefectures: [
       {
@@ -379,6 +381,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 36.6958266, lng: 137.2137071 },
+            bottom: true,
           }
         ],
       },
@@ -529,6 +532,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 35.18145060000001, lng: 136.9065571 },
+            bottom: true,
           }
         ]
       }
@@ -543,7 +547,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '500%', left: '-28%', top: '-140%' },
-      mobile: { width: '500%', left: '-23%', top: '-260%' },
+      mobile: { width: '600%', left: '-25%', top: '-330%' },
     },
     prefectures: [
       {
@@ -609,7 +613,7 @@ export const regions = [
       {
         code: '27',
         name: {
-          en: 'Osaka',
+          en: 'Ōsaka',
           ja: ['大', '阪', '府'],
           furigana: ['おお', 'さか', 'ふ']
         },
@@ -623,6 +627,7 @@ export const regions = [
             furigana: ['おお', 'さか', 'ふ'],
             types: [cityType.capital, cityType.major, cityType.favorite],
             location: { lat: 34.6413315, lng: 135.5629394 },
+            bottom: true,
           }
         ],
       },
@@ -810,7 +815,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '500%', left: '-24%', top: '-155%' },
-      mobile: { width: '500%', left: '-15%', top: '-300%' },
+      mobile: { width: '600%', left: '-17%', top: '-350%' },
     },
     prefectures: [
       {
@@ -904,7 +909,7 @@ export const regions = [
     },
     zoom: {
       desktop: { width: '200%', left: '-5%', top: '-65%' },
-      mobile: { width: '200%', left: '10%', top: '-110%' },
+      mobile: { width: '350%', left: '0%', top: '-230%' },
     },
     prefectures: [
       {
@@ -944,6 +949,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 33.249357, lng: 130.298822 },
+            bottom: true,
           }
         ],
       },
@@ -955,6 +961,7 @@ export const regions = [
           furigana: ['なが', 'さき', 'けん']
         },
         location: { lat: 33.2488525, lng: 129.6930912 },
+        textAnchor: 'end',
         cities: [
           {
             name: {
@@ -964,6 +971,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 32.750286, lng: 129.877667 },
+            bottom: true,
           }
         ],
       },
@@ -984,6 +992,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 32.803333, lng: 130.707778 },
+            bottom: true,
           }
         ],
       },

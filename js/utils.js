@@ -89,3 +89,41 @@ export function extractCities(data, filter = null) {
 
   return dataArray;
 }
+
+export function extractPrefectures(data, filter = null) {
+  const dataArray = [];
+
+  filteredData(data, filter).forEach((region) => {
+    region.prefectures.forEach(prefecture => {
+      dataArray.push(prefecture);
+    });
+  });
+
+  return dataArray;
+}
+
+export function addStroke(elm) {
+  const strokePos = [
+    { x: 1, y: 1 },
+    { x: 1, y: -1 },
+    { x: -1, y: -1 },
+    { x: -1, y: 1 },
+  ];
+
+  const x = parseInt(elm.getAttribute('x'));
+  const y = parseInt(elm.getAttribute('y'));
+
+  strokePos.forEach(pos => {
+    const stroke = elm.cloneNode(true);
+    stroke.setAttribute('fill', 'white');
+    stroke.setAttribute('x', `${x + pos.x}`);
+    stroke.setAttribute('y', `${y + pos.y}`);
+    elm.parentElement?.appendChild(stroke);
+  })
+
+  const clonedElm = elm.cloneNode(true);
+  clonedElm.setAttribute('x', `${x}`);
+  clonedElm.setAttribute('y', `${y}`);
+  elm.parentElement?.appendChild(clonedElm);
+  elm.remove();
+}

@@ -57,7 +57,7 @@ body {
 }
 
 #maps.regionZoom #prefectures svg text {
-  font-size: 0.7em;
+  font-size: 1em;
 }
 
 #maps.capitals #cities svg g[data-capital='true'] {
@@ -318,8 +318,6 @@ ruby.furigana rtc.annotation rt {
 
 svg text {
   font-size: 0.9em;
-  text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
-             1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 }
 
 #prefectures svg path,
@@ -328,8 +326,7 @@ svg text {
 }
 
 #prefectures svg text {
-  font-size: 0.5em;
-  opacity: 0.7;
+  font-size: 0.4em;
 }
 
 #prefectures.active svg text {

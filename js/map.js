@@ -1,7 +1,7 @@
 // @ts-check
 
 import { regions } from './regions.js';
-import { extractCities } from './utils.js';
+import { addStroke, extractCities, extractPrefectures } from './utils.js';
 
 /** @type {google.visualization.GeoChartOptions} */
 const commonOptions = {
@@ -53,11 +53,9 @@ export function drawCities(data) {
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
     const cities = document.querySelectorAll('#cities svg text');
-    cities.forEach((city, index) => {
-      city.setAttribute('text-anchor', index % 2 === 0 ? 'end' : 'start');
-      const types = [];
-
-      const cityData = citiesData.find(city2 => city2.name.ja.join('') === city.innerHTML);
+    cities.forEach((city) => {
+      const cityName = city.innerHTML;
+      const cityData = citiesData.find(record => record.name.ja.join('') === cityName);
 
       city.setAttribute('data-type', cityData.types.join(' '));
 
@@ -69,18 +67,24 @@ export function drawCities(data) {
       const x = parseInt(city.getAttribute('x') || '0');
       const y = parseInt(city.getAttribute('y') || '0');
 
-      const x2 = index % 2 === 0 ? -4 : city.innerHTML.length * 6;
+      const textBoundingBox = city.getBoundingClientRect();
+      const textHeight = textBoundingBox.height;
 
       const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      icon.setAttribute('width', '12');
-      icon.setAttribute('height', '12');
-      icon.setAttribute('x', `${x + 2}`);
-      icon.setAttribute('y', `${y - 12 + 2}`);
+      icon.setAttribute('width', `${textHeight * 0.8}`);
+      icon.setAttribute('height', `${textHeight * 0.8}`);
+      icon.setAttribute('x', `${x - textHeight / 2}`);
+      icon.setAttribute('y', `${y - textHeight / 2}`);
       icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
       city.parentElement?.appendChild(icon);
 
-      city.setAttribute('x', `${x + x2}`);
+      if (cityData.bottom) {
+        city.setAttribute('y', `${y + textHeight * 1.25}`);
+      } else {
+        city.setAttribute('y', `${y - textHeight * 0.7}`);
+      }
 
+      addStroke(city);
     })
     const citiesDiv = document.getElementById('cities');
     if (citiesDiv) {
@@ -109,6 +113,20 @@ export function drawPrefectures(data) {
     return;
   }
   const chart = new google.visualization.GeoChart(prefecturesElm);
+
+  const prefecturesData = extractPrefectures(regions);
+
+  google.visualization.events.addListener(chart, 'ready', (e) => {
+    const prefectures = document.querySelectorAll('#prefectures svg text');
+    prefectures.forEach((prefecture) => {
+      const prefectureData = prefecturesData.find(record => record.name.ja.join('') === prefecture.innerHTML);
+      if (prefectureData.textAnchor) {
+        prefecture.setAttribute('text-anchor', prefectureData.textAnchor);
+      }
+
+      addStroke(prefecture);
+    });
+  });
 
   const dataTable = google.visualization.arrayToDataTable(data);
 
