@@ -27,11 +27,6 @@ google.charts.setOnLoadCallback(() => drawCities(citiesData));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
 google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, filter));
 
-document.body.onload = () => {
-  // loadPatterns()
-  // loadIncludes()
-}
-
 function loadPatterns() {
   const patterns_source = document.getElementById('patterns_source');
   const patterns_cloned = document.getElementById('patterns_cloned');
@@ -52,4 +47,10 @@ async function loadIncludes() {
   initFillMode(regionsColors);
   initLayers();
   //handleFillmode('pattern', regionsColors);
+  const icons = document.querySelectorAll('object.icon');
+  icons.forEach(icon => {
+    icon.addEventListener('load', () => {
+      icon.parentNode.replaceChild(icon.contentDocument.documentElement, icon);
+    });
+  });
 };

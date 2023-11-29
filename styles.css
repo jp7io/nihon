@@ -167,30 +167,22 @@ body {
 }
 
 #fillmode {
-  opacity: 1;
   font-size: 1.2em;
-}
-
-#fillmode:hover {
-  opacity: 1;
-}
-
-#fillmode fieldset {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  margin-bottom: 0.75em;
-  border: 0.05em solid #ccc;
-  border-radius: 10px;
-}
-
-#fillmode fieldset legend {
-  padding: 0em 0.5em;
 }
 
 #fillmode .items {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+#fillmodeSet {
+  flex-direction: row !important;
+}
+
+#fillmodeSet .item {
+  flex: 1 0 0;
 }
 
 #fillmode .item {
@@ -288,7 +280,7 @@ ruby.furigana {
 
 ruby.furigana rbc,
 ruby.furigana rtc {
-  display: flex;
+  display: flex; /* FIXME multiline copy/paste */
   gap: 0.15em;
 }
 
@@ -381,12 +373,13 @@ body.fillmode-pattern .legend-pattern {
     height: 5em;
   }
 
+  #fillmode .item:not(.active) .furigana,
   .legend-item:not(.legend-item-active) .legend-name {
     text-shadow: 0.05em 0.05em 0.025em #fff;
   }
 
   #fillmode {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 
   #fillmode .item {

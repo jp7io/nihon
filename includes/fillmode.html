@@ -1,137 +1,89 @@
 <div id="fillmode">
-  <fieldset id="fillmodeSet">
-    <legend>
+  <div id="layersSet" class="items">
+    <div class="item active" data-layer="capitals">
+      <object class="icon" type="image/svg+xml" data="./img/icons/capital.svg"></object>
       <ruby class="furigana">
         <rtc>
-          <rt>ぬ</rt>
+          <rt>けん</rt>
+          <rt>ちょう</rt>
+        </rtc>
+        <rbc>
+          <rb>県</rb>
+          <rb>庁</rb>
+        </rbc>
+        <rtc class="annotation">
+          <rt xml:lang="en">Capitals</rt>
+        </rtc>
+      </ruby>
+    </div>
+    <div class="item" data-layer="prefectures">
+      <object class="icon" type="image/svg+xml" data="./img/icons/prefecture.svg">
+      </object>
+      <ruby class="furigana">
+        <rtc>
+          <rt>と</rt>
+          <rt>どう</rt>
+          <rt>ふ</rt>
+          <rt>けん</rt>
+        </rtc>
+        <rbc>
+          <rb>都</rb>
+          <rb>道</rb>
+          <rb>府</rb>
+          <rb>県</rb>
+        </rbc>
+        <rtc class="annotation">
+          <rt xml:lang="en">Prefectures</rt>
+        </rtc>
+      </ruby>
+    </div>
+    <div class="item" data-layer="favorites">
+      <object class="icon" type="image/svg+xml" data="./img/icons/favorite.svg"></object>
+      <ruby class="furigana">
+        <rtc>
           <rt></rt>
-          <rt></rt>
-          <rt></rt>
+          <rt>き</rt>
           <rt></rt>
         </rtc>
         <rbc>
-          <rb>塗</rb>
-          <rb>り</rb>
-          <rb>つ</rb>
-          <rb>ぶ</rb>
-          <rb>し</rb>
+          <rb>お</rb>
+          <rb>気</rb>
+          <rb>に</rb>
         </rbc>
         <rtc class="annotation">
-          <rt xml:lang="en">Fillmode</rt>
+          <rt xml:lang="en">Favorites</rt>
         </rtc>
       </ruby>
-    </legend>
-    <div class="items">
-      <div class="item active" data-fillmode="color">
-        <ruby class="furigana">
-          <rtc>
-            <rt>いろ</rt>
-          </rtc>
-          <rbc>
-            <rb>色</rb>
-          </rbc>
-          <rtc class="annotation">
-            <rt xml:lang="en">Color</rt>
-          </rtc>
-        </ruby>
-      </div>
-      <div class="item" data-fillmode="pattern">
-        <ruby class="furigana">
-          <rbc>
-            <rb>パターン</rb>
-          </rbc>
-          <rtc class="annotation">
-            <rt xml:lang="en">Pattern</rt>
-          </rtc>
-        </ruby>
-      </div>
     </div>
-  </fieldset>
-  <fieldset id="layersSet">
-    <legend>
+  </div>
+  <div id="fillmodeSet" class="items">
+    <div class="item active" data-fillmode="color">
       <ruby class="furigana">
         <rtc>
-          <rt>&nbsp;</rt>
+          <rt>いろ</rt>
         </rtc>
         <rbc>
-          <rb>レイヤー</rb>
+          <rb>色</rb>
         </rbc>
         <rtc class="annotation">
-          <rt xml:lang="en">Layers</rt>
+          <rt xml:lang="en">Color</rt>
         </rtc>
       </ruby>
-    </legend>
-    <div class="items">
-      <div class="item active" data-layer="capitals">
-        <object class="icon" type="image/svg+xml" data="./img/icons/capital.svg"
-          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
-        </object>
-        <ruby class="furigana">
-          <rtc>
-            <rt>けん</rt>
-            <rt>ちょう</rt>
-            <rt>しょ</rt>
-            <rt>ざい</rt>
-            <rt>ち</rt>
-          </rtc>
-          <rbc>
-            <rb>県</rb>
-            <rb>庁</rb>
-            <rb>所</rb>
-            <rb>在</rb>
-            <rb>地</rb>
-          </rbc>
-          <rtc class="annotation">
-            <rt xml:lang="en">Capitals</rt>
-          </rtc>
-        </ruby>
-      </div>
-      <div class="item" data-layer="prefectures">
-        <object class="icon" type="image/svg+xml" data="./img/icons/prefecture.svg"
-          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
-        </object>
-        <ruby class="furigana">
-          <rtc>
-            <rt>と</rt>
-            <rt>どう</rt>
-            <rt>ふ</rt>
-            <rt>けん</rt>
-          </rtc>
-          <rbc>
-            <rb>都</rb>
-            <rb>道</rb>
-            <rb>府</rb>
-            <rb>県</rb>
-          </rbc>
-          <rtc class="annotation">
-            <rt xml:lang="en">Prefectures</rt>
-          </rtc>
-        </ruby>
-      </div>
-      <div class="item" data-layer="favorites">
-        <object class="icon" type="image/svg+xml" data="./img/icons/favorite.svg"
-          onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
-        </object>
-        <ruby class="furigana">
-          <rtc>
-            <rt></rt>
-            <rt>き</rt>
-            <rt></rt>
-            <rt>い</rt>
-            <rt></rt>
-          </rtc>
-          <rbc>
-            <rb>お</rb>
-            <rb>気</rb>
-            <rb>に</rb>
-            <rb>入</rb>
-            <rb>り</rb>
-          </rbc>
-          <rtc class="annotation">
-            <rt xml:lang="en">Favorites</rt>
-          </rtc>
-        </ruby>
-      </div>
     </div>
-  </fieldset>
+    <div class="item" data-fillmode="pattern">
+      <ruby class="furigana">
+        <rtc>
+          <rt>も</rt>
+          <rt>よう</rt>
+        </rtc>
+        <rbc>
+          <rb>模</rb>
+          <rb>様</rb>
+        </rbc>
+        <rtc class="annotation">
+          <rt xml:lang="en">Pattern</rt>
+        </rtc>
+      </ruby>
+    </div>
+  </div>
 </div>
