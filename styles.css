@@ -387,15 +387,6 @@ body.fillmode-pattern .legend-pattern {
     padding: 1em 0.5em;
   }
 
-  #regions,
-  #prefectures,
-  #cities,
-  #cityMarkers {
-    width: 200%;
-    left: 55%;
-    transform: translateX(-50%);
-  }
-
   svg text {
     font-size: 2em;
   }

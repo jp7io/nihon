@@ -16,8 +16,8 @@ export const regions = [
       furigana: ['ほっ', 'かい', 'どう']
     },
     zoom: {
-      desktop: { width: '250%', left: '-25%', top: '0%' },
-      mobile: { width: '300%', left: '-38%', top: '0%' },
+      desktop: '250%',
+      mobile: '600%',
     },
     prefectures: [
       {
@@ -50,8 +50,8 @@ export const regions = [
       furigana: ['とう', 'ほく']
     },
     zoom: {
-      desktop: { width: '250%', left: '-25%', top: '-30%' },
-      mobile: { width: '500%', left: '-42%', top: '-130%' },
+      desktop: '250%',
+      mobile: '200%',
     },
     prefectures: [
       {
@@ -186,8 +186,8 @@ export const regions = [
       furigana: ['かん', 'とう']
     },
     zoom: {
-      desktop: { width: '600%', left: '-38%', top: '-155%' },
-      mobile: { width: '700%', left: '-42.5%', top: '-355%' },
+      desktop: '600%',
+      mobile: '400%',
     },
     prefectures: [
       {
@@ -340,8 +340,8 @@ export const regions = [
       furigana: ['ちゅう', 'ぶ']
     },
     zoom: {
-      desktop: { width: '370%', left: '-28%', top: '-82%' },
-      mobile: { width: '400%', left: '-27%', top: '-165%' },
+      desktop: '370%',
+      mobile: '800%',
     },
     prefectures: [
       {
@@ -546,8 +546,8 @@ export const regions = [
       furigana: ['かん', 'さい']
     },
     zoom: {
-      desktop: { width: '600%', left: '-30.5%', top: '-175%' },
-      mobile: { width: '650%', left: '-26.5%', top: '-370%' },
+      desktop: '600%',
+      mobile: '400%',
     },
     prefectures: [
       {
@@ -701,8 +701,8 @@ export const regions = [
       furigana: ['ちゅう', 'ごく']
     },
     zoom: {
-      desktop: { width: '600%', left: '-25%', top: '-173%' },
-      mobile: { width: '500%', left: '-12%', top: '-260%' },
+      desktop: '600%',
+      mobile: '800%',
     },
     prefectures: [
       {
@@ -814,8 +814,8 @@ export const regions = [
       furigana: ['し', 'こく']
     },
     zoom: {
-      desktop: { width: '500%', left: '-24%', top: '-155%' },
-      mobile: { width: '600%', left: '-17%', top: '-350%' },
+      desktop: '500%',
+      mobile: '400%',
     },
     prefectures: [
       {
@@ -908,8 +908,8 @@ export const regions = [
       furigana: ['きゅう', 'しゅう']
     },
     zoom: {
-      desktop: { width: '200%', left: '-5%', top: '-65%' },
-      mobile: { width: '350%', left: '0%', top: '-230%' },
+      desktop: '200%',
+      mobile: '600%',
     },
     prefectures: [
       {

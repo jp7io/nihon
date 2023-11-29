@@ -38,7 +38,7 @@ export function drawRegions(data, colors) {
   chart.draw(dataTable, options);
 }
 
-export function drawCities(data) {
+export function drawCities(data, callback) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -92,6 +92,10 @@ export function drawCities(data) {
 
       addStroke(city);
     })
+
+    if (callback) {
+      callback();
+    }
 
     citiesElm.style.visibility = 'visible';
   });
