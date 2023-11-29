@@ -361,6 +361,12 @@ body.fillmode-pattern .legend-pattern {
     font-size: 1.5vw;
   }
 
+  #maps:not(.regionZoom) {
+    width: 200%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   #legend h3 {
     margin: 0 0 0.5em;
   }

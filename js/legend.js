@@ -1,5 +1,5 @@
 import { regions } from "./regions.js";
-import { parseData, parseDataForPrefectures, parseDataForCities } from './utils.js';
+import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from './utils.js';
 import { colors as colors2 } from './colors.js';
 import { drawRegions, drawPrefectures, drawCities } from './map.js';
 
@@ -56,10 +56,7 @@ function clearRegion() {
 function resetMap() {
   const maps = document.getElementById('maps');
   maps.classList.remove('regionZoom');
-  maps.style.width = '100%';
-  maps.style.marginLeft = 0;
-  maps.style.marginTop = 0;
-  maps.style.transform = 'none';
+  maps.style.width = (isMobile()) ? '200%' : '100%';
 }
 
 export function activeRegion(item, region, callback) {

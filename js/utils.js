@@ -127,3 +127,7 @@ export function addStroke(elm) {
   elm.parentElement?.appendChild(clonedElm);
   elm.remove();
 }
+
+export function isMobile() {
+  return window.innerWidth <= 768;
+}
