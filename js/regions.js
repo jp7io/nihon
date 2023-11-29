@@ -51,7 +51,7 @@ export const regions = [
     },
     zoom: {
       desktop: '250%',
-      mobile: '200%',
+      mobile: '1100%',
     },
     prefectures: [
       {
@@ -187,7 +187,7 @@ export const regions = [
     },
     zoom: {
       desktop: '600%',
-      mobile: '400%',
+      mobile: '1400%',
     },
     prefectures: [
       {
@@ -547,7 +547,7 @@ export const regions = [
     },
     zoom: {
       desktop: '600%',
-      mobile: '400%',
+      mobile: '1400%',
     },
     prefectures: [
       {
@@ -815,7 +815,7 @@ export const regions = [
     },
     zoom: {
       desktop: '500%',
-      mobile: '400%',
+      mobile: '1400%',
     },
     prefectures: [
       {
