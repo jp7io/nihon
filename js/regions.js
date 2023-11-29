@@ -16,7 +16,7 @@ export const regions = [
       furigana: ['ほっ', 'かい', 'どう']
     },
     zoom: {
-      desktop: '250%',
+      desktop: '300%',
       mobile: '600%',
     },
     prefectures: [
@@ -50,7 +50,7 @@ export const regions = [
       furigana: ['とう', 'ほく']
     },
     zoom: {
-      desktop: '250%',
+      desktop: '300%',
       mobile: '1100%',
     },
     prefectures: [
@@ -293,7 +293,7 @@ export const regions = [
       {
         code: '13',
         name: {
-          en: 'Tōkyo',
+          en: 'Tōkyō',
           ja: ['東', '京都'],
           furigana: ['とう', 'きょう']
         },
@@ -814,7 +814,7 @@ export const regions = [
       furigana: ['し', 'こく']
     },
     zoom: {
-      desktop: '500%',
+      desktop: '600%',
       mobile: '1400%',
     },
     prefectures: [

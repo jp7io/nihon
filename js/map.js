@@ -69,6 +69,7 @@ export function drawCities(data, callback) {
       city.parentElement?.setAttribute('data-favorite', cityData.types.includes('favorite') ? 'true' : 'false');
       city.parentElement?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
       city.parentElement?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
+      city.parentElement?.setAttribute('data-name', cityData.name.en);
 
       const x = parseInt(city.getAttribute('x') || '0');
       const y = parseInt(city.getAttribute('y') || '0');
