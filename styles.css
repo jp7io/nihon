@@ -278,10 +278,29 @@ ruby.furigana {
   flex-direction: column;
 }
 
+ruby.furigana .ja {
+  flex: 0 1 1;
+}
+
 ruby.furigana rbc,
 ruby.furigana rtc {
-  display: flex; /* FIXME multiline copy/paste */
-  gap: 0.15em;
+  display: block; /* FIXME multiline copy/paste */
+}
+
+ruby.furigana rt,
+ruby.furigana rb {
+  padding-left: 0.075em;
+  padding-right: 0.075em;
+}
+
+ruby.furigana rt:first,
+ruby.furigana rb:first {
+  padding-left: 0;
+}
+
+ruby.furigana rt:last,
+ruby.furigana rb:last {
+  padding-right: 0;
 }
 
 ruby.furigana rt {
