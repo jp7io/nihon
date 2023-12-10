@@ -2,6 +2,6 @@
 
 地域と都道府県を含むインタラクティブな日本の地図。
 
-Webサイト： https://maps.jp7.io
+Webサイト： https://japan.jp7.io
 
 ![Screenshot](./img/screenshot.png)
