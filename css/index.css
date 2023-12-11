@@ -1,0 +1,58 @@
+@import url('./info.css');
+@import url('./fillmode.css');
+@import url('./furigana.css');
+@import url('./legend.css');
+@import url('./maps.css');
+@import url('./mobile.css');
+@import url('./print.css');
+@import url('./shuriken.css');
+
+:root {
+  --item-bg-color: rgba(79, 117, 130, 0.1);
+  --item-bg-color-active: rgba(79, 117, 130, 0.9);
+}
+
+body {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1vw;
+  margin: 0;
+}
+
+#title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2em;
+  z-index: 10;
+}
+
+#title h1 {
+  margin: 0 0 0.4em;
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.text {
+  display: block;
+}
+
+svg text {
+  font-size: 0.9em;
+}
+
+body.fillmode-color .legend-color {
+  display: block;
+}
+
+body.fillmode-color .legend-pattern {
+  display: none;
+}
+
+body.fillmode-pattern .legend-color {
+  display: none;
+}
+
+body.fillmode-pattern .legend-pattern {
+  display: block;
+}

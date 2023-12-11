@@ -1,0 +1,39 @@
+ruby.furigana {
+  line-height: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+ruby.furigana rbc,
+ruby.furigana rtc {
+  display: flex; /* FIXME multiline copy/paste */
+  gap: 0.15em;
+}
+
+ruby.furigana rt {
+  display: inline-block;
+  width: calc(1em * 3);
+  font-size: calc(1em / 3);
+  white-space: nowrap;
+  font-weight: normal;
+  text-align: center;
+}
+
+ruby.furigana rtc.annotation rt {
+  width: 100%;
+  font-size: 0.5em;
+  opacity: 0.5;
+  margin-top: 0.3em;
+  text-align: left;
+  font-style: italic;
+}
+
+@media screen and (min-width: 769px) {
+  #title h1 .furigana,
+  .legend-name .furigana,
+  #info .furigana {
+    flex-direction: row;
+    align-items: end;
+    gap: 0.3em;
+  }
+}

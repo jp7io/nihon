@@ -1,0 +1,51 @@
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 1.5vw !important;
+  }
+
+  #maps:not(.regionZoom) {
+    width: 200%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #title h1 {
+    margin: 0 0 0.5em;
+    font-size: 4em !important;
+  }
+
+  .legend-item {
+    margin-bottom: 0.5em;
+  }
+
+  .legend-color,
+  .legend-pattern,
+  .legend-pattern svg rect {
+    height: 5em;
+  }
+
+  #fillmode .item:not(.active) .furigana,
+  .legend-item:not(.legend-item-active) .legend-name {
+    text-shadow: 0.05em 0.05em 0.025em #fff;
+  }
+
+  #fillmode {
+    font-size: 1.5em !important;
+  }
+
+  #fillmode .item {
+    padding: 1em 0.5em;
+  }
+
+  svg text {
+    font-size: 2em !important;
+  }
+
+  #prefectures svg text {
+    font-size: 0.7em;
+  }
+
+  #info #info-selected {
+    font-size: 3em;
+  }
+}

@@ -1,0 +1,70 @@
+#info-placeholder {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 2em 2.2em;
+  z-index: 10;
+}
+
+#info #info-unselected,
+#info #info-selected {
+  border-radius: 0.2em;
+  background: var(--item-bg-color);
+  padding-right: 0.4em;
+  gap: 0.5em;
+}
+
+#info #info-selected {
+  /* .legend-item {
+  margin: 0 0 0.3em 0.2em;
+  cursor: default; */
+  display: flex;
+  align-items: center;
+  font-size: 1.8em;
+}
+
+#info:not(.active) #info-unselected {
+  color: #666;
+  padding: 0.4em;
+  font-size: 1.2em;
+}
+
+#info:not(.active) #info-selected {
+  display: none;
+}
+
+#info.active #info-unselected {
+  display: none;
+}
+
+#info.active #info-selected {
+  background: var(--item-bg-color-active);
+  color: #fff;
+}
+
+#info .flag {
+  border: 0.05em solid #ccc;
+  border-radius: 0.1em;
+  width: 3em;
+  height: 2em;
+}
+
+#info img {
+  display: block;
+  width: 3em;
+  height: 2em;
+}
+
+.wikipedia {
+  display: flex;
+  align-items: center;
+}
+
+.wikipedia a {
+  color: #000;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.8em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  font-size: 0.5em;
+}

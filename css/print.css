@@ -1,0 +1,27 @@
+@media print {
+  .legend-color,
+  .legend-pattern,
+  .legend-pattern svg {
+    width: 3em;
+    height: 3em;
+  }
+
+  .legend-item {
+    margin-bottom: 1.5em;
+    font-size: 3em;
+  }
+
+  svg text {
+    font-size: 1.2em;
+  }
+
+  #fillmode {
+    display: none;
+  }
+}
+
+#patterns_source {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
