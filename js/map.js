@@ -73,6 +73,8 @@ export function drawCities(data, callback) {
       cityGroup?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
       cityGroup?.setAttribute('data-name', cityData.name.en);
       cityGroup?.addEventListener('click', () => {
+        document.querySelectorAll('#cities svg g').forEach(elm => elm.classList.remove('active'));
+        cityGroup?.classList.add('active');
         setInfo('city', cityData);
       });
 
@@ -96,7 +98,7 @@ export function drawCities(data, callback) {
         city.setAttribute('y', `${y - textHeight * 0.7}`);
       }
 
-      addStroke(city);
+      addStroke(city, cityData.bottom);
     })
 
     if (callback) {
@@ -138,8 +140,19 @@ export function drawPrefectures(data, callback) {
         prefecture.setAttribute('text-anchor', prefectureData.textAnchor);
       }
 
-      prefecture.parentElement?.addEventListener('click', () => {
-        setInfo('prefecture', prefectureData);
+      const prefectureGroup = prefecture.parentElement;
+
+      const logicalname = `F#feature#1#0#JP-${prefectureData.code}#0`;
+
+      prefectureGroup?.addEventListener('click', () => {
+        document.querySelectorAll('#regions svg path').forEach(elm => {
+          if (elm.logicalname === logicalname) {
+            elm.classList.add('active');
+          } else {
+            elm.classList.remove('active');
+          }
+          setInfo('prefecture', prefectureData);
+        });
       });
 
       addStroke(prefecture);

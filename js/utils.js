@@ -102,7 +102,7 @@ export function extractPrefectures(data, filter = null) {
   return dataArray;
 }
 
-export function addStroke(elm) {
+export function addStroke(elm, cityBottom = false) {
   const strokePos = [
     { x: 1, y: 1 },
     { x: 1, y: -1 },
@@ -112,6 +112,15 @@ export function addStroke(elm) {
 
   const x = parseInt(elm.getAttribute('x'));
   const y = parseInt(elm.getAttribute('y'));
+
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.setAttribute('cx', `${x - 1}`);
+  circle.setAttribute('cy', `${cityBottom ? y - 14 : y + 9}`);
+  circle.setAttribute('r', '30');
+  circle.setAttribute('fill', 'none');
+  circle.setAttribute('stroke', 'black');
+  circle.setAttribute('class', 'circle');
+  elm.parentElement?.appendChild(circle);
 
   strokePos.forEach(pos => {
     const stroke = elm.cloneNode(true);

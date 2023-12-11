@@ -114,3 +114,16 @@
 #prefectures.active svg text {
   visibility: visible;
 }
+
+#maps .circle {
+  display: none;
+}
+
+#maps #cities .active .circle {
+  display: block;
+  opacity: 0.5;
+}
+
+#maps #regions .active {
+  opacity: 0.5;
+}
