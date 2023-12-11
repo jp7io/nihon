@@ -36,6 +36,10 @@ body {
   visibility: hidden;
 }
 
+#regions .regions {
+  z-index: 2;
+}
+
 #clickableArea {
   opacity: 0;
   z-index: 3;
@@ -43,10 +47,16 @@ body {
 
 #maps #cities svg g[data-city='true'] {
   opacity: 0.05;
+  cursor: pointer;
 }
 
 #maps #prefectures {
   opacity: 0.05;
+  z-index: 1;
+}
+
+#maps #cities {
+  z-index: 2;
 }
 
 #maps.regionZoom {
@@ -59,6 +69,7 @@ body {
 
 #maps.regionZoom #prefectures svg text {
   font-size: 1em;
+  cursor: pointer;
 }
 
 #maps.capitals #cities svg g[data-capital='true'] {
@@ -79,6 +90,7 @@ body {
 
 #maps.favorites #cities {
   opacity: 1;
+  z-index: 2;
 }
 
 #maps.favorites #cities svg g[data-favorite='true'] {
@@ -87,6 +99,11 @@ body {
 
 #maps.prefectures #prefectures {
   opacity: 1;
+  z-index: 2;
+}
+
+#maps.prefectures #cities {
+  z-index: 1;
 }
 
 #maps.cities #cities {
@@ -97,7 +114,7 @@ body {
   visibility: hidden;
 }
 
-#legend-placeholder {
+#title {
   position: fixed;
   top: 0;
   left: 0;
@@ -105,14 +122,23 @@ body {
   z-index: 10;
 }
 
+#legend-placeholder {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  padding: 1.4em 2em 0 2em;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
 #legend-items {
   width: fit-content;
 }
 
-#legend h3 {
+#title h1 {
   margin: 0 0 0.4em;
-  font-size: 4em;
-  cursor: default;
+  font-size: 3em;
+  cursor: pointer;
 }
 
 .legend-item {
@@ -217,6 +243,77 @@ body {
 
 #fillmode label[for="favoriteLayer"] {
   color: brown;
+}
+
+#info-placeholder {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 2em 2.2em;
+  z-index: 10;
+}
+
+#info #info-unselected,
+#info #info-selected {
+  border-radius: 0.2em;
+  background: var(--item-bg-color);
+  padding-right: 0.4em;
+  gap: 0.5em;
+}
+
+#info #info-selected {
+  /* .legend-item {
+  margin: 0 0 0.3em 0.2em;
+  cursor: default; */
+  display: flex;
+  align-items: center;
+  font-size: 1.8em;
+}
+
+#info:not(.active) #info-unselected {
+  color: #666;
+  padding: 0.4em;
+  font-size: 1.2em;
+}
+
+#info:not(.active) #info-selected {
+  display: none;
+}
+
+#info.active #info-unselected {
+  display: none;
+}
+
+#info.active #info-selected {
+  background: var(--item-bg-color-active);
+  color: #fff;
+}
+
+#info .flag {
+  border: 0.05em solid #ccc;
+  border-radius: 0.1em;
+  width: 3em;
+  height: 2em;
+}
+
+#info img {
+  display: block;
+  width: 3em;
+  height: 2em;
+}
+
+.wikipedia {
+  display: flex;
+  align-items: center;
+}
+
+.wikipedia a {
+  color: #000;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.8em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  font-size: 0.5em;
 }
 
 #shuriken-placeholder {
@@ -340,8 +437,9 @@ body.fillmode-pattern .legend-pattern {
 }
 
 @media screen and (min-width: 769px) {
-  #legend h3 .furigana,
-  .legend-name .furigana {
+  #title h1 .furigana,
+  .legend-name .furigana,
+  #info .furigana {
     flex-direction: row;
     align-items: end;
     gap: 0.3em;
@@ -359,7 +457,7 @@ body.fillmode-pattern .legend-pattern {
     transform: translateX(-50%);
   }
 
-  #legend h3 {
+  #title h1 {
     margin: 0 0 0.5em;
   }
 

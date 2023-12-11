@@ -2,7 +2,6 @@
 
 export const cityType = {
   capital: 'capital',
-  major: 'major',
   favorite: 'favorite',
   nationalCapital: 'nationalCapital',
 }
@@ -305,7 +304,7 @@ export const regions = [
               ja: ['東', '京都'],
               furigana: ['とう', 'きょう', 'と'],
             },
-            types: [cityType.capital, cityType.nationalCapital],
+            types: [cityType.capital, cityType.nationalCapital, cityType.favorite],
             location: { lat: 35.6764225, lng: 139.650027 },
           }
         ],
@@ -623,9 +622,9 @@ export const regions = [
             name: {
               en: 'Ōsaka',
               ja: ['大', '阪', '府'],
+              furigana: ['おお', 'さか', 'ふ'],
             },
-            furigana: ['おお', 'さか', 'ふ'],
-            types: [cityType.capital, cityType.major, cityType.favorite],
+            types: [cityType.capital, cityType.favorite],
             location: { lat: 34.6413315, lng: 135.5629394 },
             bottom: true,
           }
@@ -829,7 +828,7 @@ export const regions = [
         cities: [
           {
             name: {
-              en: 'Takamatsu',
+              en: 'Takamatsu', // FIXME: find city needs to consider prefecture
               ja: ['高', '松', '市'],
               furigana: ['たか', 'まつ', 'し'],
             },
@@ -849,7 +848,7 @@ export const regions = [
         cities: [
           {
             name: {
-              en: 'Takamatsu',
+              en: 'Takamatsu', // FIXME: find city needs to consider prefecture
               ja: ['高', '松', '市'],
               furigana: ['たか', 'まつ', 'し'],
             },

@@ -82,7 +82,7 @@ export function extractCities(data, filter = null) {
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
       prefecture.cities?.forEach(city => {
-        dataArray.push(city);
+        dataArray.push({ ...city, prefecture: { ...prefecture, region } });
       })
     });
   });
@@ -95,7 +95,7 @@ export function extractPrefectures(data, filter = null) {
 
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
-      dataArray.push(prefecture);
+      dataArray.push({ ...prefecture, region });
     });
   });
 

@@ -2,30 +2,43 @@ import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { drawRegions, drawPrefectures, drawCities, drawClickableArea } from './map.js';
-import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures } from './utils.js';
+import { drawRegions, drawPrefectures, drawCities, drawClickableArea, setInfo } from './map.js';
+import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures, extractCities } from './utils.js';
 import { initLayers } from './layers.js';
 
 let regionsColors = { ...colors };
 
 const hash = document.location.hash.replace('#', '');
-const filter = decodeURI(hash);
+const filters = decodeURI(hash).split(',');
 
-const regionIndex = regions.findIndex(region => region.name.en === filter);
+const [region, prefecture, city] = filters;
+
+const regionIndex = regions.findIndex(item => item.name.en === region);
 const drawRegionsColors = (hash) ? [colors[regionIndex]] : colors;
 
-const regionsData = parseData(regions, filter);
-const prefecturesData = parseDataForPrefectures(regions, filter);
-const citiesData = parseDataForCities(regions, filter);
+const regionsData = parseData(regions, region);
+const prefecturesData = parseDataForPrefectures(regions, region);
+const citiesData = parseDataForCities(regions, region);
+
+const filterCityCallback = () => {
+  if (!city) {
+    return;
+  }
+  const citiesData = extractCities(regions);
+  const cityData = citiesData.find(record => record.name.en === city);
+  setTimeout(() => {
+    setInfo('city', cityData);
+  }, 100);
+}
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(loadPatterns);
 google.charts.setOnLoadCallback(loadIncludes);
 //google.charts.setOnLoadCallback(populateLegend);
 google.charts.setOnLoadCallback(() => drawRegions(regionsData, drawRegionsColors));
-google.charts.setOnLoadCallback(() => drawCities(citiesData));
+google.charts.setOnLoadCallback(() => drawCities(citiesData, filterCityCallback));
 google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
-google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, filter));
+google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, region));
 
 function loadPatterns() {
   const patterns_source = document.getElementById('patterns_source');
@@ -43,6 +56,7 @@ async function loadIncludes() {
   await loadHTML('legend-placeholder', './includes/legend.html');
   await loadHTML('fillmode-placeholder', './includes/fillmode.html');
   await loadHTML('shuriken-placeholder', './includes/shuriken.html');
+  await loadHTML('info-placeholder', './includes/info.html');
   drawLegendItems(regionsColors);
   initFillMode(regionsColors);
   initLayers();

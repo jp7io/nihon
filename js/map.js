@@ -1,16 +1,16 @@
 // @ts-check
 
 import { regions } from './regions.js';
-import { addStroke, extractCities, extractPrefectures } from './utils.js';
+import { addStroke, extractCities, extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
 
 /** @type {google.visualization.GeoChartOptions} */
 const commonOptions = {
   region: 'JP',
   resolution: 'provinces',
   legend: 'none',
-  tooltip: {
-    trigger: 'none'
-  }
+  // tooltip: {
+  //   trigger: 'none'
+  // }
 }
 
 export function drawRegions(data, colors) {
@@ -65,11 +65,16 @@ export function drawCities(data, callback) {
 
       city.setAttribute('data-type', cityData.types.join(' '));
 
-      city.parentElement?.setAttribute('data-city', 'true');
-      city.parentElement?.setAttribute('data-favorite', cityData.types.includes('favorite') ? 'true' : 'false');
-      city.parentElement?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
-      city.parentElement?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
-      city.parentElement?.setAttribute('data-name', cityData.name.en);
+      const cityGroup = city.parentElement;
+
+      cityGroup?.setAttribute('data-city', 'true');
+      cityGroup?.setAttribute('data-favorite', cityData.types.includes('favorite') ? 'true' : 'false');
+      cityGroup?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
+      cityGroup?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
+      cityGroup?.setAttribute('data-name', cityData.name.en);
+      cityGroup?.addEventListener('click', () => {
+        setInfo('city', cityData);
+      });
 
       const x = parseInt(city.getAttribute('x') || '0');
       const y = parseInt(city.getAttribute('y') || '0');
@@ -83,7 +88,7 @@ export function drawCities(data, callback) {
       icon.setAttribute('x', `${x - textHeight / 2}`);
       icon.setAttribute('y', `${y - textHeight / 2}`);
       icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
-      city.parentElement?.appendChild(icon);
+      cityGroup?.appendChild(icon);
 
       if (cityData.bottom) {
         city.setAttribute('y', `${y + textHeight * 1.25}`);
@@ -106,7 +111,7 @@ export function drawCities(data, callback) {
   chart.draw(dataTable, options);
 }
 
-export function drawPrefectures(data) {
+export function drawPrefectures(data, callback) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -133,8 +138,16 @@ export function drawPrefectures(data) {
         prefecture.setAttribute('text-anchor', prefectureData.textAnchor);
       }
 
+      prefecture.parentElement?.addEventListener('click', () => {
+        setInfo('prefecture', prefectureData);
+      });
+
       addStroke(prefecture);
     });
+
+    if (callback) {
+      callback();
+    }
 
     prefecturesElm.style.visibility = 'visible';
   });
@@ -184,4 +197,37 @@ export function drawClickableArea(data, colors, filter) {
   })
 
   chart.draw(dataTable, options);
+}
+
+export function setInfo(type, data) {
+  const info = document.getElementById('info');
+  const infoSelected = document.getElementById('info-selected');
+  if (!info || !infoSelected) {
+    return;
+  }
+  if (data) {
+    const { name } = data;
+    const flag = (type === 'city') ? `${name.en},${data.prefecture.name.en}` : name.en;
+    const hash = (type === 'city') ? `${data.prefecture.region.name.en},${data.prefecture.name.en},${name.en}` : `${data.region.name.en},${data.name.en}`;
+
+    info.classList.add('active');
+    infoSelected.innerHTML = `
+      <div class="flag"><img src="./img/${type}/${replaceSpecialCharactersWithAscii(flag)}.svg" /></div>
+      <ruby class="furigana">
+        <div class="ja">
+          <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>
+          <rbc>${name.ja.map(char => `<rb>${char}</rb>`).join('')}</rbc>
+        </div>
+        <rtc class="annotation"><rt>${name.en}</rt></rtc>
+      </ruby>
+      <div class="wikipedia">
+        <a href="https://ja.wikipedia.org/wiki/${name.ja.join('')}" target="_blank">ウィキペディア</a>
+      </div>
+    `
+
+    document.location.hash = hash;
+  } else {
+    info.classList.remove('active');
+    infoSelected.innerHTML = '';
+  }
 }

@@ -1,7 +1,7 @@
 import { regions } from "./regions.js";
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from './utils.js';
 import { colors as colors2 } from './colors.js';
-import { drawRegions, drawPrefectures, drawCities } from './map.js';
+import { drawRegions, drawPrefectures, drawCities, setInfo } from './map.js';
 
 export function drawLegendItems(colors) {
   const legendItems = document.getElementById('legend-items');
@@ -31,14 +31,17 @@ export function drawLegendItems(colors) {
     `);
 
     item.onclick = () => {
-      activeRegion(item, region, () => activeRegionDraw(region, colors[index]))
+      activeRegion(item, region, () => {
+        activeRegionDraw(region, colors[index]);
+        setInfo();
+      });
     };
 
     legendItems.appendChild(item);
   });
 
-  const legendH3 = document.querySelector('#legend h3');
-  legendH3.onclick = () => {
+  const legendH1 = document.querySelector('#title h1');
+  legendH1.onclick = () => {
     const activeItem = document.querySelector('.legend-item-active');
     activeItem?.classList.remove('legend-item-active');
     resetMap();
