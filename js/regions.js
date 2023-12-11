@@ -828,12 +828,12 @@ export const regions = [
         cities: [
           {
             name: {
-              en: 'Takamatsu', // FIXME: find city needs to consider prefecture
-              ja: ['高', '松', '市'],
-              furigana: ['たか', 'まつ', 'し'],
+              en: 'Tokushima',
+              ja: ['徳', '島', '市'],
+              furigana: ['とく', 'しま', 'し'],
             },
             types: [cityType.capital],
-            location: { lat: 34.342542, lng: 134.0465405 },
+            location: { lat: 34.042768, lng: 134.4444055 },
           }
         ],
       },
@@ -848,7 +848,7 @@ export const regions = [
         cities: [
           {
             name: {
-              en: 'Takamatsu', // FIXME: find city needs to consider prefecture
+              en: 'Takamatsu',
               ja: ['高', '松', '市'],
               furigana: ['たか', 'まつ', 'し'],
             },
