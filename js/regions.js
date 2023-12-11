@@ -106,8 +106,8 @@ export const regions = [
             name: {
               en: 'Sendai',
               ja: ['仙', '台', '市'],
+              furigana: ['せん', 'だい', 'し'],
             },
-            furigana: ['せん', 'だい', 'し'],
             types: [cityType.capital],
             location: { lat: 38.268195, lng: 140.869418 },
           }
