@@ -34,6 +34,10 @@ export function drawLegendItems(colors) {
       activeRegion(item, region, () => {
         activeRegionDraw(region, colors[index]);
         setInfo();
+        setTimeout(() => {
+          const fillmode = document.querySelector('#fillmodeSet .item.active');
+          fillmode.click();
+        }, 100);
       });
     };
 
