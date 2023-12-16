@@ -1,7 +1,7 @@
 import { regions } from "./regions.js";
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from './utils.js';
 import { colors as colors2 } from './colors.js';
-import { drawRegions, drawPrefectures, drawCities } from './map.js';
+import { drawRegions, drawPrefectures, drawCities, drawClickableArea } from './map.js';
 import { setInfo } from './info.js';
 
 export function drawLegendItems(colors) {
@@ -31,32 +31,48 @@ export function drawLegendItems(colors) {
       </div>
     `);
 
-    item.onclick = () => {
-      activeRegion(item, region, () => {
-        activeRegionDraw(region, colors[index], () => {
-          setInfo();
-          const fillmode = document.querySelector('#fillmodeSet .item.active');
-          fillmode.click();
-        });
-      });
-    };
+    item.onclick = () => setActiveRegion(region);
 
     legendItems.appendChild(item);
   });
 
   const legendH1 = document.querySelector('#title h1');
-  legendH1.onclick = () => {
-    const activeItem = document.querySelector('.legend-item-active');
-    activeItem?.classList.remove('legend-item-active');
-    resetMap();
-    clearRegion();
-  }
+  legendH1.onclick = () => setActiveRegion();
 }
 
-function clearRegion() {
+export function setActiveRegion(region, cb) {
+
+  const previousRegionItem = document.querySelector('.legend-item-active');
+
+  const items = document.querySelectorAll('.legend-item');
+  items.forEach(item => item.classList.remove('legend-item-active'));
+
+  if (!region || previousRegionItem?.dataset.region === region?.name.en) {
+    resetMap();
+    clearRegion();
+    return;
+  }
+
+  const item = document.querySelector(`.legend-item[data-region="${region.name.en}"]`);
+
+  item?.classList.add('legend-item-active');
+
+  setZoom(region);
+
+  activeRegionDraw(region, () => {
+    setInfo();
+    const fillmode = document.querySelector('#fillmodeSet .item.active');
+    fillmode.click();
+    cb && cb();
+  });
+
+}
+
+export function clearRegion() {
   drawRegions(parseData(regions), colors2);
   drawPrefectures(parseDataForPrefectures(regions));
   drawCities(parseDataForCities(regions));
+  drawClickableArea(parseData(regions), colors2);
   document.location.hash = '';
 }
 
@@ -66,30 +82,17 @@ function resetMap() {
   maps.style.width = (isMobile()) ? '200%' : '100%';
 }
 
-export function activeRegion(item, region, callback) {
-  const { name, zoom } = region;
-  const activeItem = document.querySelector('.legend-item-active');
+export function setZoom(region) {
 
-  item.classList.remove('legend-item-active');
-
-  resetMap();
-
-  if (activeItem?.dataset.region === name.en) {
-    clearRegion();
-    return;
-  }
-
-  activeItem?.classList.remove('legend-item-active');
-  item.classList.add('legend-item-active');
   maps.classList.add('regionZoom');
+
+  const { name, zoom } = region;
 
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
   maps.style.width = width;
 
   document.location.hash = name.en;
-
-  callback();
 };
 
 function centerPosition() {
@@ -131,8 +134,10 @@ function centerPosition() {
   window.scrollTo(scrollX, scrollY)
 }
 
-export function activeRegionDraw(region, color, cb) {
+export function activeRegionDraw(region, cb) {
   const { name } = region;
+  const regionIndex = regions.findIndex(item2 => item2.name.en === region.name.en);
+  const color = colors2[regionIndex];
   drawRegions(parseData(regions, name.en), [color], cb);
   drawPrefectures(parseDataForPrefectures(regions, name.en));
   drawCities(parseDataForCities(regions, name.en), centerPosition);

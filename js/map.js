@@ -72,11 +72,7 @@ export function drawCities(data, callback) {
       cityGroup?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
       cityGroup?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
       cityGroup?.setAttribute('data-name', cityData.name.en);
-      cityGroup?.addEventListener('click', () => {
-        document.querySelectorAll('#cities svg g').forEach(elm => elm.classList.remove('active'));
-        cityGroup?.classList.add('active');
-        setInfo('city', cityData);
-      });
+      cityGroup?.addEventListener('click', () => setActiveCity(cityData));
 
       const x = parseInt(city.getAttribute('x') || '0');
       const y = parseInt(city.getAttribute('y') || '0');
@@ -213,4 +209,19 @@ export function drawClickableArea(data, colors, filter) {
   })
 
   chart.draw(dataTable, options);
+}
+
+export function setActiveCity(city) {
+  const cities = document.querySelectorAll('#cities svg g[data-city=true]');
+  cities.forEach(city => city.classList.remove('active'));
+
+  if (!city) {
+    setInfo();
+    return;
+  }
+
+  const cityElm = document.querySelector(`#cities svg g[data-name="${city.name.en}"]`);
+  cityElm?.classList.add('active');
+
+  setInfo('city', city);
 }

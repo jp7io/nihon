@@ -2,10 +2,10 @@ import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { drawRegions, drawPrefectures, drawCities, drawClickableArea } from './map.js';
-import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures, extractCities } from './utils.js';
+import { setActiveCity } from './map.js';
+import { setActiveRegion } from './legend.js';
+import { extractCities, loadHTML } from './utils.js';
 import { initLayers } from './layers.js';
-import { setInfo } from './info.js';
 
 let regionsColors = { ...colors };
 
@@ -14,35 +14,18 @@ const filters = decodeURI(hash).split(',');
 
 const [region, prefecture, city] = filters;
 
-const regionIndex = regions.findIndex(item => item.name.en === region);
-const drawRegionsColors = (hash) ? [colors[regionIndex]] : colors;
-
-const regionsData = parseData(regions, region);
-const prefecturesData = parseDataForPrefectures(regions, region);
-const citiesData = parseDataForCities(regions, region);
-
-const filterCityCallback = () => {
-  if (!city) {
-    return;
-  }
-  const citiesData = extractCities(regions);
-  const cityData = citiesData.find(record => record.name.en === city);
-  setTimeout(() => {
-    const cityGroup = document.querySelector(`[data-name="${cityData.name.en}"]`);
-    cityGroup?.classList.add('active');
-    setInfo('city', cityData);
-  }, 1000);
-}
-
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
-google.charts.setOnLoadCallback(() => {
+google.charts.setOnLoadCallback(async () => {
   loadPatterns();
-  loadIncludes();
+  await loadIncludes();
   createInlineSVG();
-  drawRegions(regionsData, drawRegionsColors);
-  drawPrefectures(prefecturesData);
-  drawCities(citiesData, filterCityCallback);
-  drawClickableArea(regionsData, colors, region);
+  const regionData = regions.find(record => record.name.en === region);
+  const cityData = extractCities(regions, region).find(record => record.name.en === city);
+  setActiveRegion(regionData, () => {
+    setTimeout(() => {
+      setActiveCity(cityData);
+    }, 100);
+  });
 });
 
 function loadPatterns() {
