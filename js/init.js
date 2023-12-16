@@ -2,9 +2,10 @@ import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { drawRegions, drawPrefectures, drawCities, drawClickableArea, setInfo } from './map.js';
+import { drawRegions, drawPrefectures, drawCities, drawClickableArea } from './map.js';
 import { loadHTML, parseData, parseDataForCities, parseDataForPrefectures, extractCities } from './utils.js';
 import { initLayers } from './layers.js';
+import { setInfo } from './info.js';
 
 let regionsColors = { ...colors };
 
@@ -27,18 +28,22 @@ const filterCityCallback = () => {
   const citiesData = extractCities(regions);
   const cityData = citiesData.find(record => record.name.en === city);
   setTimeout(() => {
+    const cityGroup = document.querySelector(`[data-name="${cityData.name.en}"]`);
+    cityGroup?.classList.add('active');
     setInfo('city', cityData);
-  }, 100);
+  }, 1000);
 }
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
-google.charts.setOnLoadCallback(loadPatterns);
-google.charts.setOnLoadCallback(loadIncludes);
-//google.charts.setOnLoadCallback(populateLegend);
-google.charts.setOnLoadCallback(() => drawRegions(regionsData, drawRegionsColors));
-google.charts.setOnLoadCallback(() => drawCities(citiesData, filterCityCallback));
-google.charts.setOnLoadCallback(() => drawPrefectures(prefecturesData));
-google.charts.setOnLoadCallback(() => drawClickableArea(regionsData, colors, region));
+google.charts.setOnLoadCallback(() => {
+  loadPatterns();
+  loadIncludes();
+  createInlineSVG();
+  drawRegions(regionsData, drawRegionsColors);
+  drawPrefectures(prefecturesData);
+  drawCities(citiesData, filterCityCallback);
+  drawClickableArea(regionsData, colors, region);
+});
 
 function loadPatterns() {
   const patterns_source = document.getElementById('patterns_source');
@@ -53,18 +58,20 @@ function loadPatterns() {
 }
 
 async function loadIncludes() {
-  await loadHTML('legend-placeholder', './includes/legend.html');
-  await loadHTML('fillmode-placeholder', './includes/fillmode.html');
+  await loadHTML('legend-placeholder', './includes/legend.html', () => drawLegendItems(regionsColors));
+  await loadHTML('fillmode-placeholder', './includes/fillmode.html', () => {
+    initFillMode(regionsColors);
+    initLayers()
+  });
   await loadHTML('shuriken-placeholder', './includes/shuriken.html');
   await loadHTML('info-placeholder', './includes/info.html');
-  drawLegendItems(regionsColors);
-  initFillMode(regionsColors);
-  initLayers();
-  //handleFillmode('pattern', regionsColors);
+};
+
+function createInlineSVG() {
   const icons = document.querySelectorAll('object.icon');
   icons.forEach(icon => {
     icon.addEventListener('load', () => {
       icon.parentNode.replaceChild(icon.contentDocument.documentElement, icon);
     });
   });
-};
+}

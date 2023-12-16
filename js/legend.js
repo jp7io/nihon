@@ -1,7 +1,8 @@
 import { regions } from "./regions.js";
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from './utils.js';
 import { colors as colors2 } from './colors.js';
-import { drawRegions, drawPrefectures, drawCities, setInfo } from './map.js';
+import { drawRegions, drawPrefectures, drawCities } from './map.js';
+import { setInfo } from './info.js';
 
 export function drawLegendItems(colors) {
   const legendItems = document.getElementById('legend-items');
@@ -32,12 +33,11 @@ export function drawLegendItems(colors) {
 
     item.onclick = () => {
       activeRegion(item, region, () => {
-        activeRegionDraw(region, colors[index]);
-        setInfo();
-        setTimeout(() => {
+        activeRegionDraw(region, colors[index], () => {
+          setInfo();
           const fillmode = document.querySelector('#fillmodeSet .item.active');
           fillmode.click();
-        }, 100);
+        });
       });
     };
 
@@ -131,9 +131,9 @@ function centerPosition() {
   window.scrollTo(scrollX, scrollY)
 }
 
-export function activeRegionDraw(region, color) {
+export function activeRegionDraw(region, color, cb) {
   const { name } = region;
-  drawRegions(parseData(regions, name.en), [color]);
+  drawRegions(parseData(regions, name.en), [color], cb);
   drawPrefectures(parseDataForPrefectures(regions, name.en));
   drawCities(parseDataForCities(regions, name.en), centerPosition);
 }

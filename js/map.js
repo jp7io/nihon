@@ -1,7 +1,8 @@
 // @ts-check
 
 import { regions } from './regions.js';
-import { addStroke, extractCities, extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
+import { addStroke, extractCities, extractPrefectures } from './utils.js';
+import { setInfo } from './info.js';
 
 /** @type {google.visualization.GeoChartOptions} */
 const commonOptions = {
@@ -13,7 +14,7 @@ const commonOptions = {
   // }
 }
 
-export function drawRegions(data, colors) {
+export function drawRegions(data, colors, cb) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -30,9 +31,8 @@ export function drawRegions(data, colors) {
   const dataTable = google.visualization.arrayToDataTable(data);
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
-    setTimeout(() => {
-      regionsElm.style.visibility = 'visible';
-    }, 100);
+    regionsElm.style.visibility = 'visible';
+    cb && cb();
   });
 
   chart.draw(dataTable, options);
@@ -144,8 +144,11 @@ export function drawPrefectures(data, callback) {
 
       const logicalname = `F#feature#1#0#JP-${prefectureData.code}#0`;
 
+      /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
+      const regionsElmCollection = document.querySelectorAll('#regions svg path');
+
       prefectureGroup?.addEventListener('click', () => {
-        document.querySelectorAll('#regions svg path').forEach(elm => {
+        regionsElmCollection.forEach(elm => {
           if (elm.logicalname === logicalname) {
             elm.classList.add('active');
           } else {
@@ -202,45 +205,10 @@ export function drawClickableArea(data, colors, filter) {
   });
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
-    setTimeout(() => {
-      /** @type{HTMLElement | null} */
-      const select = document.querySelector(`div[data-region="${filter}"]`);
-      select?.click()
-    }, 100);
+    /** @type{HTMLElement | null} */
+    const select = document.querySelector(`div[data-region="${filter}"]`);
+    select?.click()
   })
 
   chart.draw(dataTable, options);
-}
-
-export function setInfo(type, data) {
-  const info = document.getElementById('info');
-  const infoSelected = document.getElementById('info-selected');
-  if (!info || !infoSelected) {
-    return;
-  }
-  if (data) {
-    const { name } = data;
-    const flag = (type === 'city') ? `${name.en},${data.prefecture.name.en}` : name.en;
-    const hash = (type === 'city') ? `${data.prefecture.region.name.en},${data.prefecture.name.en},${name.en}` : `${data.region.name.en},${data.name.en}`;
-
-    info.classList.add('active');
-    infoSelected.innerHTML = `
-      <div class="flag"><img src="./img/${type}/${replaceSpecialCharactersWithAscii(flag)}.svg" /></div>
-      <ruby class="furigana">
-        <div class="ja">
-          <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>
-          <rbc>${name.ja.map(char => `<rb>${char}</rb>`).join('')}</rbc>
-        </div>
-        <rtc class="annotation"><rt>${name.en}</rt></rtc>
-      </ruby>
-      <div class="wikipedia">
-        <a href="https://ja.wikipedia.org/wiki/${name.ja.join('')}" target="_blank">ウィキペディア</a>
-      </div>
-    `
-
-    document.location.hash = hash;
-  } else {
-    info.classList.remove('active');
-    infoSelected.innerHTML = '';
-  }
 }

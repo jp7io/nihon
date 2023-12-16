@@ -17,7 +17,7 @@ export function replaceSpecialCharactersWithAscii(str) {
     .replace(/[ñ]/g, 'n');
 }
 
-export async function loadHTML(id, filename) {
+export async function loadHTML(id, filename, cb) {
   const element = document.getElementById(id);
 
   if (!element) {
@@ -27,12 +27,9 @@ export async function loadHTML(id, filename) {
   const response = await fetch(filename);
   const responseText = await response.text();
 
-  if (responseText) {
-    element.innerHTML = responseText;
-  }
-  else {
-    element.innerHTML = "<h1>Page not found.</h1>";
-  }
+  element.innerHTML = responseText || `<h1>"${filename}" not found.</h1>`;
+
+  cb && cb();
 }
 
 const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
