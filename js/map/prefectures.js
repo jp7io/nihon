@@ -1,10 +1,18 @@
 // @ts-check
 
+/**
+ * @typedef {import('../regions.js').Prefecture} Prefecture
+ */
+
 import { commonOptions } from './common.js';
 import { regions } from '../regions.js';
 import { addStroke, extractPrefectures } from '../utils.js';
 import { setInfo } from '../info.js';
 
+/**
+ * @param {(string|number)[][]} data
+ * @param {() => void=} callback
+ */
 export function drawPrefectures(data, callback) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
@@ -23,6 +31,7 @@ export function drawPrefectures(data, callback) {
   const chart = new google.visualization.GeoChart(prefecturesElm);
 
   google.visualization.events.addListener(chart, 'ready', (e) => {
+    /** @type {NodeListOf<SVGTextElement>} */
     const prefectures = document.querySelectorAll('#prefectures svg text');
     prefectures.forEach((prefecture) => improvePrefectureElm(prefecture));
     callback && callback();
@@ -34,6 +43,9 @@ export function drawPrefectures(data, callback) {
   chart.draw(dataTable, options);
 }
 
+/**
+ * @param {SVGTextElement} prefecture
+ */
 function improvePrefectureElm(prefecture) {
   const prefecturesData = extractPrefectures(regions);
 
@@ -49,21 +61,20 @@ function improvePrefectureElm(prefecture) {
   addStroke(prefecture);
 }
 
-export function setActivePrefecture(prefecture) {
-  if (!prefecture) {
+/**
+ * @param {Prefecture} prefectureData
+ */
+export function setActivePrefecture(prefectureData) {
+  if (!prefectureData) {
     return;
   }
 
-  const logicalname = `F#feature#1#0#JP-${prefecture.code}#0`;
+  const logicalname = `F#feature#1#0#JP-${prefectureData.code}#0`;
 
   /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
   const regionsElmCollection = document.querySelectorAll('#regions svg path');
   regionsElmCollection.forEach(elm => {
-    if (elm.logicalname === logicalname) {
-      elm.classList.add('active');
-    } else {
-      elm.classList.remove('active');
-    }
-    setInfo('prefecture', prefecture);
+    elm.classList.toggle('active', elm.logicalname === logicalname);
+    setInfo('prefecture', prefectureData);
   });
 }

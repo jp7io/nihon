@@ -1,11 +1,57 @@
 // @ts-check
 
+/**
+ * @typedef {Object} Zoom
+ * @property {string} desktop
+ * @property {string} mobile
+ */
+
+/**
+ * @typedef {Object} Name
+ * @property {string} en
+ * @property {string[]} ja
+ * @property {string[]} furigana
+ */
+
+/**
+ * @typedef {Object} Location
+ * @property {number} lat
+ * @property {number} lng
+ */
+
+/**
+ * @typedef {Object} City
+ * @property {Name} name
+ * @property {any} types
+ * @property {Location} location
+ * @property {boolean=} bottom
+ * @property {Prefecture=} prefecture
+*/
+
+/**
+ * @typedef {Object} Prefecture
+ * @property {string} code
+ * @property {Name} name
+ * @property {Location} location
+ * @property {City[]} cities
+ * @property {string=} textAnchor
+ */
+
+/**
+ * @typedef {Object} Region
+ * @property {string} code
+ * @property {Name} name
+ * @property {Prefecture[]} prefectures
+ * @property {Zoom} zoom
+ */
+
 export const cityType = {
   capital: 'capital',
   favorite: 'favorite',
   nationalCapital: 'nationalCapital',
 }
 
+/** @type {Region[]} */
 export const regions = [
   {
     code: 'HOK',

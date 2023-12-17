@@ -1,5 +1,11 @@
+// @ts-check
+
 import { replaceSpecialCharactersWithAscii } from './utils.js';
 
+/**
+ * @param {string=} type
+ * @param {any=} data
+ */
 export function setInfo(type, data) {
   const info = document.getElementById('info');
   const infoSelected = document.getElementById('info-selected');

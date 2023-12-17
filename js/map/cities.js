@@ -1,10 +1,19 @@
 // @ts-check
 
+/**
+ * @typedef {import('../regions.js').City} City
+ */
+
 import { commonOptions } from './common.js';
 import { regions } from '../regions.js';
-import { addStroke, extractCities } from '../utils.js';
+import { addStroke, extractCities, setElmAttributes } from '../utils.js';
 import { setInfo } from '../info.js';
+import { setActivePrefecture } from './prefectures.js';
 
+/**
+ * @param {(string|number)[][]} data
+ * @param {() => void=} callback
+ */
 export function drawCities(data, callback) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
@@ -23,6 +32,7 @@ export function drawCities(data, callback) {
   const chart = new google.visualization.GeoChart(citiesElm);
 
   google.visualization.events.addListener(chart, 'ready', () => {
+    /** @type {NodeListOf<SVGTextElement>} */
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach(city => improveCityElm(city));
     callback && callback();
@@ -34,64 +44,85 @@ export function drawCities(data, callback) {
   chart.draw(dataTable, options);
 }
 
-function improveCityElm(city) {
-  const cityName = city.innerHTML;
+/**
+ * @param {SVGTextElement} cityTextElm
+ */
+function improveCityElm(cityTextElm) {
+  const cityName = cityTextElm.innerHTML;
   const citiesData = extractCities(regions);
   const cityData = citiesData.find(record => record.name.ja.join('') === cityName);
 
-  city.setAttribute('data-type', cityData.types.join(' '));
+  const cityGroup = cityTextElm.closest('g');
 
-  const cityGroup = city.parentElement;
+  if (!cityGroup) {
+    return;
+  }
 
-  cityGroup?.setAttribute('data-city', 'true');
-  cityGroup?.setAttribute('data-favorite', cityData.types.includes('favorite') ? 'true' : 'false');
-  cityGroup?.setAttribute('data-capital', cityData.types.includes('capital') ? 'true' : 'false');
-  cityGroup?.setAttribute('data-nationalCapital', cityData.types.includes('nationalCapital') ? 'true' : 'false');
-  cityGroup?.setAttribute('data-name', cityData.name.en);
+  setElmAttributes(cityGroup, {
+    'data-city': 'true',
+    'data-favorite': Boolean(cityData.types.includes('favorite')),
+    'data-capital': Boolean(cityData.types.includes('capital')),
+    'data-nationalCapital': Boolean(cityData.types.includes('nationalCapital')),
+    'data-name': cityData.name.en,
+  });
   cityGroup?.addEventListener('click', () => setActiveCity(cityData));
 
-  const textBoundingBox = city.getBoundingClientRect();
+  const textBoundingBox = cityTextElm.getBoundingClientRect();
 
   const geometry = {
-    x: parseInt(city.getAttribute('x') || '0'),
-    y: parseInt(city.getAttribute('y') || '0'),
-    textHeight: textBoundingBox.height,
+    x: Number(cityTextElm.getAttribute('x')),
+    y: Number(cityTextElm.getAttribute('y')),
+    height: textBoundingBox.height,
   }
 
   addIcon(cityGroup, geometry);
-  adjustPosition(city, cityData, geometry);
-  addStroke(city, cityData.bottom);
+  adjustPosition(cityTextElm, cityData, geometry);
+  addStroke(cityTextElm, cityData.bottom);
 }
 
-function addIcon(cityGroup, { x, y, textHeight }) {
+/**
+ * @param {SVGGElement} cityGroup
+ */
+function addIcon(cityGroup, { x, y, height }) {
   const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  icon.setAttribute('width', `${textHeight * 0.8}`);
-  icon.setAttribute('height', `${textHeight * 0.8}`);
-  icon.setAttribute('x', `${x - textHeight / 2}`);
-  icon.setAttribute('y', `${y - textHeight / 2}`);
+  setElmAttributes(icon, {
+    width: height * 0.8,
+    height: height * 0.8,
+    x: x - height / 2,
+    y: y - height / 2,
+  });
   icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
   cityGroup?.appendChild(icon);
 }
 
-function adjustPosition(city, cityData, { y, textHeight }) {
+/**
+ * @param {SVGTextElement} cityTextElm
+ * @param {City} cityData
+ */
+function adjustPosition(cityTextElm, cityData, { y, height }) {
   if (cityData.bottom) {
-    city.setAttribute('y', `${y + textHeight * 1.25}`);
+    cityTextElm.setAttribute('y', String(y + height * 1.25));
   } else {
-    city.setAttribute('y', `${y - textHeight * 0.7}`);
+    cityTextElm.setAttribute('y', String(y - height * 0.7));
   }
 }
 
-export function setActiveCity(city) {
+/**
+ * @param {City} cityData
+ */
+export function setActiveCity(cityData) {
   const cities = document.querySelectorAll('#cities svg g[data-city=true]');
   cities.forEach(city => city.classList.remove('active'));
 
-  if (!city) {
+  if (!cityData) {
     setInfo();
     return;
   }
 
-  const cityElm = document.querySelector(`#cities svg g[data-name="${city.name.en}"]`);
+  const cityElm = document.querySelector(`#cities svg g[data-name="${cityData.name.en}"]`);
   cityElm?.classList.add('active');
 
-  setInfo('city', city);
+  cityData.prefecture && setActivePrefecture(cityData.prefecture);
+
+  setInfo('city', cityData);
 }

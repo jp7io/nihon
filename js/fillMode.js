@@ -1,13 +1,24 @@
 // @ts-check
 
+/**
+ * @typedef {import('./colors.js').Color} Color
+ */
+
 import { regions } from "./regions.js";
 
+/**
+ * @param {Color[]} colors
+ */
 export function initFillMode(colors) {
   /** @type {NodeListOf<HTMLElement>} */
   const modes = document.querySelectorAll('#fillmodeSet .item');
   modes.forEach(layer => layer.onclick = (e) => handleFillmode(e, colors))
 };
 
+/**
+ * @param {any} e
+ * @param {Color[]} colors
+ */
 function handleFillmode(e, colors) {
   const mode = e.currentTarget.dataset.fillmode;
 

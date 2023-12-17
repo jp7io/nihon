@@ -26,8 +26,11 @@ google.charts.setOnLoadCallback(async () => {
   const cityData = extractCities(regions, region).find(record => record.name.en === city);
   setActiveRegion(regionData, () => {
     setTimeout(() => {
-      setActivePrefecture(prefectureData);
-      setActiveCity(cityData);
+      if (cityData) {
+        setActiveCity(cityData);
+      } else {
+        setActivePrefecture(prefectureData);
+      }
     }, 100);
   });
 });

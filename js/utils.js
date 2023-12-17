@@ -1,5 +1,13 @@
 // @ts-check
 
+/**
+ * @typedef {import('./regions.js').Region} Region
+ */
+
+/**
+ * @param {string} str
+ * @returns {string}
+ */
 export function replaceSpecialCharactersWithAscii(str) {
   return str.replace(/[ÀÁÂÃÄÅ]/g, 'A')
     .replace(/[àáâãäå]/g, 'a')
@@ -17,6 +25,11 @@ export function replaceSpecialCharactersWithAscii(str) {
     .replace(/[ñ]/g, 'n');
 }
 
+/**
+ * @param {string} id
+ * @param {string} filename
+ * @param {() => void=} callback
+ */
 export async function loadHTML(id, filename, callback) {
   const element = document.getElementById(id);
 
@@ -32,40 +45,71 @@ export async function loadHTML(id, filename, callback) {
   callback && callback();
 }
 
+/**
+ * @param {import('./regions').Region[]} data
+ * @param {string | null} filter
+ */
 const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
 
+/**
+ * @param {import('./regions').Region[]} data
+ * @param {string | null} filter
+ */
 export function parseData(data, filter = null) {
+  /** @type {(string|number)[][]} */
   const dataArray = [['Prefecture', 'Index']];
 
   filteredData(data, filter).forEach((region, index) => {
     region.prefectures.forEach(({ name }) => {
-      dataArray.push([replaceSpecialCharactersWithAscii(name.en), index]);
+      dataArray.push([
+        replaceSpecialCharactersWithAscii(name.en),
+        index,
+      ]);
     });
   });
 
   return dataArray;
 }
 
+/**
+ * @param {import('./regions').Region[]} data
+ * @param {string | null} filter
+ */
 export function parseDataForPrefectures(data, filter = null) {
+  /** @type {(string|number)[][]} */
   const dataArray = [['Lat', 'Lng', 'Prefecture', 'Index']];
 
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(({ name, location }, index) => {
-      dataArray.push([location.lat, location.lng, name.ja.join(''), index]);
+      dataArray.push([
+        location.lat,
+        location.lng,
+        name.ja.join(''),
+        index
+      ]);
     })
   });
 
   return dataArray;
 }
 
+/**
+ * @param {import('./regions').Region[]} data
+ * @param {string | null} filter
+ */
 export function parseDataForCities(data, filter = null) {
-  /** @type {Array<Array<string | number>>} */
+  /** @type {(string|number)[][]} */
   const dataArray = [['Lat', 'Lng', 'City', 'isFavorite']];
 
   filteredData(data, filter).forEach((region) => {
     region.prefectures.forEach(prefecture => {
       prefecture.cities?.forEach(({ name, location }) => {
-        dataArray.push([location.lat, location.lng, name.ja.join(''), 1]);
+        dataArray.push([
+          location.lat,
+          location.lng,
+          name.ja.join(''),
+          1
+        ]);
       })
     });
   });
@@ -107,6 +151,10 @@ export function extractPrefectures(data, filter = null) {
   return dataArray;
 }
 
+/**
+ * @param {SVGTextElement} elm
+ * @param {boolean=} cityBottom
+ */
 export function addStroke(elm, cityBottom = false) {
   const strokePos = [
     { x: 1, y: 1 },
@@ -115,31 +163,46 @@ export function addStroke(elm, cityBottom = false) {
     { x: -1, y: 1 },
   ];
 
-  const x = parseInt(elm.getAttribute('x'));
-  const y = parseInt(elm.getAttribute('y'));
+  const x = Number(elm.getAttribute('x'));
+  const y = Number(elm.getAttribute('y'));
 
   const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  circle.setAttribute('cx', `${x - 1}`);
-  circle.setAttribute('cy', `${cityBottom ? y - 14 : y + 9}`);
-  circle.setAttribute('r', '30');
-  circle.setAttribute('fill', 'none');
-  circle.setAttribute('stroke', 'black');
-  circle.setAttribute('class', 'circle');
+
+  setElmAttributes(circle, {
+    cx: x - 1,
+    cy: cityBottom ? y - 14 : y + 9,
+    r: '30',
+    fill: 'none',
+    stroke: 'black',
+    class: 'circle',
+  });
   elm.parentElement?.appendChild(circle);
 
   strokePos.forEach(pos => {
     const stroke = elm.cloneNode(true);
-    stroke.setAttribute('fill', 'white');
-    stroke.setAttribute('x', `${x + pos.x}`);
-    stroke.setAttribute('y', `${y + pos.y}`);
+    setElmAttributes(stroke, {
+      fill: 'white',
+      x: x + pos.x,
+      y: y + pos.y,
+    });
     elm.parentElement?.appendChild(stroke);
   })
 
   const clonedElm = elm.cloneNode(true);
-  clonedElm.setAttribute('x', `${x}`);
-  clonedElm.setAttribute('y', `${y}`);
+  setElmAttributes(clonedElm, {
+    x,
+    y,
+  });
   elm.parentElement?.appendChild(clonedElm);
   elm.remove();
+}
+
+/**
+ * @param {any} elm
+ * @param {Object} attributes
+ */
+export function setElmAttributes(elm, attributes) {
+  Object.entries(attributes).forEach(([key, value]) => elm.setAttribute(key, String(value)));
 }
 
 export function isMobile() {

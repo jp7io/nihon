@@ -3,7 +3,11 @@
 import { commonOptions } from './common.js';
 import { regions } from '../regions.js';
 
-export function drawClickableArea(data, colors, filter) {
+/**
+ * @param {(string|number)[][]} data
+ * @param {Object[]} colors
+ */
+export function drawClickableArea(data, colors) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,

@@ -1,5 +1,12 @@
 // @ts-check
 
+/**
+ * @typedef {Object} Color
+ * @property {string} color
+ * @property {string} pattern
+ */
+
+/** @type {Color[]} */
 export const colors = [
   {
     color: "#ff5a5f", // Red

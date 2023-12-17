@@ -1,5 +1,10 @@
 // @ts-check
 
+/**
+ * @typedef {import('../regions.js').Region} Region
+ * @typedef {import('../colors.js').Color} Color
+ */
+
 import { regions } from "../regions.js";
 import { colors } from "../colors.js";
 import { commonOptions } from './common.js';
@@ -9,6 +14,11 @@ import { drawCities } from './cities.js';
 import { drawClickableArea } from './clickableArea.js';
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from "../utils.js";
 
+/**
+ * @param {(string|number)[][]} data
+ * @param {Color[]} colors
+ * @param {() => void=} callback
+ */
 export function drawRegions(data, colors, callback) {
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
@@ -32,6 +42,10 @@ export function drawRegions(data, colors, callback) {
   chart.draw(dataTable, options);
 }
 
+/**
+ * @param {Region=} region
+ * @param {() => void=} callback
+ */
 export function setActiveRegion(region, callback) {
   /** @type {HTMLElement | null} */
   const previousRegionItem = document.querySelector('.legend-item-active');
@@ -78,13 +92,16 @@ function resetMap() {
   map.style.width = (isMobile()) ? '200%' : '100%';
 }
 
-export function setZoom(region) {
+/**
+ * @param {Region} regionData
+ */
+export function setZoom(regionData) {
   const map = document.getElementById('map');
   if (!map) {
     return;
   }
   map.classList.add('regionZoom');
-  const { name, zoom } = region;
+  const { name, zoom } = regionData;
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
   map.style.width = width;
@@ -130,9 +147,13 @@ function centerPosition() {
   window.scrollTo(scrollX, scrollY)
 }
 
-export function activeRegionDraw(region, callback) {
-  const { name } = region;
-  const regionIndex = regions.findIndex(item2 => item2.name.en === region.name.en);
+/**
+ * @param {Region} regionData
+ * @param {() => void} callback
+ */
+export function activeRegionDraw(regionData, callback) {
+  const { name } = regionData;
+  const regionIndex = regions.findIndex(record => record.name.en === regionData.name.en);
   const color = colors[regionIndex];
   drawRegions(parseData(regions, name.en), [color], callback);
   drawPrefectures(parseDataForPrefectures(regions, name.en));
