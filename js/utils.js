@@ -91,6 +91,10 @@ export function extractCities(data, filter = null) {
   return dataArray;
 }
 
+/**
+ * @param {Object[]} data
+ * @param {string | null} filter
+ */
 export function extractPrefectures(data, filter = null) {
   const dataArray = [];
 

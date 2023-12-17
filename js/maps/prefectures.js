@@ -44,21 +44,26 @@ function improvePrefectureElm(prefecture) {
 
   const prefectureGroup = prefecture.parentElement;
 
-  const logicalname = `F#feature#1#0#JP-${prefectureData.code}#0`;
+  prefectureGroup?.addEventListener('click', () => setActivePrefecture(prefectureData));
+
+  addStroke(prefecture);
+}
+
+export function setActivePrefecture(prefecture) {
+  if (!prefecture) {
+    return;
+  }
+
+  const logicalname = `F#feature#1#0#JP-${prefecture.code}#0`;
 
   /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
   const regionsElmCollection = document.querySelectorAll('#regions svg path');
-
-  prefectureGroup?.addEventListener('click', () => {
-    regionsElmCollection.forEach(elm => {
-      if (elm.logicalname === logicalname) {
-        elm.classList.add('active');
-      } else {
-        elm.classList.remove('active');
-      }
-      setInfo('prefecture', prefectureData);
-    });
+  regionsElmCollection.forEach(elm => {
+    if (elm.logicalname === logicalname) {
+      elm.classList.add('active');
+    } else {
+      elm.classList.remove('active');
+    }
+    setInfo('prefecture', prefecture);
   });
-
-  addStroke(prefecture);
 }
