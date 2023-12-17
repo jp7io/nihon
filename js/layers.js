@@ -1,7 +1,9 @@
 // @ts-check
 
 import { setActiveCity } from './map/cities.js';
-import { parseHash } from './utils.js';
+import { resetMap, setActiveRegion, setZoom } from './map/regions.js';
+import { regions } from './regions.js';
+import { isMobile, parseHash } from './utils.js';
 
 export function initLayers() {
   /** @type {NodeListOf<HTMLElement>} */
@@ -24,8 +26,13 @@ function handleLayers(e) {
 
   if (e.currentTarget.dataset.layer === 'prefectures') {
     setActiveCity();
-    const { region, prefecture } = parseHash();
-    document.location.hash = `${region},${prefecture}`;
+    const hash = parseHash();
+    document.location.hash = Object.values(hash).filter(str => str && str.length > 0).join(',');
+  }
+
+  if (e.currentTarget.dataset.layer === 'tokyo') {
+    resetMap();
+    location.hash = '';
   }
 
   map?.classList.add(e.currentTarget.dataset.layer);

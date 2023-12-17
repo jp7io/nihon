@@ -82,7 +82,7 @@ export function clearRegion() {
   document.location.hash = '';
 }
 
-function resetMap() {
+export function resetMap() {
   const map = document.getElementById('map');
   if (!map) {
     return;

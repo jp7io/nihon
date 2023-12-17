@@ -9,7 +9,8 @@
 #regions,
 #prefectures,
 #cities,
-#clickableArea {
+#clickableArea,
+#tokyo {
   position: absolute;
   left: 0;
   top: 0;
@@ -33,6 +34,14 @@
 
 #map #cities svg g[data-city='true'] {
   cursor: pointer;
+}
+
+#map.tokyo #japan {
+  display: none;
+}
+
+#map:not(.tokyo) #tokyo {
+  display: none;
 }
 
 #map:not(.capitals, .favorites) #cities,
