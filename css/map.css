@@ -1,4 +1,4 @@
-#maps {
+#map {
   position: relative;
 }
 
@@ -13,14 +13,8 @@
   height: 100%
 }
 
-#regions,
 #prefectures,
 #cities {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   visibility: hidden;
 }
 
@@ -33,68 +27,68 @@
   z-index: 3;
 }
 
-#maps #cities svg g[data-city='true'] {
+#map #cities svg g[data-city='true'] {
   opacity: 0.05;
   cursor: pointer;
 }
 
-#maps #prefectures {
+#map #prefectures {
   opacity: 0.05;
   z-index: 1;
 }
 
-#maps #cities {
+#map #cities {
   z-index: 2;
 }
 
-#maps.regionZoom {
+#map.regionZoom {
   width: 200%;
 }
 
-#maps.regionZoom #clickableArea {
+#map.regionZoom #clickableArea {
   display: none;
 }
 
-#maps.regionZoom #prefectures svg text {
+#map.regionZoom #prefectures svg text {
   font-size: 1em;
   cursor: pointer;
 }
 
-#maps.capitals #cities svg g[data-capital='true'] {
+#map.capitals #cities svg g[data-capital='true'] {
   opacity: 1;
 }
 
-#maps.capitals #cities svg g[data-nationalCapital='false'] {
+#map.capitals #cities svg g[data-nationalCapital='false'] {
   opacity: 0.05;
 }
 
-#maps.capitals.regionZoom #cities svg g[data-capital='false'] {
+#map.capitals.regionZoom #cities svg g[data-capital='false'] {
   opacity: 0.05 !important;
 }
 
-#maps.capitals.regionZoom #cities svg g[data-nationalCapital='false'] {
+#map.capitals.regionZoom #cities svg g[data-nationalCapital='false'] {
   opacity: 1;
 }
 
-#maps.favorites #cities {
+#map.favorites #cities {
   opacity: 1;
   z-index: 2;
 }
 
-#maps.favorites #cities svg g[data-favorite='true'] {
+#map.favorites #cities svg g[data-favorite='true'] {
   opacity: 1 !important;
 }
 
-#maps.prefectures #prefectures {
+#map.prefectures #prefectures {
   opacity: 1;
   z-index: 2;
 }
 
-#maps.prefectures #cities {
+#map.prefectures #cities {
   z-index: 1;
 }
 
-#maps.cities #cities {
+#map.cities #cities {
   visibility: visible;
 }
 
@@ -115,15 +109,15 @@
   visibility: visible;
 }
 
-#maps .circle {
+#map .circle {
   display: none;
 }
 
-#maps #cities .active .circle {
+#map #cities .active .circle {
   display: block;
   opacity: 0.5;
 }
 
-#maps #regions .active {
+#map #regions .active {
   opacity: 0.75;
 }

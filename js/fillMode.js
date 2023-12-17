@@ -16,8 +16,8 @@ function handleFillmode(e, colors) {
   regions.forEach((_, index) => {
     const color = colors[index];
     const fillToBeReplaced = (mode === 'color') ? color.pattern : color.color;
-    const maps = document.querySelectorAll(`#regions svg path[fill="${fillToBeReplaced}"]`);
-    maps.forEach((map) => {
+    const map = document.querySelectorAll(`#regions svg path[fill="${fillToBeReplaced}"]`);
+    map.forEach((map) => {
       map.setAttribute('fill', color[mode]);
     })
   });

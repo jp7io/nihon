@@ -2,7 +2,7 @@
 
 import { regions } from "./regions.js";
 import { colors } from './colors.js';
-import { setActiveRegion } from './maps/index.js';
+import { setActiveRegion } from './map/index.js';
 
 export function drawLegendItems() {
   const legendItems = document.getElementById('legend-items');

@@ -4,7 +4,7 @@ import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { setActiveRegion, setActivePrefecture, setActiveCity } from './maps/index.js';
+import { setActiveRegion, setActivePrefecture, setActiveCity } from './map/index.js';
 import { extractCities, extractPrefectures, loadHTML } from './utils.js';
 import { initLayers } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';

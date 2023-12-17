@@ -3,7 +3,7 @@
     font-size: 1.5vw !important;
   }
 
-  #maps:not(.regionZoom) {
+  #map:not(.regionZoom) {
     width: 200%;
     left: 50%;
     transform: translateX(-50%);
@@ -45,7 +45,7 @@
     font-size: 0.7em;
   }
 
-  #maps:not(.regionZoom) #prefectures svg text {
+  #map:not(.regionZoom) #prefectures svg text {
     font-size: 0.5em !important;
   }
 

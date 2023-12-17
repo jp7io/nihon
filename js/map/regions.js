@@ -25,8 +25,7 @@ export function drawRegions(data, colors, callback) {
 
   const dataTable = google.visualization.arrayToDataTable(data);
 
-  google.visualization.events.addListener(chart, 'ready', (e) => {
-    regionsElm.style.visibility = 'visible';
+  google.visualization.events.addListener(chart, 'ready', () => {
     callback && callback();
   });
 
@@ -71,24 +70,24 @@ export function clearRegion() {
 }
 
 function resetMap() {
-  const maps = document.getElementById('maps');
-  if (!maps) {
+  const map = document.getElementById('map');
+  if (!map) {
     return;
   }
-  maps.classList.remove('regionZoom');
-  maps.style.width = (isMobile()) ? '200%' : '100%';
+  map.classList.remove('regionZoom');
+  map.style.width = (isMobile()) ? '200%' : '100%';
 }
 
 export function setZoom(region) {
-  const maps = document.getElementById('maps');
-  if (!maps) {
+  const map = document.getElementById('map');
+  if (!map) {
     return;
   }
-  maps.classList.add('regionZoom');
+  map.classList.add('regionZoom');
   const { name, zoom } = region;
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
-  maps.style.width = width;
+  map.style.width = width;
   document.location.hash = name.en;
 };
 

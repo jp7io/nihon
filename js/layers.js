@@ -8,7 +8,7 @@ export function initLayers() {
 
 function handleLayers(e) {
   /** @type {HTMLElement | null} */
-  const map = document.getElementById('maps');
+  const map = document.getElementById('map');
 
   /** @type {NodeListOf<HTMLElement>} */
   const items = document.querySelectorAll('#layersSet .item');
