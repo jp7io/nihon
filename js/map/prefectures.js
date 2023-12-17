@@ -35,7 +35,6 @@ export function drawPrefectures(data, callback) {
     const prefectures = document.querySelectorAll('#prefectures svg text');
     prefectures.forEach((prefecture) => improvePrefectureElm(prefecture));
     callback && callback();
-    prefecturesElm.style.visibility = 'visible';
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);

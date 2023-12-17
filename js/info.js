@@ -8,7 +8,7 @@ import { replaceSpecialCharactersWithAscii } from './utils.js';
  */
 export function setInfo(type, data) {
   const info = document.getElementById('info');
-  const infoSelected = document.getElementById('info-selected');
+  const infoSelected = document.getElementById('info-data');
   if (!info || !infoSelected) {
     return;
   }

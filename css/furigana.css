@@ -30,7 +30,7 @@ ruby.furigana rtc.annotation rt {
 
 @media screen and (min-width: 769px) {
   #title h1 .furigana,
-  .legend-name .furigana,
+  #legend .name .furigana,
   #info .furigana {
     flex-direction: row;
     align-items: end;

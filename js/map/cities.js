@@ -36,7 +36,6 @@ export function drawCities(data, callback) {
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach(city => improveCityElm(city));
     callback && callback();
-    citiesElm.style.visibility = 'visible';
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);

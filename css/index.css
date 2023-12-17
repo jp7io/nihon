@@ -32,27 +32,3 @@ body {
   font-size: 3em;
   cursor: pointer;
 }
-
-.text {
-  display: block;
-}
-
-svg text {
-  font-size: 0.9em;
-}
-
-body.fillmode-color .legend-color {
-  display: block;
-}
-
-body.fillmode-color .legend-pattern {
-  display: none;
-}
-
-body.fillmode-pattern .legend-color {
-  display: none;
-}
-
-body.fillmode-pattern .legend-pattern {
-  display: block;
-}

@@ -5,22 +5,22 @@ import { colors } from './colors.js';
 import { setActiveRegion } from './map/index.js';
 
 export function drawLegendItems() {
-  const legendItems = document.getElementById('legend-items');
+  const legendItems = document.getElementById('legend');
 
   regions.forEach((region, index) => {
     const { name } = region;
     const item = document.createElement('div');
-    item.className = 'legend-item';
+    item.className = 'item';
     item.dataset.region = name.en;
 
     item.innerHTML = (`
-      <div class="legend-color" style="background: ${colors[index].color}"></div>
-      <div class="legend-pattern">
+      <div class="color" style="background: ${colors[index].color}"></div>
+      <div class="pattern">
         <svg xmlns="http://www.w3.org/2000/svg">
           <rect fill="${colors[index].pattern}" />
         </svg>
       </div>
-      <div class="legend-name">
+      <div class="name">
         <ruby class="furigana">
           <div class="ja">
             <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>

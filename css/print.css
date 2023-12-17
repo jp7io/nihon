@@ -6,7 +6,7 @@
     height: 3em;
   }
 
-  .legend-item {
+  #legend .item {
     margin-bottom: 1.5em;
     font-size: 3em;
   }

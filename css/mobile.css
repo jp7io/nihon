@@ -14,18 +14,18 @@
     font-size: 4em !important;
   }
 
-  .legend-item {
+  #legend .item {
     margin-bottom: 0.5em;
   }
 
-  .legend-color,
-  .legend-pattern,
-  .legend-pattern svg rect {
+  #legend .color,
+  #legend .pattern,
+  #legend .pattern svg rect {
     height: 5em;
   }
 
   #fillmode .item:not(.active) .furigana,
-  .legend-item:not(.legend-item-active) .legend-name {
+  #legend .item:not(#legend .item-active) .legend-name {
     text-shadow: 0.05em 0.05em 0.025em #fff;
   }
 
@@ -49,7 +49,7 @@
     font-size: 0.5em !important;
   }
 
-  #info #info-selected {
+  #info #info-data {
     font-size: 3em;
   }
 }

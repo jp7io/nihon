@@ -34,14 +34,13 @@
   background: var(--item-bg-color);
 }
 
-#fillmode .item object {
+#fillmode .item object,
+#fillmode .item svg {
   width: 1em;
   height: 1em;
 }
 
 #fillmode .item svg {
-  width: 1em;
-  height: 1em;
   fill: #000;
 }
 

@@ -6,16 +6,16 @@
   z-index: 10;
 }
 
-#info #info-unselected,
-#info #info-selected {
+#info #info-tooltip,
+#info #info-data {
   border-radius: 0.2em;
   background: var(--item-bg-color);
   padding-right: 0.4em;
   gap: 0.5em;
 }
 
-#info #info-selected {
-  /* .legend-item {
+#info #info-data {
+  /* #legend .item {
   margin: 0 0 0.3em 0.2em;
   cursor: default; */
   display: flex;
@@ -23,21 +23,21 @@
   font-size: 1.8em;
 }
 
-#info:not(.active) #info-unselected {
+#info:not(.active) #info-tooltip {
   color: #666;
   padding: 0.4em;
   font-size: 1.2em;
 }
 
-#info:not(.active) #info-selected {
+#info:not(.active) #info-data {
   display: none;
 }
 
-#info.active #info-unselected {
+#info.active #info-tooltip {
   display: none;
 }
 
-#info.active #info-selected {
+#info.active #info-data {
   background: var(--item-bg-color-active);
   color: #fff;
 }
