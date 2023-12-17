@@ -205,6 +205,15 @@ export function setElmAttributes(elm, attributes) {
   Object.entries(attributes).forEach(([key, value]) => elm.setAttribute(key, String(value)));
 }
 
+export function parseHash() {
+  const hash = document.location.hash.replace('#', '');
+  const filters = decodeURI(hash).split(',');
+
+  const [region, prefecture, city] = filters;
+
+  return { region, prefecture, city };
+}
+
 export function isMobile() {
   return window.innerWidth <= 768;
 }

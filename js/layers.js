@@ -1,5 +1,8 @@
 // @ts-check
 
+import { setActiveCity } from './map/cities.js';
+import { parseHash } from './utils.js';
+
 export function initLayers() {
   /** @type {NodeListOf<HTMLElement>} */
   const layers = document.querySelectorAll('#layersSet .item');
@@ -18,6 +21,12 @@ function handleLayers(e) {
       map?.classList.remove(item.dataset.layer);
     }
   })
+
+  if (e.currentTarget.dataset.layer === 'prefectures') {
+    setActiveCity();
+    const { region, prefecture } = parseHash();
+    document.location.hash = `${region},${prefecture}`;
+  }
 
   map?.classList.add(e.currentTarget.dataset.layer);
   e.currentTarget.classList.add('active');

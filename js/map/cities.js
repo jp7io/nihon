@@ -108,7 +108,7 @@ function adjustPosition(cityTextElm, cityData, { y, height }) {
 }
 
 /**
- * @param {City} cityData
+ * @param {City=} cityData
  */
 export function setActiveCity(cityData) {
   const cities = document.querySelectorAll('#cities svg g[data-city=true]');

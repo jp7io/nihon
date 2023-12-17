@@ -5,16 +5,13 @@ import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity } from './map/index.js';
-import { extractCities, extractPrefectures, loadHTML } from './utils.js';
+import { extractCities, extractPrefectures, loadHTML, parseHash } from './utils.js';
 import { initLayers } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 
 let regionsColors = { ...colors };
 
-const hash = document.location.hash.replace('#', '');
-const filters = decodeURI(hash).split(',');
-
-const [region, prefecture, city] = filters;
+const { region, prefecture, city } = parseHash();
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
