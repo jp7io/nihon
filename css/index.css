@@ -10,6 +10,7 @@
 :root {
   --item-bg-color: rgba(79, 117, 130, 0.1);
   --item-bg-color-active: rgba(79, 117, 130, 0.9);
+  --external-margin: 2em;
 }
 
 body {
@@ -21,9 +22,8 @@ body {
 
 #title {
   position: fixed;
-  top: 0;
-  left: 0;
-  padding: 2em;
+  top: var(--external-margin);
+  left: var(--external-margin);
   z-index: 10;
 }
 

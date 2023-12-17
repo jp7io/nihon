@@ -1,7 +1,7 @@
 #shuriken-placeholder {
   position: fixed;
-  bottom: 2em;
-  right: 2em;
+  bottom: var(--external-margin);
+  right: var(--external-margin);
 }
 
 #shuriken {

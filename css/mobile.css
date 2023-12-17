@@ -49,7 +49,21 @@
     font-size: 0.5em !important;
   }
 
+  #map.favorites:not(.regionZoom) #cities svg text {
+    font-size: 1.5em !important;
+  }
+
+  #info #info-tooltip {
+    font-size: 1.6em;
+  }
+
   #info #info-data {
     font-size: 3em;
+  }
+
+  #info .flag,
+  #info img {
+    width: 4.5em;
+    height: 3em;
   }
 }

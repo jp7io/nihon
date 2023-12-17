@@ -13,6 +13,7 @@ import { drawPrefectures } from './prefectures.js';
 import { drawCities } from './cities.js';
 import { drawClickableArea } from './clickableArea.js';
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from "../utils.js";
+import { recoverFillmode } from '../fillMode.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -67,16 +68,14 @@ export function setActiveRegion(region, callback) {
 
   activeRegionDraw(region, () => {
     setInfo();
-    /** @type {HTMLElement | null} */
-    const fillmode = document.querySelector('#fillmodeSet .item.active');
-    fillmode && fillmode.click();
+    recoverFillmode();
     callback && callback();
   });
 
 }
 
 export function clearRegion() {
-  drawRegions(parseData(regions), colors);
+  drawRegions(parseData(regions), colors, recoverFillmode);
   drawPrefectures(parseDataForPrefectures(regions));
   drawCities(parseDataForCities(regions));
   drawClickableArea(parseData(regions), colors);

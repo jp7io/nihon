@@ -21,23 +21,29 @@
   z-index: 2;
 }
 
+#prefectures,
+#cities {
+  z-index: 2;
+}
+
 #clickableArea {
   opacity: 0;
   z-index: 3;
 }
 
 #map #cities svg g[data-city='true'] {
-  opacity: 0.05;
   cursor: pointer;
 }
 
-#map #prefectures {
+#map:not(.capitals, .favorites) #cities,
+#map:not(.prefectures) #prefectures {
   opacity: 0.05;
   z-index: 1;
 }
 
-#map #cities {
-  z-index: 2;
+#map.capitals #cities svg g[data-capital='false'],
+#map.favorites #cities svg g[data-favorite='false'] {
+  opacity: 0.05;
 }
 
 #map.regionZoom {
@@ -53,38 +59,8 @@
   cursor: pointer;
 }
 
-#map.capitals #cities svg g[data-capital='true'] {
-  opacity: 1;
-}
-
-#map.capitals #cities svg g[data-nationalCapital='false'] {
+#map.capitals:not(.regionZoom) #cities svg g[data-nationalCapital='false'] {
   opacity: 0.05;
-}
-
-#map.capitals.regionZoom #cities svg g[data-capital='false'] {
-  opacity: 0.05 !important;
-}
-
-#map.capitals.regionZoom #cities svg g[data-nationalCapital='false'] {
-  opacity: 1;
-}
-
-#map.favorites #cities {
-  opacity: 1;
-  z-index: 2;
-}
-
-#map.favorites #cities svg g[data-favorite='true'] {
-  opacity: 1 !important;
-}
-
-#map.prefectures #prefectures {
-  opacity: 1;
-  z-index: 2;
-}
-
-#map.prefectures #cities {
-  z-index: 1;
 }
 
 #prefectures svg path,
@@ -94,10 +70,6 @@
 
 #prefectures svg text {
   font-size: 0.4em;
-}
-
-#prefectures.active svg text {
-  visibility: visible;
 }
 
 #map .circle {

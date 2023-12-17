@@ -38,3 +38,9 @@ function handleFillmode(e, colors) {
 
   e.currentTarget.classList.add('active');
 }
+
+export function recoverFillmode() {
+  /** @type {HTMLElement | null} */
+  const fillmode = document.querySelector('#fillmodeSet .item.active');
+  fillmode && fillmode.click();
+}

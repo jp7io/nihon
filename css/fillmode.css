@@ -1,7 +1,7 @@
 #fillmode-placeholder {
   position: fixed;
-  top: 2em;
-  right: 2em;
+  top: var(--external-margin);
+  right: var(--external-margin);
   z-index: 10;
 }
 

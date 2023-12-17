@@ -1,8 +1,7 @@
 #info-placeholder {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 2em 2.2em;
+  bottom: var(--external-margin);
+  left: var(--external-margin);
   z-index: 10;
 }
 
@@ -23,7 +22,7 @@
   font-size: 1.8em;
 }
 
-#info:not(.active) #info-tooltip {
+#info #info-tooltip {
   color: #666;
   padding: 0.4em;
   font-size: 1.2em;
@@ -42,17 +41,20 @@
   color: #fff;
 }
 
-#info .flag {
-  border: 0.05em solid #ccc;
-  border-radius: 0.1em;
+#info .flag,
+#info img {
   width: 3em;
   height: 2em;
 }
 
+#info .flag {
+  border: 0.05em solid #ccc;
+  border-radius: 0.2em;
+}
+
 #info img {
+  border-radius: 0.15em;
   display: block;
-  width: 3em;
-  height: 2em;
 }
 
 .wikipedia {

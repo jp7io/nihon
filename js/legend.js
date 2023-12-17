@@ -3,6 +3,7 @@
 import { regions } from "./regions.js";
 import { colors } from './colors.js';
 import { setActiveRegion } from './map/index.js';
+import { setInfo } from './info.js';
 
 export function drawLegendItems() {
   const legendItems = document.getElementById('legend');
@@ -15,7 +16,7 @@ export function drawLegendItems() {
 
     item.innerHTML = (`
       <div class="color" style="background: ${colors[index].color}"></div>
-      <div class="pattern">
+      <div class="pattern" style="border-color: ${colors[index].color}">
         <svg xmlns="http://www.w3.org/2000/svg">
           <rect fill="${colors[index].pattern}" />
         </svg>
@@ -37,5 +38,8 @@ export function drawLegendItems() {
   });
 
   const legendH1 = document.querySelector('#title h1');
-  legendH1?.addEventListener('click', () => setActiveRegion());
+  legendH1?.addEventListener('click', () => {
+    setActiveRegion();
+    setInfo();
+  });
 }

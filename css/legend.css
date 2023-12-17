@@ -1,14 +1,14 @@
 #legend-placeholder {
   position: fixed;
   top: 50%;
-  left: 0;
-  padding: 1.4em 2em 0 2em;
+  left: var(--external-margin);
+  padding-top: 1.4em;
   transform: translateY(-50%);
   z-index: 10;
 }
 
 #legend .item {
-  margin: 0 0 0.3em 0.2em;
+  margin-bottom: 0.3em;
   font-size: 1.8em;
   display: flex;
   align-items: center;
