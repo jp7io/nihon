@@ -17,7 +17,7 @@ export function replaceSpecialCharactersWithAscii(str) {
     .replace(/[ñ]/g, 'n');
 }
 
-export async function loadHTML(id, filename, cb) {
+export async function loadHTML(id, filename, callback) {
   const element = document.getElementById(id);
 
   if (!element) {
@@ -29,7 +29,7 @@ export async function loadHTML(id, filename, cb) {
 
   element.innerHTML = responseText || `<h1>"${filename}" not found.</h1>`;
 
-  cb && cb();
+  callback && callback();
 }
 
 const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
@@ -73,6 +73,10 @@ export function parseDataForCities(data, filter = null) {
   return dataArray;
 }
 
+/**
+ * @param {Object[]} data
+ * @param {string | null} filter
+ */
 export function extractCities(data, filter = null) {
   const dataArray = [];
 

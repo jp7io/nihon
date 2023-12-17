@@ -1,8 +1,10 @@
+// @ts-check
+
 import { colors } from './colors.js';
 import { regions } from './regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { setActiveCity } from './map.js';
+import { setActiveCity } from './maps/index.js';
 import { setActiveRegion } from './legend.js';
 import { extractCities, loadHTML } from './utils.js';
 import { initLayers } from './layers.js';
@@ -29,19 +31,21 @@ google.charts.setOnLoadCallback(async () => {
 });
 
 function loadPatterns() {
+  /** @type {any} */
   const patterns_source = document.getElementById('patterns_source');
   const patterns_cloned = document.getElementById('patterns_cloned');
 
-  patterns_cloned.innerHTML = patterns_source.contentDocument.querySelector('svg').innerHTML;
+  patterns_cloned && (patterns_cloned.innerHTML = patterns_source?.contentDocument.querySelector('svg').innerHTML);
 
+  /** @type {any} */
   const icons_source = document.getElementById('icons_source');
   const icons_cloned = document.getElementById('icons_cloned');
 
-  icons_cloned.innerHTML = icons_source.contentDocument.querySelector('svg').innerHTML;
+  icons_cloned && (icons_cloned.innerHTML = icons_source?.contentDocument.querySelector('svg').innerHTML);
 }
 
 async function loadIncludes() {
-  await loadHTML('legend-placeholder', './includes/legend.html', () => drawLegendItems(regionsColors));
+  await loadHTML('legend-placeholder', './includes/legend.html', () => drawLegendItems());
   await loadHTML('fillmode-placeholder', './includes/fillmode.html', () => {
     initFillMode(regionsColors);
     initLayers()
@@ -51,10 +55,11 @@ async function loadIncludes() {
 };
 
 function createInlineSVG() {
+  /** @type {NodeListOf<any>} */
   const icons = document.querySelectorAll('object.icon');
   icons.forEach(icon => {
     icon.addEventListener('load', () => {
-      icon.parentNode.replaceChild(icon.contentDocument.documentElement, icon);
+      icon.parentNode?.replaceChild(icon.contentDocument.documentElement, icon);
     });
   });
 }

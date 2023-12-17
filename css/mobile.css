@@ -45,6 +45,10 @@
     font-size: 0.7em;
   }
 
+  #maps:not(.regionZoom) #prefectures svg text {
+    font-size: 0.5em !important;
+  }
+
   #info #info-selected {
     font-size: 3em;
   }
