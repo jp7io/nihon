@@ -51,3 +51,7 @@ body.fillmode-color #legend .pattern {
 body.fillmode-pattern #legend .color {
   display: none;
 }
+
+body:has(#map.tokyo) #legend {
+  display: none;
+}

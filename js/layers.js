@@ -1,9 +1,8 @@
 // @ts-check
 
 import { setActiveCity } from './map/cities.js';
-import { resetMap, setActiveRegion, setZoom } from './map/regions.js';
-import { regions } from './regions.js';
-import { isMobile, parseHash } from './utils.js';
+import { clearRegion, resetMap } from './map/regions.js';
+import { parseHash } from './utils.js';
 
 export function initLayers() {
   /** @type {NodeListOf<HTMLElement>} */
@@ -32,6 +31,9 @@ function handleLayers(e) {
 
   if (e.currentTarget.dataset.layer === 'tokyo') {
     resetMap();
+    clearRegion();
+    const items = document.querySelectorAll('#legend .item');
+    items.forEach(item => item.classList.remove('active'));
     location.hash = '';
   }
 
