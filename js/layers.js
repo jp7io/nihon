@@ -1,7 +1,9 @@
 // @ts-check
 
+import { setActiveMunicipalityType } from './legend.js';
 import { setActiveCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
+import { municipalityType } from './tokyo.js';
 import { parseHash } from './utils.js';
 
 export function initLayers() {
@@ -35,6 +37,9 @@ function handleLayers(e) {
     const items = document.querySelectorAll('#legend .item');
     items.forEach(item => item.classList.remove('active'));
     location.hash = '';
+    setTimeout(() => {
+      setActiveMunicipalityType(municipalityType.ku);
+    }, 100);
   }
 
   map?.classList.add(e.currentTarget.dataset.layer);
