@@ -21,7 +21,7 @@ async function loadIncludes() {
   await loadHTML('legend-placeholder', './includes/legend.html', () => drawLegendItems());
   await loadHTML('fillmode-placeholder', './includes/fillmode.html', () => {
     initFillMode(colors);
-    initLayers()
+    initLayers();
   });
   await loadHTML('shuriken-placeholder', './includes/shuriken.html');
   await loadHTML('info-placeholder', './includes/info.html');

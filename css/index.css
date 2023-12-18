@@ -6,6 +6,7 @@
 @import url('./mobile.css');
 @import url('./print.css');
 @import url('./shuriken.css');
+@import url('./tokyo.css');
 
 :root {
   --item-bg-color: rgba(79, 117, 130, 0.1);
@@ -31,4 +32,11 @@ body {
   margin: 0 0 0.4em;
   font-size: 3em;
   cursor: pointer;
+}
+
+#patterns_source,
+#tokyo_source {
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }

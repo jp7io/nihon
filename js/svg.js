@@ -2,10 +2,10 @@
 
 export function createInlineSVG() {
   /** @type {NodeListOf<any>} */
-  const icons = document.querySelectorAll('object.icon');
-  icons.forEach(icon => {
-    icon.addEventListener('load', () => {
-      icon.parentNode?.replaceChild(icon.contentDocument.documentElement, icon);
+  const svgList = document.querySelectorAll('object.icon');
+  svgList.forEach(svg => {
+    svg.addEventListener('load', () => {
+      svg.parentNode?.replaceChild(svg.contentDocument.documentElement, svg);
     });
   });
 }
@@ -22,4 +22,10 @@ export function loadPatterns() {
   const icons_cloned = document.getElementById('icons_cloned');
 
   icons_cloned && (icons_cloned.innerHTML = icons_source?.contentDocument.querySelector('svg').innerHTML);
+
+  /** @type {any} */
+  const tokyo_source = document.getElementById('tokyo_source');
+  const tokyo_cloned = document.getElementById('tokyo_cloned');
+
+  tokyo_cloned && (tokyo_cloned.innerHTML = tokyo_source?.contentDocument.documentElement.innerHTML);
 }
