@@ -66,4 +66,8 @@
     width: 4.5em;
     height: 3em;
   }
+
+  #Municipalities #Text {
+    font-size: 0.6em !important;
+  }
 }

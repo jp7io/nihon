@@ -5,6 +5,7 @@ import { colors } from './colors.js';
 import { setActiveRegion } from './map/index.js';
 import { setInfo } from './info.js';
 import { municipalityType } from './tokyo.js';
+import { isMobile } from './utils.js';
 
 export function drawLegendItems() {
   const japanLegendItems = document.getElementById('legend-japan');
@@ -77,10 +78,18 @@ export function setActiveMunicipalityType(type) {
 
   switch (type.name.en) {
     case 'Special-Ward':
-      window.scrollTo(10000, 200)
+      if (isMobile()) {
+        window.scrollTo(400, 0)
+      } else {
+        window.scrollTo(10_000, 200)
+      }
       break;
     case 'City':
-      window.scrollTo(0, 200)
+      if (isMobile()) {
+        window.scrollTo(50, 0)
+      } else {
+        window.scrollTo(0, 200)
+      }
       break;
     default:
       window.scrollTo(0, 0)
