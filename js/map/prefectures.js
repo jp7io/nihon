@@ -1,11 +1,11 @@
 // @ts-check
 
 /**
- * @typedef {import('../regions.js').Prefecture} Prefecture
+ * @typedef {import('../../data/regions.js').Prefecture} Prefecture
  */
 
 import { commonOptions } from './common.js';
-import { regions } from '../regions.js';
+import { regions } from '../../data/regions.js';
 import { addStroke, extractPrefectures } from '../utils.js';
 import { setInfo } from '../info.js';
 

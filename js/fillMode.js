@@ -4,7 +4,7 @@
  * @typedef {import('./colors.js').Color} Color
  */
 
-import { regions } from "./regions.js";
+import { regions } from "../data/regions.js";
 
 /**
  * @param {Color[]} colors

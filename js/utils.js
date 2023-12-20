@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * @typedef {import('./regions.js').Region} Region
+ * @typedef {import('../data/regions.js').Region} Region
  */
 
 /**
@@ -46,13 +46,13 @@ export async function loadHTML(id, filename, callback) {
 }
 
 /**
- * @param {import('./regions').Region[]} data
+ * @param {import('../data/regions').Region[]} data
  * @param {string | null} filter
  */
 const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
 
 /**
- * @param {import('./regions').Region[]} data
+ * @param {import('../data/regions').Region[]} data
  * @param {string | null} filter
  */
 export function parseData(data, filter = null) {
@@ -72,7 +72,7 @@ export function parseData(data, filter = null) {
 }
 
 /**
- * @param {import('./regions').Region[]} data
+ * @param {import('../data/regions').Region[]} data
  * @param {string | null} filter
  */
 export function parseDataForPrefectures(data, filter = null) {
@@ -94,7 +94,7 @@ export function parseDataForPrefectures(data, filter = null) {
 }
 
 /**
- * @param {import('./regions').Region[]} data
+ * @param {import('../data/regions').Region[]} data
  * @param {string | null} filter
  */
 export function parseDataForCities(data, filter = null) {

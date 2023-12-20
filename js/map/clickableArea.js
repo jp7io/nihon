@@ -1,7 +1,7 @@
 // @ts-check
 
 import { commonOptions } from './common.js';
-import { regions } from '../regions.js';
+import { regions } from '../../data/regions.js';
 
 /**
  * @param {(string|number)[][]} data

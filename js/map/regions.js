@@ -1,11 +1,11 @@
 // @ts-check
 
 /**
- * @typedef {import('../regions.js').Region} Region
+ * @typedef {import('../../data/regions.js').Region} Region
  * @typedef {import('../colors.js').Color} Color
  */
 
-import { regions } from "../regions.js";
+import { regions } from "../../data/regions.js";
 import { colors } from "../colors.js";
 import { commonOptions } from './common.js';
 import { setInfo } from '../info.js';

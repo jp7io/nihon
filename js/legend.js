@@ -1,10 +1,10 @@
 // @ts-check
 
-import { regions } from "./regions.js";
+import { regions } from "../data/regions.js";
 import { colors } from './colors.js';
 import { setActiveRegion } from './map/index.js';
 import { setInfo } from './info.js';
-import { municipalityType } from './tokyo.js';
+import { municipalityType } from '../data/tokyo.js';
 import { isMobile } from './utils.js';
 
 export function drawLegendItems() {

@@ -3,7 +3,7 @@
 import { setActiveMunicipalityType } from './legend.js';
 import { setActiveCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
-import { municipalityType } from './tokyo.js';
+import { municipalityType } from '../data/tokyo.js';
 import { parseHash } from './utils.js';
 
 export function initLayers() {

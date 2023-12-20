@@ -19,4 +19,9 @@
 
 #Municipalities #Text {
   font-size: 0.4em;
+  cursor: pointer;
+}
+
+#Municipalities #Map .active {
+  opacity: 0.5;
 }

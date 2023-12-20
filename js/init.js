@@ -1,13 +1,14 @@
 // @ts-check
 
 import { colors } from './colors.js';
-import { regions } from './regions.js';
+import { regions } from '../data/regions.js';
 import { drawLegendItems } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity } from './map/index.js';
 import { extractCities, extractPrefectures, loadHTML, parseHash } from './utils.js';
 import { initLayers } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
+import { initTokyo } from './tokyo.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
@@ -15,6 +16,7 @@ google.charts.setOnLoadCallback(async () => {
   await loadIncludes();
   createInlineSVG();
   setActiveData();
+  initTokyo();
 });
 
 async function loadIncludes() {
