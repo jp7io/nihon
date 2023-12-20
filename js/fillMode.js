@@ -12,15 +12,17 @@ import { regions } from "../data/regions.js";
 export function initFillMode(colors) {
   /** @type {NodeListOf<HTMLElement>} */
   const modes = document.querySelectorAll('#fillmodeSet .item');
-  modes.forEach(layer => layer.onclick = (e) => handleFillmode(e, colors))
+  // @ts-ignore
+  modes.forEach(layer => layer.onclick = (e) => setFillmode(e?.currentTarget?.dataset.fillmode, colors))
 };
 
 /**
- * @param {any} e
+ * @param {string} mode
  * @param {Color[]} colors
  */
-function handleFillmode(e, colors) {
-  const mode = e.currentTarget.dataset.fillmode;
+export function setFillmode(mode, colors) {
+  /** @type {HTMLElement | null} */
+  const elm = document.querySelector(`#fillmodeSet .item[data-fillmode=${mode}]`);
 
   document.body.className = `fillmode-${mode}`;
 
@@ -36,7 +38,7 @@ function handleFillmode(e, colors) {
   const modes = document.querySelectorAll('#fillmodeSet .item');
   modes.forEach(layer => layer.classList.remove('active'))
 
-  e.currentTarget.classList.add('active');
+  elm?.classList.add('active');
 }
 
 export function recoverFillmode() {

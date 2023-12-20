@@ -9,10 +9,14 @@ import { parseHash } from './utils.js';
 export function initLayers() {
   /** @type {NodeListOf<HTMLElement>} */
   const layers = document.querySelectorAll('#layersSet .item');
-  layers.forEach(layer => layer.onclick = (e) => handleLayers(e))
+  // @ts-ignore
+  layers.forEach(layer => layer.onclick = (e) => setLayer(e?.currentTarget?.dataset.layer))
 };
 
-function handleLayers(e) {
+/**
+ * @param {string} layer
+ */
+export function setLayer(layer) {
   /** @type {HTMLElement | null} */
   const map = document.getElementById('map');
 
@@ -25,13 +29,13 @@ function handleLayers(e) {
     }
   })
 
-  if (e.currentTarget.dataset.layer === 'prefectures') {
+  if (layer === 'prefectures') {
     setActiveCity();
     const hash = parseHash();
     document.location.hash = Object.values(hash).filter(str => str && str.length > 0).join(',');
   }
 
-  if (e.currentTarget.dataset.layer === 'tokyo') {
+  if (layer === 'tokyo') {
     resetMap();
     clearRegion();
     const items = document.querySelectorAll('#legend .item');
@@ -42,6 +46,8 @@ function handleLayers(e) {
     }, 100);
   }
 
-  map?.classList.add(e.currentTarget.dataset.layer);
-  e.currentTarget.classList.add('active');
+  map?.classList.add(layer);
+
+  const elm = document.querySelector(`#layersSet .item[data-layer=${layer}]`);
+  elm?.classList.add('active');
 }

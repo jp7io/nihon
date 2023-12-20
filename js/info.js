@@ -19,15 +19,15 @@ export function setInfo(type, data) {
     let hash = null;
 
     if (type !== 'tokyo') {
-      flag = (type === 'city') ? `${type}/${name.en},${data.prefecture.name.en}` : `${type}/${name.en}`;
+      flag = (type === 'city') ? `${name.en},${data.prefecture.name.en}` : name.en;
       hash = (type === 'city') ? `${data.prefecture.region.name.en},${data.prefecture.name.en},${name.en}` : `${data.region.name.en},${data.name.en}`;
     } else {
-      flag = 'city/Tokyo,Tokyo';
+      flag = name.en;
     }
 
     info.classList.add('active');
     infoSelected.innerHTML = `
-      ${flag ? `<div class="flag"><img src="./img/${replaceSpecialCharactersWithAscii(flag)}.svg" /></div>` : ''}
+      ${flag ? `<div class="flag"><img src="./img/${type}/${replaceSpecialCharactersWithAscii(flag)}.svg" /></div>` : ''}
       <ruby class="furigana">
         <div class="ja">
           <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>

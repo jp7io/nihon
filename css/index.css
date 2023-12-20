@@ -40,3 +40,17 @@ body {
   width: 0;
   height: 0;
 }
+
+body:has(#map.tokyo) h1 {
+  font-size: 1em;
+}
+
+h2.tokyo {
+  display: none;
+}
+
+body:has(#map.tokyo) h2.tokyo {
+  margin: 0.4em 0 0.4em;
+  font-size: 3em;
+  display: block !important;
+}

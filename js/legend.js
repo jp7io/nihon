@@ -6,6 +6,7 @@ import { setActiveRegion } from './map/index.js';
 import { setInfo } from './info.js';
 import { municipalityType } from '../data/tokyo.js';
 import { isMobile } from './utils.js';
+import { setLayer } from './layers.js';
 
 export function drawLegendItems() {
   const japanLegendItems = document.getElementById('legend-japan');
@@ -41,6 +42,7 @@ export function drawLegendItems() {
 
   const legendH1 = document.querySelector('#title h1');
   legendH1?.addEventListener('click', () => {
+    setLayer('regions')
     setActiveRegion();
     setInfo();
   });
