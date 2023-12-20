@@ -2,17 +2,17 @@
   width: 140%;
 }
 
-#tokyo.Special-Ward svg #Municipalities #Text>g:not([id="Special-Wards"]),
-#tokyo.City svg #Municipalities #Text>g:not([id="Cities"]),
-#tokyo.Town svg #Municipalities #Text>g:not([id="Towns"]),
-#tokyo.Village svg #Municipalities #Text>g:not([id="Villages"]) {
+#tokyo.Special-Ward svg #Municipalities #Text>g:not([id="Special-Ward"]),
+#tokyo.City svg #Municipalities #Text>g:not([id="City"]),
+#tokyo.Town svg #Municipalities #Text>g:not([id="Town"]),
+#tokyo.Village svg #Municipalities #Text>g:not([id="Village"]) {
   opacity: 0.05;
 }
 
-#tokyo.Special-Ward svg #Municipalities #Map>g:not([id="Special-Wards"]) *,
-#tokyo.City svg #Municipalities #Map>g:not([id="Cities"]) *,
-#tokyo.Town svg #Municipalities #Map>g:not([id="Towns"]) *,
-#tokyo.Village svg #Municipalities #Map>g:not([id="Villages"]) * {
+#tokyo.Special-Ward svg #Municipalities #Map>g:not([id="Special-Ward"]) *,
+#tokyo.City svg #Municipalities #Map>g:not([id="City"]) *,
+#tokyo.Town svg #Municipalities #Map>g:not([id="Town"]) *,
+#tokyo.Village svg #Municipalities #Map>g:not([id="Village"]) * {
   stroke: #ccc;
   fill: #eee;
 }

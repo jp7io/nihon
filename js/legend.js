@@ -2,7 +2,7 @@
 
 import { regions } from "../data/regions.js";
 import { colors } from './colors.js';
-import { setActiveRegion } from './map/index.js';
+import { centerPosition, setActiveRegion } from './map/index.js';
 import { setInfo } from './info.js';
 import { municipalityType } from '../data/tokyo.js';
 import { isMobile } from './utils.js';
@@ -42,7 +42,7 @@ export function drawLegendItems() {
 
   const legendH1 = document.querySelector('#title h1');
   legendH1?.addEventListener('click', () => {
-    setLayer('regions')
+    setLayer('capitals')
     setActiveRegion();
     setInfo();
   });
@@ -78,25 +78,11 @@ export function setActiveMunicipalityType(type) {
   const tokyo = document.getElementById('tokyo');
   tokyo && (tokyo.className = type.name.en);
 
-  switch (type.name.en) {
-    case 'Special-Ward':
-      if (isMobile()) {
-        window.scrollTo(400, 0)
-      } else {
-        window.scrollTo(10_000, 200)
-      }
-      break;
-    case 'City':
-      if (isMobile()) {
-        window.scrollTo(50, 0)
-      } else {
-        window.scrollTo(0, 200)
-      }
-      break;
-    default:
-      window.scrollTo(0, 0)
-      break;
-  }
+  const container = document.querySelectorAll('#tokyo_cloned');
+  const factor = container[0].getBoundingClientRect().width / 1100;
 
+  /** @type {NodeListOf<SVGTSpanElement>} */
+  const municipalities = document.querySelectorAll(`#Municipalities #Text #${type.name.en} tspan`);
+  centerPosition(municipalities, factor);
   setInfo(type);
 }

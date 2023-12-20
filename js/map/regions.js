@@ -107,9 +107,10 @@ export function setZoom(regionData) {
   document.location.hash = name.en;
 };
 
-function centerPosition() {
-  const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
-
+/**
+ * @param {NodeListOf<SVGElement>} elmList
+ */
+export function centerPosition(elmList, factor = 1) {
   const box = {
     xMin: 100_000,
     yMin: 100_000,
@@ -117,31 +118,34 @@ function centerPosition() {
     yMax: 0,
   }
 
-  cities.forEach(city => {
-    const cityX = parseInt(city.getAttribute('x') || '0')
-    const cityY = parseInt(city.getAttribute('y') || '0')
-    if (cityX < box.xMin) {
-      box.xMin = cityX;
+  elmList.forEach(elm => {
+    const elmX = parseInt(elm.getAttribute('x') || '0') * factor;
+    const elmY = parseInt(elm.getAttribute('y') || '0') * factor;
+
+    if (elmX < box.xMin) {
+      box.xMin = elmX;
     }
-    if (cityY < box.yMin) {
-      box.yMin = cityY;
+    if (elmY < box.yMin) {
+      box.yMin = elmY;
     }
-    if (cityX > box.xMax) {
-      box.xMax = cityX;
+    if (elmX > box.xMax) {
+      box.xMax = elmX;
     }
-    if (cityY > box.yMax) {
-      box.yMax = cityY;
+    if (elmY > box.yMax) {
+      box.yMax = elmY;
     }
   });
+
+  console.log('box', box);
 
   const windowCenterX = window.innerWidth / 2;
   const windowCenterY = window.innerHeight / 2;
 
-  const citiesCenterX = box.xMin + (box.xMax - box.xMin) / 2;
-  const citiesCenterY = box.yMin + (box.yMax - box.yMin) / 2;
+  const elmListCenterX = box.xMin + (box.xMax - box.xMin) / 2;
+  const elmListCenterY = box.yMin + (box.yMax - box.yMin) / 2;
 
-  const scrollX = (windowCenterX - citiesCenterX) * -1;
-  const scrollY = (windowCenterY - citiesCenterY) * -1;
+  const scrollX = (windowCenterX - elmListCenterX) * -1;
+  const scrollY = (windowCenterY - elmListCenterY) * -1;
 
   window.scrollTo(scrollX, scrollY)
 }
@@ -156,5 +160,9 @@ export function activeRegionDraw(regionData, callback) {
   const color = colors[regionIndex];
   drawRegions(parseData(regions, name.en), [color], callback);
   drawPrefectures(parseDataForPrefectures(regions, name.en));
-  drawCities(parseDataForCities(regions, name.en), centerPosition);
+  drawCities(parseDataForCities(regions, name.en), () => {
+    /** @type {NodeListOf<SVGTextElement>} */
+    const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
+    centerPosition(cities)
+  });
 }

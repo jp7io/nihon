@@ -3,7 +3,7 @@
     font-size: 1.5vw !important;
   }
 
-  #map:not(.regionZoom) {
+  #map:not(.regionZoom):not(.tokyo) {
     width: 200%;
     left: 50%;
     transform: translateX(-50%);
