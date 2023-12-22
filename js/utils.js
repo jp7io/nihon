@@ -207,7 +207,7 @@ export function setElmAttributes(elm, attributes) {
 
 export function parseHash() {
   const hash = document.location.hash.replace('#', '');
-  const filters = decodeURI(hash).split(',');
+  const filters = decodeURI(hash).split('/');
 
   const [region, prefecture, city] = filters;
 

@@ -339,15 +339,15 @@ export const regions = [
         code: '13',
         name: {
           en: 'Tōkyō',
-          ja: ['東', '京都'],
-          furigana: ['とう', 'きょう']
+          ja: ['東', '京', '都'],
+          furigana: ['とう', 'きょう', 'と']
         },
         location: { lat: 35.6764225, lng: 139.650027 },
         cities: [
           {
             name: {
               en: 'Tōkyō',
-              ja: ['東', '京都'],
+              ja: ['東', '京', '都'],
               furigana: ['とう', 'きょう', 'と'],
             },
             types: [cityType.capital, cityType.nationalCapital, cityType.favorite],

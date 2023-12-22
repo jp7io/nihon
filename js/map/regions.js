@@ -79,6 +79,7 @@ export function clearRegion() {
   drawPrefectures(parseDataForPrefectures(regions));
   drawCities(parseDataForCities(regions));
   drawClickableArea(parseData(regions), colors);
+  document.title = '日本 (Japan)';
   document.location.hash = '';
 }
 
@@ -104,6 +105,7 @@ export function setZoom(regionData) {
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
   map.style.width = width;
+  document.title = `${name.ja.join('')} / 日本`;
   document.location.hash = name.en;
 };
 
@@ -135,8 +137,6 @@ export function centerPosition(elmList, factor = 1) {
       box.yMax = elmY;
     }
   });
-
-  console.log('box', box);
 
   const windowCenterX = window.innerWidth / 2;
   const windowCenterY = window.innerHeight / 2;

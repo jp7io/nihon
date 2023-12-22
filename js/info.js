@@ -1,6 +1,8 @@
 // @ts-check
 
-import { replaceSpecialCharactersWithAscii } from './utils.js';
+import { regions } from '../data/regions.js';
+import { furigana } from './furigana.js';
+import { extractCities, extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
 
 /**
  * @param {string=} type
@@ -9,25 +11,60 @@ import { replaceSpecialCharactersWithAscii } from './utils.js';
 export function setInfo(type, data) {
   const info = document.getElementById('info');
   const infoSelected = document.getElementById('info-data');
+  const h2 = document.querySelector('#title h2');
+  const h2Pre = document.querySelector('.h2-pre');
+  const h3 = document.querySelector('#title h3');
+  const h3Pre = document.querySelector('.h3-pre');
+
+  h2 && (h2.innerHTML = '');
+  h2Pre && (h2Pre.innerHTML = '');
+  h3 && (h3.innerHTML = '');
+  h3Pre && (h3Pre.innerHTML = '');
+
   if (!info || !infoSelected) {
     return;
   }
   if (data) {
     const { name } = data;
 
-    let flag = null;
-    let hash = null;
+    const paths = [data];
 
-    if (type !== 'tokyo') {
-      flag = (type === 'city') ? `${name.en},${data.prefecture.name.en}` : name.en;
-      hash = (type === 'city') ? `${data.prefecture.region.name.en},${data.prefecture.name.en},${name.en}` : `${data.region.name.en},${data.name.en}`;
-    } else {
-      flag = name.en;
+    switch (type) {
+      case 'city':
+        paths.push(data.prefecture, data.prefecture.region);
+        h2Pre && (h2Pre.innerHTML = '/');
+        h2 && (h2.innerHTML = furigana(data.prefecture.name));
+        if (data.name.en !== 'Tōkyō') {
+          h3Pre && (h3Pre.innerHTML = '/');
+          h3 && (h3.innerHTML = furigana(data.name));
+        }
+        break;
+      case 'prefecture':
+        h2Pre && (h2Pre.innerHTML = '/');
+        h2 && (h2.innerHTML = furigana(name));
+        paths.push(data.region);
+        break;
+      case 'tokyo':
+        if (data.name.en === 'Tōkyō') {
+          h2Pre && (h2Pre.innerHTML = '/');
+          h2 && (h2.innerHTML = furigana(data.name));
+        } else {
+          const prefectures = extractPrefectures(regions);
+          const tokyoPrefecture = prefectures.find(prefecture => prefecture.name.en === 'Tōkyō');
+          h2Pre && (h2Pre.innerHTML = '/');
+          h2 && (h2.innerHTML = furigana(tokyoPrefecture.name));
+          h3Pre && (h3Pre.innerHTML = '/');
+          h3 && (h3.innerHTML = furigana(name));
+          paths.push(tokyoPrefecture);
+          break;
+        }
     }
+
+    const flag = (data.name.en === 'Tōkyō') ? 'city/Tokyo,Tokyo' : `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
 
     info.classList.add('active');
     infoSelected.innerHTML = `
-      ${flag ? `<div class="flag"><img src="./img/${type}/${replaceSpecialCharactersWithAscii(flag)}.svg" /></div>` : ''}
+      <div class="flag"><img src="./img/${flag}.svg" /></div>
       <ruby class="furigana">
         <div class="ja">
           <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>
@@ -40,7 +77,8 @@ export function setInfo(type, data) {
       </div>
     `
 
-    hash && (document.location.hash = hash);
+    document.title = `${paths.map(path => path.name.ja.join('')).join(' / ')} / 日本`;
+    document.location.hash = paths.reverse().map(path => path.name.en).join('/');
   } else {
     info.classList.remove('active');
     infoSelected.innerHTML = '';

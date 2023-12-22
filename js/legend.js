@@ -5,7 +5,7 @@ import { colors } from './colors.js';
 import { centerPosition, setActiveRegion } from './map/index.js';
 import { setInfo } from './info.js';
 import { municipalityType } from '../data/tokyo.js';
-import { isMobile } from './utils.js';
+import { extractPrefectures } from './utils.js';
 import { setLayer } from './layers.js';
 
 export function drawLegendItems() {
@@ -69,6 +69,9 @@ function legendItem(name, color, pattern) {
 }
 
 export function setActiveMunicipalityType(type) {
+  const prefecturesData = extractPrefectures(regions);
+  const tokyoData = prefecturesData.find(item => item.name.en === 'Tōkyō');
+
   /** @type {NodeListOf<HTMLElement>}  */
   const legendItems = document.querySelectorAll('#legend-tokyo .item');
   legendItems.forEach((item) => {
@@ -84,5 +87,5 @@ export function setActiveMunicipalityType(type) {
   /** @type {NodeListOf<SVGTSpanElement>} */
   const municipalities = document.querySelectorAll(`#Municipalities #Text #${type.name.en} tspan`);
   centerPosition(municipalities, factor);
-  setInfo(type);
+  setInfo('tokyo', tokyoData);
 }

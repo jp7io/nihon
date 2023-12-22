@@ -26,9 +26,18 @@ body {
   top: var(--external-margin);
   left: var(--external-margin);
   z-index: 10;
+  display: flex;
+  flex-direction: row;
 }
 
-#title h1 {
+#title .title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#title h1,
+#title h2,
+#title h3 {
   margin: 0 0 0.4em;
   font-size: 3em;
   cursor: pointer;
@@ -41,16 +50,8 @@ body {
   height: 0;
 }
 
-body:has(#map.tokyo) h1 {
-  font-size: 1em;
-}
-
-h2.tokyo {
-  display: none;
-}
-
-body:has(#map.tokyo) h2.tokyo {
-  margin: 0.4em 0 0.4em;
+.h2-pre,
+.h3-pre {
   font-size: 3em;
-  display: block !important;
+  margin: 0.4em 0.5em 0;
 }
