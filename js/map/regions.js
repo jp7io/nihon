@@ -136,8 +136,6 @@ export function centerPosition(elmList, factor = 1) {
     }
   });
 
-  console.log('box', box);
-
   const windowCenterX = window.innerWidth / 2;
   const windowCenterY = window.innerHeight / 2;
 

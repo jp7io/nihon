@@ -9,6 +9,7 @@ import { extractCities, extractPrefectures, loadHTML, parseHash } from './utils.
 import { initLayers } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo } from './tokyo.js';
+import { initZoom } from './zoom.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
@@ -17,6 +18,7 @@ google.charts.setOnLoadCallback(async () => {
   createInlineSVG();
   setActiveData();
   initTokyo();
+  initZoom();
 });
 
 async function loadIncludes() {
