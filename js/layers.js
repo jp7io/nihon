@@ -20,6 +20,9 @@ export function setLayer(layer) {
   /** @type {HTMLElement | null} */
   const map = document.getElementById('map');
 
+  /** @type {HTMLElement | null} */
+  const previousLayerItem = document.querySelector('#layersSet .item.active');
+
   /** @type {NodeListOf<HTMLElement>} */
   const items = document.querySelectorAll('#layersSet .item');
   items?.forEach(item => {
@@ -44,6 +47,11 @@ export function setLayer(layer) {
     setTimeout(() => {
       setActiveMunicipalityType(municipalityType.ku);
     }, 100);
+  }
+
+  if (previousLayerItem?.dataset.layer === 'tokyo') {
+    resetMap();
+    clearRegion();
   }
 
   map?.classList.add(layer);

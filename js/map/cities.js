@@ -90,7 +90,7 @@ function addIcon(cityGroup, { x, y, height }) {
     x: x - height / 2,
     y: y - height / 2,
   });
-  icon.innerHTML = `<use xlink:href="./img/icons/layers.svg#capital" />`;
+  icon.innerHTML = `<use xlink:href="#capital" />`;
   cityGroup?.appendChild(icon);
 }
 
