@@ -17,7 +17,8 @@
   fill: #eee;
 }
 
-#Municipalities #Text {
+#Municipalities #Text,
+#Municipalities #Map {
   font-size: 0.4em;
   cursor: pointer;
 }

@@ -9,6 +9,10 @@
     transform: translateX(-50%);
   }
 
+  #map #regions svg path:not([stroke='#dddddd']) {
+    stroke-width: 0.3em;
+  }
+
   #title h1,
   #title h2,
   #title h3 {

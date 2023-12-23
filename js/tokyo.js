@@ -21,6 +21,13 @@ export function initTokyo() {
         element.innerHTML = '';
       }
     });
+    /** @type {NodeListOf<SVGPathElement | SVGPolygonElement>} */
+    const paths = document.querySelectorAll(`#Municipalities #Map #${id}`);
+    paths.forEach(path => {
+      path.addEventListener('click', () => {
+        setActiveTokyo(municipality);
+      })
+    });
   });
 }
 

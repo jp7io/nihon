@@ -50,10 +50,10 @@ export function setInfo(type, data) {
         flag = getFlagUrl(paths);
         break;
       case 'tokyo':
-        flag = 'city/Tokyo,Tokyo';
         if (data.name.en === 'Tōkyō') {
           h2Pre && (h2Pre.innerHTML = '/');
           h2 && (h2.innerHTML = furigana(data.name));
+          flag = 'city/Tokyo,Tokyo';
         } else {
           const prefectures = extractPrefectures(regions);
           const tokyoPrefecture = prefectures.find(prefecture => prefecture.name.en === 'Tōkyō');
@@ -62,6 +62,7 @@ export function setInfo(type, data) {
           h3Pre && (h3Pre.innerHTML = '/');
           h3 && (h3.innerHTML = furigana(name));
           paths.push(tokyoPrefecture);
+          flag = getFlagUrl(paths);
         }
         break;
       case 'region':

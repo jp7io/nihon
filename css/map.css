@@ -6,6 +6,10 @@
   font-size: 0.9em;
 }
 
+#map #regions svg path:not([stroke='#dddddd']) {
+  stroke-width: 0.1em;
+}
+
 #regions,
 #prefectures,
 #cities,
