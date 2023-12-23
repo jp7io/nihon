@@ -4,4 +4,6 @@
 
 Webサイト： https://nihon.jp7.io
 
+このプロジェクトでは、Google の Geochart と Wikipedia のデータを使用します。
+
 ![Screenshot](./img/screenshot.png)

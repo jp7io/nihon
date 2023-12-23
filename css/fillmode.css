@@ -27,7 +27,7 @@
 #fillmode .item {
   display: flex;
   align-items: center;
-  padding: 0.5em;
+  padding: 1.2vh;
   gap: 0.4em;
   border-radius: 0.5em;
   cursor: default;
