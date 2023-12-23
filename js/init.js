@@ -5,7 +5,7 @@ import { regions } from '../data/regions.js';
 import { drawLegendItems, setActiveMunicipalityType } from "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity } from './map/index.js';
-import { extractCities, extractPrefectures, loadHTML, parseHash } from './utils.js';
+import { extractCities, extractPrefectures, loadHTML, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
 import { initLayers, setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality } from './tokyo.js';
@@ -33,10 +33,10 @@ async function loadIncludes() {
 function setActiveData() {
   const { region, prefecture, city, municipality } = parseHash();
 
-  if (region === 'Tōkyō') {
+  if (region === 'Tokyo') {
     setLayer('tokyo');
     if (municipality) {
-      const municipalityData = tokyo.find(item => item.name.en === municipality);
+      const municipalityData = tokyo.find(item => replaceSpecialCharactersWithAscii(item.name.en) === municipality);
       if (municipalityData) {
         setActiveMunicipalityType(municipalityData.type);
         setMunicipality(municipalityData);
@@ -47,15 +47,17 @@ function setActiveData() {
     return;
   }
 
-  const regionData = regions.find(record => record.name.en === region);
-  const prefectureData = extractPrefectures(regions, region).find(record => record.name.en === prefecture);
-  const cityData = extractCities(regions, region).find(record => record.name.en === city);
+  const regionData = regions.find(record => replaceSpecialCharactersWithAscii(record.name.en) === region);
+  const prefectureData = extractPrefectures(regions, regionData?.name.en).find(record => replaceSpecialCharactersWithAscii(record.name.en) === prefecture);
+  const cityData = extractCities(regions, regionData?.name.en).find(record => replaceSpecialCharactersWithAscii(record.name.en) === city);
 
   setActiveRegion(regionData, () => {
     setTimeout(() => {
       if (cityData) {
+        setLayer('capitals');
         setActiveCity(cityData);
       } else {
+        setLayer('prefectures');
         setActivePrefecture(prefectureData);
       }
     }, 100);

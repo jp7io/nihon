@@ -92,6 +92,13 @@ export function setActiveMunicipalityType(type) {
     item.classList.toggle('active', item.dataset.type === type.name.en);
   });
 
+  setInfo('tokyo', tokyoData);
+  setTimeout(() => {
+    centerTokyo(type); // FIXME
+  }, 100);
+}
+
+function centerTokyo(type) {
   const tokyo = document.getElementById('tokyo');
   tokyo && (tokyo.className = type.name.en);
 
@@ -101,5 +108,4 @@ export function setActiveMunicipalityType(type) {
   /** @type {NodeListOf<SVGTSpanElement>} */
   const municipalities = document.querySelectorAll(`#Municipalities #Text #${type.name.en} tspan`);
   centerPosition(municipalities, factor);
-  setInfo('tokyo', tokyoData);
 }

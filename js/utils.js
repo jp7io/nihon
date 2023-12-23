@@ -209,9 +209,9 @@ export function parseHash() {
   const hash = document.location.hash.replace('#', '');
   const filters = decodeURI(hash).split('/');
 
-  if (filters[0] === 'Tōkyō') {
+  if (filters[0] === 'Tokyo') {
     return {
-      region: 'Tōkyō',
+      region: 'Tokyo',
       municipality: filters[1],
     };
   }

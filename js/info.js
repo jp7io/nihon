@@ -27,6 +27,7 @@ export function setInfo(type, data) {
   if (data) {
     const { name } = data;
 
+    /** @type {any[]} */
     const paths = [data];
 
     let flag = '';
@@ -89,7 +90,7 @@ export function setInfo(type, data) {
     `
 
     document.title = `${paths.map(path => path.name.ja.join('')).join(' / ')} / 日本`;
-    document.location.hash = paths.reverse().map(path => path.name.en).join('/');
+    document.location.hash = paths.reverse().map(path => replaceSpecialCharactersWithAscii(path.name.en)).join('/');
   } else {
     info.classList.remove('active');
     infoSelected.innerHTML = '';

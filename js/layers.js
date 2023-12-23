@@ -43,9 +43,7 @@ export function setLayer(layer) {
     clearRegion();
     const items = document.querySelectorAll('#legend .item');
     items.forEach(item => item.classList.remove('active'));
-    setTimeout(() => {
-      setActiveMunicipalityType(municipalityType.ku);
-    }, 100);
+    setActiveMunicipalityType(municipalityType.ku);
   }
 
   if (previousLayerItem?.dataset.layer === 'tokyo') {
