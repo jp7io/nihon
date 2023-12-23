@@ -1,5 +1,6 @@
 // @ts-check
 
+import { dict } from '../data/dict.js';
 import { regions } from '../data/regions.js';
 import { furigana } from './furigana.js';
 import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
@@ -11,6 +12,7 @@ import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.j
 export function setInfo(type, data) {
   const info = document.getElementById('info');
   const infoSelected = document.getElementById('info-data');
+  const h1 = document.querySelector('#title h1');
   const h2 = document.querySelector('#title h2');
   const h2Pre = document.querySelector('.h2-pre');
   const h3 = document.querySelector('#title h3');
@@ -25,6 +27,8 @@ export function setInfo(type, data) {
     return;
   }
   if (data) {
+    h1 && (h1.innerHTML = furigana(dict.japan));
+
     const { name } = data;
 
     /** @type {any[]} */
@@ -94,5 +98,6 @@ export function setInfo(type, data) {
   } else {
     info.classList.remove('active');
     infoSelected.innerHTML = '';
+    h1 && (h1.innerHTML = furigana(dict.mapOfJapan));
   }
 }

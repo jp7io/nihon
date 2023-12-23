@@ -79,7 +79,7 @@ export function clearRegion() {
   drawPrefectures(parseDataForPrefectures(regions));
   drawCities(parseDataForCities(regions));
   drawClickableArea(parseData(regions), colors);
-  document.title = '日本 (Japan)';
+  document.title = '日本の地図 (Map of Japan)';
   document.location.hash = '';
 }
 

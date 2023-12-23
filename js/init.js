@@ -56,7 +56,7 @@ function setActiveData() {
       if (cityData) {
         setLayer('capitals');
         setActiveCity(cityData);
-      } else {
+      } else if (prefectureData) {
         setLayer('prefectures');
         setActivePrefecture(prefectureData);
       }
