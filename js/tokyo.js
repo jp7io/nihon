@@ -4,11 +4,18 @@
  * @typedef {import('../data/tokyo.js').Municipality} Municipality
  */
 
-import { tokyo } from '../data/tokyo.js';
+import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
+import { colorsTokyo } from './colorsTokyo.js';
 import { setInfo } from './info.js';
 import { replaceSpecialCharactersWithAscii } from './utils.js';
 
 export function initTokyo() {
+  tokyoBorders.forEach(border => {
+    const id = replaceSpecialCharactersWithAscii(border.name.en);
+    const element = document.querySelector(`#Borders #Text #${id} tspan`);
+    element && (element.innerHTML = border.name.ja.join(''));
+  });
+
   tokyo.forEach(municipality => {
     const id = replaceSpecialCharactersWithAscii(municipality.name.en);
     /** @type {NodeListOf<SVGTSpanElement>} */
@@ -27,7 +34,10 @@ export function initTokyo() {
     });
     /** @type {NodeListOf<SVGPathElement | SVGPolygonElement>} */
     const paths = document.querySelectorAll(`#Municipalities #Map #${id}`);
+    const index = Object.values(municipalityType).indexOf(municipality.type);
+    const color = colorsTokyo[index];
     paths.forEach(path => {
+      path.setAttribute('stroke', color.strokeColor);
       path.addEventListener('click', () => {
         setMunicipality(municipality);
       })

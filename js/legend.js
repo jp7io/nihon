@@ -7,6 +7,7 @@ import { setInfo } from './info.js';
 import { municipalityType } from '../data/tokyo.js';
 import { extractPrefectures } from './utils.js';
 import { setLayer } from './layers.js';
+import { colorsTokyo } from './colorsTokyo.js';
 
 export function drawLegendItems() {
   const japanLegendItems = document.getElementById('legend-japan');
@@ -33,9 +34,11 @@ export function drawLegendItems() {
 
   const tokyoLegendItems = document.getElementById('legend-tokyo');
 
-  Object.keys(municipalityType).forEach((municipalityTypeKey) => {
+  Object.keys(municipalityType).forEach((municipalityTypeKey, index) => {
     const type = municipalityType[municipalityTypeKey];
-    const { name, color } = type;
+    const { name } = type;
+
+    const { color, pattern } = colorsTokyo[index];
 
     const link = document.createElement('a');
     link.href = `#${name.en}`;
@@ -47,7 +50,7 @@ export function drawLegendItems() {
     const item = document.createElement('div');
     item.className = 'item';
     item.dataset.type = name.en;
-    item.innerHTML = legendItem(name, color, color);
+    item.innerHTML = legendItem(name, color, pattern);
 
     link.appendChild(item);
 

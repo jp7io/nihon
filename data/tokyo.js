@@ -14,7 +14,6 @@ export const municipalityType = {
       ja: ['区'],
       furigana: ['く'],
     },
-    color: '#DCB6F2',
   },
   shi: {
     name: {
@@ -22,7 +21,6 @@ export const municipalityType = {
       ja: ['市'],
       furigana: ['し'],
     },
-    color: '#F6BAD3',
   },
   machi: {
     name: {
@@ -30,7 +28,6 @@ export const municipalityType = {
       ja: ['町'],
       furigana: ['まち'],
     },
-    color: '#ECE3B4',
   },
   mura: {
     name: {
@@ -38,7 +35,6 @@ export const municipalityType = {
       ja: ['村'],
       furigana: ['むら'],
     },
-    color: '#B6F2DC',
   },
 }
 
@@ -727,5 +723,33 @@ export const tokyo = [
     subprefecture: 'Ogasawara',
     population: '3.029',
     code: '13421'
+  },
+]
+
+export const tokyoBorders = [
+  {
+    name: {
+      en: 'Chiba',
+      ja: ['千', '葉', '県'],
+      furigana: ['ち', 'ば', 'けん'],
+    },
+  }, {
+    name: {
+      en: 'Kanagawa',
+      ja: ['神', '奈', '川', '県'],
+      furigana: ['かな', 'がわ', 'けん'],
+    }
+  }, {
+    name: {
+      en: 'Yamanashi',
+      ja: ['山', '梨', '県'],
+      furigana: ['やま', 'なし', 'けん'],
+    }
+  }, {
+    name: {
+      en: 'Saitama',
+      ja: ['埼', '玉', '県'],
+      furigana: ['さい', 'たま', 'けん'],
+    },
   },
 ]
