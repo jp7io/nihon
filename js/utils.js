@@ -209,6 +209,13 @@ export function parseHash() {
   const hash = document.location.hash.replace('#', '');
   const filters = decodeURI(hash).split('/');
 
+  if (filters[0] === 'Tōkyō') {
+    return {
+      region: 'Tōkyō',
+      municipality: filters[1],
+    };
+  }
+
   const [region, prefecture, city] = filters;
 
   return { region, prefecture, city };

@@ -1,3 +1,12 @@
+/**
+ * @typedef {Object} Municipality
+ * @property {Name} name
+ * @property {Object} type
+ * @property {string} subprefecture
+ * @property {string} population
+ * @property {string} code
+*/
+
 export const municipalityType = {
   ku: {
     name: {
@@ -35,6 +44,7 @@ export const municipalityType = {
 
 const { ku, shi, machi, mura } = municipalityType;
 
+/* @type {Municipality[]} */
 export const tokyo = [
   {
     name: {
@@ -717,16 +727,5 @@ export const tokyo = [
     subprefecture: 'Ogasawara',
     population: '3.029',
     code: '13421'
-  },
-  {
-    name: {
-      en: 'Tokyo',
-      ja: ['東', '京', '都'],
-      furigana: ['とう', 'きょう', 'と'],
-    },
-    'Transcription': 'Tōkyō-to',
-    subprefecture: '–',
-    population: '13,960,236',
-    code: '13000'
   },
 ]

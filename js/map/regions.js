@@ -101,12 +101,10 @@ export function setZoom(regionData) {
     return;
   }
   map.classList.add('regionZoom');
-  const { name, zoom } = regionData;
+  const { zoom } = regionData;
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
   map.style.width = width;
-  document.title = `${name.ja.join('')} / 日本`;
-  document.location.hash = name.en;
 };
 
 /**

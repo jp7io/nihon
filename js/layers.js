@@ -43,7 +43,6 @@ export function setLayer(layer) {
     clearRegion();
     const items = document.querySelectorAll('#legend .item');
     items.forEach(item => item.classList.remove('active'));
-    location.hash = '';
     setTimeout(() => {
       setActiveMunicipalityType(municipalityType.ku);
     }, 100);

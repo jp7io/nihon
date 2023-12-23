@@ -2,7 +2,7 @@
 
 import { regions } from '../data/regions.js';
 import { furigana } from './furigana.js';
-import { extractCities, extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
+import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
 
 /**
  * @param {string=} type
@@ -30,7 +30,7 @@ export function setInfo(type, data) {
     const paths = [data];
 
     let flag = '';
-    const getFlagUrl = (paths) => `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
+    const getFlagUrl = (type, paths) => `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
 
     switch (type) {
       case 'city':
@@ -41,29 +41,28 @@ export function setInfo(type, data) {
           h3Pre && (h3Pre.innerHTML = '/');
           h3 && (h3.innerHTML = furigana(data.name));
         }
-        flag = getFlagUrl(paths);
+        flag = getFlagUrl(type, paths);
         break;
       case 'prefecture':
         h2Pre && (h2Pre.innerHTML = '/');
         h2 && (h2.innerHTML = furigana(name));
         paths.push(data.region);
-        flag = getFlagUrl(paths);
+        flag = getFlagUrl(type, paths);
         break;
       case 'tokyo':
-        if (data.name.en === 'Tōkyō') {
-          h2Pre && (h2Pre.innerHTML = '/');
-          h2 && (h2.innerHTML = furigana(data.name));
-          flag = 'city/Tokyo,Tokyo';
-        } else {
-          const prefectures = extractPrefectures(regions);
-          const tokyoPrefecture = prefectures.find(prefecture => prefecture.name.en === 'Tōkyō');
-          h2Pre && (h2Pre.innerHTML = '/');
-          h2 && (h2.innerHTML = furigana(tokyoPrefecture.name));
-          h3Pre && (h3Pre.innerHTML = '/');
-          h3 && (h3.innerHTML = furigana(name));
-          paths.push(tokyoPrefecture);
-          flag = getFlagUrl(paths);
-        }
+        h2Pre && (h2Pre.innerHTML = '/');
+        h2 && (h2.innerHTML = furigana(data.name));
+        flag = 'city/Tokyo,Tokyo';
+        break;
+      case 'municipality':
+        const prefectures = extractPrefectures(regions);
+        const tokyoPrefecture = prefectures.find(prefecture => prefecture.name.en === 'Tōkyō');
+        h2Pre && (h2Pre.innerHTML = '/');
+        h2 && (h2.innerHTML = furigana(tokyoPrefecture.name));
+        h3Pre && (h3Pre.innerHTML = '/');
+        h3 && (h3.innerHTML = furigana(name));
+        paths.push(tokyoPrefecture);
+        flag = getFlagUrl('tokyo', paths);
         break;
       case 'region':
         flag = '';
