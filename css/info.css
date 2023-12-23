@@ -19,7 +19,15 @@
   cursor: default; */
   display: flex;
   align-items: center;
-  font-size: 1.8em;
+  font-size: 4vh;
+}
+
+#info #info-data .furigana {
+  padding: 0.25em 0 0.25em 0.4em;
+}
+
+#info #info-data:has(.flag) .furigana {
+  padding: 0;
 }
 
 #info #info-tooltip {

@@ -16,7 +16,13 @@
     font-size: 4em !important;
   }
 
+  .h2-pre,
+  .h3-pre {
+    font-size: 4em !important;
+  }
+
   #legend .item {
+    font-size: 1.8em;
     margin-bottom: 0.5em;
   }
 

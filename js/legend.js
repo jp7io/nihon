@@ -13,15 +13,22 @@ export function drawLegendItems() {
 
   regions.forEach((region, index) => {
     const { name } = region;
+
+    const link = document.createElement('a');
+    link.href = `#${name.en}`;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      setActiveRegion(region);
+    });
+
     const item = document.createElement('div');
     item.className = 'item';
     item.dataset.region = name.en;
-
     item.innerHTML = legendItem(name, colors[index].color, colors[index].pattern);
 
-    item.onclick = () => setActiveRegion(region);
+    link.appendChild(item);
 
-    japanLegendItems?.appendChild(item);
+    japanLegendItems?.appendChild(link);
   });
 
   const tokyoLegendItems = document.getElementById('legend-tokyo');
@@ -29,15 +36,22 @@ export function drawLegendItems() {
   Object.keys(municipalityType).forEach((municipalityTypeKey) => {
     const type = municipalityType[municipalityTypeKey];
     const { name, color } = type;
+
+    const link = document.createElement('a');
+    link.href = `#${name.en}`;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      setActiveMunicipalityType(type);
+    });
+
     const item = document.createElement('div');
     item.className = 'item';
     item.dataset.type = name.en;
-
     item.innerHTML = legendItem(name, color, color);
 
-    item.onclick = () => setActiveMunicipalityType(type);
+    link.appendChild(item);
 
-    tokyoLegendItems?.appendChild(item);
+    tokyoLegendItems?.appendChild(link);
   });
 
   const legendH1 = document.querySelector('#title h1');

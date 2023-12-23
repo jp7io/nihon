@@ -10,7 +10,7 @@
  * @typedef {Object} Name
  * @property {string} en
  * @property {string[]} ja
- * @property {string[]} furigana
+ * @property {string[]} [furigana]
  */
 
 /**
@@ -268,7 +268,7 @@ export const regions = [
             name: {
               en: 'Utsunomiya',
               ja: ['宇', '都', '宮', '市'],
-              furigana: ['う', 'つ', 'の', 'みや', 'し'],
+              furigana: ['う', 'つ', 'のみや', 'し'],
             },
             types: [cityType.capital],
             location: { lat: 36.555283, lng: 139.882158 },

@@ -29,6 +29,9 @@ export function setInfo(type, data) {
 
     const paths = [data];
 
+    let flag = '';
+    const getFlagUrl = (paths) => `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
+
     switch (type) {
       case 'city':
         paths.push(data.prefecture, data.prefecture.region);
@@ -38,13 +41,16 @@ export function setInfo(type, data) {
           h3Pre && (h3Pre.innerHTML = '/');
           h3 && (h3.innerHTML = furigana(data.name));
         }
+        flag = getFlagUrl(paths);
         break;
       case 'prefecture':
         h2Pre && (h2Pre.innerHTML = '/');
         h2 && (h2.innerHTML = furigana(name));
         paths.push(data.region);
+        flag = getFlagUrl(paths);
         break;
       case 'tokyo':
+        flag = 'city/Tokyo,Tokyo';
         if (data.name.en === 'Tōkyō') {
           h2Pre && (h2Pre.innerHTML = '/');
           h2 && (h2.innerHTML = furigana(data.name));
@@ -56,15 +62,18 @@ export function setInfo(type, data) {
           h3Pre && (h3Pre.innerHTML = '/');
           h3 && (h3.innerHTML = furigana(name));
           paths.push(tokyoPrefecture);
-          break;
         }
+        break;
+      case 'region':
+        flag = '';
+        h2Pre && (h2Pre.innerHTML = '/');
+        h2 && (h2.innerHTML = furigana(name));
+        break;
     }
-
-    const flag = (data.name.en === 'Tōkyō') ? 'city/Tokyo,Tokyo' : `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
 
     info.classList.add('active');
     infoSelected.innerHTML = `
-      <div class="flag"><img src="./img/${flag}.svg" /></div>
+      ${flag ? `<div class="flag"><img src="./img/${flag}.svg" /></div>` : ''}
       <ruby class="furigana">
         <div class="ja">
           <rtc>${name.furigana.map(char => `<rt>${char}</rt>`).join('')}</rtc>
@@ -73,7 +82,9 @@ export function setInfo(type, data) {
         <rtc class="annotation"><rt>${name.en}</rt></rtc>
       </ruby>
       <div class="wikipedia">
-        <a href="https://ja.wikipedia.org/wiki/${name.ja.join('')}" target="_blank">ウィキペディア</a>
+        <a href="https://ja.wikipedia.org/wiki/${name.ja.join('')}" target="_blank">
+          ${furigana({ ja: 'ウィキペディア'.split(''), en: 'Wikipedia' })}
+        </a>
       </div>
     `
 

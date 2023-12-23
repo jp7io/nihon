@@ -39,7 +39,10 @@ body {
 #title h2,
 #title h3 {
   margin: 0 0 0.4em;
-  font-size: 3em;
+  font-size: 5vh;
+}
+
+#title h1 {
   cursor: pointer;
 }
 
@@ -52,6 +55,11 @@ body {
 
 .h2-pre,
 .h3-pre {
-  font-size: 3em;
+  font-size: 5vh;
   margin: 0.4em 0.5em 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }

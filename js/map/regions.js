@@ -67,7 +67,7 @@ export function setActiveRegion(region, callback) {
   setZoom(region);
 
   activeRegionDraw(region, () => {
-    setInfo();
+    setInfo('region', region);
     recoverFillmode();
     callback && callback();
   });

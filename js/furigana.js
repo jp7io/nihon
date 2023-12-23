@@ -13,7 +13,7 @@ export function furigana(name) {
   return `
     <ruby class="furigana">
       <div class="ja">
-        <rtc>${name.furigana.map(item => `<rt>${item}</rt>`).join('')}</rtc>
+        ${name.furigana ? `<rtc>${name.furigana.map(item => `<rt>${item}</rt>`).join('')}</rtc>` : ' '}
         <rbc>${name.ja.map(item => `<rb>${item}</rb>`).join('')}</rbc>
       </div>
       <rtc class="annotation">
