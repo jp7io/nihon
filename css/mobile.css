@@ -49,6 +49,14 @@
     padding: 1em 0.5em;
   }
 
+  #about {
+    font-size: 0.8em !important;
+  }
+
+  #shuriken {
+    font-size: 0.7vh !important;
+  }
+
   svg text {
     font-size: 2em !important;
   }

@@ -6,7 +6,7 @@
 }
 
 #fillmode {
-  font-size: 1.2em;
+  font-size: 2.5vh;
 }
 
 #fillmode .items {
@@ -55,4 +55,8 @@
 
 #fillmode label[for="favoriteLayer"] {
   color: brown;
+}
+
+#about {
+  font-size: 1.8vh;
 }
