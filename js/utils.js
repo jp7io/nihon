@@ -221,6 +221,18 @@ export function parseHash() {
   return { region, prefecture, city };
 }
 
+export function debounce(func, delay) {
+  let timeout;
+
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
+
 export function isMobile() {
   return window.innerWidth <= 768;
 }
+

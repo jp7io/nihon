@@ -3,7 +3,6 @@
 import { setActiveMunicipalityType } from './legend.js';
 import { setActiveCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
-import { municipalityType } from '../data/tokyo.js';
 import { parseHash } from './utils.js';
 
 export function initLayers() {
@@ -43,10 +42,8 @@ export function setLayer(layer) {
     clearRegion();
     const items = document.querySelectorAll('#legend .item');
     items.forEach(item => item.classList.remove('active'));
-    setActiveMunicipalityType(municipalityType.ku);
-  }
-
-  if (previousLayerItem?.dataset.layer === 'tokyo') {
+    setActiveMunicipalityType();
+  } else if (previousLayerItem?.dataset.layer === 'tokyo') {
     resetMap();
     clearRegion();
   }

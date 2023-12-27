@@ -1,4 +1,8 @@
-#tokyo svg {
+#tokyo.Tokyo svg {
+  width: 100%;
+}
+
+#tokyo:not(.Tokyo) svg {
   width: 140%;
 }
 
@@ -19,8 +23,13 @@
 
 #Municipalities #Text,
 #Municipalities #Map {
-  font-size: 0.4em;
+  font-size: 0.3em;
   cursor: pointer;
+}
+
+#tokyo.Tokyo #Municipalities #Text,
+#tokyo.Tokyo #Municipalities #Map {
+  font-size: 0.3em;
 }
 
 #Municipalities #Map .active {

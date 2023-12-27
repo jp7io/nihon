@@ -90,4 +90,12 @@
   #Municipalities #Text {
     font-size: 0.6em !important;
   }
+
+  #tokyo.Tokyo svg {
+    width: 50% !important;
+  }
+
+  #tokyo:not(.Tokyo) svg {
+    width: 100% !important;
+  }
 }

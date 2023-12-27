@@ -1,11 +1,12 @@
 // @ts-check
 
+import { state } from "./state.js";
 import { colors } from './colors.js';
 import { regions } from '../data/regions.js';
-import { drawLegendItems, setActiveMunicipalityType } from "./legend.js";
+import { centerTokyo, drawLegendItems, setActiveMunicipalityType } from "./legend.js";
 import { initFillMode } from './fillMode.js';
-import { setActiveRegion, setActivePrefecture, setActiveCity } from './map/index.js';
-import { extractCities, extractPrefectures, loadHTML, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
+import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
+import { debounce, extractCities, extractPrefectures, loadHTML, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
 import { initLayers, setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality } from './tokyo.js';
@@ -18,6 +19,7 @@ google.charts.setOnLoadCallback(async () => {
   createInlineSVG();
   setActiveData();
   initTokyo();
+  initPosition();
 });
 
 async function loadIncludes() {
@@ -40,10 +42,8 @@ function setActiveData() {
       if (municipalityData) {
         setActiveMunicipalityType(municipalityData.type);
         setMunicipality(municipalityData);
-        return;
       }
     }
-    setActiveMunicipalityType(municipalityType.ku);
     return;
   }
 
@@ -62,4 +62,18 @@ function setActiveData() {
       }
     }, 100);
   });
+}
+
+function initPosition() {
+  window.addEventListener('resize', debounce(() => {
+    const { region } = parseHash();
+    if (region === 'Tokyo') {
+      centerTokyo(state.municipalityType);
+      return;
+    } else {
+      /** @type {NodeListOf<SVGTextElement>} */
+      const cities = document.querySelectorAll('svg g[data-city=true] text:last-of-type');
+      centerPosition(cities);
+    }
+  }, 100));
 }
