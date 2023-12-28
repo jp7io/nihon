@@ -121,7 +121,7 @@ export function centerTokyo(type) {
   tokyo.className = (type) ? type.name.en : 'Tokyo';
 
   const container = document.querySelectorAll('#tokyo_cloned');
-  const factor = container[0].getBoundingClientRect().width / 1100;
+  const factor = container[0].getBoundingClientRect().width / 1200;
 
   if (type) {
     /** @type {NodeListOf<SVGTSpanElement>} */
