@@ -3,14 +3,14 @@
 import { state } from "./state.js";
 import { colors } from './colors.js';
 import { regions } from '../data/regions.js';
-import { centerTokyo, drawLegendItems, setActiveMunicipalityType } from "./legend.js";
+import "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
 import { debounce, extractCities, extractPrefectures, loadHTML, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
 import { initLayers, setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
-import { initTokyo, setMunicipality } from './tokyo.js';
-import { municipalityType, tokyo } from '../data/tokyo.js';
+import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
+import { tokyo } from '../data/tokyo.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
@@ -23,7 +23,6 @@ google.charts.setOnLoadCallback(async () => {
 });
 
 async function loadIncludes() {
-  await loadHTML('legend-placeholder', './includes/legend.html', () => drawLegendItems());
   await loadHTML('fillmode-placeholder', './includes/fillmode.html', () => {
     initFillMode(colors);
     initLayers();

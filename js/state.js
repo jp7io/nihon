@@ -1,5 +1,7 @@
 // @ts-check
 
+import van from '../lib/van.js';
+
 /**
  * @typedef {import('../data/regions.js').Region} Region
  * @typedef {import('../data/regions.js').Prefecture} Prefecture
@@ -27,4 +29,10 @@ export const state = {
 
 export function setState(newState) {
   Object.assign(state, newState);
+}
+
+/** @type {any} */
+export const vanState = {
+  region: van.state(null),
+  municipalityType: van.state(null),
 }

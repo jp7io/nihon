@@ -1,6 +1,6 @@
 // @ts-check
 
-import { setActiveMunicipalityType } from './legend.js';
+import { setActiveMunicipalityType } from './tokyo.js';
 import { setActiveCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
 import { parseHash } from './utils.js';

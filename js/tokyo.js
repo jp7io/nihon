@@ -4,10 +4,13 @@
  * @typedef {import('../data/tokyo.js').Municipality} Municipality
  */
 
+import { regions } from '../data/regions.js';
 import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
 import { colorsTokyo } from './colorsTokyo.js';
 import { setInfo } from './info.js';
-import { replaceSpecialCharactersWithAscii } from './utils.js';
+import { centerPosition } from './map/regions.js';
+import { setState, state } from './state.js';
+import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
 
 export function initTokyo() {
   tokyoBorders.forEach(border => {
@@ -56,4 +59,52 @@ export function setMunicipality(municipality) {
     path.classList.toggle('active', path.id === id);
   });
   setInfo('municipality', municipality);
+}
+
+export function setActiveMunicipalityType(type) {
+  if (type && type.name.en === state.municipalityType?.name.en) {
+    setActiveMunicipalityType();
+    return;
+  }
+
+  const prefecturesData = extractPrefectures(regions);
+  const tokyoData = prefecturesData.find(item => item.name.en === 'Tōkyō');
+
+  /** @type {NodeListOf<HTMLElement>}  */
+  const legendItems = document.querySelectorAll('#legend-tokyo .item');
+  legendItems.forEach((item) => {
+    item.classList.toggle('active', item.dataset.type === type?.name.en);
+  });
+
+  setInfo('tokyo', tokyoData);
+  setState({
+    ...state,
+    municipalityType: type,
+  });
+  setTimeout(() => {
+    centerTokyo(type); // FIXME
+  }, 100);
+}
+
+export function centerTokyo(type) {
+  const tokyo = document.getElementById('tokyo');
+
+  if (!tokyo) {
+    return;
+  }
+
+  tokyo.className = (type) ? type.name.en : 'Tokyo';
+
+  const container = document.querySelectorAll('#tokyo_cloned');
+  const factor = container[0].getBoundingClientRect().width / 1200;
+
+  if (type) {
+    /** @type {NodeListOf<SVGTSpanElement>} */
+    const municipalities = document.querySelectorAll(`#Municipalities #Text #${type.name.en} tspan`);
+    centerPosition(municipalities, factor);
+  } else {
+    /** @type {NodeListOf<SVGTSpanElement>} */
+    const municipalities = document.querySelectorAll(`#Municipalities #Text tspan`);
+    centerPosition(municipalities, factor);
+  }
 }
