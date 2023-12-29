@@ -11,11 +11,13 @@ import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
 import { drawLegendItems } from './legend.js';
+import { drawShuriken } from './shuriken.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
   loadPatterns();
   await loadIncludes();
+  drawShuriken();
   drawLegendItems();
   createInlineSVG();
   setActiveData();
@@ -28,7 +30,6 @@ async function loadIncludes() {
     initFillMode(colors);
     initLayers();
   });
-  await loadHTML('shuriken-placeholder', './includes/shuriken.html');
 };
 
 function setActiveData() {
