@@ -1,5 +1,6 @@
 // @ts-check
 
+import { fillmode, layers } from '../data/dict.js';
 import van from '../lib/van.js';
 
 /**
@@ -17,12 +18,14 @@ import van from '../lib/van.js';
  * @property {State<City>=} city
  * @property {State<Municipality>=} municipality
  * @property {State=} municipalityType
- * @property {State<string>=} layer
- * @property {State<string>=} fillMode
+ * @property {State=} layer
+ * @property {State=} fillmode
  */
 
 /** @type {AppState} */
 export const state = {
   region: van.state(null),
   municipalityType: van.state(null),
+  layer: van.state(layers.capital),
+  fillmode: van.state(fillmode.color),
 }

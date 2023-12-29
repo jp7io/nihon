@@ -1,15 +1,12 @@
-#fillmode-placeholder {
+#fillmode {
   position: fixed;
   top: var(--external-margin);
   right: var(--external-margin);
   z-index: 10;
 }
 
-#fillmode {
-  font-size: 2.5vh;
-}
-
 #fillmode .items {
+  font-size: 2.5vh;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -58,5 +55,5 @@
 }
 
 #about {
-  font-size: 1.8vh;
+  font-size: 1.8vh !important;
 }

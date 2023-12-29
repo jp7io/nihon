@@ -4,19 +4,16 @@
  * @typedef {import('./colors.js').Color} Color
  */
 
+import van from '../lib/van.js';
 import { regions } from "../data/regions.js";
 import { municipalityType, tokyo } from '../data/tokyo.js';
 import { colorsTokyo } from './colorsTokyo.js';
+import { fillmode } from '../data/dict.js';
+import { furigana } from './furigana.js';
+import { state } from './state.js';
+import { colors } from './colors.js';
 
-/**
- * @param {Color[]} colors
- */
-export function initFillMode(colors) {
-  /** @type {NodeListOf<HTMLElement>} */
-  const modes = document.querySelectorAll('#fillmodeSet .item');
-  // @ts-ignore
-  modes.forEach(layer => layer.onclick = (e) => setFillmode(e?.currentTarget?.dataset.fillmode, colors))
-};
+const { div } = van.tags;
 
 /**
  * @param {string} mode
@@ -49,15 +46,30 @@ export function setFillmode(mode, colors) {
       }
     })
   });
-
-  const modes = document.querySelectorAll('#fillmodeSet .item');
-  modes.forEach(layer => layer.classList.remove('active'))
-
-  elm?.classList.add('active');
 }
 
 export function recoverFillmode() {
   /** @type {HTMLElement | null} */
   const fillmode = document.querySelector('#fillmodeSet .item.active');
   fillmode && fillmode.click();
+}
+
+const FillmodeElm = Object.entries(fillmode).map(item => {
+  const [key, value] = item;
+  return div(
+    {
+      class: () => state?.fillmode?.val.en === value.en ? 'item active' : 'item',
+      'data-item': value.en,
+      onclick: () => {
+        state.fillmode && (state.fillmode.val = value);
+        setFillmode(key, colors)
+      }
+    },
+    furigana(value),
+  )
+});
+
+export const drawFillmode = () => {
+  const fillmodeSet = document.getElementById('fillmodeSet');
+  fillmodeSet && van.add(fillmodeSet, FillmodeElm);
 }

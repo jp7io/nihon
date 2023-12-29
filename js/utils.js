@@ -26,23 +26,18 @@ export function replaceSpecialCharactersWithAscii(str) {
 }
 
 /**
- * @param {string} id
- * @param {string} filename
- * @param {() => void=} callback
+ * @param {string} str
+ * @returns {string}
  */
-export async function loadHTML(id, filename, callback) {
-  const element = document.getElementById(id);
-
-  if (!element) {
-    return;
-  }
-
-  const response = await fetch(filename);
-  const responseText = await response.text();
-
-  element.innerHTML = responseText || `<h1>"${filename}" not found.</h1>`;
-
-  callback && callback();
+export function toId(str) {
+  return str.toLowerCase()
+    .replace(/[àáâãäå]/g, 'a')
+    .replace(/[èéêë]/g, 'e')
+    .replace(/[ìíîï]/g, 'i')
+    .replace(/[òóôõöō]/g, 'o')
+    .replace(/[ùúûüū]/g, 'u')
+    .replace(/[ç]/g, 'c')
+    .replace(/[ñ]/g, 'n');
 }
 
 /**

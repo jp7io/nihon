@@ -25,17 +25,26 @@ export const dict = {
     ja: 'ウィキペディア',
     en: 'Wikipedia',
   },
-  capitals: {
+  reportAnIssue: {
+    ja: '問題を報告する',
+    furigana: ['もん', 'だい', '', 'ほう', 'こく', '', '', ''],
+    en: 'Report an Issue',
+  },
+}
+
+/** @type {Object.<string, Name>} */
+export const layers = {
+  capital: {
     ja: '県庁',
     furigana: ['けん', 'ちょう'],
     en: 'Capitals',
   },
-  prefectures: {
+  prefecture: {
     ja: '都道府県',
     furigana: ['と', 'どう', 'ふ', 'けん'],
     en: 'Prefectures',
   },
-  favorites: {
+  favorite: {
     ja: 'お気に',
     furigana: ['', 'き', 'に'],
     en: 'Favorites',
@@ -45,6 +54,10 @@ export const dict = {
     furigana: ['とう', 'きょう', 'と'],
     en: 'Tokyo',
   },
+}
+
+/** @type {Object.<string, Name>} */
+export const fillmode = {
   color: {
     ja: '色',
     furigana: ['いろ'],
@@ -54,11 +67,6 @@ export const dict = {
     ja: '模様',
     furigana: ['も', 'よう'],
     en: 'Pattern',
-  },
-  reportAnIssue: {
-    ja: '問題を報告する',
-    furigana: ['もん', 'だい', '', 'ほう', 'こく', '', '', ''],
-    en: 'Report an Issue',
   },
 }
 
