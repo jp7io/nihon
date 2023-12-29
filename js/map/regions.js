@@ -14,7 +14,7 @@ import { drawCities } from './cities.js';
 import { drawClickableArea } from './clickableArea.js';
 import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from "../utils.js";
 import { recoverFillmode } from '../fillMode.js';
-import { vanState } from '../state.js';
+import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -73,7 +73,7 @@ export function setActiveRegion(region, callback) {
     callback && callback();
   });
 
-  vanState.region.val = region;
+  state.region && (state.region.val = region);
 
 }
 

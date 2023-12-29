@@ -7,7 +7,7 @@ import { setInfo } from './info.js';
 import { municipalityType } from '../data/tokyo.js';
 import { setLayer } from './layers.js';
 import { colorsTokyo } from './colorsTokyo.js';
-import { vanState } from './state.js';
+import { state } from './state.js';
 
 import van from "../lib/van.js"
 import { furigana } from './furigana.js';
@@ -16,14 +16,14 @@ import { setActiveMunicipalityType } from './tokyo.js';
 const { div, a } = van.tags
 
 const LegendJapan = () => regions.map((region, index) => (
-  LegendItem(region, colors[index], vanState.region, {
+  LegendItem(region, colors[index], state.region, {
     onclick: () => setActiveRegion(region),
     href: `#${region.name.en}`,
   }
   )));
 
 const LegendTokyo = () => Object.values(municipalityType).map((type, index) => (
-  LegendItem(type, colorsTokyo[index], vanState.municipalityType, {
+  LegendItem(type, colorsTokyo[index], state.municipalityType, {
     onclick: () => setActiveMunicipalityType(type),
   }
   )));
@@ -55,8 +55,8 @@ const LegendItem = (item, { color, pattern }, state, linkProps) => {
     {
       class: 'name'
     },
+    furigana(name),
   )
-  nameElm.innerHTML = furigana(name);
 
   const itemElm = div(
     {
@@ -78,13 +78,13 @@ const LegendItem = (item, { color, pattern }, state, linkProps) => {
   return linkElm;
 }
 
-const elm = document.getElementById('legend-japan');
-elm && van.add(elm, LegendJapan())
-
-const tokyoElm = document.getElementById('legend-tokyo');
-tokyoElm && van.add(tokyoElm, LegendTokyo())
-
 export function drawLegendItems() {
+  const elm = document.getElementById('legend-japan');
+  elm && van.add(elm, LegendJapan())
+
+  const tokyoElm = document.getElementById('legend-tokyo');
+  tokyoElm && van.add(tokyoElm, LegendTokyo())
+
   const legendH1 = document.querySelector('#title h1');
   legendH1?.addEventListener('click', () => {
     setLayer('capitals')

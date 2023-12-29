@@ -3,7 +3,6 @@
 import { state } from "./state.js";
 import { colors } from './colors.js';
 import { regions } from '../data/regions.js';
-import "./legend.js";
 import { initFillMode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
 import { debounce, extractCities, extractPrefectures, loadHTML, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
@@ -11,11 +10,13 @@ import { initLayers, setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
+import { drawLegendItems } from './legend.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
   loadPatterns();
   await loadIncludes();
+  drawLegendItems();
   createInlineSVG();
   setActiveData();
   initTokyo();
@@ -28,7 +29,6 @@ async function loadIncludes() {
     initLayers();
   });
   await loadHTML('shuriken-placeholder', './includes/shuriken.html');
-  await loadHTML('info-placeholder', './includes/info.html');
 };
 
 function setActiveData() {
@@ -66,8 +66,8 @@ function setActiveData() {
 function initPosition() {
   window.addEventListener('resize', debounce(() => {
     const { region } = parseHash();
-    if (region === 'Tokyo') {
-      centerTokyo(state.municipalityType);
+    if (region === 'Tokyo' && state.municipalityType) {
+      centerTokyo(state.municipalityType.val);
       return;
     } else {
       /** @type {NodeListOf<SVGTextElement>} */

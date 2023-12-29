@@ -3,6 +3,7 @@
 import van from '../lib/van.js';
 
 /**
+ * @typedef {import('../lib/van.js').State} State
  * @typedef {import('../data/regions.js').Region} Region
  * @typedef {import('../data/regions.js').Prefecture} Prefecture
  * @typedef {import('../data/regions.js').City} City
@@ -10,29 +11,18 @@ import van from '../lib/van.js';
  */
 
 /**
- * @typedef {Object} State
- * @property {Region | null} region
- * @property {Prefecture | null} prefecture
- * @property {City | null} city
- * @property {Municipality | null} municipality
- * @property {Object | null} municipalityType
+ * @typedef {Object} AppState
+ * @property {State=} region
+ * @property {State<Prefecture>=} prefecture
+ * @property {State<City>=} city
+ * @property {State<Municipality>=} municipality
+ * @property {State=} municipalityType
+ * @property {State<string>=} layer
+ * @property {State<string>=} fillMode
  */
 
-/** @type State */
+/** @type {AppState} */
 export const state = {
-  region: null,
-  prefecture: null,
-  city: null,
-  municipality: null,
-  municipalityType: null,
-}
-
-export function setState(newState) {
-  Object.assign(state, newState);
-}
-
-/** @type {any} */
-export const vanState = {
   region: van.state(null),
   municipalityType: van.state(null),
 }
