@@ -8,11 +8,12 @@ import { setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
-import { LegendElm, LayersElm, FillmodeElm, AboutElm, ShurikenElm } from '../components/index.js';
+import { TitleElm, LegendElm, LayersElm, FillmodeElm, AboutElm, ShurikenElm } from '../components/index.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
   loadPatterns();
+  drawComponent('title-placeholder', TitleElm);
   drawComponent('layersSet', LayersElm);
   drawComponent('fillmodeSet', FillmodeElm);
   drawComponent('about', AboutElm);

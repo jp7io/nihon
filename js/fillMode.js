@@ -13,9 +13,6 @@ import { colorsTokyo } from './colorsTokyo.js';
  * @param {Color[]} colors
  */
 export function setFillmode(mode, colors) {
-  /** @type {HTMLElement | null} */
-  const elm = document.querySelector(`#fillmodeSet .item[data-fillmode=${mode}]`);
-
   document.body.className = `fillmode-${mode}`;
 
   regions.forEach((_, index) => {
