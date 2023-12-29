@@ -16,7 +16,7 @@ export function initTokyo() {
   tokyoBorders.forEach(border => {
     const id = replaceSpecialCharactersWithAscii(border.name.en);
     const element = document.querySelector(`#Borders #Text #${id} tspan`);
-    element && (element.innerHTML = border.name.ja.join(''));
+    element && (element.innerHTML = border.name.ja);
   });
 
   tokyo.forEach(municipality => {
@@ -25,7 +25,7 @@ export function initTokyo() {
     const texts = document.querySelectorAll(`#Municipalities #Text #${id} tspan`);
     texts.forEach((element, index) => {
       if (index === 0) {
-        element.innerHTML = municipality.name.ja.join('');
+        element.innerHTML = municipality.name.ja;
         element.addEventListener('click', () => {
           setMunicipality(municipality);
         });

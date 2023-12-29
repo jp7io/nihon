@@ -84,7 +84,7 @@ export function parseDataForPrefectures(data, filter = null) {
       dataArray.push([
         location.lat,
         location.lng,
-        name.ja.join(''),
+        name.ja,
         index
       ]);
     })
@@ -107,7 +107,7 @@ export function parseDataForCities(data, filter = null) {
         dataArray.push([
           location.lat,
           location.lng,
-          name.ja.join(''),
+          name.ja,
           1
         ]);
       })

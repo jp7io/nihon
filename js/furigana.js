@@ -13,7 +13,7 @@ const { ruby, rbc, rb, rtc, rt, div } = van.tags
  * @param {Name} name
  * @returns string
  */
-export function furigana(name) {
+export function furigana(name, annotation = true) {
   const jaElm = div(
     {
       class: 'ja',
@@ -24,7 +24,7 @@ export function furigana(name) {
     ),
     rbc(
       {},
-      name.ja.map(item => rb({}, item)),
+      name.ja && name.ja.split('').map(item => rb({}, item)),
     )
     ,
   );
@@ -38,7 +38,7 @@ export function furigana(name) {
 
   const rubyElm = ruby({
     class: 'furigana',
-  }, jaElm, annotationElm)
+  }, jaElm, annotation ? annotationElm : undefined)
 
   return rubyElm;
 }

@@ -14,7 +14,7 @@ const setInfoSelected = (name, flag) => div(
   },
   flag && div({ class: 'flag' }, img({ src: `./img/${flag}.svg` })),
   furigana(name),
-  div({ class: 'wikipedia' }, a({ href: `https://ja.wikipedia.org/wiki/${name.ja.join('')}`, target: '_blank' }, furigana(dict.wikipedia))),
+  div({ class: 'wikipedia' }, a({ href: `https://ja.wikipedia.org/wiki/${name.ja}`, target: '_blank' }, furigana(dict.wikipedia))),
 );
 
 /**
@@ -93,7 +93,7 @@ export function setInfo(type, data) {
 
     infoSelected.innerHTML = setInfoSelected(name, flag).innerHTML;
 
-    document.title = `${paths.map(path => path.name.ja.join('')).join(' / ')} / 日本`;
+    document.title = `${paths.map(path => path.name.ja).join(' / ')} / 日本`;
     document.location.hash = paths.reverse().map(path => replaceSpecialCharactersWithAscii(path.name.en)).join('/');
   } else {
     info.classList.remove('active');
@@ -102,7 +102,7 @@ export function setInfo(type, data) {
   }
 }
 
-const infoToolTip = div({ id: 'info-tooltip' }, furigana(dict.info.toolTip));
+const infoToolTip = div({ id: 'info-tooltip' }, furigana(dict.toolTip));
 const infoData = div({ id: 'info-data' });
 
 const infoElm = document.getElementById('info');

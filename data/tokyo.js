@@ -1,3 +1,9 @@
+// @ts-check
+
+/**
+ * @typedef {import('./regions').Name} Name
+ */
+
 /**
  * @typedef {Object} Municipality
  * @property {Name} name
@@ -11,28 +17,28 @@ export const municipalityType = {
   ku: {
     name: {
       en: 'Special-Ward',
-      ja: ['区'],
+      ja: '区',
       furigana: ['く'],
     },
   },
   shi: {
     name: {
       en: 'City',
-      ja: ['市'],
+      ja: '市',
       furigana: ['し'],
     },
   },
   machi: {
     name: {
       en: 'Town',
-      ja: ['町'],
+      ja: '町',
       furigana: ['まち'],
     },
   },
   mura: {
     name: {
       en: 'Village',
-      ja: ['村'],
+      ja: '村',
       furigana: ['むら'],
     },
   },
@@ -45,7 +51,7 @@ export const tokyo = [
   {
     name: {
       en: 'Chiyoda',
-      ja: ['千', '代', '田', '区'],
+      ja: '千代田区',
       furigana: ['ち', 'よ', 'だ', 'く'],
     },
     type: ku,
@@ -56,7 +62,7 @@ export const tokyo = [
   {
     name: {
       en: 'Chūō',
-      ja: ['中', '央', '区'],
+      ja: '中央区',
       furigana: ['ちゅう', 'おう', 'く'],
     },
     type: ku,
@@ -67,7 +73,7 @@ export const tokyo = [
   {
     name: {
       en: 'Minato',
-      ja: ['港', '区'],
+      ja: '港区',
       furigana: ['みなと', 'く'],
     },
     type: ku,
@@ -78,7 +84,7 @@ export const tokyo = [
   {
     name: {
       en: 'Shinjuku',
-      ja: ['新', '宿', '区'],
+      ja: '新宿区',
       furigana: ['しん', 'じゅく', 'く'],
     },
     type: ku,
@@ -89,7 +95,7 @@ export const tokyo = [
   {
     name: {
       en: 'Bunkyō',
-      ja: ['文', '京', '区'],
+      ja: '文京区',
       furigana: ['ぶん', 'きょう', 'く'],
     },
     type: ku,
@@ -100,7 +106,7 @@ export const tokyo = [
   {
     name: {
       en: 'Taitō',
-      ja: ['台', '東', '区'],
+      ja: '台東区',
       furigana: ['たい', 'とう', 'く'],
     },
     type: ku,
@@ -111,7 +117,7 @@ export const tokyo = [
   {
     name: {
       en: 'Sumida',
-      ja: ['墨', '田', '区'],
+      ja: '墨田区',
       furigana: ['すみ', 'だ', 'く'],
     },
     type: ku,
@@ -122,7 +128,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kōtō',
-      ja: ['江', '東', '区'],
+      ja: '江東区',
       furigana: ['こう', 'とう', 'く'],
     },
     type: ku,
@@ -133,7 +139,7 @@ export const tokyo = [
   {
     name: {
       en: 'Shinagawa',
-      ja: ['品', '川', '区'],
+      ja: '品川区',
       furigana: ['しな', 'がわ', 'く'],
     },
     type: ku,
@@ -144,7 +150,7 @@ export const tokyo = [
   {
     name: {
       en: 'Meguro',
-      ja: ['目', '黒', '区'],
+      ja: '目黒区',
       furigana: ['め', 'ぐろ', 'く'],
     },
     type: ku,
@@ -155,7 +161,7 @@ export const tokyo = [
   {
     name: {
       en: 'Ōta',
-      ja: ['大', '田', '区'],
+      ja: '大田区',
       furigana: ['おお', 'た', 'く'],
     },
     type: ku,
@@ -166,7 +172,7 @@ export const tokyo = [
   {
     name: {
       en: 'Setagaya',
-      ja: ['世', '田', '谷', '区'],
+      ja: '世田谷区',
       furigana: ['せ', 'た', 'がや', 'く'],
     },
     type: ku,
@@ -177,7 +183,7 @@ export const tokyo = [
   {
     name: {
       en: 'Shibuya',
-      ja: ['渋', '谷', '区'],
+      ja: '渋谷区',
       furigana: ['しぶ', 'や', 'く'],
     },
     type: ku,
@@ -188,7 +194,7 @@ export const tokyo = [
   {
     name: {
       en: 'Nakano',
-      ja: ['中', '野', '区'],
+      ja: '中野区',
       furigana: ['なか', 'の', 'く'],
     },
     type: ku,
@@ -199,7 +205,7 @@ export const tokyo = [
   {
     name: {
       en: 'Suginami',
-      ja: ['杉', '並', '区'],
+      ja: '杉並区',
       furigana: ['すぎ', 'なみ', 'く'],
     },
     type: ku,
@@ -210,7 +216,7 @@ export const tokyo = [
   {
     name: {
       en: 'Toshima',
-      ja: ['豊', '島', '区'],
+      ja: '豊島区',
       furigana: ['とし', 'ま', 'く'],
     },
     type: ku,
@@ -221,7 +227,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kita',
-      ja: ['北', '区'],
+      ja: '北区',
       furigana: ['きた', 'く'],
     },
     type: ku,
@@ -232,7 +238,7 @@ export const tokyo = [
   {
     name: {
       en: 'Arakawa',
-      ja: ['荒', '川', '区'],
+      ja: '荒川区',
       furigana: ['あら', 'かわ', 'く'],
     },
     type: ku,
@@ -243,7 +249,7 @@ export const tokyo = [
   {
     name: {
       en: 'Itabashi',
-      ja: ['板', '橋', '区'],
+      ja: '板橋区',
       furigana: ['いた', 'ばし', 'く'],
     },
     type: ku,
@@ -254,7 +260,7 @@ export const tokyo = [
   {
     name: {
       en: 'Nerima',
-      ja: ['練', '馬', '区'],
+      ja: '練馬区',
       furigana: ['ねり', 'ま', 'く'],
     },
     type: ku,
@@ -265,7 +271,7 @@ export const tokyo = [
   {
     name: {
       en: 'Adachi',
-      ja: ['足', '立', '区'],
+      ja: '足立区',
       furigana: ['あだ', 'ち', 'く'],
     },
     type: ku,
@@ -276,7 +282,7 @@ export const tokyo = [
   {
     name: {
       en: 'Katsushika',
-      ja: ['葛', '飾', '区'],
+      ja: '葛飾区',
       furigana: ['かつ', 'しか', 'く'],
     },
     type: ku,
@@ -287,7 +293,7 @@ export const tokyo = [
   {
     name: {
       en: 'Edogawa',
-      ja: ['江', '戸川', '区'],
+      ja: '江戸川区',
       furigana: ['え', 'ど', 'がわ', 'く'],
     },
     type: ku,
@@ -298,7 +304,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hachiōji',
-      ja: ['八', '王', '子', '市'],
+      ja: '八王子市',
       furigana: ['はち', 'おう', 'じ', 'し'],
     },
     type: shi,
@@ -309,7 +315,7 @@ export const tokyo = [
   {
     name: {
       en: 'Tachikawa',
-      ja: ['立', '川', '市'],
+      ja: '立川市',
       furigana: ['たち', 'かわ', 'し'],
     },
     type: shi,
@@ -320,7 +326,7 @@ export const tokyo = [
   {
     name: {
       en: 'Musashino',
-      ja: ['武', '蔵', '野', '市'],
+      ja: '武蔵野市',
       furigana: [' む', 'さし', 'の', 'し'],
     },
     type: shi,
@@ -331,7 +337,7 @@ export const tokyo = [
   {
     name: {
       en: 'Mitaka',
-      ja: ['三', '鷹', '市'],
+      ja: '三鷹市',
       furigana: ['み', 'たか', 'し'],
     },
     type: shi,
@@ -342,7 +348,7 @@ export const tokyo = [
   {
     name: {
       en: 'Ōme',
-      ja: ['青', '梅', '市'],
+      ja: '青梅市',
       furigana: ['おう', 'め', 'し'],
     },
     type: shi,
@@ -353,7 +359,7 @@ export const tokyo = [
   {
     name: {
       en: 'Fuchū',
-      ja: ['府', '中', '市'],
+      ja: '府中市',
       furigana: ['ふ', 'ちゅう', 'し'],
     },
     type: shi,
@@ -364,7 +370,7 @@ export const tokyo = [
   {
     name: {
       en: 'Akishima',
-      ja: ['昭', '島', '市'],
+      ja: '昭島市',
       furigana: ['あき', 'しま', 'し'],
     },
     type: shi,
@@ -375,7 +381,7 @@ export const tokyo = [
   {
     name: {
       en: 'Chōfu',
-      ja: ['調', '布', '市'],
+      ja: '調布市',
       furigana: ['ちょう', 'ふ', 'し'],
     },
     type: shi,
@@ -386,7 +392,7 @@ export const tokyo = [
   {
     name: {
       en: 'Machida',
-      ja: ['町', '田', '市'],
+      ja: '町田市',
       furigana: ['まち', 'だ', 'し'],
     },
     type: shi,
@@ -397,7 +403,7 @@ export const tokyo = [
   {
     name: {
       en: 'Koganei',
-      ja: ['小', '金', '井', '市'],
+      ja: '小金井市',
       furigana: ['こ', 'がね', 'い', 'し'],
     },
     type: shi,
@@ -408,7 +414,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kodaira',
-      ja: ['小', '平', '市'],
+      ja: '小平市',
       furigana: ['こ', 'だい', 'ら', 'し'],
     },
     type: shi,
@@ -419,7 +425,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hino',
-      ja: ['日', '野', '市'],
+      ja: '日野市',
       furigana: ['ひ', 'の', 'し'],
     },
     type: shi,
@@ -430,7 +436,7 @@ export const tokyo = [
   {
     name: {
       en: 'Higashimurayama',
-      ja: ['東', '村山', '市'],
+      ja: '東村山市',
       furigana: ['ひがし', 'む', 'ら', 'やま', 'し'],
     },
     type: shi,
@@ -441,7 +447,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kokubunji',
-      ja: ['国', '分寺', '市'],
+      ja: '国分寺市',
       furigana: ['こく', 'ぶん', 'じ', 'し'],
     },
     type: shi,
@@ -452,7 +458,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kunitachi',
-      ja: ['国', '立', '市'],
+      ja: '国立市',
       furigana: ['くに', 'たち', 'し'],
     },
     type: shi,
@@ -463,7 +469,7 @@ export const tokyo = [
   {
     name: {
       en: 'Fussa',
-      ja: ['福', '生', '市'],
+      ja: '福生市',
       furigana: ['ふっ', 'さ', 'し'],
     },
     type: shi,
@@ -474,7 +480,7 @@ export const tokyo = [
   {
     name: {
       en: 'Komae',
-      ja: ['狛', '江', '市'],
+      ja: '狛江市',
       furigana: ['こ', 'まえ', 'し'],
     },
     type: shi,
@@ -485,7 +491,7 @@ export const tokyo = [
   {
     name: {
       en: 'Higashiyamato',
-      ja: ['東', '大和', '市'],
+      ja: '東大和市',
       furigana: ['ひがし', 'やま', 'と', 'し'],
     },
     type: shi,
@@ -496,7 +502,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kiyose',
-      ja: ['清', '瀬', '市'],
+      ja: '清瀬市',
       furigana: ['きよ', 'せ', 'し'],
     },
     type: shi,
@@ -507,7 +513,7 @@ export const tokyo = [
   {
     name: {
       en: 'Higashikurume',
-      ja: ['東', '久', '留', '米', '市'],
+      ja: '東久留米市',
       furigana: ['ひがし', 'くる', 'め', 'し'],
     },
     type: shi,
@@ -518,7 +524,7 @@ export const tokyo = [
   {
     name: {
       en: 'Musashimurayama',
-      ja: ['武', '蔵', '村', '山', '市'],
+      ja: '武蔵村山市',
       furigana: ['むさし', 'む', 'ら', 'やま', 'し'],
     },
     type: shi,
@@ -529,7 +535,7 @@ export const tokyo = [
   {
     name: {
       en: 'Tama',
-      ja: ['多', '摩', '市'],
+      ja: '多摩市',
       furigana: ['た', 'ま', 'し'],
     },
     type: shi,
@@ -540,7 +546,7 @@ export const tokyo = [
   {
     name: {
       en: 'Inagi',
-      ja: ['稲', '城', '市'],
+      ja: '稲城市',
       furigana: ['いな', 'ぎ', 'し'],
     },
     type: shi,
@@ -551,7 +557,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hamura',
-      ja: ['羽', '村', '市'],
+      ja: '羽村市',
       furigana: ['は', 'むら', 'し'],
     },
     type: shi,
@@ -562,7 +568,7 @@ export const tokyo = [
   {
     name: {
       en: 'Akiruno',
-      ja: ['あ', 'き', 'る', '野', '市'],
+      ja: 'あきる野市',
       furigana: ['', '', '', 'の', 'し'],
     },
     type: shi,
@@ -573,7 +579,7 @@ export const tokyo = [
   {
     name: {
       en: 'Nishitokyo',
-      ja: ['西', '東京', '市'],
+      ja: '西東京市',
       furigana: ['にし', 'とう', 'きょう', 'し'],
     },
     type: shi,
@@ -584,7 +590,7 @@ export const tokyo = [
   {
     name: {
       en: 'Mizuho',
-      ja: ['瑞', '穂', '町'],
+      ja: '瑞穂町',
       furigana: ['みず', 'ほ', 'まち'],
     },
     type: machi,
@@ -595,7 +601,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hinode',
-      ja: ['日', 'の', '出', '町'],
+      ja: '日の出町',
       furigana: ['ひ', '', 'で', 'まち'],
     },
     type: machi,
@@ -606,7 +612,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hinohara',
-      ja: ['檜', '原', '村'],
+      ja: '檜原村',
       furigana: ['ひの', 'はら', 'むら'],
     },
     type: mura,
@@ -617,7 +623,7 @@ export const tokyo = [
   {
     name: {
       en: 'Okutama',
-      ja: ['奥', '多摩', '町'],
+      ja: '奥多摩町',
       furigana: ['おく', 'た', 'まち'],
     },
     type: machi,
@@ -628,7 +634,7 @@ export const tokyo = [
   {
     name: {
       en: 'Ōshima',
-      ja: ['大', '島', '町'],
+      ja: '大島町',
       furigana: ['おお', 'しま', 'まち'],
     },
     type: machi,
@@ -639,7 +645,7 @@ export const tokyo = [
   {
     name: {
       en: 'To-shima',
-      ja: ['利', '島', '村'],
+      ja: '利島村',
       furigana: ['と', 'しま', 'むら'],
     },
     type: mura,
@@ -650,7 +656,7 @@ export const tokyo = [
   {
     name: {
       en: 'Niijima',
-      ja: ['新', '島', '村'],
+      ja: '新島村',
       furigana: ['にい', 'じま', 'むら'],
     },
     type: mura,
@@ -661,7 +667,7 @@ export const tokyo = [
   {
     name: {
       en: 'Kōzushima',
-      ja: ['神', '津', '島', '村'],
+      ja: '神津島村',
       furigana: ['こう', 'ず', 'しま', 'むら'],
     },
     type: mura,
@@ -672,7 +678,7 @@ export const tokyo = [
   {
     name: {
       en: 'Miyake',
-      ja: ['三', '宅', '村'],
+      ja: '三宅村',
       furigana: ['みや', 'け', 'むら'],
     },
     type: mura,
@@ -683,7 +689,7 @@ export const tokyo = [
   {
     name: {
       en: 'Mikurajima',
-      ja: ['御', '蔵', '島', '村'],
+      ja: '御蔵島村',
       furigana: ['みく', 'ら', 'じま', 'むら'],
     },
     type: mura,
@@ -694,7 +700,7 @@ export const tokyo = [
   {
     name: {
       en: 'Hachijō',
-      ja: ['八', '丈', '町'],
+      ja: '八丈町',
       furigana: ['はち', 'じょう', 'まち'],
     },
     type: machi,
@@ -705,7 +711,7 @@ export const tokyo = [
   {
     name: {
       en: 'Aogashima',
-      ja: ['青', 'ヶ', '島', '村'],
+      ja: '青ヶ島村',
       furigana: ['あお', 'が', 'しま', 'むら'],
     },
     type: mura,
@@ -716,7 +722,7 @@ export const tokyo = [
   {
     name: {
       en: 'Ogasawara',
-      ja: ['小', '笠', '原', '村'],
+      ja: '小笠原村',
       furigana: ['お', 'がさ', 'わら', 'むら'],
     },
     type: mura,
@@ -730,25 +736,25 @@ export const tokyoBorders = [
   {
     name: {
       en: 'Chiba',
-      ja: ['千', '葉', '県'],
+      ja: '千葉県',
       furigana: ['ち', 'ば', 'けん'],
     },
   }, {
     name: {
       en: 'Kanagawa',
-      ja: ['神', '奈', '川', '県'],
+      ja: '神奈川県',
       furigana: ['かな', 'がわ', 'けん'],
     }
   }, {
     name: {
       en: 'Yamanashi',
-      ja: ['山', '梨', '県'],
+      ja: '山梨県',
       furigana: ['やま', 'なし', 'けん'],
     }
   }, {
     name: {
       en: 'Saitama',
-      ja: ['埼', '玉', '県'],
+      ja: '埼玉県',
       furigana: ['さい', 'たま', 'けん'],
     },
   },

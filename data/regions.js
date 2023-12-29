@@ -9,7 +9,7 @@
 /**
  * @typedef {Object} Name
  * @property {string} en
- * @property {string[]} ja
+ * @property {string} ja
  * @property {string[]} [furigana]
  */
 
@@ -57,7 +57,7 @@ export const regions = [
     code: 'HOK',
     name: {
       en: 'Hokkaidō',
-      ja: ['北', '海', '道'],
+      ja: '北海道',
       furigana: ['ほっ', 'かい', 'どう']
     },
     zoom: {
@@ -69,7 +69,7 @@ export const regions = [
         code: '01',
         name: {
           en: 'Hokkaidō',
-          ja: ['北', '海', '道'],
+          ja: '北海道',
           furigana: ['ほっ', 'かい', 'どう']
         },
         location: { lat: 43.2203266, lng: 142.8634737 },
@@ -77,7 +77,7 @@ export const regions = [
           {
             name: {
               en: 'Sapporo',
-              ja: ['札', '幌', '市'],
+              ja: '札幌市',
               furigana: ['さっ', 'ぽろ', 'し'],
             },
             types: [cityType.capital, cityType.favorite],
@@ -91,7 +91,7 @@ export const regions = [
     code: 'TOH',
     name: {
       en: 'Tōhoku',
-      ja: ['東', '北'],
+      ja: '東北',
       furigana: ['とう', 'ほく']
     },
     zoom: {
@@ -103,7 +103,7 @@ export const regions = [
         code: '02',
         name: {
           en: 'Aomori',
-          ja: ['青', '森', '県'],
+          ja: '青森県',
           furigana: ['あお', 'もり', 'けん']
         },
         location: { lat: 40.7657077, lng: 140.9175879 },
@@ -111,7 +111,7 @@ export const regions = [
           {
             name: {
               en: 'Aomori',
-              ja: ['青', '森', '市'],
+              ja: '青森市',
               furigana: ['あお', 'もり', 'し'],
             },
             types: [cityType.capital],
@@ -123,7 +123,7 @@ export const regions = [
         code: '03',
         name: {
           en: 'Iwate',
-          ja: ['岩', '手', '県'],
+          ja: '岩手県',
           furigana: ['いわ', 'て', 'けん']
         },
         location: { lat: 39.5832989, lng: 141.2534574 },
@@ -131,7 +131,7 @@ export const regions = [
           {
             name: {
               en: 'Morioka',
-              ja: ['森', '岡', '市'],
+              ja: '森岡市',
               furigana: ['もり', 'おか', 'し'],
             },
             types: [cityType.capital],
@@ -143,7 +143,7 @@ export const regions = [
         code: '04',
         name: {
           en: 'Miyagi',
-          ja: ['宮', '城', '県'],
+          ja: '宮城県',
           furigana: ['みや', 'ぎ', 'けん']
         },
         location: { lat: 38.630612, lng: 141.1193048 },
@@ -151,7 +151,7 @@ export const regions = [
           {
             name: {
               en: 'Sendai',
-              ja: ['仙', '台', '市'],
+              ja: '仙台市',
               furigana: ['せん', 'だい', 'し'],
             },
             types: [cityType.capital],
@@ -163,7 +163,7 @@ export const regions = [
         code: '05',
         name: {
           en: 'Akita',
-          ja: ['秋', '田', '県'],
+          ja: '秋田県',
           furigana: ['あき', 'た', 'けん']
         },
         location: { lat: 40.1376293, lng: 140.334341 },
@@ -171,7 +171,7 @@ export const regions = [
           {
             name: {
               en: 'Akita',
-              ja: ['秋', '田', '市'],
+              ja: '秋田市',
               furigana: ['あき', 'た', 'し']
             },
             types: [cityType.capital],
@@ -183,7 +183,7 @@ export const regions = [
         code: '06',
         name: {
           en: 'Yamagata',
-          ja: ['山', '形', '県'],
+          ja: '山形県',
           furigana: ['やま', 'がた', 'けん']
         },
         location: { lat: 38.5370564, lng: 140.1435198 },
@@ -191,7 +191,7 @@ export const regions = [
           {
             name: {
               en: 'Yamagata',
-              ja: ['山', '形', '市'],
+              ja: '山形市',
               furigana: ['やま', 'がた', 'し'],
             },
             types: [cityType.capital],
@@ -204,7 +204,7 @@ export const regions = [
         code: '07',
         name: {
           en: 'Fukushima',
-          ja: ['福', '島', '県'],
+          ja: '福島県',
           furigana: ['ふく', 'しま', 'けん']
         },
         location: { lat: 37.3834373, lng: 140.1832516 },
@@ -212,7 +212,7 @@ export const regions = [
           {
             name: {
               en: 'Fukushima',
-              ja: ['福', '島', '市'],
+              ja: '福島市',
               furigana: ['ふく', 'しま', 'し'],
             },
             types: [cityType.capital],
@@ -227,7 +227,7 @@ export const regions = [
     code: 'KAN',
     name: {
       en: 'Kantō',
-      ja: ['関', '東'],
+      ja: '関東',
       furigana: ['かん', 'とう']
     },
     zoom: {
@@ -239,7 +239,7 @@ export const regions = [
         code: '08',
         name: {
           en: 'Ibaraki',
-          ja: ['茨', '城', '県'],
+          ja: '茨城県',
           furigana: ['いば', 'らき', 'けん']
         },
         location: { lat: 36.2193571, lng: 140.1832516 },
@@ -247,7 +247,7 @@ export const regions = [
           {
             name: {
               en: 'Mito',
-              ja: ['水', '戸', '市'],
+              ja: '水戸市',
               furigana: ['み', 'と', 'し'],
             },
             types: [cityType.capital],
@@ -259,7 +259,7 @@ export const regions = [
         code: '09',
         name: {
           en: 'Tochigi',
-          ja: ['栃', '木', '県'],
+          ja: '栃木県',
           furigana: ['とち', 'ぎ', 'けん']
         },
         location: { lat: 36.6714739, lng: 139.8547266 },
@@ -267,7 +267,7 @@ export const regions = [
           {
             name: {
               en: 'Utsunomiya',
-              ja: ['宇', '都', '宮', '市'],
+              ja: '宇都宮市',
               furigana: ['う', 'つ', 'のみや', 'し'],
             },
             types: [cityType.capital],
@@ -279,7 +279,7 @@ export const regions = [
         code: '10',
         name: {
           en: 'Gunma',
-          ja: ['群', '馬', '県'],
+          ja: '群馬県',
           furigana: ['ぐん', 'ま', 'けん']
         },
         location: { lat: 36.5605388, lng: 138.8799972 },
@@ -287,7 +287,7 @@ export const regions = [
           {
             name: {
               en: 'Maebashi',
-              ja: ['前', '橋', '市'],
+              ja: '前橋市',
               furigana: ['まえ', 'ばし', 'し']
             },
             types: [cityType.capital],
@@ -299,7 +299,7 @@ export const regions = [
         code: '11',
         name: {
           en: 'Saitama',
-          ja: ['埼', '玉', '県'],
+          ja: '埼玉県',
           furigana: ['さい', 'たま', 'けん']
         },
         location: { lat: 35.9962513, lng: 139.4466005 },
@@ -307,7 +307,7 @@ export const regions = [
           {
             name: {
               en: 'Saitama',
-              ja: ['埼', '玉', '市'],
+              ja: '埼玉市',
               furigana: ['さい', 'たま', 'し']
             },
             types: [cityType.capital],
@@ -319,7 +319,7 @@ export const regions = [
         code: '12',
         name: {
           en: 'Chiba',
-          ja: ['千', '葉', '県'],
+          ja: '千葉県',
           furigana: ['ちば']
         },
         location: { lat: 35.3354155, lng: 140.1832516 },
@@ -327,7 +327,7 @@ export const regions = [
           {
             name: {
               en: 'Chiba',
-              ja: ['チ', '葉', '市'],
+              ja: 'チ葉市',
               furigana: ['ち', 'ば', 'し']
             },
             types: [cityType.capital],
@@ -339,7 +339,7 @@ export const regions = [
         code: '13',
         name: {
           en: 'Tōkyō',
-          ja: ['東', '京', '都'],
+          ja: '東京都',
           furigana: ['とう', 'きょう', 'と']
         },
         location: { lat: 35.6764225, lng: 139.650027 },
@@ -347,7 +347,7 @@ export const regions = [
           {
             name: {
               en: 'Tōkyō',
-              ja: ['東', '京', '都'],
+              ja: '東京都',
               furigana: ['とう', 'きょう', 'と'],
             },
             types: [cityType.capital, cityType.nationalCapital, cityType.favorite],
@@ -359,7 +359,7 @@ export const regions = [
         code: '14',
         name: {
           en: 'Kanagawa',
-          ja: ['神', '奈川', '県'],
+          ja: '神奈川県',
           furigana: ['かな', 'がわ', 'けん']
         },
         location: { lat: 35.4913535, lng: 139.284143 },
@@ -367,7 +367,7 @@ export const regions = [
           {
             name: {
               en: 'Yokohama',
-              ja: ['横', '浜', '市'],
+              ja: '横浜市',
               furigana: ['よこ', 'はま', 'し'],
             },
             types: [cityType.capital],
@@ -381,7 +381,7 @@ export const regions = [
     code: 'CHU',
     name: {
       en: 'Chūbu',
-      ja: ['中', '部'],
+      ja: '中部',
       furigana: ['ちゅう', 'ぶ']
     },
     zoom: {
@@ -393,7 +393,7 @@ export const regions = [
         code: '15',
         name: {
           en: 'Niigata',
-          ja: ['新', '潟', '県'],
+          ja: '新潟県',
           furigana: ['にい', 'がた', 'けん']
         },
         location: { lat: 37.5178386, lng: 138.9269794 },
@@ -401,7 +401,7 @@ export const regions = [
           {
             name: {
               en: 'Niigata',
-              ja: ['新', '潟', '市'],
+              ja: '新潟市',
               furigana: ['にい', 'がた', 'し'],
             },
             types: [cityType.capital],
@@ -413,7 +413,7 @@ export const regions = [
         code: '16',
         name: {
           en: 'Toyama',
-          ja: ['富', '山', '県'],
+          ja: '富山県',
           furigana: ['とや', 'ま', 'けん']
         },
         location: { lat: 36.6958266, lng: 137.2137071 },
@@ -421,7 +421,7 @@ export const regions = [
           {
             name: {
               en: 'Toyama',
-              ja: ['富', '山', '市'],
+              ja: '富山市',
               furigana: ['とや', 'ま', 'し'],
             },
             types: [cityType.capital],
@@ -434,7 +434,7 @@ export const regions = [
         code: '17',
         name: {
           en: 'Ishikawa',
-          ja: ['石', '川', '県'],
+          ja: '石川県',
           furigana: ['いし', 'かわ', 'けん']
         },
         location: { lat: 36.3260317, lng: 136.5289653 },
@@ -442,7 +442,7 @@ export const regions = [
           {
             name: {
               en: 'Kanazawa',
-              ja: ['金', '沢', '市'],
+              ja: '金沢市',
               furigana: ['かな', 'ざわ', 'し'],
             },
             types: [cityType.capital],
@@ -454,7 +454,7 @@ export const regions = [
         code: '18',
         name: {
           en: 'Fukui',
-          ja: ['福', '井', '県'],
+          ja: '福井県',
           furigana: ['ふく', 'い', 'けん']
         },
         location: { lat: 35.896227, lng: 136.2111579 },
@@ -462,7 +462,7 @@ export const regions = [
           {
             name: {
               en: 'Fukui',
-              ja: ['福', '井', '市'],
+              ja: '福井市',
               furigana: ['ふく', 'い', 'し'],
             },
             types: [cityType.capital],
@@ -474,7 +474,7 @@ export const regions = [
         code: '19',
         name: {
           en: 'Yamanashi',
-          ja: ['山', '梨', '県'],
+          ja: '山梨県',
           furigana: ['やま', 'なし', 'けん']
         },
         location: { lat: 35.6635113, lng: 138.6388879 },
@@ -482,7 +482,7 @@ export const regions = [
           {
             name: {
               en: 'Kōfu',
-              ja: ['甲', '府', '市'],
+              ja: '甲府市',
               furigana: ['こう', 'ふ', 'し'],
             },
             types: [cityType.capital],
@@ -494,7 +494,7 @@ export const regions = [
         code: '20',
         name: {
           en: 'Nagano',
-          ja: ['長', '野', '県'],
+          ja: '長野県',
           furigana: ['なが', 'の', 'けん']
         },
         location: { lat: 36.1543941, lng: 137.9218204 },
@@ -502,7 +502,7 @@ export const regions = [
           {
             name: {
               en: 'Nagano',
-              ja: ['長', '野', '市'],
+              ja: '長野市',
               furigana: ['なが', 'の', 'し'],
             },
             types: [cityType.capital, cityType.favorite],
@@ -514,7 +514,7 @@ export const regions = [
         code: '21',
         name: {
           en: 'Gifu',
-          ja: ['岐', '阜', '県'],
+          ja: '岐阜県',
           furigana: ['ぎ', 'ふ', 'けん']
         },
         location: { lat: 35.7437491, lng: 136.9805103 },
@@ -522,7 +522,7 @@ export const regions = [
           {
             name: {
               en: 'Gifu',
-              ja: ['岐', '阜', '市'],
+              ja: '岐阜市',
               furigana: ['ぎ', 'ふ', 'し']
             },
             types: [cityType.capital],
@@ -534,7 +534,7 @@ export const regions = [
         code: '22',
         name: {
           en: 'Shizuoka',
-          ja: ['静', '岡', '県'],
+          ja: '静岡県',
           furigana: ['しず', 'おか', 'けん']
         },
         location: { lat: 35.0929397, lng: 138.3190276 },
@@ -542,7 +542,7 @@ export const regions = [
           {
             name: {
               en: 'Shizuoka',
-              ja: ['静', '岡', '市'],
+              ja: '静岡市',
               furigana: ['しず', 'おか', 'し']
             },
             types: [cityType.capital],
@@ -551,7 +551,7 @@ export const regions = [
           {
             name: {
               en: 'Shimoda',
-              ja: ['下', '田', '市'],
+              ja: '下田市',
               furigana: ['しも', 'だ', 'し'],
             },
             types: [cityType.favorite],
@@ -564,7 +564,7 @@ export const regions = [
         code: '23',
         name: {
           en: 'Aichi',
-          ja: ['愛', '知', '県'],
+          ja: '愛知県',
           furigana: ['あい', 'ち']
         },
         location: { lat: 35.0182505, lng: 137.2923893 },
@@ -572,7 +572,7 @@ export const regions = [
           {
             name: {
               en: 'Nagoya',
-              ja: ['名', '古', '屋', '市'],
+              ja: '名古屋市',
               furigana: ['な', 'ご', 'や', 'し'],
             },
             types: [cityType.capital],
@@ -587,7 +587,7 @@ export const regions = [
     code: 'KAN',
     name: {
       en: 'Kansai',
-      ja: ['関', '西'],
+      ja: '関西',
       furigana: ['かん', 'さい']
     },
     zoom: {
@@ -599,7 +599,7 @@ export const regions = [
         code: '24',
         name: {
           en: 'Mie',
-          ja: ['三', '重', '県'],
+          ja: '三重県',
           furigana: ['み', 'え', 'けん']
         },
         location: { lat: 33.8143901, lng: 136.0487047 },
@@ -607,7 +607,7 @@ export const regions = [
           {
             name: {
               en: 'Tsu',
-              ja: ['津', '市'],
+              ja: '津市',
               furigana: ['つ', 'し']
             },
             types: [cityType.capital],
@@ -619,7 +619,7 @@ export const regions = [
         code: '25',
         name: {
           en: 'Shiga',
-          ja: ['滋', '賀', '県'],
+          ja: '滋賀県',
           furigana: ['し', 'が', 'けん']
         },
         location: { lat: 35.3292014, lng: 136.0563212 },
@@ -627,7 +627,7 @@ export const regions = [
           {
             name: {
               en: 'Ōtsu',
-              ja: ['大', '津', '市'],
+              ja: '大津市',
               furigana: ['おお', 'つ', 'し']
             },
             types: [cityType.capital],
@@ -639,7 +639,7 @@ export const regions = [
         code: '26',
         name: {
           en: 'Kyōto',
-          ja: ['京', '都', '府'],
+          ja: '京都府',
           furigana: ['きょう', 'と', 'ふ']
         },
         location: { lat: 35.1566609, lng: 135.5251982 },
@@ -647,7 +647,7 @@ export const regions = [
           {
             name: {
               en: 'Kyōto',
-              ja: ['京', '都', '府'],
+              ja: '京都府',
               furigana: ['きょう', 'と', 'ふ'],
             },
             types: [cityType.capital, cityType.favorite],
@@ -659,7 +659,7 @@ export const regions = [
         code: '27',
         name: {
           en: 'Ōsaka',
-          ja: ['大', '阪', '府'],
+          ja: '大阪府',
           furigana: ['おお', 'さか', 'ふ']
         },
         location: { lat: 34.6413315, lng: 135.5629394 },
@@ -667,7 +667,7 @@ export const regions = [
           {
             name: {
               en: 'Ōsaka',
-              ja: ['大', '阪', '府'],
+              ja: '大阪府',
               furigana: ['おお', 'さか', 'ふ'],
             },
             types: [cityType.capital, cityType.favorite],
@@ -680,7 +680,7 @@ export const regions = [
         code: '28',
         name: {
           en: 'Hyōgo',
-          ja: ['兵', '庫', '県'],
+          ja: '兵庫県',
           furigana: ['ひょう', 'ご', 'けん']
         },
         location: { lat: 34.8579518, lng: 134.5453787 },
@@ -688,7 +688,7 @@ export const regions = [
           {
             name: {
               en: 'Kōbe',
-              ja: ['神', '戸', '市'],
+              ja: '神戸市',
               furigana: ['こう', 'べ', 'し'],
             },
             types: [cityType.capital],
@@ -700,7 +700,7 @@ export const regions = [
         code: '29',
         name: {
           en: 'Nara',
-          ja: ['奈', '良', '県'],
+          ja: '奈良県',
           furigana: ['な', 'ら', 'けん']
         },
         location: { lat: 34.2975528, lng: 135.8279734 },
@@ -708,7 +708,7 @@ export const regions = [
           {
             name: {
               en: 'Nara',
-              ja: ['奈', '良', '市'],
+              ja: '奈良市',
               furigana: ['な', 'ら', 'し'],
             },
             types: [cityType.capital],
@@ -720,7 +720,7 @@ export const regions = [
         code: '30',
         name: {
           en: 'Wakayama',
-          ja: ['和', '歌', '山', '県'],
+          ja: '和歌山県',
           furigana: ['わか', 'やま', 'けん']
         },
         location: { lat: 33.9480914, lng: 135.3745358 },
@@ -728,7 +728,7 @@ export const regions = [
           {
             name: {
               en: 'Wakayama',
-              ja: ['和', '歌', '山', '市'],
+              ja: '和歌山市',
               furigana: ['わか', 'やま', 'し'],
             },
             types: [cityType.capital],
@@ -742,7 +742,7 @@ export const regions = [
     code: 'CHU',
     name: {
       en: 'Chūgoku',
-      ja: ['中', '国'],
+      ja: '中国',
       furigana: ['ちゅう', 'ごく']
     },
     zoom: {
@@ -754,7 +754,7 @@ export const regions = [
         code: '31',
         name: {
           en: 'Tottori',
-          ja: ['鳥', '取', '県'],
+          ja: '鳥取県',
           furigana: ['とっ', 'とり', 'けん']
         },
         location: { lat: 35.3573161, lng: 133.4066618 },
@@ -762,7 +762,7 @@ export const regions = [
           {
             name: {
               en: 'Tottori',
-              ja: ['鳥', '取', '市'],
+              ja: '鳥取市',
               furigana: ['とっ', 'とり', 'し'],
             },
             types: [cityType.capital],
@@ -774,7 +774,7 @@ export const regions = [
         code: '32',
         name: {
           en: 'Shimane',
-          ja: ['島', '根', '県'],
+          ja: '島根県',
           furigana: ['しま', 'ね', 'けん']
         },
         location: { lat: 35.1244094, lng: 132.6293446 },
@@ -782,7 +782,7 @@ export const regions = [
           {
             name: {
               en: 'Matsue',
-              ja: ['松', '江', '市'],
+              ja: '松江市',
               furigana: ['まつ', 'え', 'し']
             },
             types: [cityType.capital],
@@ -794,7 +794,7 @@ export const regions = [
         code: '33',
         name: {
           en: 'Okayama',
-          ja: ['岡', '山', '県'],
+          ja: '岡山県',
           furigana: ['おか', 'やま', 'けん']
         },
         location: { lat: 34.8963407, lng: 133.6375314 },
@@ -802,7 +802,7 @@ export const regions = [
           {
             name: {
               en: 'Okayama',
-              ja: ['岡', '山', '市'],
+              ja: '岡山市',
               furigana: ['おか', 'やま', 'し'],
             },
             types: [cityType.capital],
@@ -814,7 +814,7 @@ export const regions = [
         code: '34',
         name: {
           en: 'Hiroshima',
-          ja: ['広', '島', '県'],
+          ja: '広島県',
           furigana: ['ひろ', 'しま', 'けん']
         },
         location: { lat: 34.8823408, lng: 133.0194897 },
@@ -822,7 +822,7 @@ export const regions = [
           {
             name: {
               en: 'Hiroshima',
-              ja: ['広', '島', '市'],
+              ja: '広島市',
               furigana: ['ひろ', 'しま', 'し'],
             },
             types: [cityType.capital],
@@ -833,7 +833,7 @@ export const regions = [
         code: '35',
         name: {
           en: 'Yamaguchi',
-          ja: ['山', '口', '県'],
+          ja: '山口県',
           furigana: ['やま', 'ぐち', 'けん']
         },
         location: { lat: 34.2796769, lng: 131.5212742 },
@@ -841,7 +841,7 @@ export const regions = [
           {
             name: {
               en: 'Yamaguchi',
-              ja: ['山', '口', '市'],
+              ja: '山口市',
               furigana: ['やま', 'ぐち', 'し'],
             },
             types: [cityType.capital],
@@ -855,7 +855,7 @@ export const regions = [
     code: 'SHIK',
     name: {
       en: 'Shikoku',
-      ja: ['四', '国'],
+      ja: '四国',
       furigana: ['し', 'こく']
     },
     zoom: {
@@ -867,7 +867,7 @@ export const regions = [
         code: '36',
         name: {
           en: 'Tokushima',
-          ja: ['徳', '島', '県'],
+          ja: '徳島県',
           furigana: ['とく', 'しま', 'けん']
         },
         location: { lat: 33.9419655, lng: 134.3236557 },
@@ -875,7 +875,7 @@ export const regions = [
           {
             name: {
               en: 'Tokushima',
-              ja: ['徳', '島', '市'],
+              ja: '徳島市',
               furigana: ['とく', 'しま', 'し'],
             },
             types: [cityType.capital],
@@ -887,7 +887,7 @@ export const regions = [
         code: '37',
         name: {
           en: 'Kagawa',
-          ja: ['香', '川', '県'],
+          ja: '香川県',
           furigana: ['か', 'がわ', 'けん']
         },
         location: { lat: 34.2225915, lng: 134.0199152 },
@@ -895,7 +895,7 @@ export const regions = [
           {
             name: {
               en: 'Takamatsu',
-              ja: ['高', '松', '市'],
+              ja: '高松市',
               furigana: ['たか', 'まつ', 'し'],
             },
             types: [cityType.capital],
@@ -907,7 +907,7 @@ export const regions = [
         code: '38',
         name: {
           en: 'Ehime',
-          ja: ['愛', '媛', '県'],
+          ja: '愛媛県',
           furigana: ['え', 'ひめ', 'けん']
         },
         location: { lat: 33.6025306, lng: 132.7857583 },
@@ -915,7 +915,7 @@ export const regions = [
           {
             name: {
               en: 'Matsuyama',
-              ja: ['松', '山', '市'],
+              ja: '松山市',
               furigana: ['まつ', 'やま', 'し'],
             },
             types: [cityType.capital],
@@ -927,7 +927,7 @@ export const regions = [
         code: '39',
         name: {
           en: 'Kochi',
-          ja: ['高', '知', '県'],
+          ja: '高知県',
           furigana: ['こう', 'ち', 'けん']
         },
         location: { lat: 33.5481246, lng: 133.2521507 },
@@ -935,7 +935,7 @@ export const regions = [
           {
             name: {
               en: 'Kōchi',
-              ja: ['高', '知', '市'],
+              ja: '高知市',
               furigana: ['こう', 'ち', 'し'],
             },
             types: [cityType.capital],
@@ -949,7 +949,7 @@ export const regions = [
     code: 'KYU',
     name: {
       en: 'Kyūshū',
-      ja: ['九', '州'],
+      ja: '九州',
       furigana: ['きゅう', 'しゅう']
     },
     zoom: {
@@ -961,7 +961,7 @@ export const regions = [
         code: '40',
         name: {
           en: 'Fukuoka',
-          ja: ['福', '岡', '県'],
+          ja: '福岡県',
           furigana: ['ふく', 'おか', 'けん']
         },
         location: { lat: 33.56625590000001, lng: 130.715857 },
@@ -969,7 +969,7 @@ export const regions = [
           {
             name: {
               en: 'Fukuoka',
-              ja: ['福', '岡', '市'],
+              ja: '福岡市',
               furigana: ['ふく', 'おか', 'し'],
             },
             types: [cityType.capital],
@@ -981,7 +981,7 @@ export const regions = [
         code: '41',
         name: {
           en: 'Saga',
-          ja: ['佐', '賀', '県'],
+          ja: '佐賀県',
           furigana: ['さ', 'が', 'けん']
         },
         location: { lat: 33.3078371, lng: 130.2271243 },
@@ -989,7 +989,7 @@ export const regions = [
           {
             name: {
               en: 'Saga',
-              ja: ['佐', '賀', '市'],
+              ja: '佐賀市',
               furigana: ['さ', 'が', 'し'],
             },
             types: [cityType.capital],
@@ -1002,7 +1002,7 @@ export const regions = [
         code: '42',
         name: {
           en: 'Nagasaki',
-          ja: ['長', '崎', '県'],
+          ja: '長崎県',
           furigana: ['なが', 'さき', 'けん']
         },
         location: { lat: 33.2488525, lng: 129.6930912 },
@@ -1011,7 +1011,7 @@ export const regions = [
           {
             name: {
               en: 'Nagasaki',
-              ja: ['長', '崎', '市'],
+              ja: '長崎市',
               furigana: ['なが', 'さき', 'し'],
             },
             types: [cityType.capital],
@@ -1024,7 +1024,7 @@ export const regions = [
         code: '43',
         name: {
           en: 'Kumamoto',
-          ja: ['熊', '本', '県'],
+          ja: '熊本県',
           furigana: ['くま', 'もと', 'けん']
         },
         location: { lat: 32.8594427, lng: 130.7969149 },
@@ -1032,7 +1032,7 @@ export const regions = [
           {
             name: {
               en: 'Kumamoto',
-              ja: ['熊', '本', '市'],
+              ja: '熊本市',
               furigana: ['くま', 'もと', 'し'],
             },
             types: [cityType.capital],
@@ -1045,7 +1045,7 @@ export const regions = [
         code: '44',
         name: {
           en: 'Oita',
-          ja: ['大', '分', '県'],
+          ja: '大分県',
           furigana: ['おお', 'いた', 'けん']
         },
         location: { lat: 33.1589299, lng: 131.3611121 },
@@ -1053,7 +1053,7 @@ export const regions = [
           {
             name: {
               en: 'Ōita',
-              ja: ['大', '分', '市'],
+              ja: '大分市',
               furigana: ['おお', 'いた', 'し'],
             },
             types: [cityType.capital],
@@ -1065,7 +1065,7 @@ export const regions = [
         code: '45',
         name: {
           en: 'Miyazaki',
-          ja: ['宮', '崎', '県'],
+          ja: '宮崎県',
           furigana: ['みや', 'ざき', 'けん']
         },
         location: { lat: 32.6036022, lng: 131.441251 },
@@ -1073,7 +1073,7 @@ export const regions = [
           {
             name: {
               en: 'Miyazaki',
-              ja: ['宮', '崎', '市'],
+              ja: '宮崎市',
               furigana: ['みや', 'ざき', 'し'],
             },
             types: [cityType.capital],
@@ -1085,7 +1085,7 @@ export const regions = [
         code: '46',
         name: {
           en: 'Kagoshima',
-          ja: ['鹿', '児', '島', '県'],
+          ja: '鹿児島県',
           furigana: ['か', 'ご', 'しま', 'けん']
         },
         location: { lat: 31.3911958, lng: 130.8778586 },
@@ -1093,7 +1093,7 @@ export const regions = [
           {
             name: {
               en: 'Kagoshima',
-              ja: ['鹿', '児', '島', '市'],
+              ja: '鹿児島市',
               furigana: ['か', 'ご', 'しま', 'し'],
             },
             types: [cityType.capital, cityType.favorite],
@@ -1105,7 +1105,7 @@ export const regions = [
         code: '47',
         name: {
           en: 'Okinawa',
-          ja: ['沖', '縄', '県'],
+          ja: '沖縄県',
           furigana: ['おき', 'なわ', 'けん']
         },
         location: { lat: 26.1201911, lng: 127.7025012 },
@@ -1113,7 +1113,7 @@ export const regions = [
           {
             name: {
               en: 'Naha',
-              ja: ['那', '覇', '市'],
+              ja: '那覇市',
               furigana: ['な', 'は', 'し'],
             },
             types: [cityType.capital],

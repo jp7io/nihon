@@ -49,7 +49,7 @@ export function drawCities(data, callback) {
 function improveCityElm(cityTextElm) {
   const cityName = cityTextElm.innerHTML;
   const citiesData = extractCities(regions);
-  const cityData = citiesData.find(record => record.name.ja.join('') === cityName);
+  const cityData = citiesData.find(record => record.name.ja === cityName);
 
   const cityGroup = cityTextElm.closest('g');
 

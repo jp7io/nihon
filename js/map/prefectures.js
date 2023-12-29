@@ -48,7 +48,7 @@ export function drawPrefectures(data, callback) {
 function improvePrefectureElm(prefecture) {
   const prefecturesData = extractPrefectures(regions);
 
-  const prefectureData = prefecturesData.find(record => record.name.ja.join('') === prefecture.innerHTML);
+  const prefectureData = prefecturesData.find(record => record.name.ja === prefecture.innerHTML);
   if (prefectureData.textAnchor) {
     prefecture.setAttribute('text-anchor', prefectureData.textAnchor);
   }
