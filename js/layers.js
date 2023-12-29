@@ -1,15 +1,9 @@
 // @ts-check
 
-import van from '../lib/van.js';
 import { setActiveMunicipalityType } from './tokyo.js';
 import { setActiveCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
-import { parseHash, toId } from './utils.js';
-import { layers } from '../data/dict.js';
-import { furigana } from './furigana.js';
-import { state } from './state.js';
-
-const { div, object } = van.tags;
+import { parseHash } from './utils.js';
 
 /**
  * @param {string} layer
@@ -45,30 +39,4 @@ export function setLayer(layer) {
   }
 
   map?.classList.add(layer);
-}
-
-const LayersSet = Object.entries(layers).map(layer => {
-  const [key, value] = layer;
-  const id = toId(value.en);
-  return div(
-    {
-      class: () => state?.layer?.val.en === value.en ? 'item active' : 'item',
-      'data-layer': id,
-      onclick: (e) => {
-        state.layer && (state.layer.val = value);
-        setLayer(e?.currentTarget?.dataset.layer)
-      },
-    },
-    object({
-      type: 'image/svg+xml',
-      data: `./img/icons/${key}.svg`,
-      class: 'icon',
-    }),
-    furigana(value),
-  )
-});
-
-export const drawLayers = () => {
-  const layersSet = document.getElementById('layersSet');
-  layersSet && van.add(layersSet, LayersSet);
 }

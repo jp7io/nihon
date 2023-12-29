@@ -1,5 +1,7 @@
 // @ts-check
 
+import van from '../lib/van.js';
+
 /**
  * @typedef {import('../data/regions.js').Region} Region
  */
@@ -231,3 +233,7 @@ export function isMobile() {
   return window.innerWidth <= 768;
 }
 
+export const drawComponent = (placeholderId, component) => {
+  const placeholder = document.getElementById(placeholderId);
+  placeholder && van.add(placeholder, component);
+}

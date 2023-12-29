@@ -2,25 +2,22 @@
 
 import { state } from "./state.js";
 import { regions } from '../data/regions.js';
-import { drawFillmode } from './fillMode.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
-import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
-import { drawLayers, setLayer } from './layers.js';
+import { debounce, drawComponent, extractCities, extractPrefectures, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
+import { setLayer } from './layers.js';
 import { createInlineSVG, loadPatterns } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
-import { drawLegendItems } from './legend.js';
-import { drawShuriken } from './shuriken.js';
-import { drawAbout } from './about.js';
+import { LegendElm, LayersElm, FillmodeElm, AboutElm, ShurikenElm } from '../components/index.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
   loadPatterns();
-  drawLayers();
-  drawFillmode();
-  drawAbout();
-  drawShuriken();
-  drawLegendItems();
+  drawComponent('layersSet', LayersElm);
+  drawComponent('fillmodeSet', FillmodeElm);
+  drawComponent('about', AboutElm);
+  drawComponent('shuriken-placeholder', ShurikenElm);
+  drawComponent('legend', LegendElm);
   createInlineSVG();
   setActiveData();
   initTokyo();

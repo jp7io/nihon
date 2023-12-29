@@ -6,7 +6,7 @@ import { directions } from '../data/dict.js';
 
 const { div, img } = van.tags;
 
-const Shuriken = div(
+export const ShurikenElm = div(
   {
     id: 'shuriken',
   },
@@ -21,8 +21,3 @@ const Shuriken = div(
     img({ src: 'img/shuriken.svg' }),
   ),
 );
-
-export const drawShuriken = () => {
-  const placeholder = document.getElementById('shuriken-placeholder');
-  placeholder && van.add(placeholder, Shuriken);
-}

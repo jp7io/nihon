@@ -2,11 +2,11 @@
 
 import van from '../lib/van.js';
 import { dict } from '../data/dict.js';
-import { furigana } from './furigana.js';
+import { furigana } from '../js/furigana.js';
 
 const { a, div } = van.tags;
 
-const aboutElm = a(
+export const AboutElm = a(
   {
     href: 'https://github.com/jp7io/nihon/issues',
     target: '_blank',
@@ -18,8 +18,3 @@ const aboutElm = a(
     furigana(dict.reportAnIssue),
   )
 )
-
-export const drawAbout = () => {
-  const elm = document.getElementById('about');
-  elm && van.add(elm, aboutElm);
-}
