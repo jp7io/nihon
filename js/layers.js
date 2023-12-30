@@ -10,18 +10,7 @@ import { parseHash } from './utils.js';
  */
 export function setLayer(layer) {
   /** @type {HTMLElement | null} */
-  const map = document.getElementById('map');
-
-  /** @type {HTMLElement | null} */
   const previousLayerItem = document.querySelector('#layersSet .item.active');
-
-  /** @type {NodeListOf<HTMLElement>} */
-  const items = document.querySelectorAll('#layersSet .item');
-  items?.forEach(item => {
-    if (item.dataset.layer) {
-      map?.classList.remove(item.dataset.layer);
-    }
-  })
 
   if (layer === 'prefectures') {
     setActiveCity();
@@ -37,6 +26,4 @@ export function setLayer(layer) {
     resetMap();
     clearRegion();
   }
-
-  map?.classList.add(layer);
 }
