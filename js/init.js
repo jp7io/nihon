@@ -8,7 +8,7 @@ import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
-import { TitleElm, LegendElm, LayersAndFillElm, ShurikenElm, MapElm, SvgSourcesElm } from '../components/index.js';
+import { TitleElm, LegendElm, LayersAndFillElm, ShurikenElm, MapElm, SvgSourcesElm, InfoElm } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
 
@@ -17,6 +17,7 @@ google.charts.setOnLoadCallback(async () => {
   van.add(document.body, [
     TitleElm,
     LegendElm,
+    InfoElm,
     LayersAndFillElm,
     ShurikenElm,
     MapElm,

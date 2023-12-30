@@ -101,9 +101,3 @@ export function setInfo(type, data) {
     h1 && (van.add(h1, furigana(dict.mapOfJapan)));
   }
 }
-
-const infoToolTip = div({ id: 'info-tooltip' }, furigana(dict.toolTip));
-const infoData = div({ id: 'info-data' });
-
-const infoElm = document.getElementById('info');
-infoElm && van.add(infoElm, infoToolTip, infoData)
