@@ -4,6 +4,7 @@
  * @typedef {Object} Color
  * @property {string} color
  * @property {string} pattern
+ * @property {string=} stroke
  */
 
 /** @type {Color[]} */

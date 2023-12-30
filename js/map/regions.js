@@ -52,18 +52,11 @@ export function setActiveRegion(region, callback) {
   /** @type {HTMLElement | null} */
   const previousRegionItem = document.querySelector('#legend .item.active');
 
-  const items = document.querySelectorAll('#legend .item');
-  items.forEach(item => item.classList.remove('active'));
-
   if (!region || previousRegionItem?.dataset.region === region?.name.en) {
     resetMap();
     clearRegion();
     return;
   }
-
-  const item = document.querySelector(`#legend .item[data-region="${region.name.en}"]`);
-
-  item?.classList.add('active');
 
   setZoom(region);
 

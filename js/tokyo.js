@@ -40,7 +40,7 @@ export function initTokyo() {
     const index = Object.values(municipalityType).indexOf(municipality.type);
     const color = colorsTokyo[index];
     paths.forEach(path => {
-      path.setAttribute('stroke', color.strokeColor);
+      path.setAttribute('stroke', color.stroke);
       path.addEventListener('click', () => {
         setMunicipality(municipality);
       })
