@@ -3,7 +3,7 @@
 import { dict } from '../data/dict.js';
 import { regions } from '../data/regions.js';
 import { furigana } from './furigana.js';
-import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
+import { extractPrefectures, replaceSpecialChars } from './utils.js';
 import van from '../lib/van.js';
 
 const { a, div, img } = van.tags
@@ -48,7 +48,7 @@ export function setInfo(type, data) {
     const paths = [data];
 
     let flag = '';
-    const getFlagUrl = (type, paths) => `${type}/${paths.slice(0, -1).map(path => replaceSpecialCharactersWithAscii(path.name.en)).join(',')}`;
+    const getFlagUrl = (type, paths) => `${type}/${paths.slice(0, -1).map(path => replaceSpecialChars(path.name.en)).join(',')}`;
 
     switch (type) {
       case 'city':
@@ -94,7 +94,7 @@ export function setInfo(type, data) {
     infoSelected.innerHTML = setInfoSelected(name, flag).innerHTML;
 
     document.title = `${paths.map(path => path.name.ja).join(' / ')} / 日本`;
-    document.location.hash = paths.reverse().map(path => replaceSpecialCharactersWithAscii(path.name.en)).join('/');
+    document.location.hash = paths.reverse().map(path => replaceSpecialChars(path.name.en)).join('/');
   } else {
     info.classList.remove('active');
     infoSelected.innerHTML = '';

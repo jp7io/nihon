@@ -3,7 +3,7 @@
 import { state } from "./state.js";
 import { regions } from '../data/regions.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
-import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
+import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialChars } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
@@ -25,7 +25,6 @@ google.charts.setOnLoadCallback(async () => {
   ]);
   createInlineSVG();
   setActiveData();
-  initTokyo();
   initPosition();
 });
 
@@ -34,20 +33,22 @@ function setActiveData() {
 
   if (region === 'Tokyo') {
     setLayer('tokyo');
-    state.layer && (state.layer.val = layers.tokyo);
+    state.layer.val = layers.tokyo;
     if (municipality) {
-      const municipalityData = tokyo.find(item => replaceSpecialCharactersWithAscii(item.name.en) === municipality);
+      const municipalityData = tokyo.find(item => replaceSpecialChars(item.name.en) === municipality);
       if (municipalityData) {
-        setActiveMunicipalityType(municipalityData.type);
-        setMunicipality(municipalityData);
+        setTimeout(() => {
+          setActiveMunicipalityType(municipalityData.type);
+          setMunicipality(municipalityData);
+        }, 100);
       }
     }
     return;
   }
 
-  const regionData = regions.find(record => replaceSpecialCharactersWithAscii(record.name.en) === region);
-  const prefectureData = extractPrefectures(regions, regionData?.name.en).find(record => replaceSpecialCharactersWithAscii(record.name.en) === prefecture);
-  const cityData = extractCities(regions, regionData?.name.en).find(record => replaceSpecialCharactersWithAscii(record.name.en) === city);
+  const regionData = regions.find(record => replaceSpecialChars(record.name.en) === region);
+  const prefectureData = extractPrefectures(regions, regionData?.name.en).find(record => replaceSpecialChars(record.name.en) === prefecture);
+  const cityData = extractCities(regions, regionData?.name.en).find(record => replaceSpecialChars(record.name.en) === city);
 
   setActiveRegion(regionData, () => {
     setTimeout(() => {

@@ -3,6 +3,7 @@
   bottom: var(--external-margin);
   right: var(--external-margin);
   font-size: 1.8vh;
+  z-index: 1;
 }
 
 #shuriken img {

@@ -23,7 +23,9 @@ export function setLayer(layer) {
     clearRegion();
     setActiveMunicipalityType();
   } else if (previousLayerItem?.dataset.layer === 'tokyo') {
-    resetMap();
-    clearRegion();
+    setTimeout(() => {
+      resetMap();
+      clearRegion();
+    }, 100);
   }
 }

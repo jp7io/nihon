@@ -21,7 +21,7 @@ export const LayersElm = div({
         class: () => state?.layer?.val.en === value.en ? 'item active' : 'item',
         'data-layer': id,
         onclick: (e) => {
-          state.layer && (state.layer.val = value);
+          state.layer.val = value;
           setLayer(e?.currentTarget?.dataset.layer)
         },
       },

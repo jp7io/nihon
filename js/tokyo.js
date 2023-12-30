@@ -10,17 +10,17 @@ import { colorsTokyo } from './colorsTokyo.js';
 import { setInfo } from './info.js';
 import { centerPosition } from './map/regions.js';
 import { state } from './state.js';
-import { extractPrefectures, replaceSpecialCharactersWithAscii } from './utils.js';
+import { extractPrefectures, replaceSpecialChars } from './utils.js';
 
 export function initTokyo() {
   tokyoBorders.forEach(border => {
-    const id = replaceSpecialCharactersWithAscii(border.name.en);
+    const id = replaceSpecialChars(border.name.en);
     const element = document.querySelector(`#Borders #Text #${id} tspan`);
     element && (element.innerHTML = border.name.ja);
   });
 
   tokyo.forEach(municipality => {
-    const id = replaceSpecialCharactersWithAscii(municipality.name.en);
+    const id = replaceSpecialChars(municipality.name.en);
     /** @type {NodeListOf<SVGTSpanElement>} */
     const texts = document.querySelectorAll(`#Municipalities #Text #${id} tspan`);
     texts.forEach((element, index) => {
@@ -52,12 +52,16 @@ export function initTokyo() {
  * @param {Municipality} municipality
  */
 export function setMunicipality(municipality) {
-  const id = replaceSpecialCharactersWithAscii(municipality.name.en);
-  /** @type {NodeListOf<SVGPathElement | SVGPolygonElement>} */
-  const paths = document.querySelectorAll(`#Municipalities #Map g path, #Municipalities #Map g polygon`);
-  paths.forEach(path => {
-    path.classList.toggle('active', path.id === id);
+  const id = replaceSpecialChars(municipality.name.en);
+
+  tokyo.forEach(item => {
+    const itemId = replaceSpecialChars(item.name.en);
+    const paths = document.querySelectorAll(`#Municipalities #Map #${itemId}`);
+    paths.forEach(path => {
+      path.classList.toggle('active', itemId === id);
+    });
   });
+
   setInfo('municipality', municipality);
 }
 
@@ -71,10 +75,10 @@ export function setActiveMunicipalityType(type) {
   const tokyoData = prefecturesData.find(item => item.name.en === 'Tōkyō');
 
   setInfo('tokyo', tokyoData);
-  state.municipalityType && (state.municipalityType.val = type);
+  state.municipalityType.val = type;
   setTimeout(() => {
     centerTokyo(type); // FIXME
-  }, 100);
+  }, 200);
 }
 
 export function centerTokyo(type) {

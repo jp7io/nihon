@@ -10,7 +10,7 @@ import van from '../lib/van.js';
  * @param {string} str
  * @returns {string}
  */
-export function replaceSpecialCharactersWithAscii(str) {
+export function replaceSpecialChars(str) {
   return str.replace(/[ÀÁÂÃÄÅ]/g, 'A')
     .replace(/[àáâãäå]/g, 'a')
     .replace(/[ÈÉÊË]/g, 'E')
@@ -59,7 +59,7 @@ export function parseData(data, filter = null) {
   filteredData(data, filter).forEach((region, index) => {
     region.prefectures.forEach(({ name }) => {
       dataArray.push([
-        replaceSpecialCharactersWithAscii(name.en),
+        replaceSpecialChars(name.en),
         index,
       ]);
     });

@@ -1,6 +1,7 @@
 // @ts-check
 
 import { createInlineSVG } from '../js/svg.js';
+import { initTokyo } from '../js/tokyo.js';
 import van from '../lib/van.js';
 
 const { div, object } = van.tags;
@@ -18,6 +19,7 @@ const svgSources = [
   {
     data: './img/map/tokyo.svg',
     target: 'tokyo_cloned',
+    callback: () => initTokyo(),
   },
 ]
 
@@ -35,12 +37,15 @@ export const SvgSourcesElm = div(
     defs({ id: 'icons_cloned' }),
   ),
   div({ id: 'tokyo_cloned' }),
-  svgSources.map(({ data, target }) => object(
+  svgSources.map(({ data, target, callback }) => object(
     {
       type: 'image/svg+xml',
       data,
       id: 'patterns_source',
-      onload: (e) => createInlineSVG(e, target),
+      onload: (e) => {
+        createInlineSVG(e, target);
+        callback && callback();
+      },
     }
   ),
   ));

@@ -13,13 +13,14 @@ import van from '../lib/van.js';
 
 /**
  * @typedef {Object} AppState
- * @property {State=} region
+ * @property {State} region
  * @property {State<Prefecture>=} prefecture
  * @property {State<City>=} city
  * @property {State<Municipality>=} municipality
- * @property {State=} municipalityType
- * @property {State=} layer
- * @property {State=} fillmode
+ * @property {State} municipalityType
+ * @property {State} layer
+ * @property {State} fillmode
+ * @property {State} regionZoom
  */
 
 /** @type {AppState} */
@@ -28,4 +29,5 @@ export const state = {
   municipalityType: van.state(null),
   layer: van.state(layers.capital),
   fillmode: van.state(fillmode.color),
+  regionZoom: van.state(false),
 }

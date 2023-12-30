@@ -11,7 +11,7 @@ const { svg } = van.tagsNS("http://www.w3.org/2000/svg")
 export const MapElm = div(
   {
     id: 'map',
-    class: () => `regions ${toId(state?.layer?.val.en)}`
+    class: () => `regions ${toId(state?.layer?.val.en)} ${state?.regionZoom ? 'regionZoom' : ''}`,
   },
   div({ id: 'japan' },
     div({ id: 'regions' }),

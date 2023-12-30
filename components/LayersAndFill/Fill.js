@@ -21,7 +21,7 @@ export const FillElm = div(
         class: () => state?.fillmode?.val.en === value.en ? 'item active' : 'item',
         'data-item': value.en,
         onclick: () => {
-          state.fillmode && (state.fillmode.val = value);
+          state.fillmode.val = value;
           setFillmode(key, colors)
         }
       },

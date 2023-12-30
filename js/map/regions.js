@@ -73,8 +73,7 @@ export function setActiveRegion(region, callback) {
     callback && callback();
   });
 
-  state.region && (state.region.val = region);
-
+  state.region.val = region;
 }
 
 export function clearRegion() {
@@ -91,7 +90,7 @@ export function resetMap() {
   if (!map) {
     return;
   }
-  map.classList.remove('regionZoom');
+  state.regionZoom.val = false;
   map.style.width = (isMobile()) ? '200%' : '100%';
 }
 
@@ -103,7 +102,7 @@ export function setZoom(regionData) {
   if (!map) {
     return;
   }
-  map.classList.add('regionZoom');
+  state.regionZoom.val = true;
   const { zoom } = regionData;
   const mobile = window.innerWidth <= 768;
   const width = mobile ? zoom.mobile : zoom.desktop;
