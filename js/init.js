@@ -5,7 +5,7 @@ import { setRegion, setPrefecture, setCity, centerPosition } from './map/index.j
 import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { centerTokyo, findMunicipality } from './tokyo.js';
+import { centerTokyo, findMunicipality, setMunicipality } from './tokyo.js';
 import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
@@ -27,8 +27,7 @@ function setActiveData() {
     if (municipality) {
       const municipalityData = findMunicipality(municipality);
       if (municipalityData) {
-        state.municipalityType.val = municipalityData.type;
-        state.municipality.val = municipalityData;
+        setMunicipality(municipalityData);
       }
     }
     return;

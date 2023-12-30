@@ -7,7 +7,7 @@ import { setLayer } from '../js/layers.js';
 import { setCity, setRegion } from '../js/map/index.js';
 import { setMunicipality } from '../js/tokyo.js';
 import { getTitle } from '../js/title.js';
-import { compareIds, replaceSpecialChars } from '../js/utils.js';
+import { replaceSpecialChars } from '../js/utils.js';
 import { state } from '../js/state.js';
 
 const { div, h1, h2, h3, h4 } = van.tags;
@@ -18,7 +18,8 @@ const getPageTitle = () => {
 }
 
 const getHash = () => {
-  const title = getTitle().slice(1).filter(title => title);
+  const isTokyo = state.layer.val === layers.tokyo;
+  const title = getTitle().slice(isTokyo ? 2 : 1).filter(title => title);
   return title.map(title => replaceSpecialChars(title.en)).join('/');
 }
 

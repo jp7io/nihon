@@ -50,13 +50,7 @@ export function initTokyo() {
  * @param {Municipality | null} municipality
  */
 export function setMunicipality(municipality) {
-  if (!municipality) {
-    state.municipality.val = null;
-    state.municipalityType.val = null;
-    return;
-  }
-
-  const id = replaceSpecialChars(municipality.name.en);
+  const id = municipality && replaceSpecialChars(municipality.name.en);
 
   tokyo.forEach(item => {
     const itemId = replaceSpecialChars(item.name.en);
@@ -67,7 +61,7 @@ export function setMunicipality(municipality) {
   });
 
   state.municipality.val = municipality;
-  state.municipalityType.val = municipality.type;
+  state.municipalityType.val = municipality?.type;
 }
 
 export function setMunicipalityType(type, force = false) {
@@ -76,7 +70,6 @@ export function setMunicipalityType(type, force = false) {
     return;
   }
 
-  //state.city.val = findPrefecture('Tōkyō');
   state.municipalityType.val = type;
   setTimeout(() => {
     centerTokyo(type); // FIXME

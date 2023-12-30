@@ -1,20 +1,20 @@
 // @ts-check
 
-import { dict } from '../data/dict.js';
+import { dict, layers } from '../data/dict.js';
 import { findCity, findRegion } from './regions.js';
 import { state } from './state.js';
 
 export const getTitle = () => {
-  const { region, prefecture, city, municipality } = state;
+  const { layer, region, prefecture, city, municipality } = state;
 
-  if (municipality.val) {
+  if (layer.val === layers.tokyo || municipality.val) {
     const tokyo = findCity('Tokyo');
     const kanto = findRegion('Kanto');
     return [
       dict.japan,
-      kanto && kanto.name,
-      tokyo && tokyo.name,
-      municipality.val.name,
+      kanto?.name,
+      tokyo?.name,
+      municipality.val?.name,
     ]
   }
 

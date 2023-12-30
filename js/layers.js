@@ -7,7 +7,6 @@
 import { setMunicipalityType } from './tokyo.js';
 import { setCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
-import { parseHash } from './utils.js';
 import { layers } from '../data/dict.js';
 import { state } from './state.js';
 
