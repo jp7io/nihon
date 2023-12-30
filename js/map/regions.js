@@ -2,11 +2,11 @@
 
 /**
  * @typedef {import('../../data/regions.js').Region} Region
- * @typedef {import('../colors.js').Color} Color
+ * @typedef {import('../../data/colors.js').Color} Color
  */
 
 import { regions } from "../../data/regions.js";
-import { colors } from "../colors.js";
+import { colors } from "../../data/colors.js";
 import { commonOptions } from './common.js';
 import { setInfo } from '../info.js';
 import { drawPrefectures } from './prefectures.js';

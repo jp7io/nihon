@@ -1,13 +1,13 @@
 // @ts-check
 
 /**
- * @typedef {import('./colors.js').Color} Color
+ * @typedef {import('../data/colors.js').Color} Color
  */
 
 import { regions } from "../data/regions.js";
 import { municipalityType, tokyo } from '../data/tokyo.js';
-import { colors } from './colors.js';
-import { colorsTokyo } from './colorsTokyo.js';
+import { colors } from '../data/colors.js';
+import { colorsTokyo } from '../data/colorsTokyo.js';
 import { state } from './state.js';
 import { toId } from './utils.js';
 

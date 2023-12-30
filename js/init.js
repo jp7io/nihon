@@ -8,28 +8,13 @@ import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
 import { centerTokyo } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
-import { TitleElm, LegendElm, LayersAndFillElm, ShurikenElm, MapElm, SvgSourcesElm, InfoElm } from '../components/index.js';
+import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
 
-const { div } = van.tags;
-
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
-  const root = div(
-    {
-      id: 'root',
-      class: () => `fillmode-${toId(state.fillmode.val.en)}`,
-    },
-    TitleElm,
-    LegendElm,
-    InfoElm,
-    LayersAndFillElm,
-    ShurikenElm,
-    MapElm,
-    SvgSourcesElm
-  );
-  van.add(document.body, root);
+  van.add(document.body, Root);
   createInlineSVG();
   setActiveData();
   initPosition();
@@ -70,14 +55,13 @@ function setActiveData() {
 
 function initPosition() {
   window.addEventListener('resize', debounce(() => {
-    const { region } = parseHash();
-    if (region === 'Tokyo' && state.municipalityType) {
-      centerTokyo(state.municipalityType.val);
+    const { layer, municipalityType } = state;
+    if (layer.val?.en === 'Tokyo' && municipalityType.val) {
+      centerTokyo(municipalityType.val);
       return;
-    } else {
-      /** @type {NodeListOf<SVGTextElement>} */
-      const cities = document.querySelectorAll('svg g[data-city=true] text:last-of-type');
-      centerPosition(cities);
     }
+    /** @type {NodeListOf<SVGTextElement>} */
+    const cities = document.querySelectorAll('svg g[data-city=true] text:last-of-type');
+    centerPosition(cities);
   }, 100));
 }

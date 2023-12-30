@@ -6,7 +6,7 @@
 
 import { regions } from '../data/regions.js';
 import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
-import { colorsTokyo } from './colorsTokyo.js';
+import { colorsTokyo } from '../data/colorsTokyo.js';
 import { setInfo } from './info.js';
 import { centerPosition } from './map/regions.js';
 import { state } from './state.js';

@@ -2,7 +2,7 @@
 
 import van from '../../lib/van.js';
 import { municipalityType } from '../../data/tokyo.js';
-import { colorsTokyo } from '../../js/colorsTokyo.js';
+import { colorsTokyo } from '../../data/colorsTokyo.js';
 import { state } from '../../js/state.js';
 import { setActiveMunicipalityType } from '../../js/tokyo.js';
 import { LegendItem } from './Item.js';

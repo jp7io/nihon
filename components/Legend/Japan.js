@@ -2,7 +2,7 @@
 
 import van from '../../lib/van.js';
 import { regions } from '../../data/regions.js';
-import { colors } from '../../js/colors.js';
+import { colors } from '../../data/colors.js';
 import { setActiveRegion } from '../../js/map/index.js';
 import { state } from '../../js/state.js';
 import { LegendItem } from './Item.js';
