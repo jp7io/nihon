@@ -43,6 +43,15 @@ export function toId(str) {
 }
 
 /**
+ * @param {string} a
+ * @param {string} b
+ * @returns {boolean}
+ */
+export function compareIds(a, b) {
+  return toId(a) === toId(b);
+}
+
+/**
  * @param {import('../data/regions').Region[]} data
  * @param {string | null} filter
  */
@@ -114,39 +123,6 @@ export function parseDataForCities(data, filter = null) {
   return dataArray;
 }
 
-/**
- * @param {Object[]} data
- * @param {string | null} filter
- */
-export function extractCities(data, filter = null) {
-  const dataArray = [];
-
-  filteredData(data, filter).forEach((region) => {
-    region.prefectures.forEach(prefecture => {
-      prefecture.cities?.forEach(city => {
-        dataArray.push({ ...city, prefecture: { ...prefecture, region } });
-      })
-    });
-  });
-
-  return dataArray;
-}
-
-/**
- * @param {Object[]} data
- * @param {string | null} filter
- */
-export function extractPrefectures(data, filter = null) {
-  const dataArray = [];
-
-  filteredData(data, filter).forEach((region) => {
-    region.prefectures.forEach(prefecture => {
-      dataArray.push({ ...prefecture, region });
-    });
-  });
-
-  return dataArray;
-}
 
 /**
  * @param {SVGTextElement} elm

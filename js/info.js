@@ -1,10 +1,10 @@
 // @ts-check
 
 import { dict } from '../data/dict.js';
-import { regions } from '../data/regions.js';
 import { furigana } from './furigana.js';
-import { extractPrefectures, replaceSpecialChars } from './utils.js';
+import { replaceSpecialChars } from './utils.js';
 import van from '../lib/van.js';
+import { findPrefecture } from './regions.js';
 
 const { a, div, img } = van.tags
 
@@ -73,8 +73,10 @@ export function setInfo(type, data) {
         flag = 'city/Tokyo,Tokyo';
         break;
       case 'municipality':
-        const prefectures = extractPrefectures(regions);
-        const tokyoPrefecture = prefectures.find(prefecture => prefecture.name.en === 'Tōkyō');
+        const tokyoPrefecture = findPrefecture('Tōkyō');
+        if (!tokyoPrefecture) {
+          break;
+        }
         h2Pre && (h2Pre.innerHTML = '/');
         h2 && (van.add(h2, furigana(tokyoPrefecture.name)));
         h3Pre && (h3Pre.innerHTML = '/');

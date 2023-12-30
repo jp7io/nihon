@@ -4,13 +4,13 @@
  * @typedef {import('../data/tokyo.js').Municipality} Municipality
  */
 
-import { regions } from '../data/regions.js';
 import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
 import { colorsTokyo } from '../data/colorsTokyo.js';
 import { setInfo } from './info.js';
 import { centerPosition } from './map/regions.js';
 import { state } from './state.js';
-import { extractPrefectures, replaceSpecialChars } from './utils.js';
+import { replaceSpecialChars } from './utils.js';
+import { findPrefecture } from './regions.js';
 
 export function initTokyo() {
   tokyoBorders.forEach(border => {
@@ -71,8 +71,7 @@ export function setActiveMunicipalityType(type, force = false) {
     return;
   }
 
-  const prefecturesData = extractPrefectures(regions);
-  const tokyoData = prefecturesData.find(item => item.name.en === 'Tōkyō');
+  const tokyoData = findPrefecture('Tōkyō');
 
   setInfo('tokyo', tokyoData);
   state.municipalityType.val = type;
@@ -105,4 +104,8 @@ export function centerTokyo(type) {
     const municipalities = document.querySelectorAll(`#Municipalities #Text tspan`);
     centerPosition(municipalities, factor);
   }
+}
+
+export function findMunicipality(name) {
+  return tokyo.find(item => replaceSpecialChars(item.name.en) === name);
 }

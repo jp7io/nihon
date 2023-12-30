@@ -1,16 +1,15 @@
 // @ts-check
 
 import { state } from "./state.js";
-import { regions } from '../data/regions.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
-import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialChars, toId } from './utils.js';
+import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { centerTokyo } from './tokyo.js';
-import { tokyo } from '../data/tokyo.js';
+import { centerTokyo, findMunicipality } from './tokyo.js';
 import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
+import { findRegion, findPrefecture, findCity } from './regions.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
@@ -27,7 +26,7 @@ function setActiveData() {
     setLayer('tokyo');
     state.layer.val = layers.tokyo;
     if (municipality) {
-      const municipalityData = tokyo.find(item => replaceSpecialChars(item.name.en) === municipality);
+      const municipalityData = findMunicipality(municipality);
       if (municipalityData) {
         state.municipalityType.val = municipalityData.type;
         state.municipality.val = municipalityData;
@@ -36,9 +35,9 @@ function setActiveData() {
     return;
   }
 
-  const regionData = regions.find(record => replaceSpecialChars(record.name.en) === region);
-  const prefectureData = extractPrefectures(regions, regionData?.name.en).find(record => replaceSpecialChars(record.name.en) === prefecture);
-  const cityData = extractCities(regions, regionData?.name.en).find(record => replaceSpecialChars(record.name.en) === city);
+  const regionData = findRegion(region);
+  const prefectureData = prefecture && findPrefecture(prefecture);
+  const cityData = city && findCity(city);
 
   setActiveRegion(regionData, () => {
     setTimeout(() => {

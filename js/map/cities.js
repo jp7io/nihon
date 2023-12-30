@@ -5,10 +5,10 @@
  */
 
 import { commonOptions } from './common.js';
-import { regions } from '../../data/regions.js';
-import { addStroke, extractCities, setElmAttributes } from '../utils.js';
+import { addStroke, setElmAttributes } from '../utils.js';
 import { setInfo } from '../info.js';
 import { setActivePrefecture } from './prefectures.js';
+import { findCity } from '../regions.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -48,12 +48,11 @@ export function drawCities(data, callback) {
  */
 function improveCityElm(cityTextElm) {
   const cityName = cityTextElm.innerHTML;
-  const citiesData = extractCities(regions);
-  const cityData = citiesData.find(record => record.name.ja === cityName);
+  const cityData = findCity(cityName);
 
   const cityGroup = cityTextElm.closest('g');
 
-  if (!cityGroup) {
+  if (!cityData || !cityGroup) {
     return;
   }
 

@@ -35,6 +35,7 @@
  * @property {Location} location
  * @property {City[]} cities
  * @property {string=} textAnchor
+ * @property {Region=} region
  */
 
 /**

@@ -5,9 +5,9 @@
  */
 
 import { commonOptions } from './common.js';
-import { regions } from '../../data/regions.js';
-import { addStroke, extractPrefectures } from '../utils.js';
+import { addStroke } from '../utils.js';
 import { setInfo } from '../info.js';
+import { findPrefecture } from '../regions.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -46,9 +46,12 @@ export function drawPrefectures(data, callback) {
  * @param {SVGTextElement} prefecture
  */
 function improvePrefectureElm(prefecture) {
-  const prefecturesData = extractPrefectures(regions);
+  const prefectureData = findPrefecture(prefecture.innerHTML);
 
-  const prefectureData = prefecturesData.find(record => record.name.ja === prefecture.innerHTML);
+  if (!prefectureData) {
+    return;
+  }
+
   if (prefectureData.textAnchor) {
     prefecture.setAttribute('text-anchor', prefectureData.textAnchor);
   }
