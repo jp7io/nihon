@@ -14,8 +14,8 @@ import van from '../lib/van.js';
 /**
  * @typedef {Object} AppState
  * @property {State} region
- * @property {State<Prefecture>=} prefecture
- * @property {State<City>=} city
+ * @property {State} prefecture
+ * @property {State} city
  * @property {State} municipality
  * @property {State} municipalityType
  * @property {State} layer
@@ -26,6 +26,8 @@ import van from '../lib/van.js';
 /** @type {AppState} */
 export const state = {
   region: van.state(null),
+  prefecture: van.state(null),
+  city: van.state(null),
   municipality: van.state(null),
   municipalityType: van.state(null),
   layer: van.state(layers.capital),

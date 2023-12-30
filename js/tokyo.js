@@ -65,9 +65,9 @@ export function setMunicipality(municipality) {
   setInfo('municipality', municipality);
 }
 
-export function setActiveMunicipalityType(type, force = false) {
+export function setMunicipalityType(type, force = false) {
   if (!force && type && type.name.en === state.municipalityType.val?.name.en) {
-    setActiveMunicipalityType();
+    setMunicipalityType();
     return;
   }
 

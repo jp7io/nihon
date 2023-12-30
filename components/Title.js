@@ -4,7 +4,7 @@ import { dict, layers } from '../data/dict.js';
 import { furigana } from '../js/furigana.js';
 import van from '../lib/van.js';
 import { setLayer } from '../js/layers.js';
-import { setActiveRegion } from '../js/map/index.js';
+import { setRegion } from '../js/map/index.js';
 import { setInfo } from '../js/info.js';
 import { state } from '../js/state.js';
 
@@ -16,7 +16,7 @@ export const TitleElm = div({ id: 'title' },
       {
         onclick: () => {
           setLayer(layers.capital);
-          setActiveRegion(null);
+          setRegion(null);
           setInfo();
         },
       },

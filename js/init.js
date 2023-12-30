@@ -1,7 +1,7 @@
 // @ts-check
 
 import { state } from "./state.js";
-import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
+import { setRegion, setPrefecture, setCity, centerPosition } from './map/index.js';
 import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
@@ -38,14 +38,14 @@ function setActiveData() {
   const prefectureData = prefecture && findPrefecture(prefecture);
   const cityData = city && findCity(city);
 
-  setActiveRegion(regionData, () => {
+  setRegion(regionData, () => {
     setTimeout(() => {
       if (cityData) {
         setLayer(layers.capital);
-        setActiveCity(cityData);
+        setCity(cityData);
       } else if (prefectureData) {
         setLayer(layers.prefecture);
-        setActivePrefecture(prefectureData);
+        setPrefecture(prefectureData);
       }
     }, 1);
   });

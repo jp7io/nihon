@@ -8,6 +8,7 @@ import { commonOptions } from './common.js';
 import { addStroke } from '../utils.js';
 import { setInfo } from '../info.js';
 import { findPrefecture } from '../regions.js';
+import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -58,25 +59,27 @@ function improvePrefectureElm(prefecture) {
 
   const prefectureGroup = prefecture.parentElement;
 
-  prefectureGroup?.addEventListener('click', () => setActivePrefecture(prefectureData));
+  prefectureGroup?.addEventListener('click', () => setPrefecture(prefectureData));
 
   addStroke(prefecture);
 }
 
 /**
- * @param {Prefecture} prefectureData
+ * @param {Prefecture} prefecture
  */
-export function setActivePrefecture(prefectureData) {
-  if (!prefectureData) {
+export function setPrefecture(prefecture) {
+  if (!prefecture) {
     return;
   }
 
-  const logicalname = `F#feature#1#0#JP-${prefectureData.code}#0`;
+  const logicalname = `F#feature#1#0#JP-${prefecture.code}#0`;
 
   /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
   const regionsElmCollection = document.querySelectorAll('#regions svg path');
   regionsElmCollection.forEach(elm => {
     elm.classList.toggle('active', elm.logicalname === logicalname);
-    setInfo('prefecture', prefectureData);
   });
+
+  setInfo('prefecture', prefecture);
+  state.prefecture.val = prefecture;
 }

@@ -7,8 +7,9 @@
 import { commonOptions } from './common.js';
 import { addStroke, setElmAttributes } from '../utils.js';
 import { setInfo } from '../info.js';
-import { setActivePrefecture } from './prefectures.js';
+import { setPrefecture } from './prefectures.js';
 import { findCity } from '../regions.js';
+import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
@@ -48,22 +49,22 @@ export function drawCities(data, callback) {
  */
 function improveCityElm(cityTextElm) {
   const cityName = cityTextElm.innerHTML;
-  const cityData = findCity(cityName);
+  const city = findCity(cityName);
 
   const cityGroup = cityTextElm.closest('g');
 
-  if (!cityData || !cityGroup) {
+  if (!city || !cityGroup) {
     return;
   }
 
   setElmAttributes(cityGroup, {
     'data-city': 'true',
-    'data-favorite': Boolean(cityData.types.includes('favorite')),
-    'data-capital': Boolean(cityData.types.includes('capital')),
-    'data-nationalCapital': Boolean(cityData.types.includes('nationalCapital')),
-    'data-name': cityData.name.en,
+    'data-favorite': Boolean(city.types.includes('favorite')),
+    'data-capital': Boolean(city.types.includes('capital')),
+    'data-nationalCapital': Boolean(city.types.includes('nationalCapital')),
+    'data-name': city.name.en,
   });
-  cityGroup?.addEventListener('click', () => setActiveCity(cityData));
+  cityGroup?.addEventListener('click', () => setCity(city));
 
   const textBoundingBox = cityTextElm.getBoundingClientRect();
 
@@ -74,8 +75,8 @@ function improveCityElm(cityTextElm) {
   }
 
   addIcon(cityGroup, geometry);
-  adjustPosition(cityTextElm, cityData, geometry);
-  addStroke(cityTextElm, cityData.bottom);
+  adjustPosition(cityTextElm, city, geometry);
+  addStroke(cityTextElm, city.bottom);
 }
 
 /**
@@ -95,10 +96,10 @@ function addIcon(cityGroup, { x, y, height }) {
 
 /**
  * @param {SVGTextElement} cityTextElm
- * @param {City} cityData
+ * @param {City} city
  */
-function adjustPosition(cityTextElm, cityData, { y, height }) {
-  if (cityData.bottom) {
+function adjustPosition(cityTextElm, city, { y, height }) {
+  if (city.bottom) {
     cityTextElm.setAttribute('y', String(y + height * 1.25));
   } else {
     cityTextElm.setAttribute('y', String(y - height * 0.7));
@@ -106,21 +107,23 @@ function adjustPosition(cityTextElm, cityData, { y, height }) {
 }
 
 /**
- * @param {City=} cityData
+ * @param {City=} city
  */
-export function setActiveCity(cityData) {
+export function setCity(city) {
   const cities = document.querySelectorAll('#cities svg g[data-city=true]');
-  cities.forEach(city => city.classList.remove('active'));
+  cities.forEach(elm => elm.classList.remove('active'));
 
-  if (!cityData) {
+  if (!city) {
     setInfo();
     return;
   }
 
-  const cityElm = document.querySelector(`#cities svg g[data-name="${cityData.name.en}"]`);
+  const cityElm = document.querySelector(`#cities svg g[data-name="${city.name.en}"]`);
   cityElm?.classList.add('active');
 
-  cityData.prefecture && setActivePrefecture(cityData.prefecture);
+  city.prefecture && setPrefecture(city.prefecture);
 
-  setInfo('city', cityData);
+  state.city.val = city;
+
+  setInfo('city', city);
 }

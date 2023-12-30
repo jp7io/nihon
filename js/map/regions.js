@@ -48,7 +48,7 @@ export function drawRegions(data, colors, callback) {
  * @param {Region | null} region
  * @param {() => void=} callback
  */
-export function setActiveRegion(region, callback) {
+export function setRegion(region, callback) {
   /** @type {HTMLElement | null} */
   const previousRegionItem = document.querySelector('#legend .item.active');
 
