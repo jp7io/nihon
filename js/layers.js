@@ -4,7 +4,7 @@
  * @typedef {import('../data/regions.js').Name} Name
  */
 
-import { setMunicipalityType } from './tokyo.js';
+import { setMunicipality, setMunicipalityType } from './tokyo.js';
 import { setCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
 import { layers } from '../data/dict.js';
@@ -26,6 +26,7 @@ export function setLayer(layer) {
     setTimeout(() => {
       resetMap();
       clearRegion();
+      setMunicipality(null);
     }, 1);
   }
 
