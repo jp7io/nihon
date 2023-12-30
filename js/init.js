@@ -3,18 +3,24 @@
 import { state } from "./state.js";
 import { regions } from '../data/regions.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
-import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialChars } from './utils.js';
+import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialChars, toId } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
+import { centerTokyo } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
 import { TitleElm, LegendElm, LayersAndFillElm, ShurikenElm, MapElm, SvgSourcesElm, InfoElm } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
 
+const { div } = van.tags;
+
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
-  van.add(document.body, [
+  const root = div(
+    {
+      id: 'root',
+      class: () => `fillmode-${toId(state.fillmode.val.en)}`,
+    },
     TitleElm,
     LegendElm,
     InfoElm,
@@ -22,7 +28,8 @@ google.charts.setOnLoadCallback(async () => {
     ShurikenElm,
     MapElm,
     SvgSourcesElm
-  ]);
+  );
+  van.add(document.body, root);
   createInlineSVG();
   setActiveData();
   initPosition();
@@ -37,10 +44,8 @@ function setActiveData() {
     if (municipality) {
       const municipalityData = tokyo.find(item => replaceSpecialChars(item.name.en) === municipality);
       if (municipalityData) {
-        setTimeout(() => {
-          setActiveMunicipalityType(municipalityData.type);
-          setMunicipality(municipalityData);
-        }, 100);
+        state.municipalityType.val = municipalityData.type;
+        state.municipality.val = municipalityData;
       }
     }
     return;
@@ -59,7 +64,7 @@ function setActiveData() {
         setLayer('prefectures');
         setActivePrefecture(prefectureData);
       }
-    }, 100);
+    }, 1);
   });
 }
 

@@ -65,8 +65,8 @@ export function setMunicipality(municipality) {
   setInfo('municipality', municipality);
 }
 
-export function setActiveMunicipalityType(type) {
-  if (type && type.name.en === state.municipalityType?.val?.name.en) {
+export function setActiveMunicipalityType(type, force = false) {
+  if (!force && type && type.name.en === state.municipalityType.val?.name.en) {
     setActiveMunicipalityType();
     return;
   }
@@ -78,7 +78,10 @@ export function setActiveMunicipalityType(type) {
   state.municipalityType.val = type;
   setTimeout(() => {
     centerTokyo(type); // FIXME
-  }, 200);
+    setTimeout(() => {
+      centerTokyo(type); // FIXME
+    }, 200);
+  }, 1);
 }
 
 export function centerTokyo(type) {

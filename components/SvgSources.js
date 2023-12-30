@@ -1,7 +1,8 @@
 // @ts-check
 
+import { state } from '../js/state.js';
 import { createInlineSVG } from '../js/svg.js';
-import { initTokyo } from '../js/tokyo.js';
+import { initTokyo, setActiveMunicipalityType, setMunicipality } from '../js/tokyo.js';
 import van from '../lib/van.js';
 
 const { div, object } = van.tags;
@@ -19,7 +20,13 @@ const svgSources = [
   {
     data: './img/map/tokyo.svg',
     target: 'tokyo_cloned',
-    callback: () => initTokyo(),
+    callback: () => {
+      initTokyo();
+      if (state.municipality.val) {
+        setActiveMunicipalityType(state.municipalityType.val, true);
+        setMunicipality(state.municipality.val);
+      }
+    }
   },
 ]
 

@@ -26,6 +26,6 @@ export function setLayer(layer) {
     setTimeout(() => {
       resetMap();
       clearRegion();
-    }, 100);
+    }, 1);
   }
 }

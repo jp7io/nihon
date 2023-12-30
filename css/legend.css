@@ -44,11 +44,11 @@
   border-color: #ccc;
 }
 
-body.fillmode-color #legend .pattern {
+#root.fillmode-color #legend .pattern {
   display: none;
 }
 
-body.fillmode-pattern #legend .color {
+#root.fillmode-pattern #legend .color {
   display: none;
 }
 

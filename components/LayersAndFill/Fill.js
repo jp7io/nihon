@@ -14,17 +14,16 @@ export const FillElm = div(
     id: 'fill',
     class: 'items',
   },
-  Object.entries(fillmode).map(item => {
-    const [key, value] = item;
+  Object.values(fillmode).map(item => {
     return div(
       {
-        class: () => state?.fillmode?.val.en === value.en ? 'item active' : 'item',
-        'data-item': value.en,
+        class: () => state?.fillmode?.val.en === item.en ? 'item active' : 'item',
+        'data-item': item.en,
         onclick: () => {
-          state.fillmode.val = value;
-          setFillmode(key, colors)
+          state.fillmode.val = item;
+          setFillmode(item, colors)
         }
       },
-      furigana(value),
+      furigana(item),
     )
   }));

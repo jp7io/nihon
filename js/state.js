@@ -16,7 +16,7 @@ import van from '../lib/van.js';
  * @property {State} region
  * @property {State<Prefecture>=} prefecture
  * @property {State<City>=} city
- * @property {State<Municipality>=} municipality
+ * @property {State} municipality
  * @property {State} municipalityType
  * @property {State} layer
  * @property {State} fillmode
@@ -26,6 +26,7 @@ import van from '../lib/van.js';
 /** @type {AppState} */
 export const state = {
   region: van.state(null),
+  municipality: van.state(null),
   municipalityType: van.state(null),
   layer: van.state(layers.capital),
   fillmode: van.state(fillmode.color),

@@ -6,32 +6,37 @@
 
 import { regions } from "../data/regions.js";
 import { municipalityType, tokyo } from '../data/tokyo.js';
+import { colors } from './colors.js';
 import { colorsTokyo } from './colorsTokyo.js';
+import { state } from './state.js';
+import { toId } from './utils.js';
 
 /**
- * @param {string} mode
+ * @param {any} mode
  * @param {Color[]} colors
  */
 export function setFillmode(mode, colors) {
-  document.body.className = `fillmode-${mode}`;
+  state.fillmode.val = mode;
+
+  const modeId = toId(mode.en);
 
   regions.forEach((_, index) => {
     const color = colors[index];
-    const fillToBeReplaced = (mode === 'color') ? color.pattern : color.color;
+    const fillToBeReplaced = (modeId === 'color') ? color.pattern : color.color;
     const map = document.querySelectorAll(`#regions svg path[fill="${fillToBeReplaced}"]`);
     map.forEach((map) => {
-      map.setAttribute('fill', color[mode]);
+      map.setAttribute('fill', color[modeId]);
     })
   });
 
   tokyo.forEach((municipality) => {
     const index = Object.values(municipalityType).indexOf(municipality.type);
     const color = colorsTokyo[index];
-    const fillToBeReplaced = (mode === 'color') ? color.pattern : color.color;
+    const fillToBeReplaced = (modeId === 'color') ? color.pattern : color.color;
     const map = document.querySelectorAll(`#tokyo svg [fill="${fillToBeReplaced}" i]`);
     map.forEach((map) => {
-      map.setAttribute('fill', color[mode]);
-      if (mode === 'pattern') {
+      map.setAttribute('fill', color[modeId]);
+      if (modeId === 'pattern') {
         map.setAttribute('stroke', color.strokeColor);
       }
     })
@@ -39,7 +44,5 @@ export function setFillmode(mode, colors) {
 }
 
 export function recoverFillmode() {
-  /** @type {HTMLElement | null} */
-  const fillmode = document.querySelector('#fillmodeSet .item.active');
-  fillmode && fillmode.click();
+  setFillmode(state.fillmode.val, colors);
 }
