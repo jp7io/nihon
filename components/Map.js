@@ -4,7 +4,9 @@ import { state } from '../js/state.js';
 import { toId } from '../js/utils.js';
 import van from '../lib/van.js';
 
-const { div, svg } = van.tags;
+const { div } = van.tags;
+
+const { svg } = van.tagsNS("http://www.w3.org/2000/svg")
 
 export const MapElm = div(
   {

@@ -70,12 +70,6 @@ export function setActiveMunicipalityType(type) {
   const prefecturesData = extractPrefectures(regions);
   const tokyoData = prefecturesData.find(item => item.name.en === 'Tōkyō');
 
-  /** @type {NodeListOf<HTMLElement>}  */
-  const legendItems = document.querySelectorAll('#legend-tokyo .item');
-  legendItems.forEach((item) => {
-    item.classList.toggle('active', item.dataset.type === type?.name.en);
-  });
-
   setInfo('tokyo', tokyoData);
   state.municipalityType && (state.municipalityType.val = type);
   setTimeout(() => {

@@ -1,11 +1,11 @@
-#fillmode {
+#layersAndFill {
   position: fixed;
   top: var(--external-margin);
   right: var(--external-margin);
   z-index: 10;
 }
 
-#fillmode .items {
+#layersAndFill .items {
   font-size: 2.5vh;
   display: flex;
   flex-direction: column;
@@ -13,15 +13,15 @@
   margin-bottom: 1em;
 }
 
-#fillmodeSet {
+#fill {
   flex-direction: row !important;
 }
 
-#fillmodeSet .item {
+#fill .item {
   flex: 1 0 0;
 }
 
-#fillmode .item {
+#layersAndFill .item {
   display: flex;
   align-items: center;
   padding: 1.2vh;
@@ -31,26 +31,26 @@
   background: var(--item-bg-color);
 }
 
-#fillmode .item object,
-#fillmode .item svg {
+#layersAndFill .item object,
+#layersAndFill .item svg {
   width: 1em;
   height: 1em;
 }
 
-#fillmode .item svg {
+#layersAndFill .item svg {
   fill: #000;
 }
 
-#fillmode .item.active {
+#layersAndFill .item.active {
   background: var(--item-bg-color-active);
   color: #fff;
 }
 
-#fillmode .item.active svg {
+#layersAndFill .item.active svg {
   fill: #fff !important;
 }
 
-#fillmode label[for="favoriteLayer"] {
+#layersAndFill label[for="favoriteLayer"] {
   color: brown;
 }
 

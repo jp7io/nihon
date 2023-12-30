@@ -1,5 +1,6 @@
+@import url('./title.css');
 @import url('./info.css');
-@import url('./fillmode.css');
+@import url('./layersAndFill.css');
 @import url('./furigana.css');
 @import url('./legend.css');
 @import url('./map.css');
@@ -21,42 +22,11 @@ body {
   margin: 0;
 }
 
-#title {
-  position: fixed;
-  top: var(--external-margin);
-  left: var(--external-margin);
-  z-index: 10;
-  display: flex;
-  flex-direction: row;
-}
-
-#title .title-container {
-  display: flex;
-  flex-direction: column;
-}
-
-#title h1,
-#title h2,
-#title h3 {
-  margin: 0 0 0.4em;
-  font-size: 5vh;
-}
-
-#title h1 {
-  cursor: pointer;
-}
-
 #patterns_source,
 #tokyo_source {
   visibility: hidden;
   width: 0;
   height: 0;
-}
-
-.h2-pre,
-.h3-pre {
-  font-size: 5vh;
-  margin: 0.4em 0.5em 0;
 }
 
 a {

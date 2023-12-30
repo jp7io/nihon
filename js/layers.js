@@ -10,7 +10,7 @@ import { parseHash } from './utils.js';
  */
 export function setLayer(layer) {
   /** @type {HTMLElement | null} */
-  const previousLayerItem = document.querySelector('#layersSet .item.active');
+  const previousLayerItem = document.querySelector('#layers .item.active');
 
   if (layer === 'prefectures') {
     setActiveCity();

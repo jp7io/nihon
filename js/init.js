@@ -3,23 +3,25 @@
 import { state } from "./state.js";
 import { regions } from '../data/regions.js';
 import { setActiveRegion, setActivePrefecture, setActiveCity, centerPosition } from './map/index.js';
-import { debounce, drawComponent, extractCities, extractPrefectures, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
+import { debounce, extractCities, extractPrefectures, parseHash, replaceSpecialCharactersWithAscii } from './utils.js';
 import { setLayer } from './layers.js';
-import { createInlineSVG, loadPatterns } from './svg.js';
+import { createInlineSVG } from './svg.js';
 import { initTokyo, setMunicipality, centerTokyo, setActiveMunicipalityType } from './tokyo.js';
 import { tokyo } from '../data/tokyo.js';
-import { TitleElm, LegendElm, LayersElm, FillmodeElm, AboutElm, ShurikenElm, MapElm } from '../components/index.js';
+import { TitleElm, LegendElm, LayersAndFillElm, ShurikenElm, MapElm, SvgSourcesElm } from '../components/index.js';
+import { layers } from '../data/dict.js';
+import van from '../lib/van.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
-  loadPatterns();
-  drawComponent('title-placeholder', TitleElm);
-  drawComponent('layersSet', LayersElm);
-  drawComponent('fillmodeSet', FillmodeElm);
-  drawComponent('about', AboutElm);
-  drawComponent('shuriken-placeholder', ShurikenElm);
-  drawComponent('legend', LegendElm);
-  drawComponent('map-placeholder', MapElm)
+  van.add(document.body, [
+    TitleElm,
+    LegendElm,
+    LayersAndFillElm,
+    ShurikenElm,
+    MapElm,
+    SvgSourcesElm
+  ]);
   createInlineSVG();
   setActiveData();
   initTokyo();
@@ -31,6 +33,7 @@ function setActiveData() {
 
   if (region === 'Tokyo') {
     setLayer('tokyo');
+    state.layer && (state.layer.val = layers.tokyo);
     if (municipality) {
       const municipalityData = tokyo.find(item => replaceSpecialCharactersWithAscii(item.name.en) === municipality);
       if (municipalityData) {

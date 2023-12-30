@@ -1,0 +1,30 @@
+#title {
+  position: fixed;
+  top: var(--external-margin);
+  left: var(--external-margin);
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+}
+
+#title .title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#title h1,
+#title h2,
+#title h3 {
+  margin: 0 0 0.4em;
+  font-size: 5vh;
+}
+
+#title h1 {
+  cursor: pointer;
+}
+
+.h2-pre,
+.h3-pre {
+  font-size: 5vh;
+  margin: 0.4em 0.5em 0;
+}

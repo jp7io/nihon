@@ -232,8 +232,3 @@ export function debounce(func, delay) {
 export function isMobile() {
   return window.innerWidth <= 768;
 }
-
-export const drawComponent = (placeholderId, component) => {
-  const placeholder = document.getElementById(placeholderId);
-  placeholder && van.add(placeholder, component);
-}

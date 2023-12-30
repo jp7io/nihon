@@ -1,8 +1,8 @@
 // @ts-check
 
-import van from '../lib/van.js';
-import { dict } from '../data/dict.js';
-import { furigana } from '../js/furigana.js';
+import van from '../../lib/van.js';
+import { dict } from '../../data/dict.js';
+import { furigana } from '../../js/furigana.js';
 
 const { a, div } = van.tags;
 
