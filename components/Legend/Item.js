@@ -1,9 +1,6 @@
 // @ts-check
 
 import van from '../../lib/van.js';
-import { setActiveRegion } from '../../js/map/index.js';
-import { setInfo } from '../../js/info.js';
-import { setLayer } from '../../js/layers.js';
 import { furigana } from '../../js/furigana.js';
 
 const { div, a } = van.tags
@@ -56,13 +53,4 @@ export const LegendItem = (item, { color, pattern }, state, linkProps) => {
   )
 
   return linkElm;
-}
-
-export function drawLegendItems() {
-  const legendH1 = document.querySelector('#title h1');
-  legendH1?.addEventListener('click', () => {
-    setLayer('capitals')
-    setActiveRegion();
-    setInfo();
-  });
 }

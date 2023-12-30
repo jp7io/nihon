@@ -36,7 +36,6 @@ export const SvgSourcesElm = div(
     defs({ id: 'patterns_cloned' }),
     defs({ id: 'icons_cloned' }),
   ),
-  div({ id: 'tokyo_cloned' }),
   svgSources.map(({ data, target, callback }) => object(
     {
       type: 'image/svg+xml',
