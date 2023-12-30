@@ -36,16 +36,16 @@
     height: 5em;
   }
 
-  #fillmode .item:not(.active) .furigana,
+  #layersAndFill .item:not(.active) .furigana,
   #legend .item:not(#legend .item-active) .legend-name {
     text-shadow: 0.05em 0.05em 0.025em #fff;
   }
 
-  #fillmode {
+  #layersAndFill .items {
     font-size: 1.5em !important;
   }
 
-  #fillmode .item {
+  #layersAndFill .item {
     padding: 1em 0.5em;
   }
 
