@@ -14,7 +14,8 @@
 
 #title h1,
 #title h2,
-#title h3 {
+#title h3,
+#title h4 {
   margin: 0 0 0.4em;
   font-size: 5vh;
 }
@@ -23,8 +24,12 @@
   cursor: pointer;
 }
 
-.h2-pre,
-.h3-pre {
+body:has(h3) #title h2,
+body:has(h3) #title .h2.title-separator {
+  display: none;
+}
+
+.title-separator {
   font-size: 5vh;
   margin: 0.4em 0.5em 0;
 }

@@ -10,10 +10,14 @@ const { ruby, rbc, rb, rtc, rt, div } = van.tags
 
 /**
  *
- * @param {Name} name
+ * @param {Name | null} name
  * @returns string
  */
 export function furigana(name, annotation = true) {
+  if (!name) {
+    return '';
+  }
+
   const jaElm = div(
     {
       class: 'ja',

@@ -6,7 +6,6 @@
 
 import { commonOptions } from './common.js';
 import { addStroke, setElmAttributes } from '../utils.js';
-import { setInfo } from '../info.js';
 import { setPrefecture } from './prefectures.js';
 import { findCity } from '../regions.js';
 import { state } from '../state.js';
@@ -107,14 +106,14 @@ function adjustPosition(cityTextElm, city, { y, height }) {
 }
 
 /**
- * @param {City=} city
+ * @param {City | null} city
  */
 export function setCity(city) {
   const cities = document.querySelectorAll('#cities svg g[data-city=true]');
   cities.forEach(elm => elm.classList.remove('active'));
 
   if (!city) {
-    setInfo();
+    state.city.val = null;
     return;
   }
 
@@ -124,6 +123,4 @@ export function setCity(city) {
   city.prefecture && setPrefecture(city.prefecture);
 
   state.city.val = city;
-
-  setInfo('city', city);
 }

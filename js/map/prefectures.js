@@ -6,7 +6,6 @@
 
 import { commonOptions } from './common.js';
 import { addStroke } from '../utils.js';
-import { setInfo } from '../info.js';
 import { findPrefecture } from '../regions.js';
 import { state } from '../state.js';
 
@@ -80,6 +79,5 @@ export function setPrefecture(prefecture) {
     elm.classList.toggle('active', elm.logicalname === logicalname);
   });
 
-  setInfo('prefecture', prefecture);
   state.prefecture.val = prefecture;
 }

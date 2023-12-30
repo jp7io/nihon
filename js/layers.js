@@ -16,9 +16,7 @@ import { state } from './state.js';
  */
 export function setLayer(layer) {
   if (layer === layers.prefecture) {
-    setCity();
-    const hash = parseHash();
-    document.location.hash = Object.values(hash).filter(str => str && str.length > 0).join(',');
+    setCity(null);
   }
 
   if (layer === layers.tokyo) {

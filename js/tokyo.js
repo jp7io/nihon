@@ -6,11 +6,9 @@
 
 import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
 import { colorsTokyo } from '../data/colorsTokyo.js';
-import { setInfo } from './info.js';
 import { centerPosition } from './map/regions.js';
 import { state } from './state.js';
 import { replaceSpecialChars } from './utils.js';
-import { findPrefecture } from './regions.js';
 
 export function initTokyo() {
   tokyoBorders.forEach(border => {
@@ -49,9 +47,15 @@ export function initTokyo() {
 }
 
 /**
- * @param {Municipality} municipality
+ * @param {Municipality | null} municipality
  */
 export function setMunicipality(municipality) {
+  if (!municipality) {
+    state.municipality.val = null;
+    state.municipalityType.val = null;
+    return;
+  }
+
   const id = replaceSpecialChars(municipality.name.en);
 
   tokyo.forEach(item => {
@@ -62,7 +66,8 @@ export function setMunicipality(municipality) {
     });
   });
 
-  setInfo('municipality', municipality);
+  state.municipality.val = municipality;
+  state.municipalityType.val = municipality.type;
 }
 
 export function setMunicipalityType(type, force = false) {
@@ -71,9 +76,7 @@ export function setMunicipalityType(type, force = false) {
     return;
   }
 
-  const tokyoData = findPrefecture('Tōkyō');
-
-  setInfo('tokyo', tokyoData);
+  //state.city.val = findPrefecture('Tōkyō');
   state.municipalityType.val = type;
   setTimeout(() => {
     centerTokyo(type); // FIXME

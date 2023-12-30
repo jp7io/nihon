@@ -21,6 +21,7 @@ import van from '../lib/van.js';
  * @property {State} layer
  * @property {State} fillmode
  * @property {State} regionZoom
+ * @property {State} init
  */
 
 /** @type {AppState} */
@@ -33,4 +34,5 @@ export const state = {
   layer: van.state(layers.capital),
   fillmode: van.state(fillmode.color),
   regionZoom: van.state(false),
+  init: van.state(false),
 }

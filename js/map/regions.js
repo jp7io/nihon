@@ -8,7 +8,6 @@
 import { regions } from "../../data/regions.js";
 import { colors } from "../../data/colors.js";
 import { commonOptions } from './common.js';
-import { setInfo } from '../info.js';
 import { drawPrefectures } from './prefectures.js';
 import { drawCities } from './cities.js';
 import { drawClickableArea } from './clickableArea.js';
@@ -53,6 +52,7 @@ export function setRegion(region, callback) {
   const previousRegionItem = document.querySelector('#legend .item.active');
 
   if (!region || previousRegionItem?.dataset.region === region?.name.en) {
+    state.region.val = null;
     resetMap();
     clearRegion();
     return;
@@ -61,11 +61,13 @@ export function setRegion(region, callback) {
   setZoom(region);
 
   activeRegionDraw(region, () => {
-    setInfo('region', region);
     recoverFillmode();
     callback && callback();
   });
 
+  state.municipality.val = null;
+  state.city.val = null;
+  state.prefecture.val = null;
   state.region.val = region;
 }
 
