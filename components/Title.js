@@ -15,9 +15,8 @@ export const TitleElm = div({ id: 'title' },
     h1(
       {
         onclick: () => {
-          state.layer.val = layers.capital;
-          setLayer('capitals');
-          setActiveRegion();
+          setLayer(layers.capital);
+          setActiveRegion(null);
           setInfo();
         },
       },

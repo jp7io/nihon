@@ -23,8 +23,7 @@ function setActiveData() {
   const { region, prefecture, city, municipality } = parseHash();
 
   if (region === 'Tokyo') {
-    setLayer('tokyo');
-    state.layer.val = layers.tokyo;
+    setLayer(layers.tokyo);
     if (municipality) {
       const municipalityData = findMunicipality(municipality);
       if (municipalityData) {
@@ -42,10 +41,10 @@ function setActiveData() {
   setActiveRegion(regionData, () => {
     setTimeout(() => {
       if (cityData) {
-        setLayer('capitals');
+        setLayer(layers.capital);
         setActiveCity(cityData);
       } else if (prefectureData) {
-        setLayer('prefectures');
+        setLayer(layers.prefecture);
         setActivePrefecture(prefectureData);
       }
     }, 1);
@@ -55,7 +54,7 @@ function setActiveData() {
 function initPosition() {
   window.addEventListener('resize', debounce(() => {
     const { layer, municipalityType } = state;
-    if (layer.val?.en === 'Tokyo' && municipalityType.val) {
+    if (layer.val === layers.tokyo && municipalityType.val) {
       centerTokyo(municipalityType.val);
       return;
     }
