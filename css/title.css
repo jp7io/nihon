@@ -25,6 +25,15 @@
   cursor: pointer;
 }
 
+.title-separator {
+  font-size: 5vh;
+  margin: 0.4em 0.5em 0;
+}
+
+.title-separator:last-child {
+  display: none;
+}
+
 body:has(h3) #title h2,
 body:has(h3) #title .h2.title-separator {
   display: none;
@@ -33,9 +42,4 @@ body:has(h3) #title .h2.title-separator {
 body:has(h5) #title h4,
 body:has(h5) #title .h4.title-separator {
   display: none;
-}
-
-.title-separator {
-  font-size: 5vh;
-  margin: 0.4em 0.5em 0;
 }

@@ -12,6 +12,8 @@ import { state } from '../js/state.js';
 
 const { div, h1, h2, h3, h4, h5 } = van.tags;
 
+const hTags = [h1, h2, h3, h4, h5];
+
 const getPageTitle = () => {
   const title = getTitle().filter(title => title);
   return title.reverse().map(title => title.ja).join(' / ');
@@ -27,7 +29,7 @@ const getHash = () => {
 }
 
 export const TitleElm = () => {
-  const [title1, title2, title3, title4, title5] = getTitle();
+  const titles = getTitle();
 
   document.title = getPageTitle();
   if (state.init.val) {
@@ -40,36 +42,21 @@ export const TitleElm = () => {
     {
       id: 'title',
     },
-    h1(
-      {
-        onclick: () => {
-          setLayer(layers.capital);
-          setRegion(null);
-          setCity(null);
-          setMunicipality(null);
+    titles.map((title, index) => title ? [
+      hTags[index](
+        {
+          onclick: () => {
+            if (index === 0) {
+              setLayer(layers.capital);
+              setRegion(null);
+              setCity(null);
+              setMunicipality(null);
+            }
+          },
         },
-      },
-      furigana(title1),
-    ),
-    title2 && div({ class: 'h2 title-separator' }, '/'),
-    title2 && h2(
-      {},
-      furigana(title2),
-    ),
-    title3 && div({ class: 'h3 title-separator' }, '/'),
-    title3 && h3(
-      {},
-      furigana(title3),
-    ),
-    title4 && div({ class: 'h4 title-separator' }, '/'),
-    title4 && h4(
-      {},
-      furigana(title4),
-    ),
-    title5 && div({ class: 'h5 title-separator' }, '/'),
-    title5 && h5(
-      {},
-      furigana(title5),
-    ),
+        furigana(title),
+      ),
+      div({ class: `h${index + 1} title-separator` }, '/'),
+    ] : null),
   )
 };
