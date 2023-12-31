@@ -1,6 +1,6 @@
 // @ts-check
 
-import { dict } from '../data/dict.js';
+import { dict, layers } from '../data/dict.js';
 import { furigana } from '../js/furigana.js';
 import { state } from '../js/state.js';
 import { replaceSpecialChars } from '../js/utils.js';
@@ -31,7 +31,7 @@ const InfoTooltip = div(
 const flagUrl = () => {
   const { municipality, city, prefecture } = state;
   if (municipality.val) {
-    return `./img/city/Tokyo,Tokyo.svg`;
+    return `./img/tokyo/${replaceSpecialChars(municipality.val.name.en)}.svg`;
   }
   if (city.val) {
     return `./img/city/${replaceSpecialChars(city.val.name.en)},${replaceSpecialChars(prefecture.val.name.en)}.svg`;

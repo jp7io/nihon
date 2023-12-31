@@ -9,6 +9,8 @@ import { setCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
 import { layers } from '../data/dict.js';
 import { state } from './state.js';
+import { findCity, findPrefecture } from './regions.js';
+import { setPrefecture } from './map/prefectures.js';
 
 /**
  * @param {Name} layer
@@ -21,11 +23,15 @@ export function setLayer(layer) {
   if (layer === layers.tokyo) {
     resetMap();
     clearRegion();
-    setMunicipalityType();
+    setPrefecture(findPrefecture('Tokyo'));
+    setCity(findCity('Tokyo'));
+    setMunicipalityType(null);
   } else if (state.layer.val === layers.tokyo) {
     setTimeout(() => {
       resetMap();
       clearRegion();
+      setCity(null);
+      setPrefecture(null);
       setMunicipality(null);
     }, 1);
   }

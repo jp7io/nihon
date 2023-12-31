@@ -64,14 +64,10 @@ function improvePrefectureElm(prefecture) {
 }
 
 /**
- * @param {Prefecture} prefecture
+ * @param {Prefecture | null} prefecture
  */
 export function setPrefecture(prefecture) {
-  if (!prefecture) {
-    return;
-  }
-
-  const logicalname = `F#feature#1#0#JP-${prefecture.code}#0`;
+  const logicalname = prefecture && `F#feature#1#0#JP-${prefecture.code}#0`;
 
   /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
   const regionsElmCollection = document.querySelectorAll('#regions svg path');
