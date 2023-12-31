@@ -12,7 +12,7 @@ const { div } = van.tags;
 export const TokyoElm = div({ id: 'legend-tokyo' }, Object.values(municipalityType).map((type, index) => (
   LegendItem(type, colorsTokyo[index], state.municipalityType, {
     onclick: () => {
-      setMunicipality(null);
+      setMunicipality(null, false);
       setMunicipalityType(type);
     },
   }))));

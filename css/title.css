@@ -15,7 +15,8 @@
 #title h1,
 #title h2,
 #title h3,
-#title h4 {
+#title h4,
+#title h5 {
   margin: 0 0 0.4em;
   font-size: 5vh;
 }
@@ -26,6 +27,11 @@
 
 body:has(h3) #title h2,
 body:has(h3) #title .h2.title-separator {
+  display: none;
+}
+
+body:has(h5) #title h4,
+body:has(h5) #title .h4.title-separator {
   display: none;
 }
 

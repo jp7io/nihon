@@ -1,6 +1,6 @@
 // @ts-check
 
-import van from '../lib/van.js';
+import { municipalityType } from '../data/tokyo.js';
 
 /**
  * @typedef {import('../data/regions.js').Region} Region
@@ -183,6 +183,14 @@ export function parseHash() {
   const filters = decodeURI(hash).split('/');
 
   if (filters[0] === 'Tokyo') {
+    const municipalityTypeData = Object.values(municipalityType).find((type) => type.name.en === filters[1]);
+    if (municipalityTypeData) {
+      return {
+        region: 'Tokyo',
+        municipalityType: filters[1],
+      };
+    }
+
     return {
       region: 'Tokyo',
       municipality: filters[1],

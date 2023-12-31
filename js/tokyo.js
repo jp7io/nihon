@@ -49,7 +49,7 @@ export function initTokyo() {
 /**
  * @param {Municipality | null} municipality
  */
-export function setMunicipality(municipality) {
+export function setMunicipality(municipality, resetType = true) {
   const id = municipality && replaceSpecialChars(municipality.name.en);
 
   tokyo.forEach(item => {
@@ -61,7 +61,7 @@ export function setMunicipality(municipality) {
   });
 
   state.municipality.val = municipality;
-  state.municipalityType.val = municipality?.type;
+  resetType && (state.municipalityType.val = municipality?.type);
 }
 
 export function setMunicipalityType(type, force = false) {

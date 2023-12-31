@@ -10,7 +10,7 @@ import { getTitle } from '../js/title.js';
 import { replaceSpecialChars } from '../js/utils.js';
 import { state } from '../js/state.js';
 
-const { div, h1, h2, h3, h4 } = van.tags;
+const { div, h1, h2, h3, h4, h5 } = van.tags;
 
 const getPageTitle = () => {
   const title = getTitle().filter(title => title);
@@ -19,12 +19,15 @@ const getPageTitle = () => {
 
 const getHash = () => {
   const isTokyo = state.layer.val === layers.tokyo;
-  const title = getTitle().slice(isTokyo ? 2 : 1).filter(title => title);
-  return title.map(title => replaceSpecialChars(title.en)).join('/');
+  const title = getTitle().slice(isTokyo ? 2 : 1);
+  if (isTokyo && state.municipality.val) {
+    delete title[1];
+  }
+  return title.filter(title => title).map(title => replaceSpecialChars(title.en)).join('/');
 }
 
 export const TitleElm = () => {
-  const [title1, title2, title3, title4] = getTitle();
+  const [title1, title2, title3, title4, title5] = getTitle();
 
   document.title = getPageTitle();
   if (state.init.val) {
@@ -62,6 +65,11 @@ export const TitleElm = () => {
     title4 && h4(
       {},
       furigana(title4),
+    ),
+    title5 && div({ class: 'h5 title-separator' }, '/'),
+    title5 && h5(
+      {},
+      furigana(title5),
     ),
   )
 };

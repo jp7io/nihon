@@ -27,7 +27,7 @@ export const dict = {
   },
   reportAnIssue: {
     ja: '問題を報告する',
-    furigana: ['もん', 'だい', '', 'ほう', 'こく', '', '', ''],
+    furigana: ['もん', 'だい', '', 'ほう', 'こく', '', ''],
     en: 'Report an Issue',
   },
 }

@@ -5,7 +5,7 @@ import { findCity, findRegion } from './regions.js';
 import { state } from './state.js';
 
 export const getTitle = () => {
-  const { layer, region, prefecture, city, municipality } = state;
+  const { layer, region, prefecture, city, municipality, municipalityType } = state;
 
   if (layer.val === layers.tokyo || municipality.val) {
     const tokyo = findCity('Tokyo');
@@ -14,6 +14,7 @@ export const getTitle = () => {
       dict.japan,
       kanto?.name,
       tokyo?.name,
+      municipalityType.val?.name,
       municipality.val?.name,
     ]
   }

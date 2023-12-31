@@ -5,46 +5,61 @@ import { setRegion, setPrefecture, setCity, centerPosition } from './map/index.j
 import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { centerTokyo, findMunicipality, setMunicipality } from './tokyo.js';
+import { centerTokyo, findMunicipality, setMunicipality, setMunicipalityType } from './tokyo.js';
 import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
 import { findRegion, findPrefecture, findCity } from './regions.js';
+import { municipalityType } from '../data/tokyo.js';
 
 google.charts.load('current', { 'packages': ['geochart'], 'mapsApiKey': 'AIzaSyDWQEGh9S63LVWJOVzUX9lZqlTDWMe1nvk' });
 google.charts.setOnLoadCallback(async () => {
   van.add(document.body, Root);
   createInlineSVG();
-  setActiveData();
+  setData();
   initPosition();
 });
 
-function setActiveData() {
-  const { region, prefecture, city, municipality } = parseHash();
-
-  if (region === 'Tokyo') {
-    setLayer(layers.tokyo);
-    if (municipality) {
-      const municipalityData = findMunicipality(municipality);
-      if (municipalityData) {
-        setMunicipality(municipalityData);
-      }
-    }
+function setData() {
+  const hash = parseHash();
+  if (hash.region === 'Tokyo') {
+    setTokyo(hash);
     return;
   }
+  setJapan(hash);
+}
 
-  const regionData = findRegion(region);
-  const prefectureData = prefecture && findPrefecture(prefecture);
-  const cityData = city && findCity(city);
+function setTokyo(hash) {
+  setLayer(layers.tokyo);
+  if (hash.municipality) {
+    const municipalityData = findMunicipality(hash.municipality);
+    if (municipalityData) {
+      setMunicipality(municipalityData);
+      return;
+    }
+  }
+  if (hash.municipalityType) {
+    const municipalityTypeData = Object.values(municipalityType).find(type => type.name.en === hash.municipalityType);
+    if (municipalityTypeData) {
+      setMunicipalityType(municipalityTypeData);
+      return;
+    }
+  }
+}
 
-  setRegion(regionData, () => {
+function setJapan(hash) {
+  const region = findRegion(hash.region);
+  const prefecture = hash.prefecture && findPrefecture(hash.prefecture);
+  const city = hash.city && findCity(hash.city);
+
+  setRegion(region, () => {
     setTimeout(() => {
-      if (cityData) {
+      if (city) {
         setLayer(layers.capital);
-        setCity(cityData);
-      } else if (prefectureData) {
+        setCity(city);
+      } else if (prefecture) {
         setLayer(layers.prefecture);
-        setPrefecture(prefectureData);
+        setPrefecture(prefecture);
       }
     }, 1);
   });
