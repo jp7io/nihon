@@ -216,3 +216,17 @@ export function debounce(func, delay) {
 export function isMobile() {
   return window.innerWidth <= 768;
 }
+
+export const memoize = (func) => {
+  const cache = new Map();
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
+    } else {
+      const result = func(...args);
+      cache.set(key, result);
+      return result;
+    }
+  };
+};

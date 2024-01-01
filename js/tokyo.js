@@ -25,7 +25,7 @@ export function initTokyo() {
       if (index === 0) {
         element.innerHTML = municipality.name.ja;
         element.addEventListener('click', () => {
-          setMunicipality(municipality);
+          setMunicipalityAndType(municipality);
         });
       } else {
         const y = Number(texts[0].getAttribute('y')) + 5;
@@ -40,7 +40,7 @@ export function initTokyo() {
     paths.forEach(path => {
       path.setAttribute('stroke', color.stroke);
       path.addEventListener('click', () => {
-        setMunicipality(municipality);
+        setMunicipalityAndType(municipality);
       })
     });
   });
@@ -49,7 +49,7 @@ export function initTokyo() {
 /**
  * @param {Municipality | null} municipality
  */
-export function setMunicipality(municipality, resetType = true) {
+export function setMunicipality(municipality) {
   const id = municipality && replaceSpecialChars(municipality.name.en);
 
   tokyo.forEach(item => {
@@ -61,11 +61,10 @@ export function setMunicipality(municipality, resetType = true) {
   });
 
   state.municipality.val = municipality;
-  resetType && (state.municipalityType.val = municipality?.type);
 }
 
-export function setMunicipalityType(type, force = false) {
-  if (!force && type && type.name.en === state.municipalityType.val?.name.en) {
+export function setMunicipalityType(type, legend = false) {
+  if (legend && type && type.name.en === state.municipalityType.val?.name.en) {
     setMunicipalityType();
     return;
   }
@@ -79,15 +78,12 @@ export function setMunicipalityType(type, force = false) {
   }, 1);
 }
 
+export function setMunicipalityAndType(municipality) {
+  setMunicipalityType(municipality?.type);
+  setMunicipality(municipality);
+}
+
 export function centerTokyo(type) {
-  const tokyo = document.getElementById('tokyo');
-
-  if (!tokyo) {
-    return;
-  }
-
-  tokyo.className = (type) ? type.name.en : 'Tokyo';
-
   const container = document.querySelectorAll('#tokyo_cloned');
   const factor = container[0].getBoundingClientRect().width / 1200;
 

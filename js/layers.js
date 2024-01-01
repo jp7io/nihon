@@ -4,7 +4,7 @@
  * @typedef {import('../data/regions.js').Name} Name
  */
 
-import { setMunicipality, setMunicipalityType } from './tokyo.js';
+import { setMunicipalityAndType } from './tokyo.js';
 import { setCity } from './map/cities.js';
 import { clearRegion, resetMap } from './map/regions.js';
 import { layers } from '../data/dict.js';
@@ -25,14 +25,14 @@ export function setLayer(layer) {
     clearRegion();
     setPrefecture(findPrefecture('Tokyo'));
     setCity(findCity('Tokyo'));
-    setMunicipalityType(null);
+    setMunicipalityAndType(null);
   } else if (state.layer.val === layers.tokyo) {
     setTimeout(() => {
       resetMap();
       clearRegion();
       setCity(null);
       setPrefecture(null);
-      setMunicipality(null);
+      setMunicipalityAndType(null);
     }, 1);
   }
 

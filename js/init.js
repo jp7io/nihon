@@ -5,7 +5,7 @@ import { setRegion, setPrefecture, setCity, centerPosition } from './map/index.j
 import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { centerTokyo, findMunicipality, setMunicipality, setMunicipalityType } from './tokyo.js';
+import { centerTokyo, findMunicipality, setMunicipalityAndType, setMunicipalityType } from './tokyo.js';
 import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
@@ -34,7 +34,7 @@ function setTokyo(hash) {
   if (hash.municipality) {
     const municipalityData = findMunicipality(hash.municipality);
     if (municipalityData) {
-      setMunicipality(municipalityData);
+      setMunicipalityAndType(municipalityData);
       return;
     }
   }

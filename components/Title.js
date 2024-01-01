@@ -5,7 +5,7 @@ import { furigana } from '../js/furigana.js';
 import van from '../lib/van.js';
 import { setLayer } from '../js/layers.js';
 import { setCity, setRegion } from '../js/map/index.js';
-import { setMunicipality } from '../js/tokyo.js';
+import { setMunicipalityAndType } from '../js/tokyo.js';
 import { getTitle } from '../js/title.js';
 import { replaceSpecialChars } from '../js/utils.js';
 import { state } from '../js/state.js';
@@ -50,7 +50,7 @@ export const TitleElm = () => {
               setLayer(layers.capital);
               setRegion(null);
               setCity(null);
-              setMunicipality(null);
+              setMunicipalityAndType(null);
             }
           },
         },

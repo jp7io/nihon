@@ -2,7 +2,7 @@
 
 import { state } from '../js/state.js';
 import { createInlineSVG } from '../js/svg.js';
-import { initTokyo, setMunicipalityType, setMunicipality } from '../js/tokyo.js';
+import { initTokyo, setMunicipalityAndType } from '../js/tokyo.js';
 import van from '../lib/van.js';
 
 const { div, object } = van.tags;
@@ -23,8 +23,7 @@ const svgSources = [
     callback: () => {
       initTokyo();
       if (state.municipality.val) {
-        setMunicipalityType(state.municipalityType.val, true);
-        setMunicipality(state.municipality.val);
+        setMunicipalityAndType(state.municipality.val);
       }
     }
   },
