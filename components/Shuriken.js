@@ -12,10 +12,10 @@ export const ShurikenElm = div(
   },
   div(
     {
-      className: 'directions',
+      class: 'directions',
     },
     Object.values(directions).map(direction => div(
-      { className: `direction ${direction.en}` },
+      { class: `direction ${direction.en}` },
       furigana(direction, false),
     )),
     img({ src: 'img/shuriken.svg' }),
