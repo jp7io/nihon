@@ -22,6 +22,9 @@ import van from '../lib/van.js';
  * @property {State} fillmode
  * @property {State} regionZoom
  * @property {State} init
+ * @property {State} mapRegionsReady
+ * @property {State} mapPrefecturesReady
+ * @property {State} mapCitiesReady
  */
 
 /** @type {AppState} */
@@ -35,4 +38,7 @@ export const state = {
   fillmode: van.state(fillmode.color),
   regionZoom: van.state(false),
   init: van.state(false),
+  mapRegionsReady: van.state(false),
+  mapPrefecturesReady: van.state(false),
+  mapCitiesReady: van.state(false),
 }

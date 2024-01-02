@@ -1,7 +1,11 @@
 // @ts-check
 
+import { colors } from '../data/colors.js';
+import { regions } from '../data/regions.js';
+import { recoverFillmode } from '../js/fillMode.js';
+import { activeRegionDraw, drawRegions, resetMap } from '../js/map/regions.js';
 import { state } from '../js/state.js';
-import { memoize, toId } from '../js/utils.js';
+import { memoize, parseData, toId } from '../js/utils.js';
 import van from '../lib/van.js';
 
 const { div } = van.tags;
@@ -25,19 +29,37 @@ const tokyoMap = memoize(() => svg(
   }
 ));
 
-export const MapElm = () => div(
-  {
-    id: 'map',
-    class: () => `regions ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
-  },
-  div({ id: 'japan' },
-    japanMap(),
-  ),
-  div(
+export const MapElm = () => {
+  // console.log('MapElm', state.region.val?.name.en)
+  // setTimeout(() => {
+  //   if (state.region.val) {
+  //     activeRegionDraw(state.region.val, () => {
+  //       recoverFillmode();
+  //     });
+  //   } else {
+  //     resetMap();
+  //   }
+  // }, 100);
+
+  return div(
     {
-      id: 'tokyo',
-      class: state.municipalityType.val?.name.en || 'Tokyo'
+      id: 'map',
+      class: () => `regions ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
     },
-    tokyoMap(),
-  ),
-);
+    div({ id: 'japan' },
+      japanMap(),
+    ),
+    div(
+      {
+        id: 'tokyo',
+        class: state.municipalityType.val?.name.en || 'Tokyo'
+      },
+      tokyoMap(),
+    ),
+    (dom) => {
+      const map = document.getElementById('map');
+      console.log('MapElm', state.region.val?.name.en, dom, map);
+      return ''
+    }
+  )
+};

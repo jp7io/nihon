@@ -21,6 +21,8 @@ import { state } from '../state.js';
  * @param {() => void=} callback
  */
 export function drawRegions(data, colors, callback) {
+  state.mapRegionsReady.val = false;
+
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -37,7 +39,7 @@ export function drawRegions(data, colors, callback) {
   const dataTable = google.visualization.arrayToDataTable(data);
 
   google.visualization.events.addListener(chart, 'ready', () => {
-    callback && callback();
+    state.mapRegionsReady.val = true;
   });
 
   chart.draw(dataTable, options);
@@ -59,11 +61,6 @@ export function setRegion(region, callback) {
   }
 
   setZoom(region);
-
-  activeRegionDraw(region, () => {
-    recoverFillmode();
-    callback && callback();
-  });
 
   state.municipality.val = null;
   state.city.val = null;
