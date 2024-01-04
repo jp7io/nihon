@@ -27,41 +27,34 @@ const tokyoMap = memoize(() => svg(
   }
 ));
 
-const zoom = (mapElm) => {
+const mapWidth = () => {
   if (state.region.val) {
     state.regionZoom.val = true;
-    mapElm.style.width = isMobile() ? state.region.val.zoom.mobile : state.region.val.zoom.desktop;
+    return `width: ${isMobile() ? state.region.val.zoom.mobile : state.region.val.zoom.desktop}`;
   } else {
     state.regionZoom.val = false;
-    mapElm.style.width = isMobile() ? '200%' : '100%';
+    return `width: ${isMobile() ? '200%' : '100%'}`;
   }
 }
 
-export const MapElm = (dom) => {
-  state.region.val && console.log(state.region.val.name.en);
-
-  if (dom && state.region.val && state.region.val !== state.region.oldVal) {
-    zoom(dom);
-    activeRegionDraw(state.region.val);
-  }
-
-  if (state.mapRegionsReady.val) {
-    recoverFillmode();
-  }
-
+const position = () => {
   if (state.mapCitiesReady.val) {
     /** @type {NodeListOf<SVGTextElement>} */
     const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
     centerPosition(cities)
   }
+}
 
+const cities = () => {
   if (state.mapCitiesReady.val && state.city.val) {
     const cities = document.querySelectorAll('#cities svg g[data-city=true]');
     cities.forEach(elm => elm.classList.remove('active'));
     const cityElm = document.querySelector(`#cities svg g[data-name="${state.city.val.name.en}"]`);
     cityElm?.classList.add('active');
   }
+}
 
+const prefectures = () => {
   if (state.mapPrefecturesReady.val) {
     const logicalname = state.prefecture.val && `F#feature#1#0#JP-${state.prefecture.val.code}#0`;
 
@@ -72,10 +65,28 @@ export const MapElm = (dom) => {
     });
   }
 
+}
+
+export const MapElm = (dom) => {
+  state.region.val && console.log(state.region.val.name.en);
+
+  if (dom && state.region.val !== state.region.oldVal) {
+    state.region.val && activeRegionDraw(state.region.val);
+  }
+
+  if (state.mapRegionsReady.val) {
+    recoverFillmode();
+  }
+
+  position();
+  cities();
+  prefectures();
+
   return div(
     {
       id: 'map',
       class: () => `regions ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
+      style: () => mapWidth(),
     },
     div({ id: 'japan' },
       japanMap(),
