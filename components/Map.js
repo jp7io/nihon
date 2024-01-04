@@ -42,10 +42,11 @@ const mapWidth = () => {
 const position = () => {
   if (state.mapCitiesReady.val) {
     if (state.mapCitiesReady.val && state.layer.val === layers.tokyo) {
-      centerTokyo();
       setTimeout(() => {
-        centerTokyo();
-      }, 100); // FIXME
+        setTimeout(() => {
+          centerTokyo();
+        }, 100);
+      }, 1); // FIXME
     } else {
       /** @type {NodeListOf<SVGTextElement>} */
       const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
