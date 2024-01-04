@@ -1,11 +1,11 @@
 // @ts-check
 
 import { state } from "./state.js";
-import { setRegion, setPrefecture, setCity, centerPosition } from './map/index.js';
+import { setRegion, setPrefecture, setCity, centerMap } from './map/index.js';
 import { debounce, parseHash } from './utils.js';
 import { setLayer } from './layers.js';
 import { createInlineSVG } from './svg.js';
-import { centerTokyo, findMunicipality, setMunicipalityAndType, setMunicipalityType } from './tokyo.js';
+import { centerTokyo, findMunicipality, setMunicipalityAndType } from './tokyo.js';
 import { Root } from '../components/index.js';
 import { layers } from '../data/dict.js';
 import van from '../lib/van.js';
@@ -41,7 +41,7 @@ function setTokyo(hash) {
   if (hash.municipalityType) {
     const municipalityTypeData = Object.values(municipalityType).find(type => type.name.en === hash.municipalityType);
     if (municipalityTypeData) {
-      setMunicipalityType(municipalityTypeData);
+      state.municipalityType.val = municipalityTypeData;
       return;
     }
   }
@@ -71,11 +71,11 @@ function initPosition() {
   window.addEventListener('resize', debounce(() => {
     const { layer, municipalityType } = state;
     if (layer.val === layers.tokyo && municipalityType.val) {
-      centerTokyo(municipalityType.val);
+      centerTokyo();
       return;
     }
     /** @type {NodeListOf<SVGTextElement>} */
     const cities = document.querySelectorAll('svg g[data-city=true] text:last-of-type');
-    centerPosition(cities);
+    centerMap(cities);
   }, 100));
 }

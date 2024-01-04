@@ -1,8 +1,10 @@
 // @ts-check
 
-import { recoverFillmode } from '../js/fillMode.js';
-import { activeRegionDraw, centerPosition } from '../js/map/regions.js';
+import { layers } from '../data/dict.js';
+import { setFillmode } from '../js/fillMode.js';
+import { activeRegionDraw, centerMap } from '../js/map/regions.js';
 import { state } from '../js/state.js';
+import { centerTokyo } from '../js/tokyo.js';
 import { isMobile, memoize, toId } from '../js/utils.js';
 import van from '../lib/van.js';
 
@@ -39,9 +41,16 @@ const mapWidth = () => {
 
 const position = () => {
   if (state.mapCitiesReady.val) {
-    /** @type {NodeListOf<SVGTextElement>} */
-    const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
-    centerPosition(cities)
+    if (state.mapCitiesReady.val && state.layer.val === layers.tokyo) {
+      centerTokyo();
+      setTimeout(() => {
+        centerTokyo();
+      }, 100); // FIXME
+    } else {
+      /** @type {NodeListOf<SVGTextElement>} */
+      const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
+      centerMap(cities)
+    }
   }
 }
 
@@ -76,8 +85,8 @@ export const MapElm = (dom) => {
     activeRegionDraw();
   }
 
-  if (state.mapRegionsReady.val) {
-    recoverFillmode();
+  if (state.mapRegionsReady.val && state.fillmode.val) {
+    setFillmode();
   }
 
   position();

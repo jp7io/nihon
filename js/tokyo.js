@@ -6,7 +6,7 @@
 
 import { municipalityType, tokyo, tokyoBorders } from '../data/tokyo.js';
 import { colorsTokyo } from '../data/colorsTokyo.js';
-import { centerPosition } from './map/regions.js';
+import { centerMap } from './map/regions.js';
 import { state } from './state.js';
 import { replaceSpecialChars } from './utils.js';
 
@@ -63,39 +63,19 @@ export function setMunicipality(municipality) {
   state.municipality.val = municipality;
 }
 
-export function setMunicipalityType(type, legend = false) {
-  if (legend && type && type.name.en === state.municipalityType.val?.name.en) {
-    setMunicipalityType();
-    return;
-  }
-
-  state.municipalityType.val = type;
-  setTimeout(() => {
-    centerTokyo(type); // FIXME
-    setTimeout(() => {
-      centerTokyo(type); // FIXME
-    }, 200);
-  }, 1);
-}
-
 export function setMunicipalityAndType(municipality) {
-  setMunicipalityType(municipality?.type);
+  state.municipalityType.val = municipality?.type;
   setMunicipality(municipality);
 }
 
-export function centerTokyo(type) {
+export function centerTokyo() {
+  const type = state.municipalityType.val;
   const container = document.querySelectorAll('#tokyo_cloned');
   const factor = container[0].getBoundingClientRect().width / 1200;
-
-  if (type) {
-    /** @type {NodeListOf<SVGTSpanElement>} */
-    const municipalities = document.querySelectorAll(`#Municipalities #Text #${type.name.en} tspan`);
-    centerPosition(municipalities, factor);
-  } else {
-    /** @type {NodeListOf<SVGTSpanElement>} */
-    const municipalities = document.querySelectorAll(`#Municipalities #Text tspan`);
-    centerPosition(municipalities, factor);
-  }
+  const query = type ? `#Municipalities #Text #${type.name.en} tspan` : '#Municipalities #Text tspan';
+  /** @type {NodeListOf<SVGTSpanElement>} */
+  const municipalities = document.querySelectorAll(query);
+  centerMap(municipalities, factor);
 }
 
 export function findMunicipality(name) {

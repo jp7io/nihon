@@ -12,13 +12,8 @@ import { colorsTokyo } from '../data/colorsTokyo.js';
 import { state } from './state.js';
 import { toId } from './utils.js';
 
-/**
- * @param {Name} mode
- */
-export function setFillmode(mode) {
-  state.fillmode.val = mode;
-
-  const modeId = toId(mode.en);
+export function setFillmode() {
+  const modeId = toId(state.fillmode.val.en);
 
   const maps = [
     { id: 'regions', data: regions, colors },
@@ -32,14 +27,10 @@ export function setFillmode(mode) {
       const map = document.querySelectorAll(`#${id} svg [fill="${fillToBeReplaced}" i]`);
       map.forEach((map) => {
         map.setAttribute('fill', color[modeId]);
-        if (id === 'tokyo' && color.stroke) {
-          map.setAttribute('stroke', color.stroke);
-        }
+        // if (id === 'tokyo' && color.stroke) {
+        //   map.setAttribute('stroke', color.stroke);
+        // }
       });
     });
   });
-}
-
-export function recoverFillmode() {
-  setFillmode(state.fillmode.val);
 }

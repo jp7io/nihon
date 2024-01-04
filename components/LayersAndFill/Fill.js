@@ -4,7 +4,6 @@ import van from '../../lib/van.js';
 import { fillmode } from '../../data/dict.js';
 import { furigana } from '../../js/furigana.js';
 import { state } from '../../js/state.js';
-import { setFillmode } from '../../js/fillMode.js';
 
 const { div } = van.tags;
 
@@ -16,9 +15,9 @@ export const FillElm = div(
   Object.values(fillmode).map(item => {
     return div(
       {
-        class: () => state?.fillmode?.val.en === item.en ? 'item active' : 'item',
+        class: () => state?.fillmode?.val === item ? 'item active' : 'item',
         'data-item': item.en,
-        onclick: () => setFillmode(item),
+        onclick: () => state.fillmode.val = item,
       },
       furigana(item),
     )

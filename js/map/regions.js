@@ -60,7 +60,7 @@ export function setRegion(region) {
 /**
  * @param {NodeListOf<SVGElement>} elmList
  */
-export function centerPosition(elmList, factor = 1) {
+export function centerMap(elmList, factor = 1) {
   const box = {
     xMin: 100_000,
     yMin: 100_000,
