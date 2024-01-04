@@ -98,9 +98,17 @@ export function centerMap(elmList, factor = 1) {
   window.scrollTo(scrollX, scrollY)
 }
 
-export function activeRegionDraw() {
+export function filteredData() {
   const filteredRegions = regions.filter(region => !state.region.val || region === state.region.val);
   const filteredColors = filteredRegions.map(region => colors[regions.indexOf(region)]);
+  return {
+    filteredRegions,
+    filteredColors,
+  };
+}
+
+export function activeRegionDraw() {
+  const { filteredRegions, filteredColors } = filteredData();
   drawRegions(parseData(filteredRegions), filteredColors);
   drawPrefectures(parseDataForPrefectures(filteredRegions));
   drawCities(parseDataForCities(filteredRegions));
