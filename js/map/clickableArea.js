@@ -18,11 +18,11 @@ export function drawClickableArea(data, colors) {
     sizeAxis: { minValue: 0, maxValue: 0 },
   };
 
-  const prefecturesElm = document.getElementById('clickableArea');
-  if (!prefecturesElm) {
+  const clickableAreaElm = document.getElementById('clickableArea');
+  if (!clickableAreaElm) {
     return;
   }
-  const chart = new google.visualization.GeoChart(prefecturesElm);
+  const chart = new google.visualization.GeoChart(clickableAreaElm);
 
   const dataTable = google.visualization.arrayToDataTable(data);
 

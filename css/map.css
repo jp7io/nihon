@@ -64,7 +64,7 @@
 }
 
 #map.regionZoom #clickableArea {
-  display: none;
+  z-index: 1;
 }
 
 #map.regionZoom #prefectures svg text {

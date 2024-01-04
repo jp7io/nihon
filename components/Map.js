@@ -46,11 +46,13 @@ const position = () => {
 }
 
 const cities = () => {
-  if (state.mapCitiesReady.val && state.city.val) {
+  if (state.mapCitiesReady.val) {
     const cities = document.querySelectorAll('#cities svg g[data-city=true]');
     cities.forEach(elm => elm.classList.remove('active'));
-    const cityElm = document.querySelector(`#cities svg g[data-name="${state.city.val.name.en}"]`);
-    cityElm?.classList.add('active');
+    if (state.city.val) {
+      const cityElm = document.querySelector(`#cities svg g[data-name="${state.city.val.name.en}"]`);
+      cityElm?.classList.add('active');
+    }
   }
 }
 
@@ -71,7 +73,7 @@ export const MapElm = (dom) => {
   state.region.val && console.log(state.region.val.name.en);
 
   if (dom && state.region.val !== state.region.oldVal) {
-    state.region.val && activeRegionDraw(state.region.val);
+    activeRegionDraw();
   }
 
   if (state.mapRegionsReady.val) {

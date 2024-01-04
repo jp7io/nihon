@@ -29,7 +29,7 @@ import van from '../lib/van.js';
 
 /** @type {AppState} */
 export const state = {
-  region: van.state(null),
+  region: van.state(undefined),
   prefecture: van.state(null),
   city: van.state(null),
   municipality: van.state(null),

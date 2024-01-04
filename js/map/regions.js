@@ -50,19 +50,11 @@ export function setRegion(region) {
   if (!region || state.region.oldVal === region) {
     state.region.val = null;
     state.regionZoom.val = false;
-    clearRegion();
+    state.municipality.val = null;
     return;
   }
 
   state.region.val = region;
-}
-
-export function clearRegion() {
-  state.municipality.val = null;
-  drawRegions(parseData(regions), colors);
-  drawPrefectures(parseDataForPrefectures(regions));
-  drawCities(parseDataForCities(regions));
-  drawClickableArea(parseData(regions), colors);
 }
 
 /**
@@ -106,14 +98,11 @@ export function centerPosition(elmList, factor = 1) {
   window.scrollTo(scrollX, scrollY)
 }
 
-/**
- * @param {Region} regionData
- */
-export function activeRegionDraw(regionData) {
-  const { name } = regionData;
-  const regionIndex = regions.findIndex(record => record.name.en === regionData.name.en);
-  const color = colors[regionIndex];
-  drawRegions(parseData(regions, name.en), [color]);
-  drawPrefectures(parseDataForPrefectures(regions, name.en));
-  drawCities(parseDataForCities(regions, name.en));
+export function activeRegionDraw() {
+  const filteredRegions = regions.filter(region => !state.region.val || region === state.region.val);
+  const filteredColors = filteredRegions.map(region => colors[regions.indexOf(region)]);
+  drawRegions(parseData(filteredRegions), filteredColors);
+  drawPrefectures(parseDataForPrefectures(filteredRegions));
+  drawCities(parseDataForCities(filteredRegions));
+  drawClickableArea(parseData(filteredRegions), filteredColors);
 }
