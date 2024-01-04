@@ -47,10 +47,12 @@ const position = () => {
           centerTokyo();
         }, 100);
       }, 1); // FIXME
-    } else {
-      /** @type {NodeListOf<SVGTextElement>} */
-      const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
-      centerMap(cities)
+    } else if (state.region.val) {
+      setTimeout(() => {
+        /** @type {NodeListOf<SVGTextElement>} */
+        const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
+        centerMap(cities)
+      }, 1);
     }
   }
 }
