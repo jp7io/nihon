@@ -25,7 +25,7 @@ export function setLayer(layer) {
     setPrefecture(findPrefecture('Tokyo'));
     setCity(findCity('Tokyo'));
     setMunicipalityAndType(null);
-  } else if (state.layer.val === layers.tokyo) {
+  } else if (isTokyoMap()) {
     setRegion(null);
     setPrefecture(null);
     setCity(null);
@@ -33,4 +33,8 @@ export function setLayer(layer) {
   }
 
   state.layer.val = layer;
+}
+
+export function isTokyoMap() {
+  return state.layer.val === layers.tokyo;
 }

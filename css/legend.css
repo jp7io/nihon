@@ -56,6 +56,6 @@ body:has(#map.tokyo) #legend-japan {
   display: none;
 }
 
-body:not(:has(#map.tokyo)) #legend-tokyo {
+body:has(#map.regions) #legend-tokyo {
   display: none;
 }

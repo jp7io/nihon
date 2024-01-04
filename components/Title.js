@@ -3,7 +3,7 @@
 import { layers } from '../data/dict.js';
 import { furigana } from '../js/furigana.js';
 import van from '../lib/van.js';
-import { setLayer } from '../js/layers.js';
+import { isTokyoMap, setLayer } from '../js/layers.js';
 import { setCity, setPrefecture, setRegion } from '../js/map/index.js';
 import { setMunicipalityAndType } from '../js/tokyo.js';
 import { getTitle } from '../js/title.js';
@@ -20,7 +20,7 @@ const getPageTitle = () => {
 }
 
 const getHash = () => {
-  const isTokyo = state.layer.val === layers.tokyo;
+  const isTokyo = isTokyoMap();
   const title = getTitle().slice(isTokyo ? 2 : 1);
   if (isTokyo && state.municipality.val) {
     delete title[1];

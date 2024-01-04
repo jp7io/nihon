@@ -2,6 +2,7 @@
 
 import { layers } from '../data/dict.js';
 import { setFillmode } from '../js/fillMode.js';
+import { isTokyoMap } from '../js/layers.js';
 import { activeRegionDraw, centerMap } from '../js/map/regions.js';
 import { state } from '../js/state.js';
 import { centerTokyo } from '../js/tokyo.js';
@@ -99,7 +100,7 @@ export const MapElm = (dom) => {
   return div(
     {
       id: 'map',
-      class: () => `regions ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
+      class: () => `${isTokyoMap() ? 'tokyo' : 'regions'} ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
       style: () => mapWidth(),
     },
     div({ id: 'japan' },
