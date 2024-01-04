@@ -4,7 +4,7 @@ import { layers } from '../data/dict.js';
 import { furigana } from '../js/furigana.js';
 import van from '../lib/van.js';
 import { setLayer } from '../js/layers.js';
-import { setCity, setRegion } from '../js/map/index.js';
+import { setCity, setPrefecture, setRegion } from '../js/map/index.js';
 import { setMunicipalityAndType } from '../js/tokyo.js';
 import { getTitle } from '../js/title.js';
 import { replaceSpecialChars } from '../js/utils.js';
@@ -49,6 +49,7 @@ export const TitleElm = () => {
             if (index === 0) {
               setLayer(layers.capital);
               setRegion(null);
+              setPrefecture(null);
               setCity(null);
               setMunicipalityAndType(null);
             }

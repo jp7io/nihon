@@ -11,9 +11,10 @@ import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
- * @param {() => void=} callback
  */
-export function drawPrefectures(data, callback) {
+export function drawPrefectures(data) {
+  state.mapPrefecturesReady.val = false;
+
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -34,7 +35,7 @@ export function drawPrefectures(data, callback) {
     /** @type {NodeListOf<SVGTextElement>} */
     const prefectures = document.querySelectorAll('#prefectures svg text');
     prefectures.forEach((prefecture) => improvePrefectureElm(prefecture));
-    callback && callback();
+    state.mapPrefecturesReady.val = true;
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);
@@ -67,13 +68,5 @@ function improvePrefectureElm(prefecture) {
  * @param {Prefecture | null} prefecture
  */
 export function setPrefecture(prefecture) {
-  const logicalname = prefecture && `F#feature#1#0#JP-${prefecture.code}#0`;
-
-  /** @type {NodeListOf<SVGPathElement & { logicalname: string }>} */
-  const regionsElmCollection = document.querySelectorAll('#regions svg path');
-  regionsElmCollection.forEach(elm => {
-    elm.classList.toggle('active', elm.logicalname === logicalname);
-  });
-
   state.prefecture.val = prefecture;
 }

@@ -11,16 +11,14 @@ import { commonOptions } from './common.js';
 import { drawPrefectures } from './prefectures.js';
 import { drawCities } from './cities.js';
 import { drawClickableArea } from './clickableArea.js';
-import { parseData, parseDataForPrefectures, parseDataForCities, isMobile } from "../utils.js";
-import { recoverFillmode } from '../fillMode.js';
+import { parseData, parseDataForPrefectures, parseDataForCities } from "../utils.js";
 import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
  * @param {Color[]} colors
- * @param {() => void=} callback
  */
-export function drawRegions(data, colors, callback) {
+export function drawRegions(data, colors) {
   state.mapRegionsReady.val = false;
 
   /** @type {google.visualization.GeoChartOptions} */
@@ -47,59 +45,25 @@ export function drawRegions(data, colors, callback) {
 
 /**
  * @param {Region | null} region
- * @param {() => void=} callback
  */
-export function setRegion(region, callback) {
-  /** @type {HTMLElement | null} */
-  const previousRegionItem = document.querySelector('#legend .item.active');
-
-  if (!region || previousRegionItem?.dataset.region === region?.name.en) {
+export function setRegion(region) {
+  if (!region || state.region.oldVal === region) {
     state.region.val = null;
-    resetMap();
+    state.regionZoom.val = false;
     clearRegion();
     return;
   }
 
-  setZoom(region);
-
-  state.municipality.val = null;
-  state.city.val = null;
-  state.prefecture.val = null;
   state.region.val = region;
 }
 
 export function clearRegion() {
-  drawRegions(parseData(regions), colors, recoverFillmode);
+  state.municipality.val = null;
+  drawRegions(parseData(regions), colors);
   drawPrefectures(parseDataForPrefectures(regions));
   drawCities(parseDataForCities(regions));
   drawClickableArea(parseData(regions), colors);
-  document.title = '日本の地図 (Map of Japan)';
-  document.location.hash = '';
 }
-
-export function resetMap() {
-  const map = document.getElementById('map');
-  if (!map) {
-    return;
-  }
-  state.regionZoom.val = false;
-  map.style.width = (isMobile()) ? '200%' : '100%';
-}
-
-/**
- * @param {Region} regionData
- */
-export function setZoom(regionData) {
-  const map = document.getElementById('map');
-  if (!map) {
-    return;
-  }
-  state.regionZoom.val = true;
-  const { zoom } = regionData;
-  const mobile = window.innerWidth <= 768;
-  const width = mobile ? zoom.mobile : zoom.desktop;
-  map.style.width = width;
-};
 
 /**
  * @param {NodeListOf<SVGElement>} elmList
@@ -144,17 +108,12 @@ export function centerPosition(elmList, factor = 1) {
 
 /**
  * @param {Region} regionData
- * @param {() => void} callback
  */
-export function activeRegionDraw(regionData, callback) {
+export function activeRegionDraw(regionData) {
   const { name } = regionData;
   const regionIndex = regions.findIndex(record => record.name.en === regionData.name.en);
   const color = colors[regionIndex];
-  drawRegions(parseData(regions, name.en), [color], callback);
+  drawRegions(parseData(regions, name.en), [color]);
   drawPrefectures(parseDataForPrefectures(regions, name.en));
-  drawCities(parseDataForCities(regions, name.en), () => {
-    /** @type {NodeListOf<SVGTextElement>} */
-    const cities = document.querySelectorAll('#cities svg g[data-city=true] text:last-of-type');
-    centerPosition(cities)
-  });
+  drawCities(parseDataForCities(regions, name.en));
 }

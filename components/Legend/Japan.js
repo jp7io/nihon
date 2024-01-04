@@ -12,7 +12,11 @@ const { div } = van.tags;
 
 export const JapanElm = div({ id: 'legend-japan' }, regions.map((region, index) => (
   LegendItem(region, colors[index], state.region, {
-    onclick: () => setRegion(region),
+    onclick: () => {
+      state.city.val = null;
+      state.prefecture.val = null;
+      setRegion(region);
+    },
     href: `#${replaceSpecialChars(region.name.en)}`,
   }
   ))));

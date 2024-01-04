@@ -52,17 +52,19 @@ function setJapan(hash) {
   const prefecture = hash.prefecture && findPrefecture(hash.prefecture);
   const city = hash.city && findCity(hash.city);
 
-  setRegion(region, () => {
-    setTimeout(() => {
-      if (city) {
-        setLayer(layers.capital);
-        setCity(city);
-      } else if (prefecture) {
-        setLayer(layers.prefecture);
-        setPrefecture(prefecture);
-      }
-    }, 1);
-  });
+  setRegion(region);
+
+  if (city) {
+    setLayer(layers.capital);
+    setCity(city);
+    return;
+  }
+
+  if (prefecture) {
+    setLayer(layers.prefecture);
+    setPrefecture(prefecture);
+    return;
+  }
 }
 
 function initPosition() {

@@ -12,9 +12,10 @@ import { state } from '../state.js';
 
 /**
  * @param {(string|number)[][]} data
- * @param {() => void=} callback
  */
-export function drawCities(data, callback) {
+export function drawCities(data) {
+  state.mapCitiesReady.val = false;
+
   /** @type {google.visualization.GeoChartOptions} */
   const options = {
     ...commonOptions,
@@ -35,7 +36,7 @@ export function drawCities(data, callback) {
     /** @type {NodeListOf<SVGTextElement>} */
     const cities = document.querySelectorAll('#cities svg text');
     cities.forEach(city => improveCityElm(city));
-    callback && callback();
+    state.mapCitiesReady.val = true;
   });
 
   const dataTable = google.visualization.arrayToDataTable(data);
@@ -109,16 +110,10 @@ function adjustPosition(cityTextElm, city, { y, height }) {
  * @param {City | null} city
  */
 export function setCity(city) {
-  const cities = document.querySelectorAll('#cities svg g[data-city=true]');
-  cities.forEach(elm => elm.classList.remove('active'));
-
   if (!city) {
     state.city.val = null;
     return;
   }
-
-  const cityElm = document.querySelector(`#cities svg g[data-name="${city.name.en}"]`);
-  cityElm?.classList.add('active');
 
   city.prefecture && setPrefecture(city.prefecture);
 
