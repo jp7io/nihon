@@ -17,14 +17,12 @@ const mapWidth = () => {
   if (state.region.val) {
     state.regionZoom.val = true;
     return `width: ${isMobile() ? state.region.val.zoom.mobile : state.region.val.zoom.desktop}`;
-  } else {
-    state.regionZoom.val = false;
-    return `width: ${isMobile() ? '200%' : '100%'}`;
   }
+  state.regionZoom.val = false;
+  return `width: ${isMobile() ? '200%' : '100%'}`;
 }
 
 const position = () => {
-  console.log('position', state.mapCitiesReady.val)
   if (state.mapCitiesReady.val) {
     if (state.mapCitiesReady.val && state.layer.val === layers.tokyo) {
       setTimeout(() => {
@@ -46,9 +44,7 @@ export const MapElm = (dom) => {
   state.region.val && console.log(state.region.val.name.en);
 
   if (dom && state.region.val !== state.region.oldVal) {
-    setTimeout(() => {
-      activeRegionDraw();
-    }, 100);
+    activeRegionDraw();
   }
 
   if (state.mapRegionsReady.val && state.fillmode.val) {
@@ -65,7 +61,7 @@ export const MapElm = (dom) => {
       class: () => `${isTokyoMap() ? 'tokyo' : 'regions'} ${toId(state?.layer?.val.en)} ${state.regionZoom.val ? 'regionZoom' : ''}`,
       style: () => mapWidth(),
     },
-    JapanElm,
-    TokyoElm,
+    JapanElm(),
+    TokyoElm(),
   );
 };

@@ -1,6 +1,7 @@
 // @ts-check
 
 import { state } from '../../js/state.js';
+import { memoize } from '../../js/utils.js';
 import van from '../../lib/van.js';
 
 const { div } = van.tags;
@@ -18,12 +19,14 @@ const prefectures = () => {
 
 }
 
+const memoizedPrefectures = memoize(() => div(
+  {
+    id: 'prefectures',
+  },
+));
+
 export const PrefecturesElm = () => {
   prefectures();
 
-  return div(
-    {
-      id: 'prefectures',
-    }
-  );
+  return memoizedPrefectures();
 };
