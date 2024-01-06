@@ -56,6 +56,7 @@
 
   #shuriken {
     font-size: 0.7vh !important;
+    padding-bottom: 14em !important;
   }
 
   svg text {
@@ -83,7 +84,8 @@
   }
 
   #info .flag,
-  #info img {
+  #info .flag img,
+  #info .picture {
     width: 4.5em;
     height: 3em;
   }
@@ -98,5 +100,10 @@
 
   #tokyo:not(.Tokyo) svg {
     width: 120% !important;
+  }
+
+  #picture-modal {
+    width: 90%;
+    height: 70%;
   }
 }

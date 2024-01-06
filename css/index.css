@@ -15,8 +15,16 @@
   --external-margin: 2em;
 }
 
-body {
+div {
+  box-sizing: border-box;
+}
+
+html, body, #root {
   width: 100%;
+  height: 100%;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1vw;
   margin: 0;
@@ -32,4 +40,21 @@ body {
 a {
   text-decoration: none;
   color: #000;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: none;
+}
+
+#root.modal #modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }

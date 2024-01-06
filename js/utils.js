@@ -52,13 +52,13 @@ export function compareIds(a, b) {
 }
 
 /**
- * @param {import('../data/regions').Region[]} data
+ * @param {Region[]} data
  * @param {string | null} filter
  */
 const filteredData = (data, filter) => data.filter(region => !filter || region.name.en === filter);
 
 /**
- * @param {import('../data/regions').Region[]} data
+ * @param {Region[]} data
  * @param {string | null} filter
  */
 export function parseData(data, filter = null) {
@@ -78,7 +78,7 @@ export function parseData(data, filter = null) {
 }
 
 /**
- * @param {import('../data/regions').Region[]} data
+ * @param {Region[]} data
  * @param {string | null} filter
  */
 export function parseDataForPrefectures(data, filter = null) {
@@ -100,7 +100,7 @@ export function parseDataForPrefectures(data, filter = null) {
 }
 
 /**
- * @param {import('../data/regions').Region[]} data
+ * @param {Region[]} data
  * @param {string | null} filter
  */
 export function parseDataForCities(data, filter = null) {

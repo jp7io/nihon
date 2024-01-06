@@ -11,6 +11,7 @@
  * @property {string} subprefecture
  * @property {string} population
  * @property {string} code
+ * @property {boolean=} picture
 */
 
 export const municipalityType = {
@@ -46,7 +47,7 @@ export const municipalityType = {
 
 const { ku, shi, machi, mura } = municipalityType;
 
-/* @type {Municipality[]} */
+/** @type {Municipality[]} */
 export const tokyo = [
   {
     name: {
@@ -57,7 +58,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '59.441',
-    code: '13101'
+    code: '13101',
+    picture: true,
   },
   {
     name: {
@@ -68,7 +70,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '147.62',
-    code: '13102'
+    code: '13102',
+    picture: true,
   },
   {
     name: {
@@ -79,7 +82,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '248.071',
-    code: '13103'
+    code: '13103',
+    picture: true,
   },
   {
     name: {
@@ -90,7 +94,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '339.211',
-    code: '13104'
+    code: '13104',
+    picture: true,
   },
   {
     name: {
@@ -112,7 +117,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '200.486',
-    code: '13106'
+    code: '13106',
+    picture: true,
   },
   {
     name: {
@@ -189,7 +195,8 @@ export const tokyo = [
     type: ku,
     subprefecture: '—',
     population: '227.85',
-    code: '13113'
+    code: '13113',
+    picture: true,
   },
   {
     name: {
@@ -343,7 +350,8 @@ export const tokyo = [
     type: shi,
     subprefecture: '—',
     population: '189.168',
-    code: '13204'
+    code: '13204',
+    picture: true,
   },
   {
     name: {

@@ -10,13 +10,14 @@ import { LayersAndFillElm } from './LayersAndFill/index.js';
 import { ShurikenElm } from './Shuriken.js';
 import { MapElm } from './Map/index.js';
 import { SvgSourcesElm } from './SvgSources.js';
+import { ModalElm } from './Modal.js';
 
 const { div } = van.tags;
 
 export const Root = div(
   {
     id: 'root',
-    class: () => `fillmode-${toId(state.fillmode.val.en)}`,
+    class: () => `fillmode-${toId(state.fillmode.val.en)} ${state.modal.val ? 'modal' : ''}`,
   },
   TitleElm,
   LegendElm,
@@ -25,4 +26,5 @@ export const Root = div(
   ShurikenElm,
   MapElm,
   SvgSourcesElm,
+  () => ModalElm(),
 );

@@ -39,19 +39,32 @@
 }
 
 #info .flag,
-#info img {
+#info .flag img,
+#info .picture {
   width: 3em;
   height: 2em;
 }
 
-#info .flag {
+#info .flag,
+#info .picture {
   border: 0.05em solid #ccc;
   border-radius: 0.2em;
 }
 
-#info img {
+#info .flag img,
+#info .picture img {
   border-radius: 0.15em;
   display: block;
+}
+
+#info .picture {
+  margin-right: -0.4em;
+}
+
+#info .picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .wikipedia {
@@ -66,4 +79,38 @@
   border-radius: 0.5em;
   text-decoration: none;
   font-size: 0.4em;
+}
+
+#picture-modal {
+  width: 70%;
+  height: 90%;
+}
+
+#picture-modal .modal-content {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #666;
+  border-radius: 0.5em;
+  overflow: hidden;
+  background: #fff;
+}
+
+#picture-modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#picture-modal h6 {
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 2em;
+  color: #000;
+  margin: 0;
+  padding: 0.4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+#picture-modal h6 .close {
+  cursor: pointer;
 }

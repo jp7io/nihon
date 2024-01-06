@@ -26,6 +26,7 @@
  * @property {Location} location
  * @property {boolean=} bottom
  * @property {Prefecture=} prefecture
+ * @property {boolean=} picture
 */
 
 /**
@@ -36,6 +37,7 @@
  * @property {City[]} cities
  * @property {string=} textAnchor
  * @property {Region=} region
+ * @property {boolean=} picture
  */
 
 /**
@@ -44,6 +46,7 @@
  * @property {Name} name
  * @property {Prefecture[]} prefectures
  * @property {Zoom} zoom
+ * @property {boolean=} picture
  */
 
 export const cityType = {
@@ -344,6 +347,7 @@ export const regions = [
           furigana: ['とう', 'きょう', 'と']
         },
         location: { lat: 35.6764225, lng: 139.650027 },
+        picture: true,
         cities: [
           {
             name: {
@@ -353,6 +357,7 @@ export const regions = [
             },
             types: [cityType.capital, cityType.nationalCapital, cityType.favorite],
             location: { lat: 35.6764225, lng: 139.650027 },
+            picture: true,
           }
         ],
       },
@@ -373,6 +378,7 @@ export const regions = [
             },
             types: [cityType.capital],
             location: { lat: 35.443707, lng: 139.6380256 },
+            picture: true,
           }
         ]
       }
@@ -479,6 +485,7 @@ export const regions = [
           furigana: ['やま', 'なし', 'けん']
         },
         location: { lat: 35.6635113, lng: 138.6388879 },
+        picture: true,
         cities: [
           {
             name: {
@@ -557,7 +564,7 @@ export const regions = [
             },
             types: [cityType.favorite],
             location: { lat: 34.6796171, lng: 138.9451459 },
-
+            picture: true,
           }
         ]
       },
@@ -624,6 +631,7 @@ export const regions = [
           furigana: ['し', 'が', 'けん']
         },
         location: { lat: 35.3292014, lng: 136.0563212 },
+        picture: true,
         cities: [
           {
             name: {
@@ -653,6 +661,7 @@ export const regions = [
             },
             types: [cityType.capital, cityType.favorite],
             location: { lat: 35.1566609, lng: 135.5251982 },
+            picture: true,
           }
         ],
       },
@@ -674,6 +683,7 @@ export const regions = [
             types: [cityType.capital, cityType.favorite],
             location: { lat: 34.6413315, lng: 135.5629394 },
             bottom: true,
+            picture: true,
           }
         ],
       },

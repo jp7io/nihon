@@ -26,6 +26,7 @@ import van from '../lib/van.js';
  * @property {State} mapPrefecturesReady
  * @property {State} mapCitiesReady
  * @property {State} mapTokyoReady
+ * @property {State} modal
  */
 
 /** @type {AppState} */
@@ -43,4 +44,5 @@ export const state = {
   mapPrefecturesReady: van.state(false),
   mapCitiesReady: van.state(false),
   mapTokyoReady: van.state(false),
+  modal: van.state(null),
 }

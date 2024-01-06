@@ -1,25 +1,34 @@
 // @ts-check
 
-import { dict, layers } from '../data/dict.js';
+/**
+ * @typedef {import('../data/types.js').LocationData} LocationData
+ */
+
+import { dict } from '../data/dict.js';
 import { furigana } from '../js/furigana.js';
 import { state } from '../js/state.js';
 import { replaceSpecialChars } from '../js/utils.js';
 import van from '../lib/van.js';
+import { Picture } from './Picture.js';
 
 const { a, div, img } = van.tags
 
 /**
- * @param {import('../data/regions.js').Name} name
+ * @param {LocationData} data
  * @returns {HTMLElement}
  */
-const InfoData = (name) => div(
-  {
-    id: 'info-data',
-  },
-  Flag(),
-  furigana(name),
-  div({ class: 'wikipedia' }, a({ href: `https://ja.wikipedia.org/wiki/${name.ja}`, target: '_blank' }, furigana(dict.wikipedia))),
-);
+const InfoData = (data) => {
+  const { name, picture } = data;
+  return div(
+    {
+      id: 'info-data',
+    },
+    Flag(),
+    furigana(name),
+    Wikipedia(name),
+    picture && Picture(data),
+  );
+}
 
 const InfoTooltip = div(
   {
@@ -28,29 +37,41 @@ const InfoTooltip = div(
   furigana(dict.toolTip),
 );
 
-const flagUrl = () => {
+export const filePath = (prefix = '') => {
   const { municipality, city, prefecture } = state;
   if (municipality.val) {
-    return `./img/tokyo/${replaceSpecialChars(municipality.val.name.en)}.svg`;
+    return `tokyo/${prefix + replaceSpecialChars(municipality.val.name.en)}`;
   }
   if (city.val) {
-    return `./img/city/${replaceSpecialChars(city.val.name.en)},${replaceSpecialChars(prefecture.val.name.en)}.svg`;
+    return `city/${prefix + replaceSpecialChars(city.val.name.en)},${replaceSpecialChars(prefecture.val.name.en)}`;
   }
   if (prefecture.val) {
-    return `./img/prefecture/${replaceSpecialChars(prefecture.val.name.en)}.svg`;
+    return `prefecture/${prefix + replaceSpecialChars(prefecture.val.name.en)}`;
   }
   return null;
 }
 
 const Flag = () => {
-  const src = flagUrl();
-
-  if (!src) {
+  if (!filePath()) {
     return null;
   }
 
+  const src = `./img/${filePath()}.svg`;
   return div({ class: 'flag' }, img({ src }))
 }
+
+const Wikipedia = (name) => div(
+  {
+    class: 'wikipedia'
+  },
+  a(
+    {
+      href: `https://ja.wikipedia.org/wiki/${name.ja}`,
+      target: '_blank'
+    },
+    furigana(dict.wikipedia),
+  ),
+);
 
 export const InfoElm = () => {
   const data = state.municipality.val || state.city.val || state.prefecture.val || state.region.val || null;
@@ -60,6 +81,6 @@ export const InfoElm = () => {
       id: 'info',
       class: (data) ? 'data' : 'tooltip',
     },
-    data ? InfoData(data.name) : InfoTooltip,
+    data ? InfoData(data) : InfoTooltip,
   )
 };
