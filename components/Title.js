@@ -48,10 +48,12 @@ export const TitleElm = () => {
           onclick: () => {
             if (index === 0) {
               setLayer(layers.capital);
-              setRegion(null);
               setPrefecture(null);
               setCity(null);
               setMunicipalityAndType(null);
+              setTimeout(() => {
+                setRegion(null);
+              }, 1);
             }
           },
         },
