@@ -60,13 +60,23 @@ const Flag = () => {
   return div({ class: 'flag' }, img({ src }))
 }
 
+const wikipediaLink = (name) => {
+  const { municipality, city, prefecture, region } = state;
+
+  if (!municipality.val && !city.val && !prefecture.val && region.val) {
+    return `https://ja.wikipedia.org/wiki/${name.ja}地方`;
+  }
+
+  return `https://ja.wikipedia.org/wiki/${name.ja}`;
+}
+
 const Wikipedia = (name) => div(
   {
     class: 'wikipedia'
   },
   a(
     {
-      href: `https://ja.wikipedia.org/wiki/${name.ja}`,
+      href: wikipediaLink(name),
       target: '_blank'
     },
     furigana(dict.wikipedia),
